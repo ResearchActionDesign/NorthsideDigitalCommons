@@ -75,27 +75,27 @@
 	    	   	<ul class="slides">
 					<li>
 					<img src="<?php echo img('image1_resized.jpg'); ?>" />					
-					 <p class="flex-caption"><a href="http://archives.jacksoncenter.info/exhibits/show/oral-history-trust/chapel-hill-civil-rights"><em>"Chapel Hill Civil Rights" Oral Histories</em> View Here &#10142;</a></p>
+					 <p class="flex-caption"><a href="/exhibits/show/oral-history-trust/chapel-hill-civil-rights"><em>"Chapel Hill Civil Rights" Oral Histories</em> View Here &#10142;</a></p>
 					</li>
 					<li>
 					<img src="<?php echo img('image3_resized.jpg'); ?>" />	
-					<p class="flex-caption"><a href="http://archives.jacksoncenter.info/exhibits/show/oral-history-trust"><em>Listen to audio interviews in the Oral History Trust</em> here &#10142;</a></p>
+					<p class="flex-caption"><a href="/exhibits/show/oral-history-trust"><em>Listen to audio interviews in the Oral History Trust</em> here &#10142;</a></p>
 					</li>
 					<li>
 					<img src="<?php echo img('image4_resized.jpg'); ?>" />
-					<p class="flex-caption"><a href="http://archives.jacksoncenter.info/exhibits/show/the-struggle-continues--weavin/mighty-mighty-tigers"><em>"Mighty Mighty Tigers!"</em> View Here &#10142;</a></p>
+					<p class="flex-caption"><a href="/exhibits/show/the-struggle-continues--weavin/mighty-mighty-tigers"><em>"Mighty Mighty Tigers!"</em> View Here &#10142;</a></p>
 					</li>
 					<li>
 					<img src="<?php echo img('image2_resized.jpg'); ?>" />
-					<p class="flex-caption"><a href="http://archives.jacksoncenter.info/exhibits/show/the-struggle-continues--weavin/we-shall-not-be-moved"><em>"We Shall Not Be Moved"</em> View Here &#10142;</a></p>
+					<p class="flex-caption"><a href="/exhibits/show/the-struggle-continues--weavin/we-shall-not-be-moved"><em>"We Shall Not Be Moved"</em> View Here &#10142;</a></p>
 					</li>
 					<li>
 					<img src="<?php echo img('image5_resized.jpg'); ?>" />
-					<p class="flex-caption"><a href="http://archives.jacksoncenter.info/exhibits/show/the-struggle-continues--weavin/like-going-home-to-heaven"><em>"Like Going Home to Heaven"</em> View here &#10142;</a></p>
+					<p class="flex-caption"><a href="/exhibits/show/the-struggle-continues--weavin/like-going-home-to-heaven"><em>"Like Going Home to Heaven"</em> View here &#10142;</a></p>
 					</li>
 					<li>
 					<img src="<?php echo img('image7_resized.jpg'); ?>" />
-					<p class="flex-caption"><a href="http://archives.jacksoncenter.info/exhibits/show/oral-history-trust/community-routes"><em>"Community Routes" Oral Histories</em> View Here &#10142;</a></p>
+					<p class="flex-caption"><a href="/exhibits/show/oral-history-trust/community-routes"><em>"Community Routes" Oral Histories</em> View Here &#10142;</a></p>
 					</li>
 				</ul>
 		</div>	    

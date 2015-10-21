@@ -35,12 +35,12 @@
         <h2><?php echo __('Words From Our Oral Histories'); ?></h2>
 <p>
 So when the Civil Rights movement came around he told us we couldn’t go do anything with civil rights because he didn’t know how that was going to affect his business. Because he’s dealing with people who are going to, you know, maybe be his customers. So we wanted to be a part of it, we knew we couldn’t go to jail. But we would sneak and we would go be a part of the movement.<br> 
--- <a href="http://archives.jacksoncenter.info/linda-carver" target="_blank"><em>Linda Carver</em></a> in <a href="http://archives.jacksoncenter.info/linda-carver" target="_blank">Linda</a> and <a href="http://archives.jacksoncenter.info/terry-carver" target="_blank">Terry Carver</a> Interview
+-- <a href="/linda-carver" target="_blank"><em>Linda Carver</em></a> in <a href="/linda-carver" target="_blank">Linda</a> and <a href="/terry-carver" target="_blank">Terry Carver</a> Interview
 </p>
 
 <p>
 My mother did domestic work, and you know sometimes I look back now and I can remember when she was making maybe 25 bucks a week. She had six boys and, you know, some way or another she knew how to, you know, make ends do. Because we never went hungry, you know. A lot of times, we had to cook for ourselves, because, you know, tight work schedule she’d be doing. It used to bother me sometimes, you know, here she is cooking for this white family and, you know, but she [pause] she really took care of us.<br>
--- <a href="http://archives.jacksoncenter.info/paul-caldwell" target="_blank"><em>Paul Caldwell</em></a> in <a href="http://archives.jacksoncenter.info/paul-caldwell" target="_blank">Paul Caldwell</a> 2013 Interview
+-- <a href="/paul-caldwell" target="_blank"><em>Paul Caldwell</em></a> in <a href="/paul-caldwell" target="_blank">Paul Caldwell</a> 2013 Interview
 </p>
 
     </div><!-- end recent-items -->

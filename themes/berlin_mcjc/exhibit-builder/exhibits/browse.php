@@ -4,7 +4,7 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
 ?>
 <h1><?php echo $title; ?></h1>
 <?php if (count($exhibits) > 0): ?>
-<p class="introDescription"><em><img class="docInitiatives" src="http://archives.jacksoncenter.info/files/fullsize/80b014794dda61fa734880241693095c.jpg" width="300px" height="200px" /><?php echo __('We are honored to showcase the spoken word performances, interactive exhibits, audio tours, and other creative documentary initiatives that emerged from community oral histories and the desire of students and staff to graciously respond to the stories they are privileged to hear. The site currently features The Struggle Continues, an exhibit honoring those local leaders who fought during a critical part of the freedom struggle in the 1960s.  Spoken word performances and Neighborhood Audio Tour coming soon!
+<p class="introDescription"><em><img class="docInitiatives" src="/files/fullsize/80b014794dda61fa734880241693095c.jpg" width="300px" height="200px" /><?php echo __('We are honored to showcase the spoken word performances, interactive exhibits, audio tours, and other creative documentary initiatives that emerged from community oral histories and the desire of students and staff to graciously respond to the stories they are privileged to hear. The site currently features The Struggle Continues, an exhibit honoring those local leaders who fought during a critical part of the freedom struggle in the 1960s.  Spoken word performances and Neighborhood Audio Tour coming soon!
  ') ?></em></p><hr />
 <!--<nav class="navigation secondary-nav">
     <?php echo nav(array(
