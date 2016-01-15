@@ -21,7 +21,7 @@ class ItemTypesController extends Omeka_Controller_AbstractActionController
         $itemType = new ItemType;
         $form = $this->_getForm($itemType);
         
-        if ($this->getRequest()->isPost()) {
+        if (isset($_POST[Omeka_Form_ItemTypes::SUBMIT_ADD_ELEMENT_ID])) {
             if ($form->isValid($_POST)) {
                 try{
                     $itemType = $form->saveFromPost();                    
@@ -48,7 +48,7 @@ class ItemTypesController extends Omeka_Controller_AbstractActionController
         
         // edit the item type
         $form = $this->_getForm($itemType);
-        if ($this->getRequest()->isPost()) {
+        if (isset($_POST[Omeka_Form_ItemTypes::SUBMIT_EDIT_ELEMENT_ID])) {
             if ($form->isValid($_POST)) {
                 try{                    
                     $form->saveFromPost();                    

@@ -1,4 +1,4 @@
-<div id="global-nav" role="navigation" aria-label="<?php echo __('Manage Site'); ?>">
+<div id="global-nav">
 <?php
     $globalNav = array(
         array(

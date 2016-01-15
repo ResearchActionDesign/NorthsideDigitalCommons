@@ -1,6 +1,6 @@
 </div><!-- end content -->
 
-<footer role="contentinfo">
+<footer>
 
     <div id="footer-content" class="center-div">
         <?php if($footerText = get_theme_option('Footer Text')): ?>
@@ -23,9 +23,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function(){
         Omeka.showAdvancedForm();
-        Omeka.skipNav();
-        Omeka.megaMenu();
-        Berlin.dropDown();
+               Omeka.dropDown();
     });
 </script>
 

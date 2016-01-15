@@ -14,7 +14,7 @@
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // Module originally written by                                //
-//      Mike Mozolin <teddybearÃ˜mail*ru>                       //
+//      Mike Mozolin <teddybearØmail*ru>                       //
 //                                                             //
 /////////////////////////////////////////////////////////////////
 

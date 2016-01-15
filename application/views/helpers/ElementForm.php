@@ -130,9 +130,8 @@ class Omeka_View_Helper_ElementForm extends Zend_View_Helper_Abstract
 
     protected function _getPostArray()
     {
-        $elementId = $this->_element['id'];
-        if (isset($_POST['Elements'][$elementId])) {
-            return $_POST['Elements'][$elementId];
+        if (array_key_exists('Elements', $_POST)) {
+            return $_POST['Elements'][$this->_element['id']];
         } else {
             return array();
         }

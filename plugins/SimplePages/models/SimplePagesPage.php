@@ -29,7 +29,6 @@ class SimplePagesPage extends Omeka_Record_AbstractRecord implements Zend_Acl_Re
     protected function _initializeMixins()
     {
         $this->_mixins[] = new Mixin_Search($this);
-        $this->_mixins[] = new Mixin_Timestamp($this, 'inserted', 'updated');
     }
     
     /**
@@ -112,6 +111,7 @@ class SimplePagesPage extends Omeka_Record_AbstractRecord implements Zend_Acl_Re
         }
         
         $this->modified_by_user_id = current_user()->id;
+        $this->updated = date('Y-m-d H:i:s');        
     }
     
     protected function afterSave($args)

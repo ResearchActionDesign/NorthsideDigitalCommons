@@ -800,6 +800,7 @@ abstract class Omeka_Record_AbstractRecord implements ArrayAccess
      * incorrect.
      * 
      * @param string $action
+     * @param null|string $controller
      * @return string|array A URL string or a routing array.
      */
     public function getRecordUrl($action = 'show')
@@ -811,15 +812,5 @@ abstract class Omeka_Record_AbstractRecord implements ArrayAccess
         
         // Return the default routing parameters. 
         return array('controller' => $controller, 'action' => $action, 'id' => $this->id);
-    }
-
-    /**
-     * Get a representative file for this record.
-     *
-     * @return File|null
-     */
-    public function getFile()
-    {
-        return null;
     }
 }

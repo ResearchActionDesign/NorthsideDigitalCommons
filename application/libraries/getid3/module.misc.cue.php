@@ -14,7 +14,7 @@
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // Module originally written [2009-Mar-25] by                  //
-//      Nigel Barnes <ngbarnesÃ˜hotmail*com>                    //
+//      Nigel Barnes <ngbarnesØhotmail*com>                    //
 // Minor reformatting and similar small changes to integrate   //
 //   into getID3 by James Heinrich <info@getid3.org>           //
 //                                                            ///

@@ -25,14 +25,14 @@ echo flash();
 
 <section class="three columns omega">
     <ul class="pagination">
-        <?php if (($prevLink = link_to_previous_item_show(__('Prev Item')))): ?>
+        <?php if (link_to_previous_item_show()): ?>
         <li id="previous-item" class="previous">
-            <?php echo $prevLink; ?>
+            <?php echo link_to_previous_item_show(__('Prev Item')); ?>
         </li>
         <?php endif; ?>
-        <?php if (($nextLink = link_to_next_item_show(__('Next Item')))): ?>
+        <?php if (link_to_next_item_show()): ?>
         <li id="next-item" class="next">
-            <?php echo $nextLink; ?>
+            <?php echo link_to_next_item_show(__('Next Item')); ?>
         </li>
         <?php endif; ?>
     </ul>

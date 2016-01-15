@@ -146,7 +146,13 @@ class File extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
             case 'permalink':
                 return absolute_url(array('controller' => 'files', 'action' => 'show', 'id' => $this->id));
             case 'display_title':
-                return $this->getDisplayTitle();
+                $titles = $this->getElementTexts('Dublin Core', 'Title');
+                if ($titles) {
+                    $title = strip_formatting($titles[0]->text);
+                } else {
+                    $title = $this->original_filename;
+                }
+                return $title;
             default:
                 return parent::getProperty($property);
         }
@@ -344,13 +350,13 @@ class File extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
      */
     public function createDerivatives()
     {        
-        if (!Zend_Registry::isRegistered('file_derivative_creator')) {
+        if (!($convertDir = get_option('path_to_convert'))) {
             return;
         }
-        $creator = Zend_Registry::get('file_derivative_creator');
+        $creator = new Omeka_File_Derivative_Image_Creator($convertDir);
         $creator->addDerivative('fullsize', get_option('fullsize_constraint'));
         $creator->addDerivative('thumbnail', get_option('thumbnail_constraint'));
-        $creator->addDerivative('square_thumbnail', get_option('square_thumbnail_constraint'));
+        $creator->addDerivative('square_thumbnail', get_option('square_thumbnail_constraint'), true);
         if ($creator->create($this->getPath('original'), 
                              $this->getDerivativeFilename(),
                              $this->mime_type)) {
@@ -440,7 +446,7 @@ class File extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
      * @param string $type
      * @return string
      */
-    public function getStoragePath($type = 'original')
+    public function getStoragePath($type = 'fullsize')
     {
         $storage = $this->getStorage();
         if ($type == 'original') {
@@ -505,34 +511,5 @@ class File extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
         } else {
             return false;
         }
-    }
-
-    /**
-     * Return the representative File for the record (this File itself).
-     *
-     * @return File
-     */
-    public function getFile()
-    {
-        return $this;
-    }
-
-    /**
-     * Get a title suitable for display through metadata()
-     *
-     * @return string
-     */
-    public function getDisplayTitle()
-    {
-        $titles = $this->getElementTexts('Dublin Core', 'Title');
-        if ($titles) {
-            $title = $titles[0]->text;
-            if ($titles[0]->html) {
-                $title = html_entity_decode(strip_formatting($title), ENT_QUOTES, 'UTF-8');
-            }
-        } else {
-            $title = $this->original_filename;
-        }
-        return $title;
     }
 }

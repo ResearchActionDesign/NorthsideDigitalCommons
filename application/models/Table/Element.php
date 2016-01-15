@@ -151,8 +151,6 @@ class Table_Element extends Omeka_Db_Table
                 $select->order('elements.name ASC');
             } else if ($params['sort'] == 'alphaBySet') {
                 $select->order('element_sets.name ASC')->order('elements.name ASC');
-            } else if ($params['sort'] == 'orderBySet') {
-                $this->orderElements($select);
             }
         }
         
@@ -204,26 +202,19 @@ class Table_Element extends Omeka_Db_Table
         if (!array_key_exists('record_types', $options)) {
             $options['record_types'] = array('Item', 'All');
         }
-        $optgroups = get_option('show_element_set_headings');
-
         $select = $this->getSelectForFindBy($options);
         $select->reset(Zend_Db_Select::COLUMNS);
         $select->from(array(), array(
-            'id' => 'elements.id',
+            'id' => 'elements.id', 
             'name' => 'elements.name',
             'set_name' => 'element_sets.name',
         ));
 
         $elements = $this->fetchAll($select);
-        $selectOptions = array();
+        $options = array();
         foreach ($elements as $element) {
-            if ($optgroups) {
-                $selectOptions[__($element['set_name'])][$element['id']] = __($element['name']);
-            } else {
-                $selectOptions[$element['id']] = __($element['name']);
-            }
+            $options[__($element['set_name'])][$element['id']] = __($element['name']);
         }
-
-        return $selectOptions;
+        return $options;
     }
 }

@@ -20,41 +20,36 @@
     <?php fire_plugin_hook('public_head',array('view'=>$this)); ?>
     <!-- Stylesheets -->
     <?php
-    queue_css_file(array('iconfonts', 'style'));
+    queue_css_file('style');
 
     echo head_css();
     ?>
     <!-- JavaScripts -->
+    <?php queue_js_file('vendor/modernizr'); ?>
     <?php queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)')); ?>
     <?php queue_js_file('vendor/respond'); ?>
-    <?php queue_js_file('vendor/jquery-accessibleMegaMenu'); ?>
-    <?php queue_js_file('berlin'); ?>
     <?php queue_js_file('globals'); ?>
     <?php echo head_js(); ?>
 </head>
  <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass)); ?>
-    <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
     <?php fire_plugin_hook('public_body', array('view'=>$this)); ?>
-        <header role="banner">
+        <header>
             <?php fire_plugin_hook('public_header', array('view'=>$this)); ?>
             <div id="site-title"><?php echo link_to_home_page(theme_logo()); ?></div>
 
-            <div id="search-container" role="search">
-                <?php if (get_theme_option('use_advanced_search') === null || get_theme_option('use_advanced_search')): ?>
-                <?php echo search_form(array('show_advanced' => true)); ?>
-                <?php else: ?>
-                <?php echo search_form(); ?>
-                <?php endif; ?>
+            <div id="search-container">
+                <h2>Search</h2>
+                    <?php echo search_form(array('show_advanced'=>TRUE)); ?>
             </div>
         </header>
 
-         <div id="primary-nav" role="navigation">
+         <div id="primary-nav">
              <?php
                   echo public_nav_main();
              ?>
          </div>
   
-         <div id="mobile-nav" role="navigation" aria-label="<?php echo __('Mobile Navigation'); ?>">
+         <div id="mobile-nav">
              <?php
                   echo public_nav_main();
              ?>
@@ -62,6 +57,6 @@
         
         <?php echo theme_header_image(); ?>
                        
-    <div id="content" role="main" tabindex="-1">
+    <div id="content">
 
 <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>

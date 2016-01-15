@@ -15,15 +15,58 @@ class TagsController extends Omeka_Controller_AbstractActionController
     {
         $this->_helper->db->setDefaultModelName('Tag');
     }
-
-    public function addAction()
-    {
-        $this->_helper->redirector('');
-    }
-
+    
     public function editAction()
     {
-        $this->_helper->redirector('');
+        if (!empty($_POST)) {
+            $this->editTags();
+        }
+        
+        $tags = $this->getTagsForAdministration();
+        
+        $this->view->assign(compact('tags'));
+    }
+    
+    protected function getTagsForAdministration()
+    {
+        $user = $this->getCurrentUser();
+        
+        if (!$user) {
+            throw new Zend_Acl_Exception( __('You have to be logged in to edit tags!') );
+        }
+        
+        $criteria = array('sort' => 'alpha');
+        
+        $tags = $this->_helper->db->findBy($criteria);
+        
+        return $tags;    
+    }
+    
+    protected function editTags()
+    {
+        $oldTagId = $_POST['old_tag'];
+        
+        //Explode and sanitize the new tags
+        $newTags = explode(get_option('tag_delimiter'), $_POST['new_tag']);
+        foreach ($newTags as $k => $t) {
+            $newTags[$k] = trim($t);
+        }
+        $newTags = array_diff($newTags, array(''));
+        
+        $oldTag = $this->_helper->db->find($oldTagId);
+        
+        $oldName = $oldTag->name;
+        $newNames = $_POST['new_tag'];
+        
+        try {
+            $oldTag->rename($newTags);
+            $this->_helper->flashMessenger(
+                __('Tag named "%1$s" was successfully renamed to "%2$s".', $oldName, $newNames),
+                'success'
+            );
+        } catch (Omeka_Validate_Exception $e) {
+            $this->_helper->flashMessenger($e);
+        }
     }
     
     /**
@@ -33,6 +76,7 @@ class TagsController extends Omeka_Controller_AbstractActionController
     public function browseAction()
     {
         $params = $this->_getAllParams();
+        $perms = array();
         
         //Check to see whether it will be tags for exhibits or for items
         //Default is Item
@@ -50,14 +94,23 @@ class TagsController extends Omeka_Controller_AbstractActionController
         if($record = $this->_getParam('record')) {
             $filter['record'] = $record;
         }
-
-        $findByParams = array_merge(array('sort_field' => 'name', 'include_zero' => true),
-                                    $params,
+        
+        //For the count, we only need to check based on permission levels
+        $count_params = array_merge($perms, array('type' => $for));
+        
+        $total_tags = $this->_helper->db->count($count_params);
+           
+        $findByParams = array_merge(array('sort_field' => 'name'), 
+                                    $params, 
+                                    $perms, 
                                     array('type' => $for));
 
-        $total_tags = $this->_helper->db->count($findByParams);
         $limit = isset($params['limit']) ? $params['limit'] : null;
         $tags = $this->_helper->db->findBy($findByParams, $limit);
+        $total_results = count($tags);
+        
+        Zend_Registry::set('total_tags', $total_tags);
+        Zend_Registry::set('total_results', $total_results);    
         
         $browse_for = $for;
         $sort = array_intersect_key($findByParams, array('sort_field' => '', 'sort_dir' => ''));
@@ -71,9 +124,6 @@ class TagsController extends Omeka_Controller_AbstractActionController
                 unset($record_types[$index]);
             }
         }
-
-        $csrf = new Omeka_Form_Element_SessionCsrfToken('csrf_token');
-        $this->view->csrfToken = $csrf->getToken();
         $this->view->record_types = $record_types;
         $this->view->assign(compact('tags', 'total_tags', 'browse_for', 'sort'));
     }
@@ -90,7 +140,6 @@ class TagsController extends Omeka_Controller_AbstractActionController
     
     public function renameAjaxAction()
     {
-        $csrf = new Omeka_Form_SessionCsrf;
         $oldTagId = $_POST['id'];
         $oldTag = $this->_helper->db->findById($oldTagId);
         $oldName = $oldTag->name;
@@ -98,10 +147,9 @@ class TagsController extends Omeka_Controller_AbstractActionController
 
         $oldTag->name = $newName;
         $this->_helper->viewRenderer->setNoRender();
-        if ($csrf->isValid($_POST) && $oldTag->save(false)) {
+        if ($oldTag->save(false)) {
             $this->getResponse()->setBody($newName);
         } else {
-            $this->getResponse()->setHttpResponseCode(500);
             $this->getResponse()->setBody($oldName);
         }
     }

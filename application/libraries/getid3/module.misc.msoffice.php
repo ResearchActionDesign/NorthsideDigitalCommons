@@ -7,7 +7,7 @@
 // See readme.txt for more details                             //
 /////////////////////////////////////////////////////////////////
 //                                                             //
-// module.misc.msoffice.php                                    //
+// module.archive.doc.php                                      //
 // module for analyzing MS Office (.doc, .xls, etc) files      //
 // dependencies: NONE                                          //
 //                                                            ///

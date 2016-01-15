@@ -10,7 +10,7 @@
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 //                                                             //
-// This extension written by Allan Hansen <ahÃ˜artemis*dk>      //
+// This extension written by Allan Hansen <ahØartemis*dk>      //
 //                                                            ///
 /////////////////////////////////////////////////////////////////
 

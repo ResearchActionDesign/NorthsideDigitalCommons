@@ -134,19 +134,6 @@ class Item extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
     {
         return $this->getTable('File')->findByItem($this->id);
     }
-
-    /**
-     * Get a single File associated with this Item, by index.
-     *
-     * The default is to get the first file.
-     *
-     * @param integer $index
-     * @return File
-     */
-    public function getFile($index = 0)
-    {
-        return $this->getTable('File')->findOneByItem($this->id, $index);
-    }
     
     /**
      * Get a set of Elements associated with this Item's ItemType.
@@ -478,7 +465,7 @@ class Item extends Omeka_Record_AbstractRecord implements Zend_Acl_Resource_Inte
         }
         
         $accessed = format_date(time(), Zend_Date::DATE_LONG);
-        $url = '<span class="citation-url">'.html_escape(record_url($this, null, true)).'</span>';
+        $url = html_escape(record_url($this, null, true));
         /// Chicago-style item citation: access date and URL
         $citation .= __('accessed %1$s, %2$s.', $accessed, $url);
         

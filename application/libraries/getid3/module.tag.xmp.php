@@ -14,7 +14,7 @@
 /////////////////////////////////////////////////////////////////
 //                                                             //
 // Module originally written [2009-Mar-26] by                  //
-//      Nigel Barnes <ngbarnesÃ˜hotmail*com>                    //
+//      Nigel Barnes <ngbarnesØhotmail*com>                    //
 // Bundled into getID3 with permission                         //
 //   called by getID3 in module.graphic.jpg.php                //
 //                                                            ///
