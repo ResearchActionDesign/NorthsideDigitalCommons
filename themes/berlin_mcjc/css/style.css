@@ -1672,7 +1672,8 @@ footer .navigation a {
   }
 }
 
-.exhibits.show #exhibit-pages a {
+.exhibits.show #exhibit-pages a,
+.exhibits.browse #exhibit-pages a {
   color: #fff;
 }
 .exhibits.show #exhibit-pages ul {

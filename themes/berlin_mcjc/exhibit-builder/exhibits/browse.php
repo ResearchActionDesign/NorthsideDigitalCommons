@@ -34,7 +34,19 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
         <?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
         <div class="description"><?php echo $exhibitDescription; ?></div>
         <?php endif; ?>
-        <?php if ($exhibitTags = tag_string('exhibit', 'exhibits')): ?>
+
+      <?php if ($exhibit->getPagesCount() > 0): ?>
+        <nav id="exhibit-pages">
+          <ul id="secondary-nav" class="exhibit-page-nav navigation">
+            <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
+            <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
+              <?php echo exhibit_builder_page_summary($exhibitPage); ?>
+            <?php endforeach; ?>
+          </ul>
+        </nav>
+      <?php endif; ?>
+
+      <?php if ($exhibitTags = tag_string('exhibit', 'exhibits')): ?>
         <p class="tags"><?php echo $exhibitTags; ?></p>
         <?php endif; ?>
     </div>
