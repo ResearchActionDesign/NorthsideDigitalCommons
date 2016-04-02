@@ -19,14 +19,13 @@
 </div>
 
 <?php if ($exhibit->getPagesCount() > 0): ?>
-<nav id="exhibit-pages">
-    <ul>
-        <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
-        <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
-        <?php echo exhibit_builder_page_summary($exhibitPage); ?>
-        <?php endforeach; ?>
-    </ul>
-</nav>
+    <nav id="exhibit-pages">
+        <ul id="secondary-nav" class="exhibit-page-nav navigation">
+            <?php set_exhibit_pages_for_loop_by_exhibit(); ?>
+            <?php foreach (loop('exhibit_page') as $exhibitPage): ?>
+                <?php echo exhibit_builder_page_summary($exhibitPage); ?>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
 <?php endif; ?>
-
 <?php echo foot(); ?>
