@@ -531,7 +531,7 @@ header {
   margin: 0 auto;
   padding: 0;
   width: 960px;
-  padding: 3em 0;
+  padding: 2em 0;
   position: relative;
 }
 header:after {
@@ -599,8 +599,8 @@ header:after {
   font-weight: normal;
   font-family: 'Georgia';
   color: #015581;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 18px;
+  line-height: 18px;
   text-transform: uppercase;
   letter-spacing: .2em;
   position: relative;
@@ -724,8 +724,8 @@ a#advanced-search.button {
   font-weight: normal;
   font-family: 'Georgia';
   color: #b797da;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 16px;
   text-transform: lowercase;
   letter-spacing: .2em;
   position: relative;
