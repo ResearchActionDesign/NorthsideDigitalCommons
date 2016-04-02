@@ -890,6 +890,12 @@ ul, li
   margin-bottom: 1.5em;
   border-bottom: 1px solid #ccc;
 }
+
+.exhibits.browse #secondary-nav {
+    margin-bottom: 0em;
+    border-bottom: none;
+}
+
 #secondary-nav li, .secondary-nav li {
   padding: 1.5em 0;
   margin-right: 20px;
@@ -1571,7 +1577,7 @@ footer .navigation a {
 .browse .exhibit {
   clear: both;
   border-bottom: 1px solid #eee;
-  margin-bottom: 1.5em;
+  margin-bottom: 3em;
 }
 
 .pagination + .exhibit {
