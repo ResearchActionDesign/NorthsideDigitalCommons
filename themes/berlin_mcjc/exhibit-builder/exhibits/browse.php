@@ -45,10 +45,6 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
           </ul>
         </nav>
       <?php endif; ?>
-
-      <?php if ($exhibitTags = tag_string('exhibit', 'exhibits')): ?>
-        <p class="tags"><?php echo $exhibitTags; ?></p>
-        <?php endif; ?>
     </div>
 <?php endforeach; ?>
 
