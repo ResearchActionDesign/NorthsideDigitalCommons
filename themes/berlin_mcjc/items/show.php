@@ -14,7 +14,7 @@ queue_css_file('lightbox');
   $is_photo = FALSE;
   if (metadata('item', array('Dublin Core', 'Type')) == 'Photograph'):
     $is_photo = TRUE; ?>
-    <div class="element-photograph"><?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox'))); ?></div>
+    <div class="item-photograph"><?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox'))); ?></div>
   <?php endif; ?>
 
     <!-- Items metadata -->

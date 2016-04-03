@@ -1174,6 +1174,10 @@ ul.title-list {
   margin-right: -10px;
 }
 
+.item-photograph #item-images {
+  margin-top: 1.5em;
+}
+
 .fullsize {
   margin-right: 10px;
 }
