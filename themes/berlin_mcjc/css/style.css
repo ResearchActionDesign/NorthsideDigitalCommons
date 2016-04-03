@@ -1186,7 +1186,21 @@ ul.title-list {
   margin: 0;
 }
 
-/* Items Classes*/
+div#item-metadata {
+  padding-top: 1.5em;
+  margin-top: 1.5em;
+  border-top: 1px solid #eee;
+}
+
+.items.show #item-metadata h2 {
+  display: none;
+}
+.items.show #item-metadata #dublin-core-title,
+.items.show #item-metadata #dublin-core-description {
+  display: none;
+}
+
+  /* Items Classes*/
 .element {
   overflow: hidden;
   clear: both;
