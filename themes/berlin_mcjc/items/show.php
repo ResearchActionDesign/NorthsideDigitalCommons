@@ -19,14 +19,14 @@ queue_css_file('lightbox');
 
     <!-- Items metadata -->
     <div id="item-metadata">
+      <?php if ($is_photo === FALSE): ?>
+        <h3><?php echo __('Files'); ?></h3>
+        <div id="item-images">
+          <?php echo files_for_item(); ?>
+        </div>
+      <?php endif; ?>
         <?php echo all_element_texts('item'); ?>
     </div>
-
-  <?php if ($is_photo === FALSE): ?>
-    <h3><?php echo __('Files'); ?></h3>
-    <div class="element-text"><?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox'))); ?>
-	</div>
-  <?php endif; ?>
 
    <?php if(metadata('item','Collection Name')): ?>
       <div id="collection" class="element">
