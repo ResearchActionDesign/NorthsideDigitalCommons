@@ -27,7 +27,7 @@ $sortLinks[__('Date Added')] = 'added';
 <?php endif; ?>
 
 <?php foreach (loop('items') as $item): ?>
-<div class="item hentry">
+<div class="item entry">
     <div class="item-meta">
     <?php if (metadata('item', 'has thumbnail')): ?>
     <div class="item-img">
@@ -35,7 +35,7 @@ $sortLinks[__('Date Added')] = 'added';
     </div>
     <?php endif; ?>
 	<div class="citation">
-	 <?php echo link_to_item('<h3>Citation Information</h3>'); ?>
+	 <?php echo link_to_item('<h3>' . metadata('item', array('Dublin Core', 'Title')) . ' (' . metadata('item', array('Dublin Core', 'Type')) . ')</h3>'); ?>
 	 </div>
     <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>325))): ?>
     <div class="item-description">
