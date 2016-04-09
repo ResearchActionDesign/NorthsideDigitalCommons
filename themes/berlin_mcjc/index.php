@@ -9,7 +9,7 @@
         <h2><?php echo __('Featured Item'); ?></h2>
         <table>
 			<tr>
-			<td><?php echo random_featured_items(0); ?></td>
+			<td><?php echo random_featured_items(1); ?></td>
 			</tr>
 		</table>
     </div><!--end featured-item-->
