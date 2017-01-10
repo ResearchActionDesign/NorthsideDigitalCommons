@@ -1,4 +1,5 @@
 FROM php:5.6-apache
+RUN apt-get update && apt-get install -y imagemagick
 RUN pecl install xdebug-2.5.0
 RUN docker-php-ext-install -j$(nproc) mysqli exif && docker-php-ext-enable xdebug
 RUN sed -i '1 a xdebug.remote_autostart=true' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
