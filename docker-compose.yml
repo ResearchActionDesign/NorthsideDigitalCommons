@@ -8,6 +8,8 @@ services:
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
     container_name: mcjc-omeka.l
+    environment:
+      XDEBUG_CONFIG: remote_host=10.254.254.254
     ports:
       - "80:80"
     depends_on:
