@@ -20,7 +20,7 @@ $relatedItemIds = array_unique($relatedItemIds);
           <div class="item-meta">
             <?php if (metadata($item, 'has thumbnail')): ?>
               <div class="item-img">
-                <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox')), 'squareThumbnail', FALSE, $item); ?>
+                <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox')), 'square_thumbnail', FALSE, $item); ?>
               </div>
             <?php endif; ?>
             <div class="citation">
