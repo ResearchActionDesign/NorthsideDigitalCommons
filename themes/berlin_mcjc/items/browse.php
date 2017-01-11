@@ -43,8 +43,11 @@ $sortLinks[__('Date Added')] = 'added';
 	<div class="citation">
 	 <?php
    $item_type = metadata('item', array('Dublin Core', 'Type'));
-   if ($item_type <> '') {
+   if ($item_type <> '' && !$browseByPerson) {
        $item_type = ' (' . $item_type . ')';
+   }
+   else {
+       $item_type = "";
    }
    echo link_to_item('<h3>' . metadata('item', array('Dublin Core', 'Title')) . $item_type . '</h3>'); ?>
 	 </div>
