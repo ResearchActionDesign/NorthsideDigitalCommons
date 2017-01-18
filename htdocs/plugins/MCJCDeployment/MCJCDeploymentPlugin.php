@@ -41,8 +41,14 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
     $this->_db->insert('SimpleVocabTerm', array('element_id' => $typeField->id, 'terms' => implode("\n", $dublinCoreTypeValues)));
   }
 
-  public function filterItemsBrowsePerPage($args) {
-    print_r($args);
+  public function filterItemsBrowsePerPage($number_items, $controller) {
+    // If this query is specifically the browse-by-person view, show all people.
+    if ($_SERVER['REQUEST_URI'] == '/items/browse?search=&advanced[0][element_id]=&advanced[0][type]=&advanced[0][terms]=&range=&collection=&type=12&tags=&featured=&exhibit=&submit_search=Search') {
+      return 0;
+    }
+    else {
+      return max($number_items, 20);
+    }
   }
 
 }
