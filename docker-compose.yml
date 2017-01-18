@@ -3,7 +3,7 @@ services:
   web:
     build: .
     volumes:
-      - ./:/var/www/html
+      - ./htdocs:/var/www/html
       - ./.docker:/etc/apache2/sites-available
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l

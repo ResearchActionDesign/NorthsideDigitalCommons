@@ -1,28 +1,28 @@
 # Root .htaccess
-/.htaccess
+/htdocs/.htaccess
 
 # dist directory
 /dist/
 
 # Config files
-/db.ini
-/application/config/config.ini
-/application/tests/config.ini
+/htdocs/db.ini
+/htdocs/application/config/config.ini
+/htdocs/application/tests/config.ini
 
 # Log files
-/application/logs/errors.log
-/application/logs/processes.log
-/application/tests/log.xml
+/htdocs/application/logs/errors.log
+/htdocs/application/logs/processes.log
+/htdocs/application/tests/log.xml
 
 # Test files
-/application/tests/_files/temp/
+/htdocs/application/tests/_files/temp/
 
 # Files
-/files/original/*
-/files/fullsize/*
-/files/square_thumbnails/*
-/files/theme_uploads/*
-/files/thumbnails/*
+/htdocs/files/
+
+# DB dumps
+*.sql
+/db/
 
 # For macs
 .DS_Store
