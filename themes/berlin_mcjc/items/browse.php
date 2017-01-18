@@ -33,7 +33,18 @@ $sortLinks[__('Date Added')] = 'added';
 <?php endif; ?>
 
 <?php foreach (loop('items') as $item): ?>
-<div class="item entry">
+    <?php
+    $item_type = metadata('item', array('Dublin Core', 'Type'));
+
+    if ($item_type <> '' && !$browseByPerson) {
+        $item_type = ' (' . $item_type . ')';
+    }
+    else {
+        $item_type = "";
+    }
+
+    ?>
+    <div class="item entry">
     <div class="item-meta">
     <?php if (metadata('item', 'has thumbnail')): ?>
     <div class="item-img">
@@ -42,13 +53,7 @@ $sortLinks[__('Date Added')] = 'added';
     <?php endif; ?>
 	<div class="citation">
 	 <?php
-   $item_type = metadata('item', array('Dublin Core', 'Type'));
-   if ($item_type <> '' && !$browseByPerson) {
-       $item_type = ' (' . $item_type . ')';
-   }
-   else {
-       $item_type = "";
-   }
+
    echo link_to_item('<h3>' . metadata('item', array('Dublin Core', 'Title')) . $item_type . '</h3>'); ?>
 	 </div>
     <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>325))): ?>
@@ -66,7 +71,7 @@ $sortLinks[__('Date Added')] = 'added';
     <?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
 
     </div><!-- end class="item-meta" -->
-</div><!-- end class="item entry" -->
+    </div><!-- end class="item entry" -->
 <?php endforeach; ?>
 
 <?php echo pagination_links(); ?>
