@@ -12,7 +12,7 @@ foreach ($objectRelations as $objectRelation) {
 $relatedItemIds = array_unique($relatedItemIds);
 ?>
 <div id="item-relations-display-item-relations">
-  <h2><?php echo __('Related Items'); ?></h2>
+  <h2><?php echo __('Related Content'); ?></h2>
     <table>
       <?php foreach ($relatedItemIds as $itemId): ?>
         <?php $item = get_record_by_id('item', $itemId); ?>
