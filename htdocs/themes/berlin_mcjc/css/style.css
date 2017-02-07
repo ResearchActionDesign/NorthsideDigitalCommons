@@ -45,6 +45,28 @@ audio:not([controls]) {
   display: none;
 }
 
+/** Correct theming for details marker, not displaying properly in FF. */
+summary {
+  display: block;
+}
+
+summary > * {
+  display: inline;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: '\25B6';
+  padding-right: 0.5em;
+}
+
+details[open] > summary::before {
+  content: '\25BC';
+}
+
 /* ==========================================================================
    Base
    ========================================================================== */
@@ -1186,22 +1208,22 @@ ul.title-list {
   width: 100%;
 }
 
-.items.show h3 {
+.item.show h3 {
   margin: 0;
 }
 
-div#item-metadata {
-  padding-top: 1.5em;
-  margin-top: 1.5em;
-  border-top: 1px solid #eee;
+
+.item.show #item-metadata .element-set h2 {
+  display: none;
+}
+.item.show #item-metadata #dublin-core-title,
+.item.show #item-metadata #dublin-core-description,
+.item.show #item-metadata #dublin-core-type {
+  display: none;
 }
 
-.items.show #item-metadata h2 {
-  display: none;
-}
-.items.show #item-metadata #dublin-core-title,
-.items.show #item-metadata #dublin-core-description {
-  display: none;
+.item.show #item-metadata summary {
+
 }
 
   /* Items Classes*/
