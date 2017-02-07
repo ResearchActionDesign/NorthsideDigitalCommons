@@ -13,7 +13,6 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'collections browse'));
     <h2><?php echo link_to_collection(); ?></h2>
     <?php if (metadata('collection', array('Dublin Core', 'Description'))): ?>
     <div class="element">
-        <h3><?php echo __('Description'); ?></h3>
         <div class="element-text"><?php echo text_to_paragraphs(metadata('collection', array('Dublin Core', 'Description'), array('snippet'=>325))); ?></div>
     </div>
     <?php endif; ?>

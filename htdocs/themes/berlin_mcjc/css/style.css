@@ -1473,6 +1473,9 @@ div#item-metadata {
 .collections .collection h3 {
   margin-bottom: 0;
 }
+.collections .collection h2 {
+  margin-bottom: 0;
+}
 
 .pagination + .collection {
   border-top: 1px solid #ccc;
