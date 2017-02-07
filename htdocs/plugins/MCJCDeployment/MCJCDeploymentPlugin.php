@@ -10,6 +10,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
 
   protected $_hooks = array(
     'install',
+    'upgrade',
   );
 
   protected $_filters = array(
@@ -39,6 +40,23 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
     $dublinCoreTypeValues = array('Oral History', 'Still Image', 'Person', 'Moving Image', 'Document');
     $typeField= $this->_db->getTable('Element')->findByElementSetNameAndElementName('Dublin Core', 'Type');
     $this->_db->insert('SimpleVocabTerm', array('element_id' => $typeField->id, 'terms' => implode("\n", $dublinCoreTypeValues)));
+  }
+
+  /**
+   * Upgrade between versions of the site.
+   *
+   * Use this hook to make changes to config in a consistent way.
+   * @param $oldVersion
+   * @param $newVersion
+   */
+  public function hookUpgrade($params) {
+    if ($params['old_version'] == '2.10') {
+      // Remove bibliography metadata type from person item.
+      $personItemType = $this->_db->getTable('ItemType')->findByName('person');
+      $bibliographyElement = $this->_db->getTable('Element')->findByElementSetNameAndElementName('Item Type Metadata', 'Bibliography');
+      $personItemType->removeElement($bibliographyElement);
+      $personItemType->save();
+    }
   }
 
   public function filterItemsBrowsePerPage($number_items, $controller) {
