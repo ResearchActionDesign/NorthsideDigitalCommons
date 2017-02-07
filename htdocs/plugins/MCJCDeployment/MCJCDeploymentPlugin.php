@@ -61,7 +61,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
 
   public function filterItemsBrowsePerPage($number_items, $controller) {
     // If this query is specifically the browse-by-person view, show all people.
-    if ($_SERVER['REQUEST_URI'] == '/items/browse?search=&advanced[0][element_id]=&advanced[0][type]=&add[0][element_id]=&advanced[0][type]=&advanced[0][terms]=&range=&collection=&type=12&tags=&featured=&exhibit=&sort_field=Dublin+Core%2CSubject&submit_search=Search') {
+    if ($_SERVER['REQUEST_URI'] == '/items/browse?search=&advanced[0][element_id]=&advanced[0][type]=&advanced[0][terms]=&range=&collection=&type=12&tags=&featured=&exhibit=&submit_search=Search') {
       return 0;
     }
     else {
