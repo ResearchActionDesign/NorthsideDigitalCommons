@@ -6,6 +6,12 @@ queue_css_file('lightbox');
 
 <div id="primary">
     <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
+  <?php
+  if (metadata('item', array('Dublin Core', 'Type')) == 'Oral History'):?>
+    <div id="item-__oral-history-subtitle">
+      <?php echo oral_history_item_subtitle(); ?>
+    </div>
+  <?php endif; ?>
   <div id="item-description">
     <?php echo metadata('item', array('Dublin Core','Description')); ?>
   </div>
