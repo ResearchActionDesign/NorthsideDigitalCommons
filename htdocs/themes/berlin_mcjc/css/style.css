@@ -1212,6 +1212,14 @@ ul.title-list {
   margin: 0;
 }
 
+.item.show h1 {
+  margin-bottom: 0px;
+}
+
+.item.show #item-metadata {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
 
 .item.show #item-metadata .element-set h2 {
   display: none;
@@ -1222,15 +1230,16 @@ ul.title-list {
   display: none;
 }
 
-.item.show #item-metadata summary {
-
+.item.show #item-metadata h3 {
+  font-size: inherit;
+  font-weight: bold;
 }
 
   /* Items Classes*/
 .element {
   overflow: hidden;
   clear: both;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
 .browse .item {

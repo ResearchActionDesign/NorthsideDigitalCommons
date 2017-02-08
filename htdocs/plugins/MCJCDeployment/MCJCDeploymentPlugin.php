@@ -50,10 +50,68 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
    * @param $newVersion
    */
   public function hookUpgrade($params) {
-    if ($params['old_version'] == '2.10') {
+
+    if ((double) $params['old_version'] < 2.12) {
+      // Autofill blank descriptions for oral history items.
+      $oralHistoryItemType = $this->_db->getTable('ItemType')->findByName('Oral History');
+      $items = $this->_db->getTable('Item')->findBySql("item_type_id={$oralHistoryItemType->id}");
+      foreach ($items as $item) {
+        $description = $item->getElementTexts('Dublin Core', 'Description');
+        if ($description == NULL || empty($description[0]->text)) {
+          // Need to convert interviewer names from "Last name, first name" to "First name Last name".
+          $convertNameFormat = function($s) {
+            if (strpos($s, ',') !== FALSE) {
+              return trim(substr(strstr($s,
+                ','),
+                1)) . ' ' . trim(strstr($s,
+                ',',
+                TRUE));
+            }
+            else {
+              return $s;
+            }
+          };
+          $interviewers = array_map(function($a) use ($convertNameFormat) { return $convertNameFormat($a->text); }, $item->getElementTexts('Item Type Metadata', 'Interviewer'));
+          $date = $item->getElementTexts('Item Type Metadata', 'Interview Date');
+          $text = '';
+          if (empty($interviewers)) {
+            if (empty($date)) {
+              continue;
+            }
+            else {
+              $text = sprintf('Interviewed on %s', date_format(date_create($date[0]->text), 'F j, Y'));
+            }
+          }
+          elseif (empty($date)) {
+            $text = sprintf('Interviewed by %s', implode(' and ', $interviewers));
+          }
+          else {
+            $text = sprintf('Interviewed by %s on %s', implode(' and ', $interviewers), date_format(date_create($date[0]->text), 'F j, Y'));
+          }
+
+          // Populate description.
+          $item->addElementTextsByArray(
+            array(
+              'Dublin Core' => array(
+                'Description' => array(
+                  array(
+                    'text' => $text,
+                  )
+                )
+              )
+            )
+          );
+          $item->save();
+        }
+      }
+    }
+
+    if ((double) $params['old_version'] < 2.11) {
       // Remove bibliography metadata type from person item.
-      $personItemType = $this->_db->getTable('ItemType')->findByName('person');
-      $bibliographyElement = $this->_db->getTable('Element')->findByElementSetNameAndElementName('Item Type Metadata', 'Bibliography');
+      $personItemType = $this->_db->getTable('ItemType')->findByName('Person');
+      $bibliographyElement = $this->_db->getTable('Element')
+        ->findByElementSetNameAndElementName('Item Type Metadata',
+          'Bibliography');
       $personItemType->removeElement($bibliographyElement);
       $personItemType->save();
     }
