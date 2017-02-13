@@ -1853,3 +1853,14 @@ font-size: 150%;
     width: 420px;
   }
 }
+
+/* Related items display */
+#item-relations-display-item-relations .item {
+  width: 300px;
+  float: left;
+  margin: 0.5em;
+}
+
+#item-relations-display-item-relations .item-img img {
+  padding: 50px 0;
+}

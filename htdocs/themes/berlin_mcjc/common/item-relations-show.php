@@ -1,10 +1,22 @@
 <?php if ($subjectRelations || $objectRelations): ?>
 <?php
+
+$currentRecord = get_current_record('item');
 // Load related items into array.
 $relatedItemIds = array();
 foreach ($subjectRelations as $subjectRelation) {
   $relatedItemIds[] = $subjectRelation['object_item_id'];
+  // Pull second degree relations as well.
+  $secondDegreeRelations = get_db()->getTable('ItemRelationsRelation')->findByObjectItemId($subjectRelation['object_item_id']);
+  foreach ($secondDegreeRelations as $relation) {
+    // Don't add an item to its own related items view.
+    if ($relation['subject_item_id'] <> $currentRecord->id) {
+      $relatedItemIds[] = $relation['subject_item_id'];
+    }
+  }
+
 }
+
 foreach ($objectRelations as $objectRelation) {
   $relatedItemIds[] = $objectRelation['subject_item_id'];
 }
