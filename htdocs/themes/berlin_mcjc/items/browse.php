@@ -1,21 +1,29 @@
 <?php
-$pageTitle = __('Browse Items');
+// Display separate theming if this is specifically a browse people page.
+$filters = item_search_filters();
+if (strpos($filters, 'Item Type: Person') !== FALSE) {
+    $browseByPerson = TRUE;
+    $pageTitle = __('People');
+}
+else {
+    $browseByPerson = FALSE;
+    $pageTitle = __('Browse Items');
+}
 echo head(array('title'=>$pageTitle,'bodyclass' => 'items browse'));
 ?>
 
 <h1><?php echo $pageTitle;?> <?php echo __('(%s total)', $total_results); ?></h1>
 
+<?php if (!$browseByPerson): ?>
 <nav class="items-nav navigation secondary-nav">
     <?php echo public_nav_items(); ?>
 </nav>
 
-<?php echo item_search_filters(); ?>
-
-<?php echo pagination_links(); ?>
-
-<?php if ($total_results > 0): ?>
-
 <?php
+endif;
+echo $browseByPerson ? '' : item_search_filters();
+
+if (($total_results > 0) && (!$browseByPerson)):
 $sortLinks[__('Title')] = 'Dublin Core,Title';
 $sortLinks[__('Creator')] = 'Dublin Core,Creator';
 $sortLinks[__('Date Added')] = 'added';
@@ -25,6 +33,7 @@ $sortLinks[__('Date Added')] = 'added';
 </div>
 
 <?php endif; ?>
+<?php echo pagination_links(); ?>
 
 <?php foreach (loop('items') as $item): ?>
 <div class="item record">
@@ -32,7 +41,7 @@ $sortLinks[__('Date Added')] = 'added';
     <div class="item-meta">
     <?php if (metadata('item', 'has files')): ?>
     <div class="item-img">
-        <?php echo link_to_item(item_image()); ?>
+        <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox'))); ?>
     </div>
     <?php endif; ?>
 
@@ -51,7 +60,7 @@ $sortLinks[__('Date Added')] = 'added';
     <?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
 
     </div><!-- end class="item-meta" -->
-</div><!-- end class="item hentry" -->
+</div><!-- end class="item entry" -->
 <?php endforeach; ?>
 
 <?php echo pagination_links(); ?>

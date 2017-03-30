@@ -1,7 +1,26 @@
 <?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
 <div id="primary">
     <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
+  <?php
+  if (metadata('item', array('Dublin Core', 'Type')) == 'Oral History'):?>
+    <div id="item-__oral-history-subtitle">
+      <?php echo oral_history_item_subtitle(); ?>
+    </div>
+  <?php endif; ?>
+  <div id="item-description">
+    <?php echo metadata('item', array('Dublin Core','Description')); ?>
+  </div>
 
+  <!-- Item files -->
+  <?php if (metadata('item', 'has files')): ?>
+    <div id="itemfiles" class="element">
+      <div class="element-text"><?php echo item_image_gallery(); ?></div>
+    </div>
+  <?php endif; ?>
+
+  <!-- Other metadata -->
+  <details id="item-metadata">
+    <summary><h2><?php echo __('Details') ?></h2></summary>
     <!-- Items metadata -->
     <div id="item-metadata">
         <?php echo all_element_texts('item'); ?>
@@ -32,6 +51,7 @@
         <h3><?php echo __('Citation'); ?></h3>
         <div class="element-text"><?php echo metadata('item','citation',array('no_escape'=>true)); ?></div>
     </div>
+    </details>
        <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
 
 
