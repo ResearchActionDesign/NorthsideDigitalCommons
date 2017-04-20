@@ -12,47 +12,45 @@ class CleanUrl_View_Helper_GetRecordTypeIdentifiers extends Zend_View_Helper_Abs
      * Return identifiers for a record type, if any. It can be sanitized.
      *
      * @param string $recordType Should be "Collection", "Item" or "File".
-     * @param boolean $rawEncoded Sanitize the identifier for http or not.
-     * @return array Associative array of record id and identifiers.
+     * @param boolean $rawUrlEncode Sanitize the identifiers for http or not.
+     * @return array List of identifiers.
      */
-    public function getRecordTypeIdentifiers($recordType, $rawEncoded = true)
+    public function getRecordTypeIdentifiers($recordType, $rawUrlEncode = true)
     {
         if (!in_array($recordType, array('Collection', 'Item', 'File'))) {
             return array();
         }
 
+        $elementId = (integer) get_option('clean_url_identifier_element');
+        $prefix = get_option('clean_url_identifier_prefix');
+
         // Use a direct query in order to improve speed.
         $db = get_db();
-        $elementId = (integer) get_option('clean_url_identifier_element');
-        $bind = array();
+        $table = $db->getTable('ElementText');
+        $select = $table
+            ->getSelect()
+            ->reset(Zend_Db_Select::COLUMNS)
+            ->where('element_texts.element_id = ?', $elementId)
+            ->where('element_texts.record_type = ?', $recordType)
+            ->order(array('element_texts.record_id ASC', 'element_texts.id ASC'));
 
-        $prefix = get_option('clean_url_identifier_prefix');
         if ($prefix) {
-            // Keep only the identifier without the configured prefix.
-            $prefixLenght = strlen($prefix) + 1;
-            $sqlSelect = 'SELECT element_texts.record_id, TRIM(SUBSTR(element_texts.text, ' . $prefixLenght . '))';
-            $sqlWereText = 'AND element_texts.text LIKE ?';
-            $bind[] = $prefix . '%';
+            $select
+                ->columns(array(
+                    new Zend_Db_Expr('TRIM(SUBSTR(element_texts.text, ' . (strlen($prefix) + 1) . '))'),
+                ))
+                ->where('element_texts.text LIKE ?', $prefix . '%');
         }
+        // No prefix.
         else {
-            $sqlSelect = 'SELECT element_texts.record_id, element_texts.text';
-            $sqlWereText = '';
+            $select
+                ->columns(array(
+                    'element_texts.text',
+                ));
         }
 
-        // The "order by id DESC" allows to get automatically the first row in
-        // php result and avoids a useless subselect in sql (useless because in
-        // almost all cases, there is only one identifier).
-        $sql = "
-            $sqlSelect
-            FROM {$db->ElementText} element_texts
-            WHERE element_texts.element_id = '$elementId'
-                AND element_texts.record_type = '$recordType'
-                $sqlWereText
-            ORDER BY element_texts.record_id, element_texts.id DESC
-        ";
-        $result = $db->fetchPairs($sql, $bind);
-
-        return $rawEncoded
+        $result = $table->fetchCol($select);
+        return $rawUrlEncode
             ? array_map('rawurlencode', $result)
             : $result;
     }

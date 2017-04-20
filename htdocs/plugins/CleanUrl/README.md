@@ -1,6 +1,8 @@
 Clean Url (plugin for Omeka)
 ============================
 
+[![Build Status](https://travis-ci.org/Daniel-KM/CleanUrl.svg?branch=master)](https://travis-ci.org/Daniel-KM/CleanUrl)
+
 [Clean Url] is a plugin for [Omeka] that creates clean, readable and search
 engine optimized URLs like `http://example.com/my_collection/dc:identifier`
 instead of `http://example.com/items/show/internal_code`. Used identifiers come
@@ -8,6 +10,9 @@ from standard Dublin Core metadata, or from a specific field, so they are easy
 to manage.
 
 See the example of the digitized heritage of the library of [Mines ParisTech].
+
+This plugin is upgradable to [Omeka S] via the plugin [Upgrade to Omeka S], that
+installs the module [Clean Url for Omeka S].
 
 
 Installation
@@ -24,15 +29,18 @@ Usage
 Clean urls are automatically displayed in public theme and they are not used in
 the admin theme. They are case insensitive.
 
-### Identifiers ###
+This module may be used with the module [Archive Repertory] to set similar paths
+for real files (collection_identifier / item_identifier / true_filename).
 
-Simply set an identifier for each record in a field (`Dublin Core:Identifier` by
-default). Recommended fields to use are `Dublin Core:Identifier` or an added
-specific field. This field should be available for collections, items and files.
+### Identifiers
 
-- Identifiers can be any strings with any characters, as long as they don't
+Simply set an identifier for each record in a field. The recommended field is
+`Dublin Core:Identifier`. This field should be available for collections, items
+and files.
+
+- Identifiers can be any strings with any characters, as long as they don’t
 contain reserved characters like "/" and "%".
-- To use numbers as identifier is possible but not recommended. if so, it's
+- To use numbers as identifier is possible but not recommended. if so, it’s
 recommended that all records have got an identifier.
 - A prefix can be added if you have other data in the same field.
 - A record can have multiple identifiers. The first one will be used to set the
@@ -45,7 +53,7 @@ them (a main path, a collection identifier or a generic word).
 - If not set, the identifier will be the default id of the record, except for
 collections, where the original path will be used.
 
-### Structure of urls ###
+### Structure of urls
 
 The configuration page let you choose the structure of paths for collections,
 items and files.
@@ -60,14 +68,14 @@ the default url. Other ones can be used to get records.
 
 So the configuration of the plugin let you choose among these possible paths:
 
-*Collections*
+#### Collections
 
     - / :identifier_collection
     - / generic_collection / :identifier_collection
     - / main_path / :identifier_collection
     - / main_path / generic_collection / :identifier_collection
 
-*Items*
+#### Items
 
     - / :identifier_item (currently not available)
     - / generic_item / :identifier_item
@@ -78,7 +86,7 @@ So the configuration of the plugin let you choose among these possible paths:
     - / main_path / :identifier_collection / :identifier_item
     - / main_path / generic_collection / :identifier_collection / :identifier_item
 
-*Files*
+#### Files
 
     - / :identifier_file (currently not available)
     - / :identifier_item / :identifier_file (currently not available)
@@ -112,7 +120,7 @@ record to the plugin. Query params are kept.
 Nevertheless, the default url may be still used in theme. So the theme may need
 to be modified too.
 
-### Internally Managed Routes
+### Internally Managed Routes
 
 The reroute from a clean url to these plugins are included:
 
@@ -130,8 +138,8 @@ Warning
 
 Use it at your own risk.
 
-It's always recommended to backup your files and database regularly so you can
-roll back if needed.
+It’s always recommended to backup your files and your databases and to check
+your archives regularly so you can roll back if needed.
 
 
 Troubleshooting
@@ -148,11 +156,11 @@ This plugin is published under the [CeCILL v2.1] licence, compatible with
 
 In consideration of access to the source code and the rights to copy, modify and
 redistribute granted by the license, users are provided only with a limited
-warranty and the software's author, the holder of the economic rights, and the
+warranty and the software’s author, the holder of the economic rights, and the
 successive licensors only have limited liability.
 
 In this respect, the risks associated with loading, using, modifying and/or
-developing or reproducing the software by the user are brought to the user's
+developing or reproducing the software by the user are brought to the user’s
 attention, given its Free Software status, which may make it complicated to use,
 with the result that its use is reserved for developers and experienced
 professionals having in-depth computer knowledge. Users are therefore encouraged
@@ -177,13 +185,16 @@ The upgrade for Omeka 2.0 has been built for [Mines ParisTech].
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2012-2015
+* Copyright Daniel Berthereau, 2012-2017
 
 Initially based on ItemId of Jim Safley (see [GitHub ItemId]).
 
 
 [Clean Url]: https://github.com/Daniel-KM/CleanUrl
 [Omeka]: https://omeka.org
+[Omeka S]: https://omeka.org/s
+[Upgrade to Omeka S]: https://github.com/Daniel-KM/UpgradeToOmekaS
+[Clean Url for Omeka S]: https://github.com/Daniel-KM/Omeka-S-module-CleanUrl
 [plugin issues]: https://github.com/Daniel-KM/CleanUrl/issues
 [Archive Repertory]: https://github.com/Daniel-KM/ArchiveRepertory
 [BookReader]: https://github.com/jsicot/BookReader
