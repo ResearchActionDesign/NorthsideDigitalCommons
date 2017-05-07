@@ -2052,6 +2052,100 @@ footer nav + p {
 }
 
 /* @end */
+/**
+ * @file
+ *
+ * Custom styles for the MCJC sub-theme.
+ */
+/* @group ----- Generic ----- */
+body {
+  color: #414042;
+}
+
+/* -- Headings -- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #412560;
+}
+
+h1::after {
+  background: #dedae2;
+  content: '';
+  display: block;
+  height: 2px;
+  margin: 10px 0 .5em;
+  width: 30px;
+}
+
+a,
+a:link,
+a:visited {
+  color: #267a97;
+  transition: all .1s linear;
+}
+a:hover, a:focus,
+a:link:hover,
+a:link:focus,
+a:visited:hover,
+a:visited:focus {
+  color: #806998;
+}
+
+/* @end */
+/* @group ----- Header ----- */
+#site-title {
+  color: #412560;
+  font-size: 30px;
+  letter-spacing: .1em;
+  width: 60%;
+}
+#site-title a,
+#site-title a:hover,
+#site-title a:focus {
+  color: #412560;
+}
+
+#search-container {
+  width: 35%;
+}
+#search-container button {
+  background-color: #267a97;
+}
+
+.show-advanced.button {
+  border-left: 1px solid #267a97;
+}
+.show-advanced.button:after {
+  background-color: #267a97;
+}
+
+/* @end */
+/* @group ----- Navigation ----- */
+#primary-nav .nav-item > a.open {
+  background-color: #fff;
+}
+#primary-nav a:hover,
+#primary-nav a:focus {
+  color: #806998;
+}
+#primary-nav li.active a,
+#primary-nav .nav-item.active a.open {
+  background-color: #806998;
+  color: #fff;
+}
+
+/* @end */
+/* @group ----- Home Page ----- */
+.featured,
+#featured-exhibit {
+  background: #f4f3f5;
+}
+
+/* @end */
 @media screen and (max-width: 768px) {
   /* @group ----- Generic HTML elements ----- */
   input[type=text], input[type=password], textarea {

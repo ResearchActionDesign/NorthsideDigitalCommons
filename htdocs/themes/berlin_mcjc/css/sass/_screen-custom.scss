@@ -1,0 +1,109 @@
+/**
+ * @file
+ *
+ * Custom styles for the MCJC sub-theme.
+ */
+
+/* @group ----- Generic ----- */
+
+body {
+  color: $grey--dark;
+}
+
+/* -- Headings -- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $purple--dark;
+}
+
+h1 {
+  &::after {
+    background: $grey--medium;
+    content: '';
+    display: block;
+    height: 2px;
+    margin: 10px 0 .5em;
+    width: 30px;
+  }
+}
+
+a,
+a:link,
+a:visited {
+  color: $green;
+  transition: all .1s linear;
+
+  &:hover,
+  &:focus {
+    color: $purple--light;
+  }
+}
+
+/* @end */
+
+/* @group ----- Header ----- */
+
+#site-title {
+  color: $purple--dark;
+  font-size: 2.5 * $base-font-size;
+  letter-spacing: .1em;
+  width: 60%;
+
+  a,
+  a:hover,
+  a:focus {
+    color: $purple--dark;
+  }
+}
+
+#search-container {
+  width: 35%;
+
+  button {
+    background-color: $green;
+  }
+}
+
+.show-advanced.button {
+  border-left: 1px solid $green;
+
+  &:after{
+    background-color: $green;
+  }
+}
+
+/* @end */
+
+/* @group ----- Navigation ----- */
+
+#primary-nav {
+  .nav-item > a.open {
+    background-color: $white;
+  }
+
+  a:hover,
+  a:focus {
+    color: $purple--light;
+  }
+
+  li.active a,
+  .nav-item.active a.open {
+    background-color: $purple--light;
+    color: $white;
+  }
+}
+
+/* @end */
+
+/* @group ----- Home Page ----- */
+
+.featured,
+#featured-exhibit {
+  background: $grey--light;
+}
+
+/* @end */
