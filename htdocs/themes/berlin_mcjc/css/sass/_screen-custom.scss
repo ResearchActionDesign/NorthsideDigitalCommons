@@ -107,3 +107,56 @@ a:visited {
 }
 
 /* @end */
+
+/* @group ----- Items ----- */
+
+.element-set {
+  border-bottom: solid 1px $grey--medium;
+  margin-bottom: 3 * $base-font-size;
+  padding-bottom: 3 * $base-font-size;
+
+  h2 {
+    &::after {
+      background: $grey--medium;
+      content: '';
+      display: block;
+      height: 2px;
+      width: 30px;
+    }
+  }
+
+  .element {
+    margin-bottom: 1em;
+  }
+}
+
+.items.show h3 {
+  margin-bottom: .5em;
+}
+
+/* @end */
+
+/* @group ----- Expander ----- */
+
+details#item-metadata {
+  background-color: $grey--light;
+  padding: $base-font-size;
+
+  > * {
+    margin-left: 2 * $base-font-size;
+    margin-right: 2 * $base-font-size;
+  }
+
+  summary {
+    color: $green;
+    margin-left: 0;
+
+    h2 {
+      color: $green;
+      display: inline-block;
+      margin: 0;
+    }
+  }
+}
+
+/* @end */

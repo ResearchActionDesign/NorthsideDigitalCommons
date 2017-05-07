@@ -1,0 +1,11 @@
+
+/* @group ----- Expander ----- */
+
+details#item-metadata {
+  > * {
+    margin-left: .5 * $base-font-size;
+    margin-right: .5 * $base-font-size;
+  }
+}
+
+/* @end */

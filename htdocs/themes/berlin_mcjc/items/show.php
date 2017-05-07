@@ -20,18 +20,20 @@
 
   <!-- Other metadata -->
   <details id="item-metadata">
-    <summary><h2><?php echo __('Details') ?></h2></summary>
+    <summary><h2><?php echo __('View Details') ?></h2></summary>
     <!-- Items metadata -->
     <div id="item-metadata">
         <?php echo all_element_texts('item'); ?>
     </div>
 
+    <?php if (metadata('item', 'has files')): ?>
     <h3><?php echo __('Files'); ?></h3>
     <div id="item-images">
          <?php echo files_for_item(); ?>
     </div>
+    <?php endif; ?>
 
-   <?php if(metadata('item','Collection Name')): ?>
+    <?php if(metadata('item','Collection Name')): ?>
       <div id="collection" class="element">
         <h3><?php echo __('Collection'); ?></h3>
         <div class="element-text"><?php echo link_to_collection_for_item(); ?></div>
