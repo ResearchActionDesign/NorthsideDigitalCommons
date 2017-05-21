@@ -1,3 +1,31 @@
+/**
+ * @file
+ *
+ * Custom styles for the MCJC sub-theme at 768px and below.
+ */
+
+/* @group ----- Items ----- */
+
+#item-images {
+  float: none;
+  margin-right: 0;
+
+  > div {
+    margin-bottom: 0;
+    margin-top: 2em;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.item .tags {
+  clear: left;
+}
+
+/* @end */
 
 /* @group ----- Expander ----- */
 

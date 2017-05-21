@@ -2147,6 +2147,26 @@ a:visited:focus {
 
 /* @end */
 /* @group ----- Items ----- */
+#item-images {
+  float: left;
+  margin-right: 2em;
+}
+#item-images > div {
+  margin-bottom: 2em;
+}
+
+.item .tags {
+  clear: none;
+  margin-left: 0;
+}
+
+.item.entry {
+  clear: both;
+}
+.item.entry:not(:first-of-type) {
+  border-top: solid 1px #dedae2;
+}
+
 .element-set {
   border-bottom: solid 1px #dedae2;
   margin-bottom: 36px;
@@ -2161,6 +2181,11 @@ a:visited:focus {
 }
 .element-set .element {
   margin-bottom: 1em;
+}
+
+.item-pagination a {
+  font-size: 1.2em;
+  text-transform: uppercase;
 }
 
 .items.show h3 {
@@ -2179,6 +2204,7 @@ details#item-metadata > * {
 }
 details#item-metadata summary {
   color: #00739b;
+  cursor: pointer;
   margin-left: 0;
 }
 details#item-metadata summary h2 {
@@ -2381,6 +2407,30 @@ details#item-metadata summary h2 {
   /* @group ----- Exhibits/Show ----- */
   #exhibit-pages {
     width: 100%;
+  }
+
+  /* @end */
+  /**
+   * @file
+   *
+   * Custom styles for the MCJC sub-theme at 768px and below.
+   */
+  /* @group ----- Items ----- */
+  #item-images {
+    float: none;
+    margin-right: 0;
+  }
+  #item-images > div {
+    margin-bottom: 0;
+    margin-top: 2em;
+  }
+  #item-images img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .item .tags {
+    clear: left;
   }
 
   /* @end */

@@ -110,6 +110,28 @@ a:visited {
 
 /* @group ----- Items ----- */
 
+#item-images {
+  float: left;
+  margin-right: 2em;
+
+  > div {
+    margin-bottom: 2em;
+  }
+}
+
+.item .tags {
+  clear: none;
+  margin-left: 0;
+}
+
+.item.entry {
+  clear: both;
+
+  &:not(:first-of-type) {
+    border-top: solid 1px $grey--medium;
+  }
+}
+
 .element-set {
   border-bottom: solid 1px $grey--medium;
   margin-bottom: 3 * $base-font-size;
@@ -127,6 +149,13 @@ a:visited {
 
   .element {
     margin-bottom: 1em;
+  }
+}
+
+.item-pagination {
+  a {
+    font-size: 1.2em;
+    text-transform: uppercase;
   }
 }
 
@@ -149,6 +178,7 @@ details#item-metadata {
 
   summary {
     color: $green;
+    cursor: pointer;
     margin-left: 0;
 
     h2 {
