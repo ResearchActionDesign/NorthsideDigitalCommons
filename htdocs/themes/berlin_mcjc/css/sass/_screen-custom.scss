@@ -183,7 +183,6 @@ a:visited {
       }
     }
   }
-
 }
 
 /* @end */
@@ -196,13 +195,25 @@ a:visited {
 
 /* @end */
 
+/* @group ----- Items/Search ----- */
+
+#advanced-search-form {
+  label {
+    font-weight: bold;
+  }
+}
+
+/* @end */
+
 /* @group ----- Collections/Browse ----- */
 
 .browse .collection .image,
 .browse .collection .image img,
 .browse .exhibit .image,
-.browse .exhibit .image img {
-  border: none;
+.browse .exhibit .image img,
+.collections .item-img a,
+#search-results .image {
+  border: 0;
   height: auto;
 }
 
