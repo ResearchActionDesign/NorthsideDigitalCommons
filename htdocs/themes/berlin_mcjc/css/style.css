@@ -1787,6 +1787,8 @@ ul.title-list {
   content: "";
 }
 
+/* @end */
+/* @group ----- Footer ----- */
 footer {
   clear: both;
   position: relative;
@@ -2060,7 +2062,6 @@ body {
   color: #414042;
 }
 
-/* -- Headings -- */
 h1,
 h2,
 h3,
@@ -2257,10 +2258,6 @@ a:visited:focus {
   clear: left;
 }
 
-.collections .item-img a {
-  border: 0;
-  height: auto;
-}
 .collections .item-img a img {
   border: 1px solid #ccc;
 }

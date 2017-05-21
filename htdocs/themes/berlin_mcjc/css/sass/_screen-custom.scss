@@ -10,7 +10,6 @@ body {
   color: $grey--dark;
 }
 
-/* -- Headings -- */
 h1,
 h2,
 h3,
@@ -241,13 +240,8 @@ a:visited {
   clear: left;
 }
 
-.collections .item-img a {
-  border: 0;
-  height: auto;
-
-  img {
-    border: 1px solid #ccc;
-  }
+.collections .item-img a img {
+  border: 1px solid #ccc;
 }
 
 /* @end */
