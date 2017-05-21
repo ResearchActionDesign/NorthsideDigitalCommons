@@ -4,6 +4,20 @@
  * Custom styles for the MCJC sub-theme at 768px and below.
  */
 
+/* @group ----- Footer ----- */
+
+footer {
+  nav {
+    overflow: auto;
+  }
+
+  nav + p {
+    text-align: left;
+  }
+}
+
+/* @end */
+
 /* @group ----- Items ----- */
 
 #item-images {
@@ -23,6 +37,18 @@
 
 .item .tags {
   clear: left;
+}
+
+/* @end */
+
+/* @group ----- Items/Browse ----- */
+
+.browse .item-meta .item-img {
+  float: none;
+}
+
+.browse .item-meta > div {
+  display: block;
 }
 
 /* @end */

@@ -1787,8 +1787,6 @@ ul.title-list {
   content: "";
 }
 
-/* @end */
-/* @group ----- Footer ----- */
 footer {
   clear: both;
   position: relative;
@@ -2193,6 +2191,20 @@ a:visited:focus {
 }
 
 /* @end */
+/* @group ----- Items/Browse ----- */
+.browse .item-img img {
+  height: auto;
+}
+
+/* @end */
+/* @group ----- Footer ----- */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  footer .navigation li {
+    float: none;
+  }
+}
+
+/* @end */
 /* @group ----- Expander ----- */
 details#item-metadata {
   background-color: #f4f3f5;
@@ -2415,6 +2427,15 @@ details#item-metadata summary h2 {
    *
    * Custom styles for the MCJC sub-theme at 768px and below.
    */
+  /* @group ----- Footer ----- */
+  footer nav {
+    overflow: auto;
+  }
+  footer nav + p {
+    text-align: left;
+  }
+
+  /* @end */
   /* @group ----- Items ----- */
   #item-images {
     float: none;
@@ -2431,6 +2452,16 @@ details#item-metadata summary h2 {
 
   .item .tags {
     clear: left;
+  }
+
+  /* @end */
+  /* @group ----- Items/Browse ----- */
+  .browse .item-meta .item-img {
+    float: none;
+  }
+
+  .browse .item-meta > div {
+    display: block;
   }
 
   /* @end */

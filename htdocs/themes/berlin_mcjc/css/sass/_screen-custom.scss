@@ -165,6 +165,26 @@ a:visited {
 
 /* @end */
 
+/* @group ----- Items/Browse ----- */
+
+.browse .item-img img {
+  height: auto;
+}
+
+/* @end */
+
+/* @group ----- Footer ----- */
+
+footer {
+  .navigation li {
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+      float: none;
+    }
+  }
+}
+
+/* @end */
+
 /* @group ----- Expander ----- */
 
 details#item-metadata {
