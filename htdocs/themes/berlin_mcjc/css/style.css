@@ -2190,6 +2190,23 @@ a:visited:focus {
   margin-bottom: .5em;
 }
 
+.hTagcloud ul li {
+  display: inline-block;
+  margin: .5em;
+}
+.hTagcloud ul li a {
+  background-color: #00739b;
+  border-radius: 3px;
+  color: #f4f3f5;
+  display: block;
+  padding: .75em;
+  text-decoration: none;
+}
+.hTagcloud ul li a:hover, .hTagcloud ul li a:focus {
+  background-color: #806998;
+  color: #f4f3f5;
+}
+
 /* @end */
 /* @group ----- Items/Browse ----- */
 .browse .item-img img {
