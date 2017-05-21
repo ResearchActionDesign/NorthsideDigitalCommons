@@ -173,6 +173,59 @@ a:visited {
 
 /* @end */
 
+/* @group ----- Collections/Browse ----- */
+
+.browse .collection .image,
+.browse .collection .image img,
+.browse .exhibit .image,
+.browse .exhibit .image img {
+  border: none;
+  height: auto;
+}
+
+.collection .image,
+.exhibit .image {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.browse .collection h2,
+.browse .exhibit h2 {
+  width: auto;
+
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
+    width: auto;
+  }
+}
+
+.browse .collection-meta {
+  clear: left;
+}
+
+.collection .tags {
+  clear: left;
+}
+
+.collections .item-img a {
+  border: 0;
+  height: auto;
+
+  img {
+    border: 1px solid #ccc;
+  }
+}
+
+/* @end */
+
+/* @group ----- Exhibit Builder ----- */
+
+.exhibit .tags {
+  clear: left;
+}
+
+/* @end */
+
 /* @group ----- Footer ----- */
 
 footer {

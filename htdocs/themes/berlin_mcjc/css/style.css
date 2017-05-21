@@ -2197,6 +2197,56 @@ a:visited:focus {
 }
 
 /* @end */
+/* @group ----- Collections/Browse ----- */
+.browse .collection .image,
+.browse .collection .image img,
+.browse .exhibit .image,
+.browse .exhibit .image img {
+  border: none;
+  height: auto;
+}
+
+.collection .image,
+.exhibit .image {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.browse .collection h2,
+.browse .exhibit h2 {
+  width: auto;
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .browse .collection h2,
+  .browse .exhibit h2 {
+    width: auto;
+  }
+}
+
+.browse .collection-meta {
+  clear: left;
+}
+
+.collection .tags {
+  clear: left;
+}
+
+.collections .item-img a {
+  border: 0;
+  height: auto;
+}
+.collections .item-img a img {
+  border: 1px solid #ccc;
+}
+
+/* @end */
+/* @group ----- Exhibit Builder ----- */
+.exhibit .tags {
+  clear: left;
+}
+
+/* @end */
 /* @group ----- Footer ----- */
 @media only screen and (min-width: 768px) and (max-width: 959px) {
   footer .navigation li {
@@ -2462,6 +2512,40 @@ details#item-metadata summary h2 {
 
   .browse .item-meta > div {
     display: block;
+  }
+
+  /* @end */
+  /* @group ----- Collections/Browse ----- */
+  .browse .collection .image,
+  .browse .exhibit .image {
+    clear: both;
+    display: block;
+    float: none;
+    margin: 0;
+    overflow: auto;
+  }
+  .browse .collection .image img,
+  .browse .exhibit .image img {
+    display: block;
+    float: none;
+    margin: 2em auto;
+  }
+
+  .collection-meta {
+    clear: both;
+    display: block;
+    float: none;
+  }
+
+  .collections .item-img {
+    float: none;
+  }
+  .collections .item-img a {
+    margin: 0;
+  }
+  .collections .item-img a img {
+    display: block;
+    margin: 2em auto;
   }
 
   /* @end */
