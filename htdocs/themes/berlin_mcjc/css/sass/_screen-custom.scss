@@ -8,6 +8,7 @@
 
 body {
   color: $grey--dark;
+  font: $base-font-size Verdana, Arial, sans-serif;
 }
 
 h1,
@@ -133,8 +134,8 @@ a:visited {
 
 .element-set {
   border-bottom: solid 1px $grey--medium;
-  margin-bottom: 3 * $base-font-size;
-  padding-bottom: 3 * $base-font-size;
+  margin-bottom: $base-font-size;
+  padding-bottom: 2 * $base-font-size;
 
   h2 {
     &::after {
@@ -147,7 +148,7 @@ a:visited {
   }
 
   .element {
-    margin-bottom: 1em;
+    margin-bottom: .5em;
   }
 }
 
