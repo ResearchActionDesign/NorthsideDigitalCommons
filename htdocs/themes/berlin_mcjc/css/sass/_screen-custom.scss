@@ -1,0 +1,294 @@
+/**
+ * @file
+ *
+ * Custom styles for the MCJC sub-theme.
+ */
+
+/* @group ----- Generic ----- */
+
+body {
+  color: $grey--dark;
+  font: $base-font-size Verdana, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $purple--dark;
+}
+
+h1 {
+  &::after {
+    background: $grey--medium;
+    content: '';
+    display: block;
+    height: 2px;
+    margin: 10px 0 .5em;
+    width: 30px;
+  }
+}
+
+a,
+a:link,
+a:visited {
+  color: $green;
+  transition: all .1s linear;
+
+  &:hover,
+  &:focus {
+    color: $purple--light;
+  }
+}
+
+/* @end */
+
+/* @group ----- Header ----- */
+
+#site-title {
+  color: $purple--dark;
+  font-size: 2.5 * $base-font-size;
+  letter-spacing: .1em;
+  width: 60%;
+
+  a,
+  a:hover,
+  a:focus {
+    color: $purple--dark;
+  }
+}
+
+#search-container {
+  width: 35%;
+
+  button {
+    background-color: $green;
+  }
+}
+
+.show-advanced.button {
+  border-left: 1px solid $green;
+
+  &:after{
+    background-color: $green;
+  }
+}
+
+/* @end */
+
+/* @group ----- Navigation ----- */
+
+#primary-nav {
+  .nav-item > a.open {
+    background-color: $white;
+  }
+
+  a:hover,
+  a:focus {
+    color: $purple--light;
+  }
+
+  li.active a,
+  .nav-item.active a.open {
+    background-color: $purple--light;
+    color: $white;
+  }
+}
+
+/* @end */
+
+/* @group ----- Home Page ----- */
+
+.featured,
+#featured-exhibit {
+  background: $grey--light;
+}
+
+/* @end */
+
+/* @group ----- Items ----- */
+
+#item-images {
+  float: left;
+  margin-right: 2em;
+
+  > div {
+    margin-bottom: 2em;
+  }
+}
+
+.item .tags {
+  clear: none;
+  margin-left: 0;
+}
+
+.item.entry {
+  clear: both;
+
+  &:not(:first-of-type) {
+    border-top: solid 1px $grey--medium;
+  }
+}
+
+.element-set {
+  border-bottom: solid 1px $grey--medium;
+  margin-bottom: $base-font-size;
+  padding-bottom: 2 * $base-font-size;
+
+  h2 {
+    &::after {
+      background: $grey--medium;
+      content: '';
+      display: block;
+      height: 2px;
+      width: 30px;
+    }
+  }
+
+  .element {
+    margin-bottom: .5em;
+  }
+}
+
+.item-pagination {
+  a {
+    font-size: 1.2em;
+    text-transform: uppercase;
+  }
+}
+
+.items.show h3 {
+  margin-bottom: .5em;
+}
+
+.hTagcloud ul {
+  li {
+    display: inline-block;
+    margin: .5em;
+
+    a {
+      background-color: $green;
+      border-radius: 3px;
+      color: $grey--light;
+      display: block;
+      padding: .75em;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        background-color: $purple--light;
+        color: $grey--light;
+      }
+    }
+  }
+}
+
+/* @end */
+
+/* @group ----- Items/Browse ----- */
+
+.browse .item-img img {
+  height: auto;
+}
+
+/* @end */
+
+/* @group ----- Items/Search ----- */
+
+#advanced-search-form {
+  label {
+    font-weight: bold;
+  }
+}
+
+/* @end */
+
+/* @group ----- Collections/Browse ----- */
+
+.browse .collection .image,
+.browse .collection .image img,
+.browse .exhibit .image,
+.browse .exhibit .image img,
+.collections .item-img a,
+#search-results .image {
+  border: 0;
+  height: auto;
+}
+
+.collection .image,
+.exhibit .image {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.browse .collection h2,
+.browse .exhibit h2 {
+  width: auto;
+
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
+    width: auto;
+  }
+}
+
+.browse .collection-meta {
+  clear: left;
+}
+
+.collection .tags {
+  clear: left;
+}
+
+.collections .item-img a img {
+  border: 1px solid #ccc;
+}
+
+/* @end */
+
+/* @group ----- Exhibit Builder ----- */
+
+.exhibit .tags {
+  clear: left;
+}
+
+/* @end */
+
+/* @group ----- Footer ----- */
+
+footer {
+  .navigation li {
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+      float: none;
+    }
+  }
+}
+
+/* @end */
+
+/* @group ----- Expander ----- */
+
+details#item-metadata {
+  background-color: $grey--light;
+  padding: $base-font-size;
+
+  > * {
+    margin-left: 2 * $base-font-size;
+    margin-right: 2 * $base-font-size;
+  }
+
+  summary {
+    color: $green;
+    cursor: pointer;
+    margin-left: 0;
+
+    h2 {
+      color: $green;
+      display: inline-block;
+      margin: 0;
+    }
+  }
+}
+
+/* @end */

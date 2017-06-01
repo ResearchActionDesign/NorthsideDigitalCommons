@@ -3069,6 +3069,9 @@ function tag_cloud($recordOrTags = null, $link = null, $maxClasses = 9, $tagNumb
         $maxClasses = $largest;
     }
 
+    // Sort tags alphabetically.
+    sort($tags);
+
     foreach( $tags as $tag ) {
         $size = (int)(($tag['tagCount'] * $maxClasses) / $largest - 1);
         $class = str_repeat('v', $size) . ($size ? '-' : '') . 'popular';

@@ -2052,6 +2052,253 @@ footer nav + p {
 }
 
 /* @end */
+/**
+ * @file
+ *
+ * Custom styles for the MCJC sub-theme.
+ */
+/* @group ----- Generic ----- */
+body {
+  color: #414042;
+  font: 12px Verdana, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #412560;
+}
+
+h1::after {
+  background: #dedae2;
+  content: '';
+  display: block;
+  height: 2px;
+  margin: 10px 0 .5em;
+  width: 30px;
+}
+
+a,
+a:link,
+a:visited {
+  color: #00739b;
+  transition: all .1s linear;
+}
+a:hover, a:focus,
+a:link:hover,
+a:link:focus,
+a:visited:hover,
+a:visited:focus {
+  color: #806998;
+}
+
+/* @end */
+/* @group ----- Header ----- */
+#site-title {
+  color: #412560;
+  font-size: 30px;
+  letter-spacing: .1em;
+  width: 60%;
+}
+#site-title a,
+#site-title a:hover,
+#site-title a:focus {
+  color: #412560;
+}
+
+#search-container {
+  width: 35%;
+}
+#search-container button {
+  background-color: #00739b;
+}
+
+.show-advanced.button {
+  border-left: 1px solid #00739b;
+}
+.show-advanced.button:after {
+  background-color: #00739b;
+}
+
+/* @end */
+/* @group ----- Navigation ----- */
+#primary-nav .nav-item > a.open {
+  background-color: #fff;
+}
+#primary-nav a:hover,
+#primary-nav a:focus {
+  color: #806998;
+}
+#primary-nav li.active a,
+#primary-nav .nav-item.active a.open {
+  background-color: #806998;
+  color: #fff;
+}
+
+/* @end */
+/* @group ----- Home Page ----- */
+.featured,
+#featured-exhibit {
+  background: #f4f3f5;
+}
+
+/* @end */
+/* @group ----- Items ----- */
+#item-images {
+  float: left;
+  margin-right: 2em;
+}
+#item-images > div {
+  margin-bottom: 2em;
+}
+
+.item .tags {
+  clear: none;
+  margin-left: 0;
+}
+
+.item.entry {
+  clear: both;
+}
+.item.entry:not(:first-of-type) {
+  border-top: solid 1px #dedae2;
+}
+
+.element-set {
+  border-bottom: solid 1px #dedae2;
+  margin-bottom: 12px;
+  padding-bottom: 24px;
+}
+.element-set h2::after {
+  background: #dedae2;
+  content: '';
+  display: block;
+  height: 2px;
+  width: 30px;
+}
+.element-set .element {
+  margin-bottom: .5em;
+}
+
+.item-pagination a {
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+
+.items.show h3 {
+  margin-bottom: .5em;
+}
+
+.hTagcloud ul li {
+  display: inline-block;
+  margin: .5em;
+}
+.hTagcloud ul li a {
+  background-color: #00739b;
+  border-radius: 3px;
+  color: #f4f3f5;
+  display: block;
+  padding: .75em;
+  text-decoration: none;
+}
+.hTagcloud ul li a:hover, .hTagcloud ul li a:focus {
+  background-color: #806998;
+  color: #f4f3f5;
+}
+
+/* @end */
+/* @group ----- Items/Browse ----- */
+.browse .item-img img {
+  height: auto;
+}
+
+/* @end */
+/* @group ----- Items/Search ----- */
+#advanced-search-form label {
+  font-weight: bold;
+}
+
+/* @end */
+/* @group ----- Collections/Browse ----- */
+.browse .collection .image,
+.browse .collection .image img,
+.browse .exhibit .image,
+.browse .exhibit .image img,
+.collections .item-img a,
+#search-results .image {
+  border: 0;
+  height: auto;
+}
+
+.collection .image,
+.exhibit .image {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.browse .collection h2,
+.browse .exhibit h2 {
+  width: auto;
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .browse .collection h2,
+  .browse .exhibit h2 {
+    width: auto;
+  }
+}
+
+.browse .collection-meta {
+  clear: left;
+}
+
+.collection .tags {
+  clear: left;
+}
+
+.collections .item-img a img {
+  border: 1px solid #ccc;
+}
+
+/* @end */
+/* @group ----- Exhibit Builder ----- */
+.exhibit .tags {
+  clear: left;
+}
+
+/* @end */
+/* @group ----- Footer ----- */
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  footer .navigation li {
+    float: none;
+  }
+}
+
+/* @end */
+/* @group ----- Expander ----- */
+details#item-metadata {
+  background-color: #f4f3f5;
+  padding: 12px;
+}
+details#item-metadata > * {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+details#item-metadata summary {
+  color: #00739b;
+  cursor: pointer;
+  margin-left: 0;
+}
+details#item-metadata summary h2 {
+  color: #00739b;
+  display: inline-block;
+  margin: 0;
+}
+
+/* @end */
 @media screen and (max-width: 768px) {
   /* @group ----- Generic HTML elements ----- */
   input[type=text], input[type=password], textarea {
@@ -2245,6 +2492,94 @@ footer nav + p {
   /* @group ----- Exhibits/Show ----- */
   #exhibit-pages {
     width: 100%;
+  }
+
+  /* @end */
+  /**
+   * @file
+   *
+   * Custom styles for the MCJC sub-theme at 768px and below.
+   */
+  /* @group ----- Footer ----- */
+  footer nav {
+    overflow: auto;
+  }
+  footer nav + p {
+    text-align: left;
+  }
+
+  /* @end */
+  /* @group ----- Items ----- */
+  #item-images {
+    float: none;
+    margin-right: 0;
+  }
+  #item-images > div {
+    margin-bottom: 0;
+    margin-top: 2em;
+  }
+  #item-images img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .item .tags {
+    clear: left;
+  }
+
+  .hTagcloud ul li a {
+    line-height: normal;
+  }
+
+  /* @end */
+  /* @group ----- Items/Browse ----- */
+  .browse .item-meta .item-img {
+    float: none;
+  }
+
+  .browse .item-meta > div {
+    display: block;
+  }
+
+  /* @end */
+  /* @group ----- Collections/Browse ----- */
+  .browse .collection .image,
+  .browse .exhibit .image {
+    clear: both;
+    display: block;
+    float: none;
+    margin: 0;
+    overflow: auto;
+  }
+  .browse .collection .image img,
+  .browse .exhibit .image img {
+    display: block;
+    float: none;
+    margin: 2em auto;
+  }
+
+  .collection-meta {
+    clear: both;
+    display: block;
+    float: none;
+  }
+
+  .collections .item-img {
+    float: none;
+  }
+  .collections .item-img a {
+    margin: 0;
+  }
+  .collections .item-img a img {
+    display: block;
+    margin: 2em auto;
+  }
+
+  /* @end */
+  /* @group ----- Expander ----- */
+  details#item-metadata > * {
+    margin-left: 6px;
+    margin-right: 6px;
   }
 
   /* @end */
