@@ -14,7 +14,8 @@
   <!-- Item files -->
   <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-      <div class="element-text"><?php echo item_image_gallery(); ?></div>
+      <div class="item-images"><?php echo files_for_item(); ?>
+      </div>
     </div>
   <?php endif; ?>
 
@@ -25,13 +26,6 @@
     <div id="item-metadata">
         <?php echo all_element_texts('item'); ?>
     </div>
-
-    <?php if (metadata('item', 'has files')): ?>
-    <h3><?php echo __('Files'); ?></h3>
-    <div id="item-images">
-         <?php echo files_for_item(); ?>
-    </div>
-    <?php endif; ?>
 
     <?php if(metadata('item','Collection Name')): ?>
       <div id="collection" class="element">
