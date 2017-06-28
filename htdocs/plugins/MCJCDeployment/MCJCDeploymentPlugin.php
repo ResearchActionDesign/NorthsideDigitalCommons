@@ -59,6 +59,12 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
       $personItemType->removeElement($bibliographyElement);
       $personItemType->save();
     }
+
+    if ((double) $params['old_version'] < 2.12) {
+      $sql = "UPDATE `{$this->_db->getTable('Item')->getTableName()}` SET `item_type_id` = 6 WHERE `item_type_id` IS NULL";
+      $this->_db->query($sql);
+    }
+
   }
 
   public function filterItemsBrowsePerPage($number_items, $controller) {
