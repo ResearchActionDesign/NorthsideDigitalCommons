@@ -14,4 +14,6 @@ if (!Berlin) {
             $("#mobile-nav .navigation").slideToggle();
         });
     };
-})(jQuery)
+
+    $().ready(function() { $('.download-file').attr('target', '_blank'); });
+})(jQuery);
