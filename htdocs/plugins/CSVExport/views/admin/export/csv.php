@@ -21,8 +21,8 @@ header("Expires: 0");
 header("Pragma: public");
  
 $file = fopen( 'php://output', 'w' );
+fputs($file, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 
- 
 $header = false;
  
 foreach ( $result as $data ) 

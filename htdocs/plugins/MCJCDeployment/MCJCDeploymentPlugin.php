@@ -65,6 +65,41 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
       $this->_db->query($sql);
     }
 
+
+    // Set Dublin Core Type to be equal to Item Type Metadata.
+    if ((double) $params['old_version'] < 2.13) {
+      $sql = "UPDATE `{$this->_db->getTable('ElementText')->getTableName()}` SET `text` = 'Still Image' WHERE `element_id` = 51 AND `text` = 'Photograph'";
+      $this->_db->query($sql);
+
+      $sql = $this->_db->getTable('Item')->getSelect()->where('`item_type_id` = 6')->assemble();
+      $stillImages = $this->_db->query($sql)->fetchAll();
+      foreach ($stillImages as $image_id) {
+        $item = get_record_by_id('Item', $image_id['id']);
+        if (empty(metadata($item, array('Dublin Core', 'Type')))) {
+          $elementText = new ElementText();
+          $elementText->record_id = $image_id['id'];
+          $elementText->element_id = 51;
+          $elementText->setText('Still Image');
+          $elementText->record_type = 'Item';
+          $elementText->save();
+        }
+      }
+
+      // Set missing person item type.
+      $sql = $this->_db->getTable('Item')->getSelect()->where('`item_type_id` = 12')->assemble();
+      $stillImages = $this->_db->query($sql)->fetchAll();
+      foreach ($stillImages as $image_id) {
+        $item = get_record_by_id('Item', $image_id['id']);
+        if (empty(metadata($item, array('Dublin Core', 'Type')))) {
+          $elementText = new ElementText();
+          $elementText->record_id = $image_id['id'];
+          $elementText->element_id = 51;
+          $elementText->setText('Person');
+          $elementText->record_type = 'Item';
+          $elementText->save();
+        }
+      }
+    }
   }
 
   public function filterItemsBrowsePerPage($number_items, $controller) {
