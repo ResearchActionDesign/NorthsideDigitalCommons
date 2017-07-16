@@ -2738,6 +2738,36 @@ details#item-metadata summary h2 {
    *
    * Custom styles for the MCJC sub-theme at 768px and below.
    */
+  /* @group ----- Home Page ----- */
+  #home #content {
+    padding: 0;
+  }
+
+  .featured .image,
+  #featured-exhibit .image {
+    float: none;
+    text-align: center;
+  }
+  .featured .image img,
+  #featured-exhibit .image img {
+    float: none;
+  }
+
+  #featured-collection {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1.5em;
+  }
+
+  #featured-collection,
+  #featured-exhibig {
+    border-top: 1px solid #ccc;
+  }
+
+  .featured-item__background-image {
+    height: 200px;
+  }
+
+  /* @end */
   /* @group ----- Footer ----- */
   footer nav {
     overflow: auto;
