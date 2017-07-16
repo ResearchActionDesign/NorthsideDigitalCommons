@@ -24,6 +24,8 @@
 
     echo head_css();
     ?>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans:400,400i,700" rel="stylesheet">
+
     <!-- JavaScripts -->
     <?php queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)')); ?>
     <?php queue_js_file('vendor/respond'); ?>
