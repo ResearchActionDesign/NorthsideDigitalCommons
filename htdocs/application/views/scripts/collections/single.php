@@ -9,5 +9,6 @@
     <?php endif; ?>
     <?php if ($description): ?>
         <p class="collection-description"><?php echo $description; ?></p>
+        <?php echo link_to($this->collection, 'show', 'Keep reading'); ?>
     <?php endif; ?>
 </div>

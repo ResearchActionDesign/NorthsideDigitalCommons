@@ -2316,7 +2316,7 @@ function random_featured_items($count = 5, $hasImage = null)
     if ($items) {
         $html = '';
         foreach ($items as $item) {
-            $html .= get_view()->partial('items/single.php', array('item' => $item));
+            $html .= get_view()->partial('items/featured-item.php', array('item' => $item));
             release_object($item);
         }
     } else {
