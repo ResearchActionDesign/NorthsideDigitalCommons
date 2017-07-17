@@ -47,3 +47,30 @@ function oral_history_item_subtitle() {
         'F j, Y'));
   }
 }
+
+/**
+ * Get HTML for random featured items. Customized for MCJC Berlin Theme.
+ *
+ * @package Omeka\Function\View\Item
+ * @uses get_random_featured_items()
+ * @param int $count Maximum number of items to show.
+ * @param boolean $withImage Whether or not the featured items must have
+ * images associated. If null, as default, all featured items can appear,
+ * whether or not they have files. If true, only items with files will appear,
+ * and if false, only items without files will appear.
+ * @return string
+ */
+function mcjc_random_featured_items($count = 5, $hasImage = null)
+{
+  $items = get_random_featured_items($count, $hasImage);
+  if ($items) {
+    $html = '';
+    foreach ($items as $item) {
+      $html .= get_view()->partial('items/featured-item.php', array('item' => $item));
+      release_object($item);
+    }
+  } else {
+    $html = '<p>' . __('No featured items are available.') . '</p>';
+  }
+  return $html;
+}

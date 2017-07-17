@@ -1,8 +1,17 @@
+//* @group ----- Typography ----- */
+
+$base-font-size: 16px;
+$base-line-height: 24px;
+$body-font-family: 'Open Sans', Verdana, Arial, sans-serif;
+$heading-font-family: 'Alegreya Sans', 'Gill Sans MT', 'Gill Sans', sans-serif;
+
+//* @end */
+
 //* @group ----- Colors ----- */
 
 $purple--dark: #412560;
 $purple--light: #806998;
-$green: #00739b;
+$teal: #00739b;
 $burgundy: #7a3e48;
 $black: #000;
 $grey--dark: #414042;
