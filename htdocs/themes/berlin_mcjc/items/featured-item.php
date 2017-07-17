@@ -10,12 +10,14 @@
       $imageUri = $imageFile->getWebPath('fullsize');
     }
     else {
-      $imageUri = img($this->_getFallbackImage($imageFile));
+      $itemMarkup = $this->fileMarkup($imageFile);
     }
   }
   ?>
   <a href="<?php echo $url; ?>">
+    <?php if ($imageUri <> ''): ?>
     <div class="featured-item__background-image" style="background-image: url(<?php echo $imageUri; ?>);"></div>
+    <?php else: echo $itemMarkup; endif; ?>
   </a>
   <div class="featured-item__text">
     <h3><?php echo link_to($item, 'show', $title); ?></h3>
