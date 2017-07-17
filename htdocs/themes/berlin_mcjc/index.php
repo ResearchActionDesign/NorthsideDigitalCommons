@@ -15,23 +15,24 @@
 <div id="secondary">
     <?php if (get_theme_option('Display Featured Collection')): ?>
         <!-- Featured Collection -->
-        <div id="featured-collection" class="featured">
-            <h2 class="hidden"><?php echo __('Featured Collection'); ?></h2>
-            <?php echo random_featured_collection(); ?>
-            <div class="featured__button">
-                <a href="/collections/browse">Explore Collections</a>
-            </div>
+      <div class="featured-wrapper featured-wrapper--collection">
+        <div id="featured-collection">
+          <h2 class="hidden"><?php echo __('Featured Collection'); ?></h2>
+          <?php echo random_featured_collection(); ?>
+          <div class="featured__button">
+            <a href="/collections/browse">Explore Collections</a>
+          </div>
         </div><!-- end featured collection -->
+      </div>
     <?php endif; ?>
     <?php if ((get_theme_option('Display Featured Exhibit')) && function_exists('exhibit_builder_display_random_featured_exhibit')): ?>
-        <!-- Featured Exhibit -->
-        <div id="featured-exhibit" class="featured">
-            <h2 class="hidden"><?php echo __('Featured Collection'); ?></h2>
+        <div class="featured-wrapper featured-wrapper--exhibit">
+            <!-- Featured Exhibit -->
             <?php echo exhibit_builder_display_random_featured_exhibit(); ?>
             <div class="featured__button">
                 <a href="/exhibits/browse">Explore Exhibits</a>
             </div>
-        </div><!-- end featured exhibit -->
+        </div>
     <?php endif; ?>
 </div><!-- end secondary -->
 <?php echo foot(); ?>

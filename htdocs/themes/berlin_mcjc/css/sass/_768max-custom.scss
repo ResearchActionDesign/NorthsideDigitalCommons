@@ -11,6 +11,7 @@
 }
 
 .featured,
+.featured-wrapper,
 #featured-exhibit {
   .image {
     float: none;
@@ -21,14 +22,12 @@
     }
   }
 }
-
-#featured-collection {
+.featured-wrapper--collection {
   border-bottom: 1px solid #ccc;
   margin-bottom: 1.5em;
 }
 
-#featured-collection,
-#featured-exhibig {
+.featured-wrapper {
   border-top: 1px solid #ccc;
 }
 
