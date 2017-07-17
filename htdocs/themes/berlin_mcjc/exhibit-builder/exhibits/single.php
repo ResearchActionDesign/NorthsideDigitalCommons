@@ -3,5 +3,6 @@
     <?php if ($exhibitImage = record_image($exhibit)): ?>
         <?php echo exhibit_builder_link_to_exhibit($exhibit, $exhibitImage, array('class' => 'image')); ?>
     <?php endif; ?>
-    <p><?php echo snippet_by_word_count(metadata($exhibit, 'description', array('no_escape' => true))); ?></p>
+    <p class="exhibit-description"><?php echo snippet_by_word_count(metadata($exhibit, 'description', array('no_escape' => true))); ?></p>
+    <?php echo exhibit_builder_link_to_exhibit($exhibit, 'Keep reading'); ?>
 </div>

@@ -7,7 +7,7 @@
     <!-- Featured Item -->
     <div id="featured-item" class="featured">
         <h2 class="hidden"><?php echo __('Featured Item'); ?></h2>
-        <?php echo random_featured_items(1); ?>
+        <?php echo mcjc_random_featured_items(1); ?>
     </div><!--end featured-item-->
     <?php endif; ?>
 </div><!-- end primary -->
