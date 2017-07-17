@@ -369,6 +369,26 @@ a:visited {
   height: auto;
 }
 
+.browse {
+  .record,
+  .collection.record,
+  .exhibit {
+    padding: 1.25em 0;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .view-items-link {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.browse .item h2 {
+  width: auto;
+}
+
 /* @end */
 
 /* @group ----- Items/Search ----- */
@@ -425,8 +445,14 @@ a:visited {
 
 /* @group ----- Exhibit Builder ----- */
 
-.exhibit .tags {
-  clear: left;
+.exhibits {
+  .secondary-nav {
+    margin-bottom: 0;
+  }
+
+  .tags {
+    clear: left;
+  }
 }
 
 /* @end */

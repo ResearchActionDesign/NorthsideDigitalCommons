@@ -2446,6 +2446,26 @@ a:visited:focus {
   height: auto;
 }
 
+.browse .record,
+.browse .collection.record,
+.browse .exhibit {
+  padding: 1.25em 0;
+}
+.browse .record h2,
+.browse .collection.record h2,
+.browse .exhibit h2 {
+  margin-bottom: 0;
+}
+.browse .record .view-items-link,
+.browse .collection.record .view-items-link,
+.browse .exhibit .view-items-link {
+  margin-bottom: 0;
+}
+
+.browse .item h2 {
+  width: auto;
+}
+
 /* @end */
 /* @group ----- Items/Search ----- */
 #advanced-search-form label {
@@ -2496,7 +2516,10 @@ a:visited:focus {
 
 /* @end */
 /* @group ----- Exhibit Builder ----- */
-.exhibit .tags {
+.exhibits .secondary-nav {
+  margin-bottom: 0;
+}
+.exhibits .tags {
   clear: left;
 }
 
