@@ -41,7 +41,7 @@ $sortLinks[__('Date Added')] = 'added';
     <div class="item-meta">
     <?php if (metadata('item', 'has files')): ?>
     <div class="item-img">
-        <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox'))); ?>
+        <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
     </div>
     <?php endif; ?>
 

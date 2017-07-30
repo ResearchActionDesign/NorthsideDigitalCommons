@@ -1038,7 +1038,7 @@ ul.title-list {
     }
 }
 
-#item-filters ul, #search-filters ul {
+#item-filters ul, #search-filters > ul {
     padding-left: 0;
     list-style-type: none;
     border-bottom: 1px solid #eee;

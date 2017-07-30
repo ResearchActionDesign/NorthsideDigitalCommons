@@ -32,7 +32,7 @@ $relatedItemIds = array_unique($relatedItemIds);
           <div class="item-meta">
             <?php if (metadata($item, 'has thumbnail')): ?>
               <div class="item-img">
-                <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox')), 'square_thumbnail', FALSE, $item); ?>
+                <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
               </div>
             <?php endif; ?>
             <div class="citation">

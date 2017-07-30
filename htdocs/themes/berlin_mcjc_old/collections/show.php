@@ -17,7 +17,7 @@ if ($collectionTitle == '') {
 
             <?php if (metadata('item', 'has thumbnail')): ?>
             <div class="element-text">
-			  <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox'))); ?>
+                <div class="item-images"><?php echo files_for_item(); ?></div>
             </div>
 			 <h3><?php echo 
 			link_to_item($itemTitle, array('class'=>'permalink')); ?></h3><br />

@@ -277,7 +277,9 @@ a:visited {
 
     &:hover,
     &:focus {
+      background-color: $purple--light;
       border-color: $purple--light;
+      color: $white;
     }
   }
 }
@@ -296,7 +298,7 @@ a:visited {
 }
 
 .item .tags {
-  clear: none;
+  clear: left;
   margin-left: 0;
 }
 
@@ -329,6 +331,8 @@ a:visited {
 }
 
 .item-pagination {
+  padding-top: 3em;
+
   a {
     font-size: 1.2em;
     text-transform: uppercase;
@@ -361,6 +365,49 @@ a:visited {
   }
 }
 
+.item,
+.collection {
+  .item-file a {
+    height: auto;
+
+    img {
+      height: 9em;
+    }
+  }
+}
+
+.item-file {
+  &.audio-mpeg {
+    margin-bottom: .5em;
+  }
+
+  &.application-pdf {
+    display: inline-block;
+    margin: 0 .5em .5em 0;
+    text-align: center;
+
+    a {
+      background-color: $white;
+      border: solid 1px $teal;
+      display: inline-block;
+      padding: .5em .75em;
+      text-decoration: none;
+      transition: all .1s linear;
+
+      &:hover,
+      &:focus {
+        background-color: $purple--light;
+        border-color: $purple--light;
+        color: $white;
+      }
+    }
+  }
+}
+
+.items .item-file.application-pdf {
+  margin: 0 0 .5em .5em;
+}
+
 /* @end */
 
 /* @group ----- Items/Browse ----- */
@@ -386,7 +433,15 @@ a:visited {
 }
 
 .browse .item h2 {
-  width: auto;
+  width: 50%;
+}
+
+.browse .item-meta {
+  width: 100%;
+
+  .item-img {
+    width: auto;
+  }
 }
 
 /* @end */
@@ -439,6 +494,42 @@ a:visited {
 
 .collections .item-img a img {
   border: 1px solid #ccc;
+}
+
+/* @end */
+
+/* @group ----- Search Results ----- */
+.search {
+  h1 {
+    margin-bottom: 1.5em;
+  }
+}
+
+#search-results {
+  .table-header--1 {
+    width: 45%;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
+
+#item-filters ul li ul,
+#search-filters > ul li ul {
+  padding-left: .25em;
+}
+
+#search-results {
+  td {
+    padding: 1em 0;
+  }
+
+  td:first-child,
+  td:nth-child(2){
+    padding-right: 1.5em;
+  }
 }
 
 /* @end */
@@ -496,6 +587,7 @@ details#item-metadata {
     h2 {
       color: $teal;
       display: inline-block;
+      font-size: 1.75em;
       margin: 0;
     }
   }
