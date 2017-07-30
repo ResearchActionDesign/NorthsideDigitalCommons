@@ -2506,10 +2506,6 @@ a:visited:focus {
 
 /* @end */
 /* @group ----- Items/Browse ----- */
-.browse .item-img img {
-  height: auto;
-}
-
 .browse .record,
 .browse .collection.record,
 .browse .exhibit {
@@ -2525,16 +2521,21 @@ a:visited:focus {
 .browse .exhibit .view-items-link {
   margin-bottom: 0;
 }
-
+.browse .item-img img {
+  height: auto;
+}
 .browse .item h2 {
   width: 50%;
 }
-
 .browse .item-meta {
   width: 100%;
 }
 .browse .item-meta .item-img {
+  max-width: 49%;
   width: auto;
+}
+.browse .secondary-nav li {
+  padding: 0 0 .5em;
 }
 
 /* @end */
@@ -2657,6 +2658,12 @@ details#item-metadata summary h2 {
   display: inline-block;
   font-size: 1.75em;
   margin: 0;
+}
+
+/* @end */
+/* @ground ----- Audio Player ----- */
+.mejs-container {
+  max-width: 100% !important;
 }
 
 /* @end */
@@ -2927,6 +2934,7 @@ details#item-metadata summary h2 {
   /* @group ----- Items/Browse ----- */
   .browse .item-meta .item-img {
     float: none;
+    text-align: left;
   }
 
   .browse .item-meta > div {
@@ -2935,6 +2943,13 @@ details#item-metadata summary h2 {
 
   .browse .item h2 {
     width: 100%;
+  }
+
+  .items.browse .item-file.application-pdf {
+    margin: 0 .5em .5em 0;
+  }
+  .items.browse .item-file.application-pdf a {
+    padding: .25em .5em;
   }
 
   /* @end */

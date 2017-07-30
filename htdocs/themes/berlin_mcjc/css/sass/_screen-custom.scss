@@ -447,10 +447,6 @@ a:visited {
 
 /* @group ----- Items/Browse ----- */
 
-.browse .item-img img {
-  height: auto;
-}
-
 .browse {
   .record,
   .collection.record,
@@ -465,17 +461,26 @@ a:visited {
       margin-bottom: 0;
     }
   }
-}
 
-.browse .item h2 {
-  width: 50%;
-}
+  .item-img img {
+    height: auto;
+  }
 
-.browse .item-meta {
-  width: 100%;
+  .item h2 {
+    width: 50%;
+  }
 
-  .item-img {
-    width: auto;
+  .item-meta {
+    width: 100%;
+
+    .item-img {
+      max-width: 49%;
+      width: auto;
+    }
+  }
+
+  .secondary-nav li {
+    padding: 0 0 .5em;
   }
 }
 
@@ -629,3 +634,13 @@ details#item-metadata {
 }
 
 /* @end */
+
+/* @ground ----- Audio Player ----- */
+
+.mejs-container {
+  max-width: 100% !important;
+}
+
+/* @end */
+
+
