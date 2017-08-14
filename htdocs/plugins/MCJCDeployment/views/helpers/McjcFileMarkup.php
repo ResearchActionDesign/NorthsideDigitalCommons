@@ -1,13 +1,7 @@
 <?php
-/**
- * Omeka
- *
- * @copyright Copyright 2007-2012 Roy Rosenzweig Center for History and New Media
- * @license http://www.gnu.org/licenses/gpl-3.0.txt GNU GPLv3
- */
 
 /**
- * View Helper for displaying files through Omeka.
+ * MCJC customization of Omeka view Helper for displaying files through Omeka.
  *
  * This will determine how to display any given file based on the MIME type
  * (Internet media type) of that file. Individual rendering agents are defined
@@ -17,8 +11,6 @@
  * should be in the core of Omeka, define a method in this class and then make
  * sure that it responds to all the correct MIME types by modifying other
  * properties in this class.
- *
- * @package Omeka\View\Helper
  */
 class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMarkup
 {
