@@ -65,6 +65,8 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
         $html .= 'View Tape Log';
       } elseif (stripos(html_escape($file->original_filename), 'transcript') !== FALSE) {
         $html .= 'View Transcript';
+      } elseif (stripos(html_escape($file->original_filename), 'abstract') !== FALSE) {
+        $html .= 'View Abstract';
       }
     }
 
