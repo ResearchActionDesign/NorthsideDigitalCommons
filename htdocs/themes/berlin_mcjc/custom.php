@@ -74,3 +74,62 @@ function mcjc_random_featured_items($count = 5, $hasImage = null)
   }
   return $html;
 }
+
+/**
+ * Get HTML for all files assigned to an item. Customized for MCJC Berlin Theme.
+ *
+ * @package Omeka\Function\View\Item
+ * @uses file_markup()
+ * @param array $options
+ * @param array $wrapperAttributes
+ * @param Item|null $item Check for this specific item record (current item if null).
+ * @return string HTML
+ */
+function mcjc_files_for_item($options = array(), $wrapperAttributes = array('class' => 'item-file'), $item = null)
+{
+  if (!$item) {
+    $item = get_current_record('item');
+  }
+  return mcjc_file_markup($item->Files, $options, $wrapperAttributes);
+}
+
+/**
+ * Get HTML for a set of files. Customized for MCJC Berlin Theme.
+ *
+ * @package Omeka\Function\View\File
+ * @uses Omeka_View_Helper_FileMarkup::fileMarkup()
+ * @param File $files A file record or an array of File records to display.
+ * @param array $props Properties to customize display for different file types.
+ * @param array $wrapperAttributes Attributes HTML attributes for the div that
+ * wraps each displayed file. If empty or null, this will not wrap the displayed
+ * file in a div.
+ * @return string HTML
+ */
+function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = array('class' => 'item-file'))
+{
+  if (!is_array($files)) {
+    $files = array($files);
+  }
+  $output = '';
+
+  // Remove PDF files so we can append them to the end of the file list.
+  $pdfs = array();
+  foreach ($files as $key => $file) {
+    if ($file->mime_type == 'application/pdf') {
+      $pdfs[] = $file;
+      unset($files[$key]);
+    }
+  }
+
+  // Reset the array keys.
+  $files = array_values($files);
+
+  // Add PDF files to end of array of files.
+  $files = array_merge($files, $pdfs);
+
+  // Create file output.
+  foreach ($files as $file) {
+    $output .= get_view()->mcjcFileMarkup($file, $props, $wrapperAttributes);
+  }
+  return $output;
+}

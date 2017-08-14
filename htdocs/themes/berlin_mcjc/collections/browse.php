@@ -23,7 +23,7 @@ $sortLinks[__('Date Added')] = 'added';
     <?php if ($collectionImage = record_image('collection')): ?>
         <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
     <?php endif; ?>
-    
+
     <div class="collection-meta">
 
     <?php if (metadata('collection', array('Dublin Core', 'Description'))): ?>

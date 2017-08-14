@@ -14,7 +14,7 @@
   <!-- Item files -->
   <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-      <div class="item-images"><?php echo files_for_item(); ?>
+      <div class="item-images"><?php echo mcjc_files_for_item(); ?>
       </div>
     </div>
   <?php endif; ?>

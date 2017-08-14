@@ -30,11 +30,6 @@ $relatedItemIds = array_unique($relatedItemIds);
         <?php $item = get_record_by_id('item', $itemId); ?>
         <div class="item entry">
           <div class="item-meta">
-            <?php if (metadata($item, 'has thumbnail')): ?>
-              <div class="item-img">
-                <?php echo item_image_gallery(array('link'=>array('data-lightbox'=>'lightbox')), 'square_thumbnail', FALSE, $item); ?>
-              </div>
-            <?php endif; ?>
             <div class="citation">
               <?php
               $item_type = metadata($item, array('Dublin Core', 'Type'));
@@ -48,7 +43,11 @@ $relatedItemIds = array_unique($relatedItemIds);
                 <?php echo $description; ?>
               </div>
             <?php endif; ?>
-
+            <?php if (metadata($item, 'has thumbnail')): ?>
+              <div class="item-img">
+                <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
+              </div>
+            <?php endif; ?>
             <?php if (metadata($item, 'has tags')): ?>
               <div class="tags"><p><strong><?php echo __('Tags'); ?>:</strong>
                   <?php echo tag_string($item); ?></p>
