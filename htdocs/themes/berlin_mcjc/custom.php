@@ -110,7 +110,6 @@ function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = a
   if (!is_array($files)) {
     $files = array($files);
   }
-  $helper = new Omeka_View_Helper_FileMarkup;
   $output = '';
 
   // Remove PDF files so we can append them to the end of the file list.
@@ -130,7 +129,7 @@ function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = a
 
   // Create file output.
   foreach ($files as $file) {
-    $output .= $helper->fileMarkup($file, $props, $wrapperAttributes);
+    $output .= get_view()->mcjcFileMarkup($file, $props, $wrapperAttributes);
   }
   return $output;
 }
