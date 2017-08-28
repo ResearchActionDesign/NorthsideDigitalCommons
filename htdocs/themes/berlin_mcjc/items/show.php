@@ -1,3 +1,4 @@
+<?php queue_css_file('lity', 'all', false, 'lity'); ?>
 <?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
 <div id="primary">
     <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
@@ -14,7 +15,7 @@
   <!-- Item files -->
   <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-      <div class="item-images"><?php echo mcjc_files_for_item(array('imageSize' => 'fullsize')); ?>
+      <div class="item-images"><?php echo mcjc_files_for_item(array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""))); ?>
       </div>
     </div>
   <?php endif; ?>
@@ -58,4 +59,5 @@
 
 </div> <!-- End of Primary. -->
 
+<?php echo js_tag('lity', 'lity'); ?>
  <?php echo foot(); ?>
