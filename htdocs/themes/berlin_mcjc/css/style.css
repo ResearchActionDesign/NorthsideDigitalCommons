@@ -2417,7 +2417,7 @@ a:visited:focus {
 }
 
 .item-pagination {
-  padding-top: 3em;
+  padding-top: 24px;
 }
 .item-pagination a {
   font-size: 1.2em;
@@ -2427,7 +2427,19 @@ a:visited:focus {
 .items.show h3 {
   margin-bottom: .5em;
 }
+.items.show #itemfiles .item-images .item-file a {
+  display: block;
+  text-align: center;
+}
+.items.show #itemfiles .item-images .item-file a .full {
+  margin: 1.5em 0;
+}
 
+#item-relations-display-item-relations {
+  border-top: solid 1px #eee;
+  margin-top: 2em;
+  padding-bottom: 2em;
+}
 #item-relations-display-item-relations .entry {
   padding: 1.5em 0 0;
 }
@@ -2480,6 +2492,7 @@ a:visited:focus {
 
 .item-file.audio-mpeg {
   margin-bottom: .5em;
+  margin-top: 1em;
 }
 .item-file.application-pdf {
   display: inline-block;
@@ -2514,7 +2527,8 @@ a:visited:focus {
 .browse .record h2,
 .browse .collection.record h2,
 .browse .exhibit h2 {
-  margin-bottom: 0;
+  line-height: 36px;
+  margin-bottom: 12px;
 }
 .browse .record .view-items-link,
 .browse .collection.record .view-items-link,
@@ -2935,6 +2949,12 @@ details#item-metadata summary h2 {
   .browse .item-meta .item-img {
     float: none;
     text-align: left;
+  }
+  .browse .item-meta .item-img a {
+    text-align: center;
+  }
+  .browse .item-meta .item-img img {
+    margin-bottom: 0;
   }
 
   .browse .item-meta > div {

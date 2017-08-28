@@ -84,6 +84,14 @@ footer {
 .browse .item-meta .item-img {
   float: none;
   text-align: left;
+
+  a {
+    text-align: center;
+  }
+
+  img {
+    margin-bottom: 0;
+  }
 }
 
 .browse .item-meta > div {
