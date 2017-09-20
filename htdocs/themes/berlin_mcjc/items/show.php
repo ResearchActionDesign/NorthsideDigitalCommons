@@ -8,9 +8,6 @@
       <?php echo oral_history_item_subtitle(); ?>
     </div>
   <?php endif; ?>
-  <div id="item-description">
-    <?php echo metadata('item', array('Dublin Core','Description')); ?>
-  </div>
 
   <!-- Item files -->
   <?php if (metadata('item', 'has files')): ?>
@@ -19,6 +16,10 @@
       </div>
     </div>
   <?php endif; ?>
+
+  <div id="item-description">
+    <?php echo metadata('item', array('Dublin Core','Description')); ?>
+  </div>
 
   <!-- Other metadata -->
   <details id="item-metadata">
