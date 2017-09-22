@@ -40,7 +40,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     $imageSize = $options['imageSize'];
 
     // If we can make an image from the given image size.
-    if (array_key_exists($imageSize, $imgClasses) && strpos($file->type_os, 'PDF') === FALSE) {
+    if (array_key_exists($imageSize, $imgClasses) && strpos($file->mime_type, 'pdf') === FALSE) {
 
       // A class is given to all of the images by default to make it
       // easier to style. This can be modified by passing it in as an
@@ -66,7 +66,15 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     if ($html == '') {
       $html .= html_escape($file->original_filename);
     }
-    $html = $this->_linkToFile($file, $options, $html);
+
+    // If this is the item's show page, link to the file. Otherwise, link to the
+    // item.
+    if ($options['show'] === TRUE) {
+      $html = $this->_linkToFile($file, $options, $html);
+    } else {
+      $html = link_to_item($html, array('class' => $imgClasses[$imageSize]), 'show', $options['item']);
+    }
+
     return $html;
   }
 

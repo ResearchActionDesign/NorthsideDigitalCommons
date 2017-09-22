@@ -85,12 +85,20 @@ function mcjc_random_featured_items($count = 5, $hasImage = null)
  * @param Item|null $item Check for this specific item record (current item if null).
  * @return string HTML
  */
-function mcjc_files_for_item($options = array(), $wrapperAttributes = array('class' => 'item-file'), $item = null)
+function mcjc_files_for_item($type = 'item', $options = array(), $wrapperAttributes = array('class' => 'item-file'), $item = null)
 {
   if (!$item) {
-    $item = get_current_record('item');
+    $item = get_current_record($type);
   }
-  return mcjc_file_markup($item->Files, $options, $wrapperAttributes);
+  $options['item'] = $item;
+
+  if ($type == 'collection') {
+    $files = $item->getFile();
+  } else {
+    $files = $item->Files;
+  }
+
+  return mcjc_file_markup($files, $options, $wrapperAttributes);
 }
 
 /**
@@ -129,6 +137,10 @@ function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = a
 
   // Create file output.
   foreach ($files as $file) {
+    // Don't create markup for PDFs unless this is an item show page.
+    if (!isset($props['show']) && strpos($file->mime_type, 'pdf') !== FALSE) {
+      continue;
+    }
     $output .= get_view()->mcjcFileMarkup($file, $props, $wrapperAttributes);
   }
   return $output;

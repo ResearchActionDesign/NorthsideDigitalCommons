@@ -2517,6 +2517,13 @@ a:visited:focus {
   margin: 0 0 .5em .5em;
 }
 
+.collections .item-img .item-file.application-pdf a {
+  border: solid 1px #00739b;
+}
+.collections .item-img .item-file.application-pdf a:hover, .collections .item-img .item-file.application-pdf a:focus {
+  border-color: #806998;
+}
+
 /* @end */
 /* @group ----- Items/Browse ----- */
 .browse .record,
@@ -2541,10 +2548,12 @@ a:visited:focus {
 .browse .item h2 {
   width: 50%;
 }
-.browse .item-meta {
+.browse .item-meta,
+.browse .collection-meta {
   width: 100%;
 }
-.browse .item-meta .item-img {
+.browse .item-meta .item-img,
+.browse .collection-meta .item-img {
   max-width: 49%;
   width: auto;
 }
@@ -2598,6 +2607,11 @@ a:visited:focus {
 
 .collections .item-img a img {
   border: 1px solid #ccc;
+}
+
+.collections .item-img {
+  float: right;
+  text-align: right;
 }
 
 /* @end */

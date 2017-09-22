@@ -12,7 +12,7 @@
   <!-- Item files -->
   <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-      <div class="item-images"><?php echo mcjc_files_for_item(array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""))); ?>
+      <div class="item-images"><?php echo mcjc_files_for_item('item', array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""), 'show' => TRUE)); ?>
       </div>
     </div>
   <?php endif; ?>

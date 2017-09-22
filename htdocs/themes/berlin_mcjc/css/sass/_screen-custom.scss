@@ -461,6 +461,16 @@ a:visited {
   margin: 0 0 .5em .5em;
 }
 
+// Needed to override collection style.
+.collections .item-img .item-file.application-pdf a {
+  border: solid 1px $teal;
+
+  &:hover,
+  &:focus {
+    border-color: $purple--light;
+  }
+}
+
 /* @end */
 
 /* @group ----- Items/Browse ----- */
@@ -489,7 +499,8 @@ a:visited {
     width: 50%;
   }
 
-  .item-meta {
+  .item-meta,
+  .collection-meta {
     width: 100%;
 
     .item-img {
@@ -553,6 +564,11 @@ a:visited {
 
 .collections .item-img a img {
   border: 1px solid #ccc;
+}
+
+.collections .item-img {
+  float: right;
+  text-align: right;
 }
 
 /* @end */
