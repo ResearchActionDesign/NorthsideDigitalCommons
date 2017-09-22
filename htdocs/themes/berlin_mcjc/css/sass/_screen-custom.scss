@@ -461,16 +461,6 @@ a:visited {
   margin: 0 0 .5em .5em;
 }
 
-// Needed to override collection style.
-.collections .item-img .item-file.application-pdf a {
-  border: solid 1px $teal;
-
-  &:hover,
-  &:focus {
-    border-color: $purple--light;
-  }
-}
-
 /* @end */
 
 /* @group ----- Items/Browse ----- */
@@ -538,37 +528,92 @@ a:visited {
   height: auto;
 }
 
-.collection .image,
-.exhibit .image {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
-.browse .collection h2,
-.browse .exhibit h2 {
-  width: auto;
-
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
+.browse .collection,
+.browse .exhibit {
+  h2 {
     width: auto;
+
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+      width: auto;
+    }
   }
 }
 
 .browse .collection-meta {
   clear: left;
+  margin: 0;
+
+  .collection-description {
+    margin-bottom: 0;
+  }
 }
 
-.collection .tags {
-  clear: left;
-}
-
-.collections .item-img a img {
-  border: 1px solid #ccc;
-}
-
+// Image styles for collections.
 .collections .item-img {
   float: right;
+  margin: 0 0 0 10px;
   text-align: right;
+
+  a img {
+    border: 1px solid #ccc;
+  }
+
+  // Needed to override collection style.
+  .item-file.application-pdf a {
+    border: solid 1px $teal;
+
+    &:hover,
+    &:focus {
+      border-color: $purple--light;
+    }
+  }
+}
+
+.collection,
+.exhibit {
+  .image {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}
+
+.collection {
+  .tags,
+  .view-items-link {
+    clear: left;
+  }
+}
+
+/* @end */
+
+/* @group ----- Collections/Show ----- */
+
+.collections.show .item-description {
+  display: inline;
+  float: left;
+  margin: 0;
+  max-width: 100%;
+  width: 460px;
+
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
+    width: 364px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 300px;
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    width: 420px;
+  }
+}
+
+.collections.show {
+  .item-img {
+    max-width: 49%;
+    width: auto;
+  }
 }
 
 /* @end */

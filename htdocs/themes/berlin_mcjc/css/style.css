@@ -2517,13 +2517,6 @@ a:visited:focus {
   margin: 0 0 .5em .5em;
 }
 
-.collections .item-img .item-file.application-pdf a {
-  border: solid 1px #00739b;
-}
-.collections .item-img .item-file.application-pdf a:hover, .collections .item-img .item-file.application-pdf a:focus {
-  border-color: #806998;
-}
-
 /* @end */
 /* @group ----- Items/Browse ----- */
 .browse .record,
@@ -2579,13 +2572,6 @@ a:visited:focus {
   height: auto;
 }
 
-.collection .image,
-.exhibit .image {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
 .browse .collection h2,
 .browse .exhibit h2 {
   width: auto;
@@ -2599,19 +2585,67 @@ a:visited:focus {
 
 .browse .collection-meta {
   clear: left;
+  margin: 0;
 }
-
-.collection .tags {
-  clear: left;
-}
-
-.collections .item-img a img {
-  border: 1px solid #ccc;
+.browse .collection-meta .collection-description {
+  margin-bottom: 0;
 }
 
 .collections .item-img {
   float: right;
+  margin: 0 0 0 10px;
   text-align: right;
+}
+.collections .item-img a img {
+  border: 1px solid #ccc;
+}
+.collections .item-img .item-file.application-pdf a {
+  border: solid 1px #00739b;
+}
+.collections .item-img .item-file.application-pdf a:hover, .collections .item-img .item-file.application-pdf a:focus {
+  border-color: #806998;
+}
+
+.collection .image,
+.exhibit .image {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.collection .tags,
+.collection .view-items-link {
+  clear: left;
+}
+
+/* @end */
+/* @group ----- Collections/Show ----- */
+.collections.show .item-description {
+  display: inline;
+  float: left;
+  margin: 0;
+  max-width: 100%;
+  width: 460px;
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+  .collections.show .item-description {
+    width: 364px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .collections.show .item-description {
+    width: 300px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .collections.show .item-description {
+    width: 420px;
+  }
+}
+
+.collections.show .item-img {
+  max-width: 49%;
+  width: auto;
 }
 
 /* @end */
@@ -3011,6 +3045,7 @@ details#item-metadata summary h2 {
 
   .collections .item-img {
     float: none;
+    margin-left: 0;
   }
   .collections .item-img a {
     margin: 0;
@@ -3018,6 +3053,17 @@ details#item-metadata summary h2 {
   .collections .item-img a img {
     display: block;
     margin: 2em auto;
+  }
+
+  .collections.show .item-img {
+    margin-left: 0;
+  }
+
+  /* @end */
+  /* @group ----- Collections/Show ----- */
+  .collections.show .item-img {
+    max-width: 100%;
+    width: auto;
   }
 
   /* @end */

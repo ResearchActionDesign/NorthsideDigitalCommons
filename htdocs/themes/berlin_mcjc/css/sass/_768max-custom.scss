@@ -137,6 +137,7 @@ footer {
 
 .collections .item-img {
   float: none;
+  margin-left: 0;
 
   a {
     margin: 0;
@@ -145,6 +146,21 @@ footer {
       display: block;
       margin: 2em auto;
     }
+  }
+}
+
+.collections.show .item-img {
+  margin-left: 0;
+}
+
+/* @end */
+
+/* @group ----- Collections/Show ----- */
+
+.collections.show {
+  .item-img {
+    max-width: 100%;
+    width: auto;
   }
 }
 
