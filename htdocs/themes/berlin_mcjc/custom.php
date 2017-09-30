@@ -93,12 +93,38 @@ function mcjc_files_for_item($type = 'item', $options = array(), $wrapperAttribu
   $options['item'] = $item;
 
   if ($type == 'collection') {
-    $files = $item->getFile();
+    $files = mcjc_get_collection_files($item);
   } else {
     $files = $item->Files;
   }
 
   return mcjc_file_markup($files, $options, $wrapperAttributes);
+}
+
+/**
+ * Get all files for this Collection.
+ *
+ * @param Collection $collection
+ * @return array|null
+ */
+function mcjc_get_collection_files($collection)
+{
+  $itemTable = $collection->getDb()->getTable('Item');
+  $itemArray = $itemTable->findBy(array(
+    'collection' => $collection->id,
+    'hasImage' => true,
+    'sort_field' => 'featured',
+    'sort_dir' => 'd'
+  ));
+  if ($itemArray) {
+    $files = array();
+    foreach ($itemArray as $item) {
+      $files[] = $item->getFile();
+    }
+    return $files;
+  } else {
+    return null;
+  }
 }
 
 /**
@@ -120,6 +146,28 @@ function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = a
   }
   $output = '';
 
+  $files = mcjc_sort_files($files);
+
+  // Create file output.
+  foreach ($files as $key=>$file) {
+    // Don't create markup for PDFs unless this is an item show page, and
+    // only create markup for the first file if this is Browse Collections.
+    if (!isset($props['show']) && strpos($file->mime_type, 'pdf') !== FALSE
+    || isset($props['browse_collections']) && $key != 0) {
+      continue;
+    }
+    $output .= get_view()->mcjcFileMarkup($file, $props, $wrapperAttributes);
+  }
+  return $output;
+}
+
+/**
+ * Sorts an array of files so PDFs appear last.
+ *
+ * @param array $files The initial array of files.
+ * @return array The sorted array, with PDFs last.
+ */
+function mcjc_sort_files($files) {
   // Remove PDF files so we can append them to the end of the file list.
   $pdfs = array();
   foreach ($files as $key => $file) {
@@ -135,13 +183,5 @@ function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = a
   // Add PDF files to end of array of files.
   $files = array_merge($files, $pdfs);
 
-  // Create file output.
-  foreach ($files as $file) {
-    // Don't create markup for PDFs unless this is an item show page.
-    if (!isset($props['show']) && strpos($file->mime_type, 'pdf') !== FALSE) {
-      continue;
-    }
-    $output .= get_view()->mcjcFileMarkup($file, $props, $wrapperAttributes);
-  }
-  return $output;
+  return($files);
 }

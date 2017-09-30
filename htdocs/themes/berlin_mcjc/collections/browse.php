@@ -23,7 +23,7 @@ $sortLinks[__('Date Added')] = 'added';
     <div class="collection-meta item-meta">
     <?php if ($collectionImage = record_image('collection')): ?>
         <div class="item-img">
-            <div class="item-images"><?php echo mcjc_files_for_item('collection'); ?></div>
+            <div class="item-images"><?php echo mcjc_files_for_item('collection', array('browse_collections' => TRUE)); ?></div>
         </div>
     <?php endif; ?>
 

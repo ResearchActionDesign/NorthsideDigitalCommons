@@ -16,9 +16,9 @@ $collectionTitle = metadata('collection', 'display_title');
         <div class="item hentry">
             <h3><?php echo link_to_item($itemTitle, array('class'=>'permalink')); ?></h3>
 
-            <?php if (metadata('item', 'has thumbnail')): ?>
+            <?php if ($collectionImage = record_image('collection')): ?>
                 <div class="item-img">
-                    <div class="item-images"><?php echo mcjc_files_for_item('collection', array(), array('class' => 'item-file'), $item); ?></div>
+                    <div class="item-images"><?php echo mcjc_files_for_item('item', array(), array('class' => 'item-file'), $item); ?></div>
                 </div>
             <?php endif; ?>
 
