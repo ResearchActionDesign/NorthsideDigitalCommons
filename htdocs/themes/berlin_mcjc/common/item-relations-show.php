@@ -27,7 +27,12 @@ $relatedItemIds = array_unique($relatedItemIds);
   <h2><?php echo __('Related Content'); ?></h2>
     <table>
       <?php foreach ($relatedItemIds as $itemId): ?>
-        <?php $item = get_record_by_id('item', $itemId); ?>
+        <?php
+          $item = get_record_by_id('item', $itemId);
+          if (is_null($item)) {
+            continue;
+          }
+        ?>
         <div class="item entry">
           <div class="item-meta">
             <div class="citation">
@@ -45,7 +50,7 @@ $relatedItemIds = array_unique($relatedItemIds);
             <?php endif; ?>
             <?php if (metadata($item, 'has thumbnail')): ?>
               <div class="item-img">
-                <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
+                <div class="item-images"><?php echo mcjc_files_for_item('item', array(), array('class' => 'item-file'), $item); ?></div>
               </div>
             <?php endif; ?>
             <?php if (metadata($item, 'has tags')): ?>

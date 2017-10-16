@@ -100,6 +100,29 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
         }
       }
     }
+
+    // Clean out span tags from exhibit blocks.
+    if ((double) $params['old_version'] < 2.14) {
+      $sql = $this->_db->getTable('ExhibitPageBlock')->getSelect()->where("`text` like '%style%'")->assemble();
+      $exhibitPageBlockIds = $this->_db->query($sql)->fetchAll(); {
+        foreach ($exhibitPageBlockIds as $id) {
+          $exhibitPageBlock = get_record_by_id('ExhibitPageBlock', $id['id']);
+          $exhibitPageBlock->text = preg_replace('/ style=\"[^\"]*\"/', '', $exhibitPageBlock->text);
+          $exhibitPageBlock->text = preg_replace('/<\/?span>/', '', $exhibitPageBlock->text);
+          $exhibitPageBlock->save();
+        }
+      }
+
+      $sql = $this->_db->getTable('ExhibitBlockAttachment')->getSelect()->where("`caption` like '%style%'")->assemble();
+      $exhibitAttachmentIds = $this->_db->query($sql)->fetchAll(); {
+        foreach ($exhibitAttachmentIds as $id) {
+          $exhibitAttachment = get_record_by_id('ExhibitBlockAttachment', $id['id']);
+          $exhibitAttachment->caption = preg_replace('/ style=\"[^\"]*\"/', '', $exhibitAttachment->caption);
+          $exhibitAttachment->caption = preg_replace('/<\/?span>/', '', $exhibitAttachment->caption);
+          $exhibitAttachment->save();
+        }
+      }
+    }
   }
 
   public function filterItemsBrowsePerPage($number_items, $controller) {

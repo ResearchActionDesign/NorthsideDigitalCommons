@@ -297,6 +297,10 @@ a:visited {
   }
 }
 
+#item-description {
+  margin-bottom: 2em;
+}
+
 .item .tags {
   clear: left;
   margin-left: 0;
@@ -331,7 +335,7 @@ a:visited {
 }
 
 .item-pagination {
-  padding-top: 3em;
+  padding-top: 24px;
 
   a {
     font-size: 1.2em;
@@ -339,11 +343,28 @@ a:visited {
   }
 }
 
-.items.show h3 {
-  margin-bottom: .5em;
+.items.show {
+  h3 {
+    margin-bottom: .5em;
+  }
+
+  #itemfiles .item-images .item-file {
+    a {
+      display: block;
+      text-align: center;
+
+      .full {
+        margin: 1em 0 0;
+      }
+    }
+  }
 }
 
 #item-relations-display-item-relations {
+  border-top: solid 1px #eee;
+  margin-top: 2em;
+  padding-bottom: 2em;
+
   .entry {
     padding: 1.5em 0 0;
 
@@ -404,16 +425,13 @@ a:visited {
 .collection {
   .item-file a {
     height: auto;
-
-    img {
-      height: 9em;
-    }
   }
 }
 
 .item-file {
   &.audio-mpeg {
     margin-bottom: .5em;
+    margin-top: 1em;
   }
 
   &.application-pdf {
@@ -454,7 +472,8 @@ a:visited {
     padding: 1.25em 0;
 
     h2 {
-      margin-bottom: 0;
+      line-height: 36px;
+      margin-bottom: 12px;
     }
 
     .view-items-link {
@@ -470,7 +489,8 @@ a:visited {
     width: 50%;
   }
 
-  .item-meta {
+  .item-meta,
+  .collection-meta {
     width: 100%;
 
     .item-img {
@@ -508,32 +528,92 @@ a:visited {
   height: auto;
 }
 
-.collection .image,
-.exhibit .image {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
-.browse .collection h2,
-.browse .exhibit h2 {
-  width: auto;
-
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
+.browse .collection,
+.browse .exhibit {
+  h2 {
     width: auto;
+
+    @media only screen and (min-width: 768px) and (max-width: 959px) {
+      width: auto;
+    }
   }
 }
 
 .browse .collection-meta {
   clear: left;
+  margin: 0;
+
+  .collection-description {
+    margin-bottom: 0;
+  }
 }
 
-.collection .tags {
-  clear: left;
+// Image styles for collections.
+.collections .item-img {
+  float: right;
+  margin: 0 0 0 10px;
+  text-align: right;
+
+  a img {
+    border: 1px solid #ccc;
+  }
+
+  // Needed to override collection style.
+  .item-file.application-pdf a {
+    border: solid 1px $teal;
+
+    &:hover,
+    &:focus {
+      border-color: $purple--light;
+    }
+  }
 }
 
-.collections .item-img a img {
-  border: 1px solid #ccc;
+.collection,
+.exhibit {
+  .image {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}
+
+.collection {
+  .tags,
+  .view-items-link {
+    clear: left;
+  }
+}
+
+/* @end */
+
+/* @group ----- Collections/Show ----- */
+
+.collections.show .item-description {
+  display: inline;
+  float: left;
+  margin: 0;
+  max-width: 100%;
+  width: 460px;
+
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
+    width: 364px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 300px;
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    width: 420px;
+  }
+}
+
+.collections.show {
+  .item-img {
+    max-width: 49%;
+    width: auto;
+  }
 }
 
 /* @end */
@@ -574,7 +654,7 @@ a:visited {
 
 /* @end */
 
-/* @group ----- Exhibit Builder ----- */
+/* @group ----- Exhibits ----- */
 
 .exhibits {
   .secondary-nav {
@@ -584,7 +664,56 @@ a:visited {
   .tags {
     clear: left;
   }
+
+  .exhibit-block {
+    border-bottom: solid 1px $grey--light;
+    overflow: auto;
+    padding: .5em 0;
+  }
 }
+
+.layout-gallery {
+  // Showcase items - two columns of content, usually an image and description
+  // next to a list of audio files.
+  .gallery.with-showcase .exhibit-item {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .captions-center .exhibit-item-caption {
+    font-size: 1em;
+    text-align: left;
+  }
+
+  .left.with-right,
+  .right {
+    min-height: 270px;
+  }
+
+  // Audio or image items displayed in 2 columns on large screens and one on
+  // small screens.
+  .gallery.captions-center:not(.with-showcase) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+
+    .exhibit-item {
+      flex-basis: 300px;
+      margin-bottom: 2em;
+      margin-right: 1.5em;
+
+      .download-file {
+        margin-bottom: .75em;
+      }
+
+      .exhibit-item-caption,
+      .exhibit-item-caption p {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
+
 
 /* @end */
 
@@ -635,7 +764,7 @@ details#item-metadata {
 
 /* @end */
 
-/* @ground ----- Audio Player ----- */
+/* @group ----- Audio Player ----- */
 
 .mejs-container {
   max-width: 100% !important;

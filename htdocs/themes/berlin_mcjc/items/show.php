@@ -1,3 +1,4 @@
+<?php queue_css_file('lity', 'all', false, 'lity'); ?>
 <?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
 <div id="primary">
     <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
@@ -7,17 +8,18 @@
       <?php echo oral_history_item_subtitle(); ?>
     </div>
   <?php endif; ?>
-  <div id="item-description">
-    <?php echo metadata('item', array('Dublin Core','Description')); ?>
-  </div>
 
   <!-- Item files -->
   <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-      <div class="item-images"><?php echo mcjc_files_for_item(); ?>
+      <div class="item-images"><?php echo mcjc_files_for_item('item', array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""), 'show' => TRUE)); ?>
       </div>
     </div>
   <?php endif; ?>
+
+  <div id="item-description">
+    <?php echo metadata('item', array('Dublin Core','Description')); ?>
+  </div>
 
   <!-- Other metadata -->
   <details id="item-metadata">
@@ -58,4 +60,5 @@
 
 </div> <!-- End of Primary. -->
 
+<?php echo js_tag('lity', 'lity'); ?>
  <?php echo foot(); ?>

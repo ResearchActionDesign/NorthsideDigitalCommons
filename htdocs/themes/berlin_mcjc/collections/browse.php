@@ -20,14 +20,15 @@ $sortLinks[__('Date Added')] = 'added';
 
     <h2><?php echo link_to_collection(); ?></h2>
 
+    <div class="collection-meta item-meta">
     <?php if ($collectionImage = record_image('collection')): ?>
-        <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
+        <div class="item-img">
+            <div class="item-images"><?php echo mcjc_files_for_item('collection', array('browse_collections' => TRUE)); ?></div>
+        </div>
     <?php endif; ?>
 
-    <div class="collection-meta">
-
     <?php if (metadata('collection', array('Dublin Core', 'Description'))): ?>
-    <div class="collection-description">
+    <div class="collection-description item-description">
         <?php echo text_to_paragraphs(metadata('collection', array('Dublin Core', 'Description'), array('snippet'=>150))); ?>
     </div>
     <?php endif; ?>
