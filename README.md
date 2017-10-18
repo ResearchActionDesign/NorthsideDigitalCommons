@@ -10,9 +10,43 @@ based on Omeka version 2.5.1
 * Either run `docker-sync start` in a separate terminal window and then run `make up`, or run `docker-sync-stack start` to do both steps
 * To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
 
-## Theme development
+## Required plug-ins
+
+The following plugins are required:
+* Archive Repertory
+* Clean Url - using a schema of `/collections/collection-identifier/item-identifier`
+* COinS
+* CSVExport
+* CSV Import
+* Derivative Images
+* Element Types
+* Exhibit Builder
+* HTML5 Media
+* Item Relations
+* Simple Pages
+* Simple Vocab
+* Taxonomy
+
+## Custom plug-ins
+
+The `MCJCDeployment` plug-in serves as an all-purpose container for overrides and database migrations. 
+Some of the migrations tweak aspects of the default Omeka field set-up, so if you're starting a fresh install of this codebase
+you'll need to force the migrations to run by manually setting the `MCJCDeployment` version number to `2.1.0`.
+
+The plugin also provides a few custom view handlers and overrides which are needed for the `berlin_mcjc` theme to function; these are:
+
+* `ExhibitAttachment.php` - completely copies the `plugins/ExhibitBuilder/helpers/ExhibitAttachment.php` code except for forcing the `$forceImage` parameter to always have a value of `false` so that in-line HTML5 players display on exhibit pages.
+This view handler overrides the `ExhibitBuilder` one purely by virtue of the fact that the Zend view handler stack is last-in, first-out, so the `MCJCDeployment` plugin views handler directory is searched before `ExhibitBuilder`.
+* `McjcFileMarkup.php` - copies the default file markup handler except for customizing the behavior of tape log, transcript, and abstract PDFs. This handler is called explicitly in the `berlin_mcjc` theme code.
+
+## Berlin_mcjc theme 
 
 The MCJC Oral History Trust website uses the Berlin MCJC theme.
+
+### Custom theme functions
+
+The theme `custom.php` contains a number of custom functions which are used in the theme templates. Functions are documented in-line and generally prefixed with `mcjc_`.
+Some of these functions largely copy code from the Omeka core functions, so if errors appear after the Omeka version is updated check here to see if the core function code changes need to be propagated.
 
 ### Working with SCSS
 
@@ -42,3 +76,4 @@ The [Lity](https://sorgalla.com/lity/) library is used to enable lightbox
 overlays for image files. Lity was used in place of Lightbox because Lightbox
 does not support PDFs. The library is included on item show pages via the
 custom template located in `items/show.php` (relative to the theme).
+
