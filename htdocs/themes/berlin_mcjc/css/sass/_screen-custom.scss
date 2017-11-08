@@ -514,6 +514,13 @@ a:visited {
   }
 }
 
+
+#search-filters > ul > li {
+  &.search-page__advanced-search-link {
+    background-color: transparent;
+  }
+}
+
 /* @end */
 
 /* @group ----- Collections/Browse ----- */

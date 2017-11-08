@@ -2560,6 +2560,10 @@ a:visited:focus {
   font-weight: bold;
 }
 
+#search-filters > ul > li.search-page__advanced-search-link {
+  background-color: transparent;
+}
+
 /* @end */
 /* @group ----- Collections/Browse ----- */
 .browse .collection .image,
