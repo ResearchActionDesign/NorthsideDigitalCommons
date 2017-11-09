@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Generate a custom subtitle for the current record (as an oral history item),
+ * including text about interviewer and interview date.
+ *
+ * @return string
+ */
 function oral_history_item_subtitle() {
   $item = get_current_record('item');
   $convertNameFormat = function ($s) {
@@ -26,7 +32,7 @@ function oral_history_item_subtitle() {
   $text = '';
   if (empty($interviewers)) {
     if (empty($date)) {
-      return;
+      return "";
     }
     else {
       return sprintf('Interviewed on %s',
