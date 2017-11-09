@@ -2120,10 +2120,15 @@ a:visited:focus {
 }
 
 .show-advanced.button {
-  border-left: 1px solid #00739b;
+  border-bottom: 1px solid #ccc;
+  border-left: 0;
+  border-top: 1px solid #ccc;
+  width: 70px;
 }
 .show-advanced.button:after {
-  background-color: #00739b;
+  background-color: #fafafa;
+  color: #00739b;
+  content: 'Options';
 }
 
 /* @end */
