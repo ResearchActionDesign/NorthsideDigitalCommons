@@ -109,6 +109,17 @@ a:visited {
     background-color: $purple--light;
     color: $white;
   }
+
+  // Caret character for links with submenu items.
+  [aria-haspopup="true"]::after {
+    content: '\f0d7';
+    font-size: 1.1em;
+  }
+
+  .sub-nav.open {
+    border-bottom: 0;
+    width: auto;
+  }
 }
 
 #mobile-nav {

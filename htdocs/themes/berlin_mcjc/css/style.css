@@ -2153,6 +2153,14 @@ a:visited:focus {
   background-color: #806998;
   color: #fff;
 }
+#primary-nav [aria-haspopup="true"]::after {
+  content: '\f0d7';
+  font-size: 1.1em;
+}
+#primary-nav .sub-nav.open {
+  border-bottom: 0;
+  width: auto;
+}
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
   #mobile-nav {
