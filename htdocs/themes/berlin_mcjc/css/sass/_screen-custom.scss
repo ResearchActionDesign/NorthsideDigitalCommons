@@ -78,7 +78,7 @@ a:visited {
   width: 70px;
 
   &:after{
-    background-color: #fafafa;
+    background-color: transparent;
     color: $teal;
     content: 'Options';
   }
@@ -285,19 +285,7 @@ a:visited {
   text-align: center;
 
   a {
-    background-color: $white;
-    border: solid 1px $teal;
-    display: inline-block;
-    padding: .5em .75em;
-    text-decoration: none;
-    transition: all .1s linear;
-
-    &:hover,
-    &:focus {
-      background-color: $purple--light;
-      border-color: $purple--light;
-      color: $white;
-    }
+    @include outline-button;
   }
 }
 
@@ -526,8 +514,26 @@ a:visited {
 /* @group ----- Items/Search ----- */
 
 #advanced-search-form {
-  label {
+  label,
+  .label {
     font-weight: bold;
+  }
+
+  .search-entry select {
+    margin-right: .5em;
+  }
+
+  // Undo different layout for exhibit fields.
+  .two.columns,
+  .five.columns {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .submit {
+    @include outline-button;
+
+    margin-top: 1.5em;
   }
 }
 
