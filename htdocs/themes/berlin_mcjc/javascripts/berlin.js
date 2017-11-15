@@ -16,4 +16,12 @@ if (!Berlin) {
     };
 
     $().ready(function() { $('.download-file').attr('target', '_blank'); });
+
+    // Prefill search typed in search box in URL for advanced search link, so queries carry over into advanced search.
+    $().ready(function() {
+        $("#advanced-form a").mousedown(function (e) {
+            $(this).attr('href', '/items/search?query=' + $("#query").val());
+        })
+        }
+    );
 })(jQuery);
