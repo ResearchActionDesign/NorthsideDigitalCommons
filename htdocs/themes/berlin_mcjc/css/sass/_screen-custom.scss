@@ -72,10 +72,15 @@ a:visited {
 }
 
 .show-advanced.button {
-  border-left: 1px solid $teal;
+  border-bottom: 1px solid #ccc;
+  border-left: 0;
+  border-top: 1px solid #ccc;
+  width: 70px;
 
   &:after{
-    background-color: $teal;
+    background-color: transparent;
+    color: $teal;
+    content: 'Options';
   }
 }
 
@@ -103,6 +108,18 @@ a:visited {
   .nav-item.active a.open {
     background-color: $purple--light;
     color: $white;
+  }
+
+  // Caret character for links with submenu items.
+  [aria-haspopup="true"]::after {
+    content: '\f0d7';
+    font-size: 1.1em;
+  }
+
+  .sub-nav.open {
+    border-bottom: 0;
+    margin-left: -1px;
+    width: auto;
   }
 }
 
@@ -268,19 +285,7 @@ a:visited {
   text-align: center;
 
   a {
-    background-color: $white;
-    border: solid 1px $teal;
-    display: inline-block;
-    padding: .5em .75em;
-    text-decoration: none;
-    transition: all .1s linear;
-
-    &:hover,
-    &:focus {
-      background-color: $purple--light;
-      border-color: $purple--light;
-      color: $white;
-    }
+    @include outline-button;
   }
 }
 
@@ -509,8 +514,33 @@ a:visited {
 /* @group ----- Items/Search ----- */
 
 #advanced-search-form {
-  label {
+  label,
+  .label {
     font-weight: bold;
+  }
+
+  .search-entry select {
+    margin-right: .5em;
+  }
+
+  // Undo different layout for exhibit fields.
+  .two.columns,
+  .five.columns {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .submit {
+    @include outline-button;
+
+    margin-top: 1.5em;
+  }
+}
+
+
+#search-filters > ul > li {
+  &.search-page__advanced-search-link {
+    background-color: transparent;
   }
 }
 

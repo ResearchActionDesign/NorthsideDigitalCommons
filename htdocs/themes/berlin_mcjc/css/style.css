@@ -2120,10 +2120,15 @@ a:visited:focus {
 }
 
 .show-advanced.button {
-  border-left: 1px solid #00739b;
+  border-bottom: 1px solid #ccc;
+  border-left: 0;
+  border-top: 1px solid #ccc;
+  width: 70px;
 }
 .show-advanced.button:after {
-  background-color: #00739b;
+  background-color: transparent;
+  color: #00739b;
+  content: 'Options';
 }
 
 /* @end */
@@ -2147,6 +2152,15 @@ a:visited:focus {
 #primary-nav .nav-item.active a.open {
   background-color: #806998;
   color: #fff;
+}
+#primary-nav [aria-haspopup="true"]::after {
+  content: '\f0d7';
+  font-size: 1.1em;
+}
+#primary-nav .sub-nav.open {
+  border-bottom: 0;
+  margin-left: -1px;
+  width: auto;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
@@ -2367,6 +2381,7 @@ a:visited:focus {
 .featured__button a {
   background-color: #fff;
   border: solid 1px #00739b;
+  color: #00739b;
   display: inline-block;
   padding: .5em .75em;
   text-decoration: none;
@@ -2556,8 +2571,36 @@ a:visited:focus {
 
 /* @end */
 /* @group ----- Items/Search ----- */
-#advanced-search-form label {
+#advanced-search-form label,
+#advanced-search-form .label {
   font-weight: bold;
+}
+#advanced-search-form .search-entry select {
+  margin-right: .5em;
+}
+#advanced-search-form .two.columns,
+#advanced-search-form .five.columns {
+  margin-left: 0;
+  width: 100%;
+}
+#advanced-search-form .submit {
+  background-color: #fff;
+  border: solid 1px #00739b;
+  color: #00739b;
+  display: inline-block;
+  padding: .5em .75em;
+  text-decoration: none;
+  transition: all .1s linear;
+  margin-top: 1.5em;
+}
+#advanced-search-form .submit:hover, #advanced-search-form .submit:focus {
+  background-color: #806998;
+  border-color: #806998;
+  color: #fff;
+}
+
+#search-filters > ul > li.search-page__advanced-search-link {
+  background-color: transparent;
 }
 
 /* @end */

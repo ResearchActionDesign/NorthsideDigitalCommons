@@ -27,9 +27,7 @@ $searchRecordTypes = get_search_record_types();
         </td>
         <td>
           <?php if ($recordImage = record_image($recordType)): ?>
-            <?php if ($recordType == 'Item'): echo mcjc_files_for_item(); ?>
-            <?php else: echo link_to($record, 'show', $recordImage, array('class' => 'image')); ?>
-            <?php endif; ?>
+            <?php echo mcjc_files_for_item(strtolower($recordType)); ?>
           <?php endif; ?>
         </td>
         <td>

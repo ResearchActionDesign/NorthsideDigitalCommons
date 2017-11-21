@@ -1,3 +1,9 @@
+<?php
+
+if ($title == "Search Items" AND @$_REQUEST['query'] AND empty(@$_REQUEST['search'])) {
+    $_REQUEST['search'] = $_REQUEST['query'];
+}
+?>
 <!DOCTYPE html>
 <html class="<?php echo get_theme_option('Style Sheet'); ?>" lang="<?php echo get_html_lang(); ?>">
 <head>
