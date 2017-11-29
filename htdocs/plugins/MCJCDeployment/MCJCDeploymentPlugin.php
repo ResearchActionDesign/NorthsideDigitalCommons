@@ -6,11 +6,16 @@
  * Time: 6:34 PM
  */
 
+require_once('vendor/autoload.php');
+
+use \Rollbar\Rollbar;
+
 class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
 
   protected $_hooks = array(
     'install',
     'upgrade',
+    'initialize',
   );
 
   protected $_filters = array(
@@ -122,6 +127,25 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
           $exhibitAttachment->save();
         }
       }
+    }
+  }
+
+  /**
+   * Add rollbar error handling on every request.
+   */
+  function hookInitialize() {
+    try {
+      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
+
+      if ($rollbar_token) {
+        Rollbar::init([
+          'access_token' => $rollbar_token,
+          'environment' => APPLICATION_ENV,
+          'root' => APPLICATION_PATH,
+        ]);
+      }
+    }
+    catch (Exception $e) {
     }
   }
 
