@@ -29,7 +29,7 @@ The following plugins are required:
 
 ## Custom plug-ins
 
-The `MCJCDeployment` plug-in serves as an all-purpose container for overrides and database migrations. 
+The `MCJCDeployment` plug-in serves as an all-purpose container for overrides and database migrations, and also enables Rollbar error notifications.
 Some of the migrations tweak aspects of the default Omeka field set-up, so if you're starting a fresh install of this codebase
 you'll need to force the migrations to run by manually setting the `MCJCDeployment` version number to `2.1.0`.
 
@@ -38,6 +38,11 @@ The plugin also provides a few custom view handlers and overrides which are need
 * `ExhibitAttachment.php` - completely copies the `plugins/ExhibitBuilder/helpers/ExhibitAttachment.php` code except for forcing the `$forceImage` parameter to always have a value of `false` so that in-line HTML5 players display on exhibit pages.
 This view handler overrides the `ExhibitBuilder` one purely by virtue of the fact that the Zend view handler stack is last-in, first-out, so the `MCJCDeployment` plugin views handler directory is searched before `ExhibitBuilder`.
 * `McjcFileMarkup.php` - copies the default file markup handler except for customizing the behavior of tape log, transcript, and abstract PDFs. This handler is called explicitly in the `berlin_mcjc` theme code.
+
+## Rollbar error handling
+
+The MCJCDeployment plugin provides Rollbar error notification functionality by default; in order for this to work the option `log.rollbar_access_token` needs to be set to
+a valid access token inside `application/config.ini`.
 
 ## Berlin_mcjc theme 
 
