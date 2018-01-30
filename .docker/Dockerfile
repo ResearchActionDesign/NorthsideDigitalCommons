@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php@sha256:0f42025cb6ecad02144d27a1e51bdf830c4bf7de3d6ab724240207f85cc9d827
 RUN apt-get update && apt-get install -y imagemagick
 RUN pecl install xdebug-2.5.0
 RUN docker-php-ext-install -j$(nproc) mysqli exif && docker-php-ext-enable xdebug
