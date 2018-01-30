@@ -3,7 +3,7 @@ services:
   web:
     build: .
     volumes:
-      - omeka-htdocs-sync:/var/www/html:rw
+      - ./htdocs:/var/www/html:cached
       - ./.docker:/etc/apache2/sites-available
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
@@ -28,5 +28,5 @@ services:
 volumes:
   mysql-data:
     driver: local
-  omeka-htdocs-sync:
-    external: true
+#  omeka-htdocs-sync:
+#    external: true
