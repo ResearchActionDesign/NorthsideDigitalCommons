@@ -21,6 +21,11 @@
     <?php echo metadata('item', array('Dublin Core','Description')); ?>
   </div>
 
+  <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
+  <div class="item-metadata sohp">
+    <a target="_blank" href="<?php echo html_escape($sohp_url) ?>">View Details at Southern Oral History Program website</a>
+  </div>
+    <?php else: ?>
   <!-- Other metadata -->
   <details id="item-metadata">
     <summary><h2><?php echo __('View Details') ?></h2></summary>
@@ -50,6 +55,7 @@
         <div class="element-text"><?php echo metadata('item','citation',array('no_escape'=>true)); ?></div>
     </div>
     </details>
+    <?php endif; ?>
        <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
 
 
