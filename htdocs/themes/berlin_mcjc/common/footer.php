@@ -12,6 +12,7 @@
         <p><?php echo $copyright; ?></p>
         <?php endif; ?>
         <nav><?php echo public_nav_main()->setMaxDepth(0); ?></nav>
+        <p><a href="https://jacksoncenter.info"><img src="/themes/berlin_mcjc/images/mcjc_logo.jpg" alt="Marian Cheek Jackson Center"/></a></p>
         <p><?php echo __('Proudly powered by <a href="http://omeka.org">Omeka</a>.'); ?></p>
 
     </div><!-- end footer-content -->
