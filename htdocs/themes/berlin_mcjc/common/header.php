@@ -27,18 +27,8 @@ if ($title == "Search Items" AND @$_REQUEST['query'] AND empty(@$_REQUEST['searc
     <!-- Stylesheets -->
     <?php
     queue_css_file(array('iconfonts', 'skeleton','style'));
-
-    echo head_css();
     ?>
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans:400,400i,700" rel="stylesheet">
-
-    <!-- JavaScripts -->
-    <?php queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)')); ?>
-    <?php queue_js_file('vendor/respond'); ?>
-    <?php queue_js_file('vendor/jquery-accessibleMegaMenu'); ?>
-    <?php queue_js_file('berlin'); ?>
-    <?php queue_js_file('globals'); ?>
-    <?php echo head_js(); ?>
 	<link rel="apple-touch-icon" sizes="57x57" href="/themes/berlin_mcjc/images/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/themes/berlin_mcjc/images/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="/themes/berlin_mcjc/images/apple-icon-72x72.png">
