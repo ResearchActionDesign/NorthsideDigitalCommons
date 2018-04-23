@@ -43,6 +43,14 @@ $sortLinks[__('Date Added')] = 'added';
     <div class="item-img">
         <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
     </div>
+    <?php elseif (metadata('item', array('Dublin Core', 'Type')) == 'Person'): ?>
+        <div class="item-img">
+            <div class="item-images">
+                <div class="image-jpeg">
+                    <?php echo link_to_item("<img class=\"thumb head-icon\" width=\"200\" height=\"200\" src=\"/themes/berlin_mcjc/images/head_icon.png\" alt=\"\"/>", array('class' => 'permalink'));?>
+                </div>
+            </div>
+        </div>
     <?php endif; ?>
 
     <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
