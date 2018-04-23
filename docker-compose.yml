@@ -4,7 +4,7 @@ services:
     build: .docker/
     volumes:
       - ./htdocs:/var/www/html:cached
-      - ./.docker:/etc/apache2/sites-available
+      - ./.docker:/etc/apache2/sites-available:cached
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
     container_name: mcjc-omeka.l

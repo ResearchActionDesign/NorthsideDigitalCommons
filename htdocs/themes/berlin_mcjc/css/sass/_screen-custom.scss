@@ -433,6 +433,28 @@ a:visited {
   }
 }
 
+@mixin button {
+  display: inline-block;
+  margin: 0 .5em .5em 0;
+  text-align: center;
+
+  a {
+    background-color: $white;
+    border: solid 1px $teal;
+    display: inline-block;
+    padding: .5em .75em;
+    text-decoration: none;
+    transition: all .1s linear;
+
+    &:hover,
+    &:focus {
+      background-color: $purple--light;
+      border-color: $purple--light;
+      color: $white;
+    }
+  }
+}
+
 .item-file {
   &.audio-mpeg {
     margin-bottom: .5em;
@@ -440,30 +462,20 @@ a:visited {
   }
 
   &.application-pdf {
-    display: inline-block;
-    margin: 0 .5em .5em 0;
-    text-align: center;
-
-    a {
-      background-color: $white;
-      border: solid 1px $teal;
-      display: inline-block;
-      padding: .5em .75em;
-      text-decoration: none;
-      transition: all .1s linear;
-
-      &:hover,
-      &:focus {
-        background-color: $purple--light;
-        border-color: $purple--light;
-        color: $white;
-      }
-    }
+    @include button;
   }
 }
 
+
 .items.browse .item-file.application-pdf {
   margin: 0 0 .5em .5em;
+}
+
+// Link out to SOHP for some items.
+.item-metadata {
+  &.sohp {
+    @include button;
+  }
 }
 
 /* @end */

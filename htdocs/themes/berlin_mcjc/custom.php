@@ -191,3 +191,17 @@ function mcjc_sort_files($files) {
 
   return($files);
 }
+
+function mcjc_get_linked_sohp_interview()
+{
+  $item = get_current_record('item');
+
+  if (metadata($item, array('Dublin Core', 'Creator')) === "Southern Oral History Program") {
+    // TODO: Check if source is a valid link.
+    $source = metadata('item', array('Dublin Core', 'Source'));
+    if (substr($source, 0, 4) === "http") {
+      return $source;
+    }
+  }
+  return FALSE;
+}

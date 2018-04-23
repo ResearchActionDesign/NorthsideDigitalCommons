@@ -2532,6 +2532,25 @@ a:visited:focus {
   margin: 0 0 .5em .5em;
 }
 
+.item-metadata.sohp {
+  display: inline-block;
+  margin: 0 .5em .5em 0;
+  text-align: center;
+}
+.item-metadata.sohp a {
+  background-color: #fff;
+  border: solid 1px #00739b;
+  display: inline-block;
+  padding: .5em .75em;
+  text-decoration: none;
+  transition: all .1s linear;
+}
+.item-metadata.sohp a:hover, .item-metadata.sohp a:focus {
+  background-color: #806998;
+  border-color: #806998;
+  color: #fff;
+}
+
 /* @end */
 /* @group ----- Items/Browse ----- */
 .browse .record,
