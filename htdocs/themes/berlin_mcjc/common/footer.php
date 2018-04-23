@@ -20,7 +20,6 @@
      <?php fire_plugin_hook('public_footer', array('view'=>$this)); ?>
 
 </footer>
-<?php echo head_css(); ?>
 <!-- JavaScripts -->
 <?php queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)')); ?>
 <?php queue_js_file('vendor/respond'); ?>

@@ -44,6 +44,7 @@ if ($title == "Search Items" AND @$_REQUEST['query'] AND empty(@$_REQUEST['searc
 	<link rel="icon" type="image/png" sizes="16x16" href="/themes/berlin_mcjc/images/favicon-16x16.png">
 	<link rel="manifest" href="/themes/berlin_mcjc/images/manifest.json">
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/images/ms-icon-144x144.png">
+  <?php echo head_css(); ?>
 </head>
  <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass)); ?>
     <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
