@@ -20,13 +20,7 @@
      <?php fire_plugin_hook('public_footer', array('view'=>$this)); ?>
 
 </footer>
-<!-- JavaScripts -->
-<?php queue_js_file('vendor/selectivizr', 'javascripts', array('conditional' => '(gte IE 6)&(lte IE 8)')); ?>
-<?php queue_js_file('vendor/respond'); ?>
-<?php queue_js_file('vendor/jquery-accessibleMegaMenu'); ?>
-<?php queue_js_file('berlin'); ?>
-<?php queue_js_file('globals'); ?>
-<?php echo head_js(); ?>
+
 <script type="text/javascript">
     jQuery(document).ready(function(){
         Omeka.showAdvancedForm();

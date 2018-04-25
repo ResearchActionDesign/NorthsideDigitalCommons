@@ -141,7 +141,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
         Rollbar::init([
           'access_token' => $rollbar_token,
           'environment' => APPLICATION_ENV,
-          'root' => APPLICATION_PATH,
+          'root' => BASE_DIR,
         ]);
       }
     }
