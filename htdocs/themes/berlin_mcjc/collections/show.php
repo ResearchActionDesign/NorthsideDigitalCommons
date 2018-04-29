@@ -6,7 +6,9 @@ $collectionTitle = metadata('collection', 'display_title');
 
 <h1><?php echo $collectionTitle; ?></h1>
 
-<?php echo all_element_texts('collection'); ?>
+<div id="item-description">
+  <?php echo metadata('collection', array('Dublin Core','Description')); ?>
+</div>
 
 <div id="collection-items">
     <h2><?php echo link_to_items_browse(__('Items in the %s Collection', $collectionTitle), array('collection' => metadata('collection', 'id'))); ?></h2>
