@@ -1,6 +1,7 @@
 <?php if ($subjectRelations || $objectRelations): ?>
-<?php
 
+<?php
+$isPerson = (metadata('item', array('Dublin Core', 'Type')) === 'Person');
 $currentRecord = get_current_record('item');
 // Load related items into array.
 $relatedItemIds = array();
@@ -24,7 +25,8 @@ foreach ($objectRelations as $objectRelation) {
 $relatedItemIds = array_unique($relatedItemIds);
 ?>
 <div id="item-relations-display-item-relations">
-  <h2><?php echo __('Related Content'); ?></h2>
+  <!-- TODO: stub H2 tag here for people is just a space filler until CSS can be properly updated for the person case -->
+  <h2><?php echo __($isPerson ? '' : 'Related Content'); ?></h2>
     <table>
       <?php foreach ($relatedItemIds as $itemId): ?>
         <?php

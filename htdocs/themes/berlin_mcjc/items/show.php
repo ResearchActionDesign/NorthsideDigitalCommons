@@ -1,5 +1,6 @@
 <?php queue_css_file('lity', 'all', false, 'lity'); ?>
 <?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
+<?php $isPerson = (metadata('item', array('Dublin Core', 'Type')) === 'Person'); ?>
 <div id="primary">
     <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
   <?php
@@ -26,9 +27,12 @@
     <a target="_blank" href="<?php echo html_escape($sohp_url) ?>">View Details at Southern Oral History Program website</a>
   </div>
     <?php else: ?>
-  <!-- Other metadata -->
-  <details id="item-metadata">
-    <summary><h2><?php echo __('View Details') ?></h2></summary>
+
+    <!-- Only display "View Details" for non-person records -->
+    <?php if (!$isPerson): ?>
+          <!-- Other metadata -->
+    <details id="item-metadata">
+        <summary><h2><?php echo __('View Details') ?></h2></summary>
     <!-- Items metadata -->
     <div id="item-metadata">
         <?php echo all_element_texts('item'); ?>
@@ -56,6 +60,7 @@
     </div>
     </details>
     <?php endif; ?>
+  <?php endif; ?>
        <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
 
 
