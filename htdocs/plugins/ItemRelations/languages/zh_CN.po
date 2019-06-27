@@ -1,0 +1,850 @@
+# Translation for the Exhibit Builder plugin for Omeka.
+# Copyright (C) 2014 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# 
+# Translators:
+# Hong Zhang <zhangh@unlv.nevada.edu>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Omeka\n"
+"Report-Msgid-Bugs-To: http://github.com/omeka/plugin-ItemRelations/issues\n"
+"POT-Creation-Date: 2014-01-13 12:59-0500\n"
+"PO-Revision-Date: 2018-03-09 02:36+0000\n"
+"Last-Translator: Hong Zhang <zhangh@unlv.nevada.edu>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/omeka/omeka/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "A related resource."
+msgstr "相关资源。"
+
+msgid "Conforms To"
+msgstr "符合"
+
+msgid "An established standard to which the described resource conforms."
+msgstr "所描述资源符合的已确立标准。"
+
+msgid "Has Format"
+msgstr "有格式为"
+
+msgid ""
+"A related resource that is substantially the same as the pre-existing "
+"described resource, but in another format."
+msgstr "与已存在的所描述资源极其相似的但是不同格式的相关资源。"
+
+msgid "Has Part"
+msgstr "有部分为"
+
+msgid ""
+"A related resource that is included either physically or logically in the "
+"described resource."
+msgstr "在物理或逻辑上包括在所描述资源内的相关资源。"
+
+msgid "Has Version"
+msgstr "有版本为"
+
+msgid ""
+"A related resource that is a version, edition, or adaptation of the "
+"described resource."
+msgstr "是所描述资源的译本、修订本或改编本的相关资源。"
+
+msgid "Is Format Of"
+msgstr "是下面的格式："
+
+msgid ""
+"A related resource that is substantially the same as the described resource,"
+" but in another format."
+msgstr "与所描述资源极其相似的但是不同格式的相关资源。"
+
+msgid "Is Part Of"
+msgstr "是下面的一部分："
+
+msgid ""
+"A related resource in which the described resource is physically or "
+"logically included."
+msgstr "在物理或逻辑上包括了所描述资源的相关资源。"
+
+msgid "Is Referenced By"
+msgstr "被下面的引用："
+
+msgid ""
+"A related resource that references, cites, or otherwise points to the "
+"described resource."
+msgstr "参考、引用或指向所描述资源的相关资源。"
+
+msgid "Is Replaced By"
+msgstr "被下面的替代："
+
+msgid ""
+"A related resource that supplants, displaces, or supersedes the described "
+"resource."
+msgstr "取代、置换或接替了所描述资源的相关资源。"
+
+msgid "Is Required By"
+msgstr "被下面的需求："
+
+msgid ""
+"A related resource that requires the described resource to support its "
+"function, delivery, or coherence."
+msgstr "要求所描述资源支持它的功能、交付或一致性的相关资源。"
+
+msgid "Is Version Of"
+msgstr "原版本为"
+
+msgid ""
+"A related resource of which the described resource is a version, edition, or"
+" adaptation."
+msgstr "所描述资源是相关资源的译本、修订本或改编本。"
+
+msgid "References"
+msgstr "参考资料"
+
+msgid ""
+"A related resource that is referenced, cited, or otherwise pointed to by the"
+" described resource."
+msgstr "被所描述资源参考、引用或指向的相关资源。"
+
+msgid "Replaces"
+msgstr "替代"
+
+msgid ""
+"A related resource that is supplanted, displaced, or superseded by the "
+"described resource."
+msgstr "被所描述资源取代、置换或接替了的相关资源。"
+
+msgid "Requires"
+msgstr "要求"
+
+msgid ""
+"A related resource that is required by the described resource to support its"
+" function, delivery, or coherence."
+msgstr "被所描述资源要求支持它的功能、交付或一致性的相关资源。"
+
+msgid "A related resource from which the described resource is derived."
+msgstr "衍生出所描述资源的相关资源。"
+
+msgid "Abstract"
+msgstr "摘要"
+
+msgid "A summary of the resource."
+msgstr "资源总结"
+
+msgid "Access Rights"
+msgstr "访问权限"
+
+msgid ""
+"Information about who can access the resource or an indication of its "
+"security status."
+msgstr "关于谁能访问资源或者表明资源安全状态的信息。"
+
+msgid "Accrual Method"
+msgstr "收藏方法"
+
+msgid "The method by which items are added to a collection."
+msgstr "条目添加至馆藏中的方法。"
+
+msgid "Accrual Periodicity"
+msgstr "收藏周期"
+
+msgid "The frequency with which items are added to a collection."
+msgstr "条目添加至馆藏中的频度。"
+
+msgid "Accrual Policy"
+msgstr "收藏政策"
+
+msgid "The policy governing the addition of items to a collection."
+msgstr "指导将条目添加进馆藏的政策。"
+
+msgid "Audience"
+msgstr "听众"
+
+msgid "A class of entity for whom the resource is intended or useful."
+msgstr "资源倾向或适用于的一类实体。"
+
+msgid "An entity responsible for making contributions to the resource."
+msgstr "负责给资源作贡献的实体。"
+
+msgid ""
+"The spatial or temporal topic of the resource, the spatial applicability of "
+"the resource, or the jurisdiction under which the resource is relevant."
+msgstr "资源的空间或时间主题，资源的空间应用性，或与资源相关的管辖权。"
+
+msgid "An entity primarily responsible for making the resource."
+msgstr "主要负责生成资源的实体。"
+
+msgid "An account of the resource."
+msgstr "关于资源的论述"
+
+msgid "Audience Education Level"
+msgstr "听众受教育程度"
+
+msgid ""
+"A class of entity, defined in terms of progression through an educational or"
+" training context, for which the described resource is intended."
+msgstr "资源的适用对象在接受了教育或培训之后所能取得的教育程度的这一类实体的定义。"
+
+msgid "Extent"
+msgstr "程度"
+
+msgid "The size or duration of the resource."
+msgstr "资源的尺寸或持续时间。"
+
+msgid "The file format, physical medium, or dimensions of the resource."
+msgstr "资源的文件格式、物理媒介、或尺寸。"
+
+msgid "Instructional Method"
+msgstr "指导方法"
+
+msgid ""
+"A process, used to engender knowledge, attitudes and skills, that the "
+"described resource is designed to support."
+msgstr "所描述资源所支持的用于生成知识、看法和技巧的过程。"
+
+msgid "A language of the resource."
+msgstr "资源的语言"
+
+msgid "License"
+msgstr "执照"
+
+msgid ""
+"A legal document giving official permission to do something with the "
+"resource."
+msgstr "正式授权可以使用资源的法律文件。"
+
+msgid "Mediator"
+msgstr "调停人"
+
+msgid ""
+"An entity that mediates access to the resource and for whom the resource is "
+"intended or useful."
+msgstr "协调对资源的访问以及资源倾向或适用于的最终用户的实体。"
+
+msgid "Medium"
+msgstr "媒介"
+
+msgid "The material or physical carrier of the resource."
+msgstr "资源的物质或物理载体。"
+
+msgid "Provenance"
+msgstr "出处"
+
+msgid ""
+"A statement of any changes in ownership and custody of the resource since "
+"its creation that are significant for its authenticity, integrity, and "
+"interpretation."
+msgstr "自创建历来的资源的所有权和保管方面的任何变更的陈述，这对资源的真实性，完整性和解释都是非常重要的。"
+
+msgid "An entity responsible for making the resource available."
+msgstr "使资源可被利用的实体。"
+
+msgid "Information about rights held in and over the resource."
+msgstr "资源持有权利的信息。"
+
+msgid "Rights Holder"
+msgstr "权利持有人"
+
+msgid "A person or organization owning or managing rights over the resource."
+msgstr "拥有或管理资源版权的个人或组织。"
+
+msgid "Spatial Coverage"
+msgstr "空间范围"
+
+msgid "Spatial characteristics of the resource."
+msgstr "资源的空间特征。"
+
+msgid "The topic of the resource."
+msgstr "资源主题"
+
+msgid "Table Of Contents"
+msgstr "目录表"
+
+msgid "A list of subunits of the resource."
+msgstr "资源的子单元列表。"
+
+msgid "Temporal Coverage"
+msgstr "时间范围"
+
+msgid "Temporal characteristics of the resource."
+msgstr "资源的时间特征。"
+
+msgid "The nature or genre of the resource."
+msgstr "资源的本质或类型。"
+
+msgid "annotates"
+msgstr "注释"
+
+msgid "Critical or explanatory note for a Document."
+msgstr "关键性或解释性记录。"
+
+msgid "cited by"
+msgstr "被下面的引用："
+
+msgid "Relates a document to another document that cites the first document."
+msgstr "把一个文件关联到另一个引用了它的文件。"
+
+msgid "cites"
+msgstr "引用"
+
+msgid ""
+"Relates a document to another document that is cited by the first document "
+"as reference, comment, review, quotation or for another purpose."
+msgstr "把一个文件关联到另一个被第一个文件引用为参照、评论、审核、 引证或其它用途的文件。"
+
+msgid "review of"
+msgstr "审核"
+
+msgid "Relates a review document to a reviewed thing (resource, item, etc.)."
+msgstr "把审核文件关联至一个已审核事物（资源，条目， 等等）。"
+
+msgid "reproduced in"
+msgstr "再版于"
+
+msgid "The resource in which another resource is reproduced."
+msgstr "包括了另一个被复制资源的资源。"
+
+msgid "affirmed by"
+msgstr "被下面的确认："
+
+msgid "A legal decision that affirms a ruling."
+msgstr "确认裁决的法律决定。"
+
+msgid "reversed by"
+msgstr "被下面的推翻："
+
+msgid "A legal decision that reverses a ruling."
+msgstr "推翻裁决的法律决定。"
+
+msgid "subsequent legal decision"
+msgstr "后续法律决定"
+
+msgid ""
+"A legal decision on appeal that takes action on a case (affirming it, "
+"reversing it, etc.)."
+msgstr "对上诉的法律决定，该决定对一个案件采取行动（维持判决，推翻判决，等等）。"
+
+msgid "transcript of"
+msgstr "是下面的抄录："
+
+msgid "Relates a document to some transcribed original."
+msgstr "把一个文件关联到某个抄录的初始文件。"
+
+msgid "translation of"
+msgstr "是下面的翻译："
+
+msgid "Relates a translated document to the original document."
+msgstr "把翻译文件关联到初始文件。"
+
+msgid "based near"
+msgstr "地点接近于"
+
+msgid ""
+"A location that something is based near, for some broadly human notion of "
+"near."
+msgstr "某些事物比较接近的一个位置，按照广泛的人类说法上的接近。"
+
+msgid "depiction"
+msgstr "描绘"
+
+msgid "A depiction of some thing."
+msgstr "对某事物的描绘。"
+
+msgid "depicts"
+msgstr "描绘"
+
+msgid "A thing depicted in this representation."
+msgstr "在该画像中被描绘的事物。"
+
+msgid "funded by"
+msgstr "被下面的资助："
+
+msgid "An organization funding a project or person."
+msgstr "赞助一个项目或个人的组织。"
+
+msgid "image"
+msgstr "图片"
+
+msgid ""
+"An image that can be used to represent some thing (ie. those depictions "
+"which are particularly representative of something, eg. one’s photo on a "
+"homepage)."
+msgstr "可用来代表某些事物的图片（例如那些尤其有代表性的描绘，比如主页上的某个人的照片）。"
+
+msgid "is primary topic of"
+msgstr "是下面的根本主题："
+
+msgid "A document that this thing is the primary topic of."
+msgstr "该事物是其中根本主题的文件。"
+
+msgid "knows"
+msgstr "知道"
+
+msgid ""
+"A person known by this person (indicating some level of reciprocated "
+"interaction between the parties)."
+msgstr "此人认识的人（表明相关方有一定程度的互动）。"
+
+msgid "logo"
+msgstr "标识"
+
+msgid "A logo representing some thing."
+msgstr "代表了某事物的标识。"
+
+msgid "made"
+msgstr "制成的"
+
+msgid "Something that was made by this agent."
+msgstr "被此代理制作出的东西。"
+
+msgid "maker"
+msgstr "制造人"
+
+msgid "An agent that made this thing."
+msgstr "制造了这个事物的代理。"
+
+msgid "member"
+msgstr "成员"
+
+msgid "Indicates a member of a Group."
+msgstr "表明一个组中的成员。"
+
+msgid "page"
+msgstr "页"
+
+msgid "A page or document about this thing."
+msgstr "有关该事物的页面或文件。"
+
+msgid "primary topic"
+msgstr "根本主题"
+
+msgid "The primary topic of some page or document."
+msgstr "页面或文件的根本主题。"
+
+msgid "thumbnail"
+msgstr "缩略图"
+
+msgid "A derived thumbnail image."
+msgstr "衍生缩略图"
+
+msgid "abridgement"
+msgstr "摘要"
+
+msgid "A property representing an abridgment of an expression."
+msgstr "代表了一个表达的摘要的属性。"
+
+msgid "abridgement of"
+msgstr "是下面的摘要："
+
+msgid "A property representing an expression that is abridged."
+msgstr "代表了被摘要了的一个表达的属性。"
+
+msgid "adaption"
+msgstr "改编"
+
+msgid "A property representing an adaption of a work or expression."
+msgstr "代表了一个著作或表达的改编的属性。"
+
+msgid "adaption of"
+msgstr "是下面的改编："
+
+msgid "A property representing a work or expression that is adapted."
+msgstr "代表了被改编的一个著作或表达的属性。"
+
+msgid "alternate"
+msgstr "替代"
+
+msgid "A property representing an alternative to a manifestation."
+msgstr "代表了一个表现的替代的属性。"
+
+msgid "alternate of"
+msgstr "是下面的替代："
+
+msgid "A property representing a manifestation that is alternated."
+msgstr "代表了被替代的一个表现的属性。"
+
+msgid "arrangement"
+msgstr "布置"
+
+msgid "A property representing an arrangement of an expression."
+msgstr "代表了一个表达的布置的属性。"
+
+msgid "arrangement of"
+msgstr "是下面的布置："
+
+msgid "A property representing an expression that is arranged."
+msgstr "代表了被布置的一个表达的属性。"
+
+msgid "complement"
+msgstr "补充"
+
+msgid "A property representing a complement to a work or expression."
+msgstr "代表了一个著作或表达的补充的属性。"
+
+msgid "complement of"
+msgstr "是下面的补充："
+
+msgid "A property representing a work or expression that is complemented."
+msgstr "代表了被补充的一个著作或表达的属性。"
+
+msgid "creator"
+msgstr "创作人"
+
+msgid ""
+"A property representing a work that was in some way created by of an entity."
+msgstr "代表了被某实体以某种方法创造出来的著作的属性。"
+
+msgid "embodiment"
+msgstr "体现"
+
+msgid ""
+"A property representing an expression that is embodied by a manifestation."
+msgstr "代表了被一个表现体现出来的表达的属性。"
+
+msgid "exemplar"
+msgstr "样本"
+
+msgid ""
+"A property representing an item that is an exemplar of a manifestation."
+msgstr "代表了是一个表现的样本的条目的属性。"
+
+msgid "exemplar of"
+msgstr "是下面的样本："
+
+msgid ""
+"A property representing the manifestation that is exemplified by a item."
+msgstr "代表了被一个条目做样本的表现的属性。"
+
+msgid "imitation"
+msgstr "模仿"
+
+msgid "A property representing an imitation of a work or expression."
+msgstr "代表了著作或表达的模仿的属性。"
+
+msgid "imitation of"
+msgstr "是下面的模仿："
+
+msgid "A property representing a work or expression that is imitated."
+msgstr "代表了被模仿的著作或表达的属性。"
+
+msgid "owner"
+msgstr "所有人"
+
+msgid "A property representing an entity that owns an item."
+msgstr "代表了拥有条目的实体的属性。"
+
+msgid "owner of"
+msgstr "是下面的所有人："
+
+msgid "A property representing an item that is in some way owned an entity."
+msgstr "代表了被某实体拥有的条目的属性。"
+
+msgid "part"
+msgstr "部分"
+
+msgid "A property representing a part of an endeavour."
+msgstr "代表了努力一部分的属性。"
+
+msgid "part of"
+msgstr "是下面的一部分："
+
+msgid "A property representing an endeavour incorporating an endeavour."
+msgstr "代表了结合了另一个努力的努力的属性。"
+
+msgid "producer"
+msgstr "制作人"
+
+msgid ""
+"A property representing an entity in some way responsible for producing a "
+"manifestation."
+msgstr "代表了以某种方式创作了表现的实体的属性。"
+
+msgid "producer of"
+msgstr "是下面的制作人："
+
+msgid ""
+"A property representing a manifestation that was in some way produced an "
+"entity."
+msgstr "代表了以某种方式创作了实体的表现的属性。"
+
+msgid "realization"
+msgstr "实现"
+
+msgid ""
+"A property representing an expression that is an intellectual or artistic "
+"realization of a work."
+msgstr "代表了一个著作的智力或艺术实现的表达的属性。"
+
+msgid "realization of"
+msgstr "是下面的实现："
+
+msgid ""
+"A property representing the work that has been realized by an expression."
+msgstr "代表了被某表达实现的著作的属性。"
+
+msgid "realizer"
+msgstr "实现人"
+
+msgid ""
+"A property representing an entity in some way responsible for realizing an "
+"expression."
+msgstr "代表了以某种方法实现了一个表达的实体的属性。"
+
+msgid "realizer of"
+msgstr "是下面的实现人："
+
+msgid ""
+"A property representing an expression that was in some way realized by an "
+"entity."
+msgstr "代表了在某种程度上被某实体实现的表达的属性。"
+
+msgid "reconfiguration"
+msgstr "重新设置"
+
+msgid "A property representing a recongifuration of an item."
+msgstr "代表了一个条目的重配置的属性。"
+
+msgid "reconfiguration of"
+msgstr "是下面的重新配置："
+
+msgid "A property representing an item that is reconfigured."
+msgstr "代表了重配置的条目的属性。"
+
+msgid "related endeavour"
+msgstr "相关努力"
+
+msgid ""
+"A property representing another endeavour that is related in some way to an "
+"endeavour."
+msgstr "代表了一定程度上关联到一个努力的另一个努力。"
+
+msgid "reproduction"
+msgstr "复制"
+
+msgid "A property representing a reproduction of a manifestation or item."
+msgstr "代表了一个表现或条目的复制的属性。"
+
+msgid "reproduction of"
+msgstr "是下面的复制："
+
+msgid "A property representing a manifestation or item that is reproduced."
+msgstr "代表了被复制的一个表现或条目的属性。"
+
+msgid "responsible entity"
+msgstr "责任实体"
+
+msgid ""
+"A property representing an entity in some way responsible for an endeavour."
+msgstr "代表了在某种程度上负责努力的一个实体的属性。"
+
+msgid "responsible entity of"
+msgstr "是下面的责任实体："
+
+msgid ""
+"A property representing an endeavour that is the responsibility of an "
+"entity."
+msgstr "代表了一个实体的责任的努力的属性。"
+
+msgid "revision"
+msgstr "校订"
+
+msgid "A property representing a revision of an expression."
+msgstr "代表了表达的校订本的属性。"
+
+msgid "revision of"
+msgstr "是下面的校订："
+
+msgid "A property representing an expression that is revised."
+msgstr "代表了被校订的表达的属性。"
+
+msgid "successor"
+msgstr "继承者"
+
+msgid "A property representing a successor to a work or expression."
+msgstr "代表了著作或表达的继承者的属性。"
+
+msgid "successor of"
+msgstr "是下面的继承者："
+
+msgid "A property representing a work or expression that is succeeded."
+msgstr "代表了被继承的著作或表达的属性。"
+
+msgid "summarization"
+msgstr "总结"
+
+msgid "A property representing a summarization of a work or expression."
+msgstr "代表了著作或表达的总结的属性。"
+
+msgid "summarization of"
+msgstr "是下面的总结："
+
+msgid "A property representing a work or expression that is summarized."
+msgstr "代表了被总结的著作或表达的属性。"
+
+msgid "supplement"
+msgstr "补充"
+
+msgid "A property representing a supplement to a work or expression."
+msgstr "代表了著作或表达的补充的属性。"
+
+msgid "supplement of"
+msgstr "是下面的补充："
+
+msgid "A property representing a work or expression that is supplemented."
+msgstr "代表了被补充的著作或表达的属性。"
+
+msgid "transformation"
+msgstr "转化"
+
+msgid "A property representing a transformation of a work or expression."
+msgstr "代表了著作或表达的转化的属性。"
+
+msgid "transformation of"
+msgstr "是下面的转化："
+
+msgid "A property representing a work or expression that is transformed."
+msgstr "代表了被转化的著作或表达的属性。"
+
+msgid "translation"
+msgstr "翻译"
+
+msgid "A property representing a translation of an expression."
+msgstr "代表一个表达的翻译的属性。"
+
+msgid "A property representing an expression that is translated."
+msgstr "代表一个被翻译过的表达的属性。"
+
+#: ItemRelationsPlugin.php:369 ItemRelationsPlugin.php:419
+#: views/admin/common/item-relations-show.php:2
+#: views/public/common/item-relations-show.php:2
+#: views/shared/common/item-relations-advanced-search.php:3
+msgid "Item Relations"
+msgstr "条目关联"
+
+#: ItemRelationsPlugin.php:373
+msgid "Subjects"
+msgstr "主体"
+
+#: ItemRelationsPlugin.php:375 item_relations_form.php:17
+#: views/shared/common/item-relations-advanced-search.php:17
+msgid "Object"
+msgstr "客体"
+
+#: ItemRelationsPlugin.php:380
+msgid "These Items"
+msgstr "这些条目"
+
+#: ItemRelationsPlugin.php:383 item_relations_form.php:41
+msgid "Item ID"
+msgstr "条目ID"
+
+#: config_form.php:3
+msgid "Append to Public Items Show"
+msgstr "附加到公共条目展示"
+
+#: config_form.php:8
+msgid ""
+"Check this if you want to display an item's relations on its public show "
+"page."
+msgstr "如果您想在公共显示页面上显示条目关系，点选此处。"
+
+#: config_form.php:17
+msgid "Relation Format"
+msgstr "关联格式"
+
+#: config_form.php:22
+msgid ""
+"Select the format of an item's relations that you would prefer to show. If "
+"one is unavailable the other will be used."
+msgstr "选择您想要显示的条目关联的格式。如果其中一个不可用，将用另一个。"
+
+#: controllers/VocabulariesController.php:50
+msgid "The vocabulary was successfully edited."
+msgstr "已成功编辑词汇。"
+
+#: item_relations_form.php:4 views/admin/vocabularies/browse.php:1
+msgid "Browse Vocabularies"
+msgstr "浏览词汇"
+
+#: item_relations_form.php:6
+#, php-format
+msgid ""
+"Here you can relate this item to another item and delete existing relations."
+" For descriptions of the relations, see the %s page. Invalid item IDs will "
+"be ignored."
+msgstr "你可以在这里把该条目关联到另一个条目，然后删除已有关联。关联描述请看%s页。无效条目ID将被忽略。"
+
+#: item_relations_form.php:24 item_relations_form.php:34
+#: item_relations_form.php:39 views/admin/common/item-relations-show.php:10
+#: views/admin/common/item-relations-show.php:19
+#: views/public/common/item-relations-show.php:9
+#: views/public/common/item-relations-show.php:18
+msgid "This Item"
+msgstr "该条目"
+
+#: item_relations_form.php:46
+msgid "Add a Relation"
+msgstr "添加关联"
+
+#: models/ItemRelationsProperty.php:62
+msgid "[unknown]"
+msgstr "【未知】"
+
+#: views/admin/common/item-relations-show.php:5
+#: views/public/common/item-relations-show.php:4
+msgid "This item has no relations."
+msgstr "该条目没有关联。"
+
+#: views/admin/vocabularies/browse.php:8
+msgid "Namespace Prefix"
+msgstr "命名空间前缀"
+
+#: views/admin/vocabularies/browse.php:9
+msgid "Namespace URI"
+msgstr "命名空间URI"
+
+#: views/admin/vocabularies/edit.php:1
+msgid "Edit Custom Vocabulary"
+msgstr "编辑定制词汇"
+
+#: views/admin/vocabularies/edit.php:8
+msgid ""
+"Here you can add, edit, and delete properties in your custom vocabulary. "
+"Property labels must be unique. You cannot edit property labels once they "
+"have been created, so make sure they are spelled correctly and convey the "
+"exact relation you want them to convey."
+msgstr "您可以在这里添加、编辑并删除定制词汇的属性。属性标签必须是唯一的。属性标签一旦被创建，您就不能编辑了。所以确认它们拼写正确并且表达了您想要表达的准确关联。"
+
+#: views/admin/vocabularies/edit.php:37
+msgid "Add a Property"
+msgstr "添加属性"
+
+#: views/admin/vocabularies/show.php:2
+msgid "Vocabulary Properties"
+msgstr "词汇属性"
+
+#: views/admin/vocabularies/show.php:7
+msgid "Edit Vocabulary"
+msgstr "编辑词汇"
+
+#: views/admin/vocabularies/show.php:14
+msgid "This vocabulary has no properties."
+msgstr "该词汇没有属性"
+
+#: views/admin/vocabularies/show.php:16
+msgid "Why don't you add some?"
+msgstr "您为什么不添加一些呢？"
+
+#: views/admin/vocabularies/show.php:23
+msgid "Local Part"
+msgstr "本地部分"
+
+#: views/shared/common/item-relations-advanced-search.php:8
+msgid ""
+"Filter this search for items with the selected relation. For example, when "
+"selecting \"Subject\" items with the \"hasPart\" relation, the search will "
+"return all items that have parts. When selecting \"Object\" items with the "
+"same relation, the search will return all items that are parts of other "
+"items."
+msgstr "对被选关联的条目过滤本搜索。例如，当选择带有“有部分”关联的“主题”条目时，搜索将返回带有部分的所有条目。当选择带有相同关联的“对象”条目时，搜索将返回是其它条目的一部分的所有条目。"

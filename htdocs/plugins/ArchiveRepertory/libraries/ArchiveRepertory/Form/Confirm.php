@@ -2,7 +2,7 @@
 /**
  * ArchiveRepertory_ConfirmForm class - represents the form to confirm send of a file.
  */
-class ArchiveRepertory_ConfirmForm extends Omeka_Form
+class ArchiveRepertory_Form_Confirm extends Omeka_Form
 {
     /**
      * Initialize the form.
@@ -19,12 +19,12 @@ class ArchiveRepertory_ConfirmForm extends Omeka_Form
         if (!$user && get_option('recaptcha_public_key') && get_option('recaptcha_private_key')) {
             $this->addElement('captcha', 'captcha',  array(
                 'class' => 'hidden',
-                'label' => __("Please verify you're a human"),
+                'label' => __('Please verify you’re a human'),
                 'captcha' => array(
                     'captcha' => 'ReCaptcha',
                     'pubkey' => get_option('recaptcha_public_key'),
                     'privkey' => get_option('recaptcha_private_key'),
-                    'ssl' => true //make the connection secure so IE8 doesn't complain. if works, should branch around http: vs https:
+                    'ssl' => true, //make the connection secure so IE8 doesn't complain. if works, should branch around http: vs https:
                 ),
                 'decorators' => array(),
             ));
@@ -36,12 +36,12 @@ class ArchiveRepertory_ConfirmForm extends Omeka_Form
                 'label' => get_option('archive_repertory_legal_text'),
                 'value' => (boolean) $user,
                 'required' => true,
-                'uncheckedValue'=> '',
+                'uncheckedValue' => '',
                 'checkedValue' => 'checked',
                 'validators' => array(
                     array('notEmpty', true, array(
                         'messages' => array(
-                            'isEmpty'=> __('You must agree to the terms and conditions.'),
+                            'isEmpty' => __('You must agree to the terms and conditions.'),
                         ),
                     )),
                 ),
@@ -55,12 +55,12 @@ class ArchiveRepertory_ConfirmForm extends Omeka_Form
                 'label' => get_option('archive_repertory_legal_text'),
                 'value' => (boolean) $user,
                 'required' => true,
-                'uncheckedValue'=> '',
+                'uncheckedValue' => '',
                 'checkedValue' => 'checked',
                 'validators' => array(
                     array('notEmpty', true, array(
                         'messages' => array(
-                            'isEmpty'=> __('You must agree to the terms and conditions.'),
+                            'isEmpty' => __('You must agree to the terms and conditions.'),
                         ),
                     )),
                 ),

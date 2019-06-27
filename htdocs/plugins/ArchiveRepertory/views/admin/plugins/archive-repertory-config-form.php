@@ -1,6 +1,6 @@
 <?php
     echo __('"Archive Repertory" plugin allows to save files in a hierarchical structure and to keep original name of files.') . '<br />';
-    echo __('See %s for more information.', '<a href="https://github.com/Daniel-KM/ArchiveRepertory">ReadMe</a>') . '<br />';
+    echo __('See %s for more information.', '<a href="https://github.com/Daniel-KM/Omeka-plugin-ArchiveRepertory">ReadMe</a>') . '<br />';
     echo '<br />';
     echo __('When all options are set, files will be saved in "files / original / my_collection / item_identifier / original_filename.ext" instead of "files / original / hashed_filename.ext".') . '<br />';
     echo '<p><strong>' . __('Warning') . '</strong></p>';
@@ -9,12 +9,11 @@
     echo '<li>' . __('Nevertheless, when an item is updated, attached files will follow the current settings, so all files of a record will move and stay together inside the same folder.') . '</li>';
     echo '<li>' . __('Currently, no check is done on the name of folders, either for collections or for items. No files will be lost if two folders have the same name, but files attached to a record will be mixed in this folder.') . '</li>';
     echo '</ul>';
-    echo __('Omeka works fine with filenames with Unicode characters ("é", "ñ", "Å"...). In case of issues, see %s.', '<a href="https://github.com/Daniel-KM/ArchiveRepertory">ReadMe</a>');
+    echo __('Omeka works fine with filenames with Unicode characters ("é", "ñ", "Å"…).');
     echo ' ' . __('If this is not the case, filenames should use only Ascii characters.') . '<br />';
     if (empty($allow_unicode)) {
         echo '<p>' . __('This server is compatible with Unicode.') . '</p>';
-    }
-    else {
+    } else {
         echo '<p><strong>' . __('Warning') . '</strong></p>';
         echo __('This server is not fully compatible with Unicode:') . '<br />';
         echo '<ul>';
@@ -50,8 +49,8 @@
                 // Remove the "Select Below" label.
                 unset($elementsCollection['']);
                 $elementsCollection = array(
-                    'none' => __("Don't add folder"),
-                    'id' =>__('Internal collection id'),
+                    '' => __('Don’t add folder'),
+                    'id' => __('Internal collection id'),
                 ) + $elementsCollection;
                 echo $this->formSelect('archive_repertory_collection_folder',
                     get_option('archive_repertory_collection_folder'),
@@ -61,7 +60,7 @@
                 <p class="explanation">
                     <?php echo __('If you choose to add a folder, Omeka will add subfolders for each collection in "files" folders, for example "files/original/collection_identifier/".');
                     echo ' ' . __('New files will be stored inside them. Old files will be moved when collection will be updated.') . '<br />';
-                    echo __("Note that if you choose a non unique name, files will be mixed in the same folder, with higher risk of name collision.");
+                    echo __('Note that if you choose a non unique name, files will be mixed in the same folder, with higher risk of name collision.');
                     echo ' ' . __('So recommended ids are a specific metadata, "Dublin Core:Identifier", "Internal collection id" and eventually "Dublin Core:Title".') . '<br />';
                     echo __('If this identifier does not exists, the Omeka internal collection id will be used.'); ?>
                 </p>
@@ -90,14 +89,14 @@
                         get_option('archive_repertory_collection_convert'),
                         null,
                         array(
-                            'Keep name' => __('Keep name as it')
+                            'keep' => __('Keep name as it')
                                 . (isset($allow_unicode['ascii'])
                                     ? ' ' . __('(not recommended because your server is not fully compatible with Unicode)')
                                     : ''),
-                            'Spaces' => __('Convert spaces to underscores'),
-                            'First letter' => __('Convert first letter only'),
-                            'First and spaces' => __('Convert first letter and spaces'),
-                            'Full' => __('Full conversion to Ascii')
+                            'spaces' => __('Convert spaces to underscores'),
+                            'first letter' => __('Convert first letter only'),
+                            'first and spaces' => __('Convert first letter and spaces'),
+                            'full' => __('Full conversion to Ascii')
                                 . ((isset($allow_unicode['cli']) || isset($allow_unicode['fs']))
                                     ? ' (' . __('recommended because your server is not fully compatible with Unicode') . ')'
                                     : ''),
@@ -123,8 +122,8 @@
                 // Remove the "Select Below" label.
                 unset($elementsItem['']);
                 $elementsItem = array(
-                    'none' => __("Don't add folder"),
-                    'id' =>__('Internal item id'),
+                    '' => __('Don’t add folder'),
+                    'id' => __('Internal item id'),
                 ) + $elementsItem;
                 echo $this->formSelect('archive_repertory_item_folder',
                     get_option('archive_repertory_item_folder'),
@@ -134,7 +133,7 @@
                 <p class="explanation">
                     <?php echo __('If you choose to add a folder, Omeka will add subfolders for each item in "files" folders, for example "files/original/unique_identifier/".');
                     echo ' ' . __('New files will be stored inside them. Old files will be moved when item will be updated.') . '<br />';
-                    echo __("Note that if you choose a non unique name, files will be mixed in the same folder, with higher risk of name collision.");
+                    echo __('Note that if you choose a non unique name, files will be mixed in the same folder, with higher risk of name collision.');
                     echo ' ' . __('So recommended ids are a specifc metadata, "Dublin Core Identifier", "Internal item id" and eventually "Dublin Core Title".') . '<br />';
                     echo __('If this identifier does not exists, the Omeka internal item id will be used.'); ?>
                 </p>
@@ -163,14 +162,14 @@
                         get_option('archive_repertory_item_convert'),
                         null,
                         array(
-                            'Keep name' => __('Keep name as it')
+                            'keep' => __('Keep name as it')
                                 . (isset($allow_unicode['ascii'])
                                     ? ' ' . __('(not recommended because your server is not fully compatible with Unicode)')
                                     : ''),
-                            'Spaces' => __('Convert spaces to underscores'),
-                            'First letter' => __('Convert first letter only'),
-                            'First and spaces' => __('Convert first letter and spaces'),
-                            'Full' => __('Full conversion to Ascii')
+                            'spaces' => __('Convert spaces to underscores'),
+                            'first letter' => __('Convert first letter only'),
+                            'first and spaces' => __('Convert first letter and spaces'),
+                            'full' => __('Full conversion to Ascii')
                                 . ((isset($allow_unicode['cli']) || isset($allow_unicode['fs']))
                                     ? ' (' . __('recommended because your server is not fully compatible with Unicode') . ')'
                                     : ''),
@@ -183,19 +182,6 @@
 <fieldset id="fieldset-files"><legend><?php echo __('Files'); ?></legend>
     <div class="field">
         <div class="two columns alpha">
-            <?php echo $this->formLabel('archive_repertory_file_keep_original_name',
-                __('Keep original filenames')); ?>
-        </div>
-        <div class="inputs five columns omega">
-            <?php echo $this->formCheckbox('archive_repertory_file_keep_original_name', true,
-                array('checked' => (boolean) get_option('archive_repertory_file_keep_original_name'))); ?>
-            <p class="explanation">
-                <?php echo __('If checked, Omeka will keep original filenames of uploaded files and will not hash it.'); ?>
-            </p>
-        </div>
-    </div>
-    <div class="field">
-        <div class="two columns alpha">
             <?php echo $this->formLabel('archive_repertory_file_convert',
                 __('Convert filenames')); ?>
         </div>
@@ -204,17 +190,18 @@
                 get_option('archive_repertory_file_convert'),
                 null,
                 array(
-                    'Keep name' => __('Keep name as it')
+                    'keep' => __('Keep name as it')
                         . (isset($allow_unicode['ascii'])
                             ? ' ' . __('(not recommended because your server is not fully compatible with Unicode)')
                             : ''),
-                    'Spaces' => __('Convert spaces to underscores'),
-                    'First letter' => __('Convert first letter only'),
-                    'First and spaces' => __('Convert first letter and spaces'),
-                    'Full' => __('Full conversion to Ascii')
+                    'spaces' => __('Convert spaces to underscores'),
+                    'first letter' => __('Convert first letter only'),
+                    'first and spaces' => __('Convert first letter and spaces'),
+                    'full' => __('Full conversion to Ascii')
                         . ((isset($allow_unicode['cli']) || isset($allow_unicode['fs']))
                             ? ' (' . __('recommended because your server is not fully compatible with Unicode') . ')'
                             : ''),
+                    'hash' => __('Hash filename (default Omeka)'),
                 )); ?>
             <p class="explanation">
                 <?php echo __('Depending on your server and your needs, to avoid some potential issues, you can choose or not to rename every file to its Ascii equivalent (or only the first letter).');
@@ -280,7 +267,7 @@
         </div>
     </div>
 </fieldset>
-<fieldset id="fieldset-max-download"><legend><?php echo __('Maximum downloads by user'); ?></legend>
+<fieldset id="fieldset-max-download"><legend><?php echo __('Maximum downloads'); ?></legend>
     <div class="field">
         <div class="two columns alpha">
             <?php echo $this->formLabel('archive_repertory_download_max_free_download',
@@ -313,19 +300,22 @@
                 ); ?>
                 <p class="explanation">
                     <?php echo __('This text will be shown beside the legal checkbox to download a file.'); ?>
-                    <?php echo ' ' . __("Let empty if you don't want to use a legal agreement."); ?>
+                    <?php echo ' ' . __('Let empty if you don’t want to use a legal agreement.'); ?>
                 </p>
             </div>
         </div>
     </div>
 </fieldset>
-<?php echo js_tag('vendor/tiny_mce/tiny_mce'); ?>
+<?php
+$isOmekaBefore26 = version_compare(OMEKA_VERSION, '2.6', '<');
+echo $isOmekaBefore26 ? js_tag('vendor/tiny_mce/tiny_mce') : js_tag('vendor/tinymce/tinymce.min');
+?>
 <script type="text/javascript">
     var dropCollection = document.getElementById("archive_repertory_collection_folder");
     var fieldCollectionPrefix = document.getElementById("collection-prefix");
     var fieldCollectionAscii = document.getElementById("collection-ascii");
     dropCollection.onclick = function() {
-        if (dropCollection.value == "none" || dropCollection.value == "id"){
+        if (dropCollection.value == "" || dropCollection.value == "id"){
             fieldCollectionPrefix.style.display = "none";
             fieldCollectionAscii.style.display = "none";
         } else {
@@ -338,7 +328,7 @@
     var fieldItemPrefix = document.getElementById("item-prefix");
     var fieldItemAscii = document.getElementById("item-ascii");
     dropItem.onclick = function() {
-        if (dropItem.value == "none" || dropItem.value == "id"){
+        if (dropItem.value == "" || dropItem.value == "id"){
             fieldItemPrefix.style.display = "none";
             fieldItemAscii.style.display = "none";
         } else {
@@ -350,11 +340,18 @@
     jQuery(document).ready(function () {
         dropCollection.onclick();
         dropItem.onclick();
+        <?php if (!$isOmekaBefore26): ?>
+        Omeka.wysiwyg({
+            selector: '.html-editor'
+        });
+        <?php endif; ?>
     });
+    <?php if ($isOmekaBefore26): ?>
     jQuery(window).load(function () {
-      Omeka.wysiwyg({
-        mode: 'specific_textareas',
-        editor_selector: 'html-editor'
-      });
+        Omeka.wysiwyg({
+            mode: 'specific_textareas',
+            editor_selector: 'html-editor'
+        });
     });
+    <?php endif; ?>
 </script>

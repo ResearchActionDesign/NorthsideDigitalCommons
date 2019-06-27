@@ -22,8 +22,8 @@ class SimpleVocab_Controller_Plugin_SelectFilter extends Zend_Controller_Plugin_
     protected $_defaultRoutes = array(
         array('module' => 'default', 'controller' => 'items', 
               'actions' => array('add', 'edit', 'change-type')), 
-        array('module' => 'default', 'controller' => 'elements', 
-              'actions' => array('element-form')), 
+        array('module' => 'default', 'controller' => 'elements',
+              'actions' => array('element-form')),
     );
     
     /**
@@ -36,7 +36,7 @@ class SimpleVocab_Controller_Plugin_SelectFilter extends Zend_Controller_Plugin_
      * 
      * @param Zend_Controller_Request_Abstract
      */
-    public function preDispatch($request)
+    public function preDispatch(Zend_Controller_Request_Abstract $request)
     {
         $db = get_db();
         
@@ -44,6 +44,16 @@ class SimpleVocab_Controller_Plugin_SelectFilter extends Zend_Controller_Plugin_
         $currentModule = is_null($request->getModuleName()) ? 'default' : $request->getModuleName();
         $currentController = $request->getControllerName();
         $currentAction = $request->getActionName();
+
+        $filterFiles = get_option('simple_vocab_files');
+        if ($filterFiles) {
+            // Add the file add/edit route if configured to.
+            $this->_defaultRoutes[] = array(
+                'module' => 'default',
+                'controller' => 'files',
+                'actions' => array('add', 'edit')
+            );
+        }
         
         // Allow plugins to register routes that contain form inputs rendered by 
         // Omeka_View_Helper_ElementForm::_displayFormInput().
@@ -68,9 +78,17 @@ class SimpleVocab_Controller_Plugin_SelectFilter extends Zend_Controller_Plugin_
             $this->_simpleVocabTerms = $db->fetchPairs($select);
             foreach ($this->_simpleVocabTerms as $element_id => $terms) {
                 $element = $db->getTable('Element')->find($element_id);
+                if (!$element) {
+                    continue; // The element may have been deleted.
+                }
                 $elementSet = $db->getTable('ElementSet')->find($element->element_set_id);
                 add_filter(array('ElementInput', 'Item', $elementSet->name, $element->name), 
                            array($this, 'filterElementInput'));
+                if ($filterFiles) {
+                    // Add the file filter if configured to.
+                    add_filter(array('ElementInput', 'File', $elementSet->name, $element->name),
+                               array($this, 'filterElementInput'));
+                }
             }
             // Once the filter is applied for one route there is no need to 
             // continue looping the routes.
