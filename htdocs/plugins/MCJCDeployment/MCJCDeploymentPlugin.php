@@ -10,7 +10,8 @@ require_once('vendor/autoload.php');
 
 use \Rollbar\Rollbar;
 
-class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
+class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
+{
 
   protected $_hooks = array(
     'install',
@@ -25,7 +26,8 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
   /**
    * Install the plugin.
    */
-  public function hookInstall() {
+  public function hookInstall()
+  {
     // Remove item relation vocabularies except for FOAF.
     $foafVocab = $this->_db->getTable('ItemRelationsVocabulary')->findBySql("name='FOAF'");
     if ($foafVocab && count($foafVocab) > 0) {
@@ -43,7 +45,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
     // Document, Moving Image, Oral History, Sound, Still Image, Website, Event,
     // Email, Lesson Plan, Hyperlink, Person, or Interactive Resource.
     $dublinCoreTypeValues = array('Oral History', 'Still Image', 'Person', 'Moving Image', 'Document');
-    $typeField= $this->_db->getTable('Element')->findByElementSetNameAndElementName('Dublin Core', 'Type');
+    $typeField = $this->_db->getTable('Element')->findByElementSetNameAndElementName('Dublin Core', 'Type');
     $this->_db->insert('SimpleVocabTerm', array('element_id' => $typeField->id, 'terms' => implode("\n", $dublinCoreTypeValues)));
   }
 
@@ -54,8 +56,9 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
    * @param $oldVersion
    * @param $newVersion
    */
-  public function hookUpgrade($params) {
-    if ((double) $params['old_version'] < 2.11) {
+  public function hookUpgrade($params)
+  {
+    if ((double)$params['old_version'] < 2.11) {
       // Remove bibliography metadata type from person item.
       $personItemType = $this->_db->getTable('ItemType')->findByName('Person');
       $bibliographyElement = $this->_db->getTable('Element')
@@ -65,14 +68,14 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
       $personItemType->save();
     }
 
-    if ((double) $params['old_version'] < 2.12) {
+    if ((double)$params['old_version'] < 2.12) {
       $sql = "UPDATE `{$this->_db->getTable('Item')->getTableName()}` SET `item_type_id` = 6 WHERE `item_type_id` IS NULL";
       $this->_db->query($sql);
     }
 
 
     // Set Dublin Core Type to be equal to Item Type Metadata.
-    if ((double) $params['old_version'] < 2.13) {
+    if ((double)$params['old_version'] < 2.13) {
       $sql = "UPDATE `{$this->_db->getTable('ElementText')->getTableName()}` SET `text` = 'Still Image' WHERE `element_id` = 51 AND `text` = 'Photograph'";
       $this->_db->query($sql);
 
@@ -107,9 +110,10 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
     }
 
     // Clean out span tags from exhibit blocks.
-    if ((double) $params['old_version'] < 2.14) {
+    if ((double)$params['old_version'] < 2.14) {
       $sql = $this->_db->getTable('ExhibitPageBlock')->getSelect()->where("`text` like '%style%'")->assemble();
-      $exhibitPageBlockIds = $this->_db->query($sql)->fetchAll(); {
+      $exhibitPageBlockIds = $this->_db->query($sql)->fetchAll();
+      {
         foreach ($exhibitPageBlockIds as $id) {
           $exhibitPageBlock = get_record_by_id('ExhibitPageBlock', $id['id']);
           $exhibitPageBlock->text = preg_replace('/ style=\"[^\"]*\"/', '', $exhibitPageBlock->text);
@@ -119,7 +123,8 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
       }
 
       $sql = $this->_db->getTable('ExhibitBlockAttachment')->getSelect()->where("`caption` like '%style%'")->assemble();
-      $exhibitAttachmentIds = $this->_db->query($sql)->fetchAll(); {
+      $exhibitAttachmentIds = $this->_db->query($sql)->fetchAll();
+      {
         foreach ($exhibitAttachmentIds as $id) {
           $exhibitAttachment = get_record_by_id('ExhibitBlockAttachment', $id['id']);
           $exhibitAttachment->caption = preg_replace('/ style=\"[^\"]*\"/', '', $exhibitAttachment->caption);
@@ -128,12 +133,90 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
         }
       }
     }
+
+    // Add new item relation types.
+    // @see http://www.perceive.net/schemas/20021119/relationship/
+    if ((double)$params['old_version'] < 2.15) {
+      // Install custom version of FOAF relationship module.
+      $vocabulary = new ItemRelationsVocabulary;
+      $vocabulary->name = 'FOAF Relationship Module';
+      $vocabulary->description = 'Module for extending the foaf:knows element. Customized by MCJC for Northside Digital Commons.';
+      $vocabulary->namespace_prefix = 'rel';
+      $vocabulary->namespace_uri = 'http://www.perceive.net/schemas/20021119/relationship/';
+      $vocabulary->custom = 0;
+      $vocabulary->save();
+
+      $vocabularyId = $vocabulary->id;
+      // Add our own terms to module.
+      $relationProperties = array(
+        array(
+          'local_part' => 'parentOf',
+          'label' => 'Parent of',
+          'description' => 'Someone who is a direct parent of someone else. Includes step-parents.'
+        ),
+        array(
+          'local_part' => 'grandparentOf',
+          'label' => 'Grandparent of',
+          'description' => ''
+        ),
+        array(
+          'local_part' => 'childOf',
+          'label' => 'Child of',
+          'description' => ''
+        ),
+        array(
+          'local_part' => 'grandchildOf',
+          'label' => 'Grandchild of',
+          'description' => ''
+        ),
+        array(
+          'local_part' => 'partnerOf',
+          'label' => 'Partner of',
+          'description' => 'Partner (depending on how people want to be referred to, consider using husbandOf/wifeOf)'
+        ),
+        array(
+          'local_part' => 'husbandOf',
+          'label' => 'Husband of',
+          'description' => ''
+        ),
+        array(
+          'local_part' => 'wifeOf',
+          'label' => 'Wife of',
+          'description' => ''
+        ),
+        array(
+          'local_part' => 'siblingOf',
+          'label' => 'Sibling of',
+          'description' => 'Sibling or half-sibling'
+        ),
+        array(
+          'local_part' => 'kinOf',
+          'label' => 'Kin to',
+          'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
+        ),
+        array(
+          'local_part' => 'friendOf',
+          'label' => 'Friend of',
+          'description' => ''
+        ),
+      );
+
+      foreach ($relationProperties as $formalProperty) {
+        $property = new ItemRelationsProperty;
+        $property->vocabulary_id = $vocabularyId;
+        $property->local_part = $formalProperty['local_part'];
+        $property->label = $formalProperty['label'];
+        $property->description = $formalProperty['description'];
+        $property->save();
+      }
+    }
   }
 
   /**
    * Add rollbar error handling on every request.
    */
-  function hookInitialize() {
+  function hookInitialize()
+  {
     try {
       $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
 
@@ -144,19 +227,17 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin {
           'root' => BASE_DIR,
         ]);
       }
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
     }
   }
 
-  public function filterItemsBrowsePerPage($number_items, $controller) {
+  public function filterItemsBrowsePerPage($number_items, $controller)
+  {
     // If this query is specifically the browse-by-person view, show all people.
     if ($_SERVER['REQUEST_URI'] == '/items/browse?search=&advanced[0][element_id]=&advanced[0][type]=&advanced[0][terms]=&range=&collection=&type=12&tags=&featured=&exhibit=&submit_search=Search') {
       return 0;
-    }
-    else {
+    } else {
       return max($number_items, 20);
     }
   }
-
 }
