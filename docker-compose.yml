@@ -16,9 +16,9 @@ services:
       - db
 
   db:
-      image: mysql:5.5.47
+      image: mysql:5.7.26
       volumes:
-        - ./db:/docker-entrypoint-initdb.d
+        - ./db:/docker-entrypoint-initdb.d:cached
       environment:
         MYSQL_DATABASE: 'omeka'
         MYSQL_ROOT_PASSWORD: 'root'
