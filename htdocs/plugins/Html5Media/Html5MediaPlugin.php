@@ -46,6 +46,7 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
                     'controls' => true,
                     'loop'     => false,
                     'preload'  => 'metadata',
+                    'download' => false,
                 )
             )
         );
@@ -81,6 +82,9 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         }
         if (version_compare($oldVersion, '2.6', '<')) {
             $settings['audio']['options']['responsive'] = false;
+        }
+        if (version_compare($oldVersion, '2.7', '<')) {
+            $settings['common']['options']['download'] = false;
         }
         set_option('html5_media_settings', serialize($settings));
     }
@@ -151,6 +155,7 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
 
         $common = $_POST['common'];
         $settings['common']['options']['preload'] = $common['options']['preload'];
+        $settings['common']['options']['download'] = (bool) $common['options']['download'];
 
         set_option('html5_media_settings', serialize($settings));
     }
@@ -186,19 +191,19 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
             $l10n = array(
                 'language' => get_html_lang(),
                 'strings' => array(
-                    'Download File' => __('Download File'),
-                    'Play' => __('Play'),
-                    'Pause' => __('Pause'),
-                    'Mute Toggle' => __('Mute Toggle'),
-                    'Fullscreen' => __('Fullscreen'),
-                    'Captions/Subtitles' => __('Captions/Subtitles'),
-                    'None' => __('None'),
-                    'Turn off Fullscreen' => __('Turn off Fullscreen'),
-                    'Go Fullscreen' => __('Go Fullscreen'),
-                    'Unmute' => __('Unmute'),
-                    'Mute' => __('Mute'),
-                    'Download Video' => __('Download Video'),
-                    'Close' => __('Close')
+                    'mejs.download-file' => __('Download File'),
+                    'mejs.play' => __('Play'),
+                    'mejs.pause' => __('Pause'),
+                    'mejs.mute-toggle' => __('Mute Toggle'),
+                    'mejs.fullscreen' => __('Fullscreen'),
+                    'mejs.captions-subtitles' => __('Captions/Subtitles'),
+                    'mejs.none' => __('None'),
+                    'mejs.fullscreen-off' => __('Turn off Fullscreen'),
+                    'mejs.fullscreen-on' => __('Go Fullscreen'),
+                    'mejs.unmute' => __('Unmute'),
+                    'mejs.mute' => __('Mute'),
+                    'mejs.download-video' => __('Download Video'),
+                    'mejs.close' => __('Close')
                 )
             );
             $l10nScript = 'mejsL10n = ' . js_escape($l10n) . ';';
@@ -238,6 +243,11 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         if (isset($options['preload'])) {
             $mediaOptions .= ' preload="' . html_escape($options['preload']). '"';
         }
+        if ($type === 'video' && $file->has_derivative_image) {
+            $posterUrl = $file->getWebPath('fullsize');
+            $mediaOptions .= ' poster="' . html_escape($posterUrl) . '"';
+        }
+
 
         $filename = html_escape($file->getWebPath('original'));
 
@@ -266,11 +276,20 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
             $tracks .= '<track kind="' . $kind . '" src="' . $trackSrc . '" srclang="' . $language . '"' . $labelPart . '>';
         }
 
+        if ($options['download']) {
+            $download = '<p class="html5media-download"><a href="' . $filename . '" download>'
+                . __('Download File')
+                . '</a></p>';
+        } else {
+            $download = '';
+        }
+
         return <<<HTML
 <div class="$class">
 <$type id="html5-media-$i" src="$filename"$mediaOptions>
 $tracks
 </$type>
+$download
 </div>
 <script type="text/javascript">
 jQuery('#html5-media-$i').mediaelementplayer();
