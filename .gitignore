@@ -8,6 +8,8 @@
 /htdocs/db.ini
 /htdocs/application/config/config.ini
 /htdocs/application/tests/config.ini
+/htdocs/php.ini
+/htdocs/.user.ini
 
 # Log files
 /htdocs/application/logs/errors.log
