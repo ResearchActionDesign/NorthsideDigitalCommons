@@ -151,52 +151,52 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       $relationProperties = array(
         array(
           'local_part' => 'parentOf',
-          'label' => 'Parent of',
+          'label' => 'parent of',
           'description' => 'Someone who is a direct parent of someone else. Includes step-parents.'
         ),
         array(
           'local_part' => 'grandparentOf',
-          'label' => 'Grandparent of',
+          'label' => 'grandparent of',
           'description' => ''
         ),
         array(
           'local_part' => 'childOf',
-          'label' => 'Child of',
+          'label' => 'child of',
           'description' => ''
         ),
         array(
           'local_part' => 'grandchildOf',
-          'label' => 'Grandchild of',
+          'label' => 'grandchild of',
           'description' => ''
         ),
         array(
           'local_part' => 'partnerOf',
-          'label' => 'Partner of',
+          'label' => 'partner of',
           'description' => 'Partner (depending on how people want to be referred to, consider using husbandOf/wifeOf)'
         ),
         array(
           'local_part' => 'husbandOf',
-          'label' => 'Husband of',
+          'label' => 'husband of',
           'description' => ''
         ),
         array(
           'local_part' => 'wifeOf',
-          'label' => 'Wife of',
+          'label' => 'wife of',
           'description' => ''
         ),
         array(
           'local_part' => 'siblingOf',
-          'label' => 'Sibling of',
+          'label' => 'sibling of',
           'description' => 'Sibling or half-sibling'
         ),
         array(
           'local_part' => 'kinOf',
-          'label' => 'Kin to',
+          'label' => 'kin to',
           'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
         ),
         array(
           'local_part' => 'friendOf',
-          'label' => 'Friend of',
+          'label' => 'friend of',
           'description' => ''
         ),
       );
