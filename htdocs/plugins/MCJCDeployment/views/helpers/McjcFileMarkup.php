@@ -20,12 +20,12 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
    *
    * @param File $file
    * @param array $options
-   *   Options for customizing the display of images. Current options include: 'imageSize'
+   *   Unused
    * @return string HTML for display
    * @overrides
    */
   public function pdfIframe($file, array $options=array()) {
-    return '<div class="iframe-container"><iframe frameborder="0" src="'. $file->getWebPath('original'). '"/></div>';
+    return '<div class="iframe-container"><iframe frameborder="0" src="'. html_escape($file->getWebPath('original')). '"></iframe></div>';
   }
 
   /**
