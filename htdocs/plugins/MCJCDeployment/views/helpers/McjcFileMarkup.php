@@ -16,6 +16,19 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
 {
 
   /**
+   * Returns valid XHTML markup for a PDF embed iFrame.
+   *
+   * @param File $file
+   * @param array $options
+   *   Options for customizing the display of images. Current options include: 'imageSize'
+   * @return string HTML for display
+   * @overrides
+   */
+  public function pdfIframe($file, array $options=array()) {
+    return '<div class="iframe-container"><iframe frameborder="0" src="'. $file->getWebPath('original'). '"/></div>';
+  }
+
+  /**
    * Returns valid XHTML markup for displaying an image that has been stored
    * in Omeka. Overrides Omeka_View_Helper_FileMarkup->derivativeImage().
    *
@@ -39,6 +52,9 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
       'fullsize'=>'full');
     $imageSize = $options['imageSize'];
 
+    // Flag to display this image as a link or inline.
+    $displayAsLink = TRUE;
+
     // If we can make an image from the given image size.
     if (array_key_exists($imageSize, $imgClasses) && strpos($file->mime_type, 'pdf') === FALSE) {
 
@@ -51,7 +67,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
         (array)$options['imgAttributes']);
       $imgHtml = $this->image_tag($file, $imgAttributes, $imageSize);
       $html .= !empty($imgHtml) ? $imgHtml : html_escape($file->original_filename);
-    } else {
+    } elseif (strpos($file->mime_type, 'pdf') !== FALSE) {
       // If this is a PDF, add link text instead of an image.
       if (stripos(html_escape($file->original_filename), 'tape') !== FALSE) {
         $html .= 'View Tape Log';
@@ -61,6 +77,9 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
         $html .= 'View Abstract';
       } elseif (stripos(html_escape($file->original_filename), 'fieldnotes') !== FALSE) {
         $html .= 'View Field Notes';
+      } else {
+        $html = $this->pdfIframe($file);
+        $displayAsLink = FALSE;
       }
     }
 
@@ -71,10 +90,12 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
 
     // If this is the item's show page, link to the file. Otherwise, link to the
     // item.
-    if ($options['show'] === TRUE) {
-      $html = $this->_linkToFile($file, $options, $html);
-    } else {
-      $html = link_to_item($html, array('class' => $imgClasses[$imageSize]), 'show', $options['item']);
+    if ($displayAsLink) {
+      if ($options['show'] === TRUE) {
+        $html = $this->_linkToFile($file, $options, $html);
+      } else {
+        $html = link_to_item($html, array('class' => $imgClasses[$imageSize]), 'show', $options['item']);
+      }
     }
 
     return $html;
