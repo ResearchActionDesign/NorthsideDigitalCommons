@@ -210,6 +210,43 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
         $property->save();
       }
     }
+
+    // Add new item relation type isPartOf.
+    if ((double)$params['old_version'] < 2.16) {
+      // Install custom version of Dublin Core relationship module.
+      $vocabulary = new ItemRelationsVocabulary();
+      $vocabulary->name = 'Dublin Core Relationship Module';
+      $vocabulary->description = 'Dublin Core relationship types. Customized by MCJC for Northside Digital Commons.';
+      $vocabulary->namespace_prefix = 'rel';
+      $vocabulary->namespace_uri = 'https://www.dublincore.org/specifications/dublin-core/dcmi-terms/';
+      $vocabulary->custom = 0;
+      $vocabulary->save();
+
+      $vocabularyId = $vocabulary->id;
+      // Add our own terms to module.
+
+      $relationProperties = array(
+        array(
+          'local_part' => 'isPartOf',
+          'label' => 'Is part of',
+          'description' => 'A related resource in which the described resource is physically or logically included. For example, a photograph that was taken or scanned during an oral history interview would have the isPartOf relationship to the interview item, or a photograph scanned from a scrapbook would have the isPartOf relationship to the scrapbook item.',
+        ),
+        array(
+          'local_part' => 'hasPart',
+          'label' => 'Has part',
+          'description' => 'A related resource that is included either physically or logically in the described resource. This is the inverse of isPartOf.',
+        )
+      );
+
+      foreach ($relationProperties as $formalProperty) {
+        $property = new ItemRelationsProperty;
+        $property->vocabulary_id = $vocabularyId;
+        $property->local_part = $formalProperty['local_part'];
+        $property->label = $formalProperty['label'];
+        $property->description = $formalProperty['description'];
+        $property->save();
+      }
+    }
   }
 
   /**
