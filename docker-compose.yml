@@ -25,6 +25,14 @@ services:
       ports:
         - '33308:3306'
 
+  compass:
+    image: stevevega/compass
+    command: watch
+    volumes:
+      - ./htdocs/themes/berlin_mcjc/sass:/input
+      - ./htdocs/themes/berlin_mcjc/css:/output
+      - ./htdocs/themes/berlin_mcjc/images:/images
+
 volumes:
   mysql-data:
     driver: local

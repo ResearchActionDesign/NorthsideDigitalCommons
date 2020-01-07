@@ -37,3 +37,6 @@
 .buildpath
 .project
 .settings/
+
+# Compiled SASS
+htdocs/themes/berlin_mcjc/css/*.css
