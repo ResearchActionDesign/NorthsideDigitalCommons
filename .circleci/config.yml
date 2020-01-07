@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build: # Build CSS files only
     docker:
-      - image: circleci/ruby:2.4.2
+      - image: circleci/ruby:latest
     working_directory: ~/repo
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
@@ -34,24 +34,54 @@ jobs:
             - htdocs/*
 
   deploy_dev:
+    environment:
+      - LC_ALL: C
     docker:
-      - image: alpine:3.7
+      - image: circleci/ruby:latest
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "82:83:1b:d5:19:00:e3:7c:58:c6:6f:0c:31:86:e4:4f"
+      - attach_workspace:
+          at: /tmp/workspace
       - run:
-          name: The First Step
+          name: Enable SSH authentication for remote server
           command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
+            mkdir -p ~/.ssh
+            echo "archives.jacksoncenter.info ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+      - run:
+          name: Checkout code on dev server
+          command: ssh -A jacksor6@archives.jacksoncenter.info 'cd ~/www/archives-new && git pull origin develop'
+
+      - run:
+          name: Copy over compiled css files to dev server
+          command: scp -rC *.css jacksor6@archives.jacksoncenter.info:~/www/archives-new/htdocs/themes/berlin_mcjc/css
+          working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
 
   deploy_prod:
+    environment:
+      - LC_ALL: C
     docker:
-      - image: alpine:3.7
-      steps:
-        - run:
-            name: The First Step
-            command: |
-              echo 'Hello World!'
-              echo 'This is the delivery pipeline'
+      - image: circleci/ruby:latest
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "82:83:1b:d5:19:00:e3:7c:58:c6:6f:0c:31:86:e4:4f"
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Enable SSH authentication for remote server
+          command: |
+            mkdir -p ~/.ssh
+            echo "archives.jacksoncenter.info ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+      - run:
+          name: Checkout code on dev server
+          command: ssh -A jacksor6@archives.jacksoncenter.info 'cd ~/www/archives.jacksoncenter.info && git pull origin master'
+
+      - run:
+          name: Copy over compiled css files to dev server
+          command: scp -rC *.css jacksor6@archives.jacksoncenter.info:~/www/archives.jacksoncenter.info/htdocs/themes/berlin_mcjc/css
+          working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
 
 # TODO: Add test steps
 
@@ -59,6 +89,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
+      - build
       - deploy_dev:
           requires:
             - build
@@ -66,9 +97,17 @@ workflows:
             branches:
               only:
                 develop
-      - deploy_master:
+      - hold: # Hold deployment to prod for manual review.
+          type: approval
           requires:
             - build
+          filters:
+            branches:
+              only:
+                master
+      - deploy_prod:
+          requires:
+            - hold
           filters:
             branches:
               only:

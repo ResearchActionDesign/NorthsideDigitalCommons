@@ -82,3 +82,7 @@ overlays for image files. Lity was used in place of Lightbox because Lightbox
 does not support PDFs. The library is included on item show pages via the
 custom template located in `items/show.php` (relative to the theme).
 
+## Deployment
+
+The `.circleci/config.yml` file currently auto-deploys develop branch to [staging](https://archives-new.jacksoncenter.info)
+and production to [archives.jacksoncenter.info](https://archives.jacksoncenter.info).
