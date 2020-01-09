@@ -63,9 +63,9 @@ Styles for all screen sizes are located in `_screen` and `_screen-custom`.
 Styles for screens at 768px and smaller are located in `_768max` and
 `_768max-custom`. Custom variables are located in `_base-custom`.
 
-To compile SCSS into CSS, install [Compass](http://compass-style.org/install/)
-globally, then run `compass compile` in the `css` directory. To watch SCSS files
-for changes during development, run `compass watch`.
+The `docker-compose` file contains configuration for running Compass in a container
+automatically on local dev. See readme in the `berlin_mcjc` theme directory for manual info.
+Production compass config is located in `themes/berlin_mcjc/config.rb`.
 
 ### Template files
 
@@ -82,3 +82,7 @@ overlays for image files. Lity was used in place of Lightbox because Lightbox
 does not support PDFs. The library is included on item show pages via the
 custom template located in `items/show.php` (relative to the theme).
 
+## Deployment
+
+The `.circleci/config.yml` file currently auto-deploys develop branch to [staging](https://archives-new.jacksoncenter.info)
+and production to [archives.jacksoncenter.info](https://archives.jacksoncenter.info).
