@@ -59,7 +59,11 @@ if ($title == "Search Items" AND @$_REQUEST['query'] AND empty(@$_REQUEST['searc
         <header role="banner">
             <?php fire_plugin_hook('public_header', array('view'=>$this)); ?>
             <div id="site-title"><?php echo link_to_home_page(theme_logo()); ?></div>
-
+            <div id="primary-nav" role="navigation">
+              <?php
+              echo public_nav_main();
+              ?>
+            </div>
             <div id="search-container" role="search">
                 <?php if (get_theme_option('use_advanced_search') === null || get_theme_option('use_advanced_search')): ?>
                 <?php echo search_form(array('show_advanced' => true)); ?>
@@ -69,11 +73,7 @@ if ($title == "Search Items" AND @$_REQUEST['query'] AND empty(@$_REQUEST['searc
             </div>
         </header>
 
-         <div id="primary-nav" role="navigation">
-             <?php
-                  echo public_nav_main();
-             ?>
-         </div>
+
 
          <div id="mobile-nav" role="navigation" aria-label="<?php echo __('Mobile Navigation'); ?>">
              <?php
