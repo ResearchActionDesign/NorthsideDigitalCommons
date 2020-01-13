@@ -205,3 +205,38 @@ function mcjc_get_linked_sohp_interview()
   }
   return FALSE;
 }
+
+/**
+ * Determines if a SimplePages page object is part of the `About` page hierarchy.
+ * @param $page SimplePagesPage Page to check.
+ */
+function mcjc_is_about_page($page) {
+  if ($page->slug && $page->slug === 'about') {
+    return true;
+  }
+  else {
+    if ($page->parent_id) {
+      $parent = get_db()->getTable('SimplePagesPage')->find($page->parent_id);
+      return $parent && mcjc_is_about_page($parent);
+    }
+  }
+  return false;
+}
+
+/**
+ * Return HTML rendering of the sub-menu for whatever branch of the main nav a given page is on.
+ *
+ * @see https://framework.zend.com/manual/2.4/en/modules/zend.navigation.view.helper.menu.html for more details on
+ *   how to customize the behavior of the last line.
+ *
+ * @return mixed
+ * @throws Zend_Navigation_Exception
+ */
+function mcjc_get_submenu() {
+  $view = get_view();
+  $nav = new Omeka_Navigation;
+  $nav->loadAsOption(Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_OPTION_NAME);
+  $nav->addPagesFromFilter(Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_FILTER_NAME);
+  return $view->navigation()->menu($nav)->setMaxDepth(1)->renderSubmenu();
+  // @TODO: Handle Zend_Navigation_Exception
+}
