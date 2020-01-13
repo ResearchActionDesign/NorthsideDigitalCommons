@@ -2,7 +2,10 @@
 <div id="primary">
     <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
-      <h2>VIDEO GOES HERE</h2>
+        <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/images/homepage_video.jpg" muted>
+            <source src="/themes/berlin_mcjc/video/MCJCOrig.webm" type="video/webm">
+            <source src="/themes/berlin_mcjc/video/MCJCOrig.mp4" type="video/mp4">
+        </video>
     </div>
     <?php endif; ?>
 
