@@ -20,8 +20,9 @@ class GuestUserPlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     protected $_filters = array(
-        'public_navigation_admin_bar',
-        'public_show_admin_bar',
+        // Hide header -- @see https://omeka.org/classic/docs/Plugins/GuestUser/
+        // 'public_navigation_admin_bar',
+        // 'public_show_admin_bar',
         'guest_user_widgets',
         'admin_navigation_main'
     );

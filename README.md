@@ -15,16 +15,23 @@ The following plugins are required:
 * Archive Repertory
 * Clean Url - using a schema of `/collections/collection-identifier/item-identifier`
 * COinS
+* Contribution
 * CSVExport
 * CSV Import
 * Derivative Images
 * Element Types
 * Exhibit Builder
+* Guest User
 * HTML5 Media
 * Item Relations
 * Simple Pages
 * Simple Vocab
 * Taxonomy
+
+## Modified plug-ins
+
+The following manual changes have been made to plugin code:
+* Guest User -- comment out two lines to remove header bar (see https://omeka.org/classic/docs/Plugins/GuestUser/)
 
 ## Custom plug-ins
 
