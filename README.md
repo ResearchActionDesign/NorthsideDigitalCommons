@@ -10,6 +10,8 @@ based on Omeka version 2.5.1
 * Optional: Put a version of the files directory in `htdocs/files`
 * Run `make up`
 * To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
+* Visit http://0.0.0.0 in your browser to view the site. You can also add a hosts file config mapping a different URL
+to this IP address, for example: `0.0.0.0		mcjc-omeka.l`.
 
 ### Refreshing local database
 

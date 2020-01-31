@@ -13,6 +13,7 @@
 .ssh/
 
 # Log files
+/htdocs/application/logs/
 /htdocs/application/logs/errors.log
 /htdocs/application/logs/processes.log
 /htdocs/application/tests/log.xml
@@ -26,7 +27,7 @@ files.zip
 
 # DB dumps
 *.sql
-/db/
+db/
 
 # For macs
 .DS_Store
