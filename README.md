@@ -4,10 +4,29 @@ based on Omeka version 2.5.1
 
 ## Local set-up
 
-* Put a version of the files directory in `htdocs/files`
+* Copy each of the the example config files: `htdocs/.htaccess.example`, `htdocs/db.ini.example` and `htdocs/application/config/config.ini.example`)
+  into a new file without the `.example` extension. These files are not tracked by git, so they have to be manually recreated.
 * Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
+* Optional: Put a version of the files directory in `htdocs/files`
 * Run `make up`
 * To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
+
+### Refreshing local database
+
+From time-to-time, you may need to refresh the local database. To do this, first run `make down` to stop
+and remove the docker DB containers. Then run `docker volume rm mcjc_omeka_mysql-data` to remove the persistent
+DB data store. When you next run `make up` the site should re-load whatever database dump is in the `db` directory.
+
+### Rebuilding or modifying docker image
+
+The current docker-compose file pulls a pre-built image from Docker hub, which is built 
+from the Docker file in the .docker directory. 
+
+To rebuild this image and push a new one to the repository, run `docker build . -t timstallmann/apache-omeka:latest`
+and then `docker push timstallmann/apache-omeka:latest`.
+
+To use a locally built customized image, comment out the `image` line under the `web` service in `docker-compose.yml` and 
+uncomment the `build` line.
 
 ## Required plug-ins
 
