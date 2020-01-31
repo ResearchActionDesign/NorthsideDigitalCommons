@@ -4,8 +4,7 @@ based on Omeka version 2.5.1
 
 ## Local set-up
 
-* Copy each of the the example config files: `htdocs/.htaccess.example`, `htdocs/db.ini.example` and `htdocs/application/config/config.ini.example`)
-  into a new file without the `.example` extension. These files are not tracked by git, so they have to be manually recreated.
+* Run `make prepare-site`. This will copy each of the the example config files into a new file without the `.example` extension.
 * Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
 * Optional: Put a version of the files directory in `htdocs/files`
 * Run `make up`
