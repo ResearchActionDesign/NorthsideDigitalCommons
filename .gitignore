@@ -10,6 +10,7 @@
 /htdocs/application/tests/config.ini
 /htdocs/php.ini
 /htdocs/.user.ini
+.ssh/
 
 # Log files
 /htdocs/application/logs/errors.log
@@ -21,6 +22,7 @@
 
 # Files
 /htdocs/files/
+files.zip
 
 # DB dumps
 *.sql

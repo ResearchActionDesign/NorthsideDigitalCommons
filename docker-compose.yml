@@ -1,7 +1,9 @@
 version: '2'
 services:
   web:
-    build: .docker/
+    image: timstallmann/apache-omeka:latest
+    # Uncomment the next line if you need to build the docker image locally.
+    # build: .docker/
     volumes:
       - ./htdocs:/var/www/html:cached
       - ./.docker:/etc/apache2/sites-available:cached
@@ -16,7 +18,7 @@ services:
       - db
 
   db:
-      image: mysql:5.7.26
+      image: mysql:5.7
       volumes:
         - ./db:/docker-entrypoint-initdb.d:cached
       environment:

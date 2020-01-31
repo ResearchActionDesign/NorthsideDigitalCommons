@@ -72,4 +72,4 @@
 </div> <!-- End of Primary. -->
 
 <?php echo js_tag('lity', 'lity'); ?>
- <?php echo foot(); ?>
+<?php echo foot(); ?>

@@ -1,0 +1,670 @@
+# Translation for the Contribution plugin for Omeka.
+# Copyright (C) 2011 Roy Rosenzweig Center for History and New Media
+# This file is distributed under the same license as the Omeka package.
+# 
+# Translators:
+# baatarsuren <mgllibrary@gmail.com>, 2016
+# Khaidav T. <khaidaw@yahoo.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Omeka\n"
+"Report-Msgid-Bugs-To: http://github.com/omeka/plugin-Contribution/issues\n"
+"POT-Creation-Date: 2012-01-09 21:49-0500\n"
+"PO-Revision-Date: 2017-09-23 21:47+0000\n"
+"Last-Translator: Khaidav T. <khaidaw@yahoo.com>\n"
+"Language-Team: Mongolian (http://www.transifex.com/omeka/omeka/language/mn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: mn\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models/ContributionType.php:101
+msgid "Allowed"
+msgstr "Зөвшөөрсөн"
+
+#: models/ContributionType.php:102
+msgid "Required"
+msgstr "Заавал бөглөх"
+
+#: models/ContributionType.php:100
+msgid "Disallowed"
+msgstr "Татгалзах"
+
+msgid "Deleted User"
+msgstr "Хэрэглэгчийг устгах"
+
+#: ContributionPlugin.php:424 views/admin/contributors/browse.php:31
+#: views/admin/types/browse.php:26
+msgid "Contributed Items"
+msgstr "Дэмжлэг авсан мэдээллүүд"
+
+#: ContributionPlugin.php:427 ContributionPlugin.php:509
+#: helpers/ThemeHelpers.php:21
+msgid "Contribution"
+msgstr "Хувь нэмэр оруулах /Туслагч/"
+
+#: ContributionPlugin.php:448
+msgid "Contribute an Item"
+msgstr "Зөвшөөрөгдсөн мэдээлэл"
+
+#: ContributionPlugin.php:491
+msgid "Contribution Status"
+msgstr "Хувь нэмэр оруулах /Туслагч/ статус"
+
+#: ContributionPlugin.php:497
+msgid "Only Contributed Items"
+msgstr "Зөвхөн дэмжлэг авсан мэдээллүүд /Contributed Items/"
+
+#: ContributionPlugin.php:498
+msgid "Only Non-Contributed Items"
+msgstr "Зөвхөн дэмжлэг аваагүй мэдээллүүд /Non-Contributed Items/"
+
+#: ContributionPlugin.php:659
+msgid "Anonymous, "
+msgstr "Тодорхой нэргүй,"
+
+#: ContributionPlugin.php:685
+msgid "My Contributions"
+msgstr "Миний зөвшөөрөлүүд"
+
+#: ContributionPlugin.php:696
+msgid "See all my contributions"
+msgstr "Миний бүх зөвшөөрлийг үзэх"
+
+#: ContributionPlugin.php:699
+msgid "No contribution yet."
+msgstr "Одоогоор ямарч зөвшөөрөл алга"
+
+#: ContributionPlugin.php:713
+msgid "Contributed by:"
+msgstr "Туслагч:"
+
+#: ContributionPlugin.php:718
+msgid "This item can be made public."
+msgstr "Энэ мэдээлэл нийтэд харагдах боломжтой."
+
+#: ContributionPlugin.php:720
+msgid "This item cannot be made public."
+msgstr "Энэ мэдээлэл нийтэд харагдах боломжгүй."
+
+#: controllers/ContributionController.php:42
+msgid "Your contributions have been updated."
+msgstr "Таны хувь нэмэр /contributions/ шинэчлэгдсэн байна."
+
+#: controllers/ContributionController.php:235
+msgid "You must select a type for your contribution."
+msgstr "Та өөрийн зөвшөөрсөн төрлийг сонгоно уу"
+
+#: controllers/ContributionController.php:391
+msgid "Your CAPTCHA submission was invalid, please try again."
+msgstr "Таны CAPTCHA коод хүчингүй байн, дахин оролдоно уу."
+
+#: controllers/ContributionController.php:396
+msgid "You must agree to the Terms and Conditions."
+msgstr "Та нөхцөлийг хүлээн зөвшөөрсөн байх шаардлагатай."
+
+#: controllers/ContributionController.php:425
+msgid "Contribution URL (pending review by project staff): "
+msgstr "Зөвшөөрөгдсөн URL (ажилтнууд хяналт хийгдэх илгээгдсэн)"
+
+#: controllers/ContributionController.php:426
+#, php-format
+msgid "Your username is %s"
+msgstr "Таны нэвтрэх нэр %s"
+
+#: controllers/ContributionController.php:429
+msgid "To log in and change your username, request a password here: "
+msgstr "Та хэрэглэгчийн нэр өөрчлөх, нууц үг авах хүсэлт"
+
+#: controllers/ContributionController.php:433
+#, php-format
+msgid "Your %s Contribution"
+msgstr "Таны %s зөвшөөрөл"
+
+#: controllers/ContributionController.php:452
+#, php-format
+msgid "A new contribution to %s has been made."
+msgstr "Шинэ зөвшөөрөл %s оруулсан байна"
+
+#: controllers/ContributionController.php:457
+msgid "Contribution URL for review: "
+msgstr "Зөвшөөрөгдсөн URL хянах"
+
+#: controllers/ContributionController.php:463
+#, php-format
+msgid "New %s Contribution"
+msgstr "Шинэ %s зөвшөөрөл"
+
+#: controllers/SettingsController.php:34
+msgid "Settings have been saved."
+msgstr "Тохиргоо хадгалагдлаа."
+
+#: controllers/SettingsController.php:80
+msgid "Contribution Slug"
+msgstr "Дэмжин ажиллах Слаг"
+
+#: controllers/SettingsController.php:81
+msgid ""
+"Relative path from the Omeka root to the desired location for the "
+"contribution form. If left blank, the default path will be named "
+"&#8220;contribution.&#8221;"
+msgstr "Омекагийн үндсэн хавтаснаас Хамааралтай файлын замыг дэмжлэг үзүүлэх формд  тодорхойлно. Хэрэв хоосон үлдээвэл &#8220;contribution.&#8221; нэрээр үндсэн хавтсыг нэрлэнэ. "
+
+#: controllers/SettingsController.php:86
+msgid "Contribution Confirmation Email"
+msgstr "Зөвшөөрөгдсөн майл баталгаажуулах"
+
+#: controllers/SettingsController.php:87
+msgid ""
+"An email message will be sent to each contributor from this address "
+"confirming that they submitted a contribution to this website. Leave blank "
+"if you do not want an email sent."
+msgstr "Дэмжлэг үзүүлэгч бүр энэ хаягаар и-мэйл зурвас илгээвэл тэдний дэмжлэг үзүүлсэнийг вэб сайтад оруулна. И-мэйл илгээхийг хүсэхгүй бол хоосон орхино уу."
+
+#: controllers/SettingsController.php:92
+msgid "New Contribution Notification Emails"
+msgstr "Шинэ зөвшөөрлийг имайл хаягаар мэдэгдэх"
+
+#: controllers/SettingsController.php:93
+msgid ""
+"An email message will be sent to each address here whenever a new item is "
+"contributed. Leave blank if you do not want anyone to be alerted of "
+"contributions by email."
+msgstr "Мэдээлэлд дэмжлэг үзүүлсэний дараа и-мэйл зурвас хаяг тус бүрт очно. \nДэмжлэг үзүүлсэн тухай мэдээллийг и-мэйлээр хүмүүст илгээхийг хүсэхгүй бол хоосон орхино уу."
+
+#: controllers/SettingsController.php:98
+msgid "Text of Terms of Service"
+msgstr "Үйлчилгээний нөхцлийн текст"
+
+#: controllers/SettingsController.php:99
+msgid "The text of the legal disclaimer to which contributors will agree."
+msgstr "Хувь нэмэр оруулагчид хүлээн зөвшөөрөх Хууль Эрхзүйн няцаалт текст."
+
+#: controllers/SettingsController.php:105
+msgid "Allow Non-registered Contributions"
+msgstr "Бүртгэлгүй зөвшөөрлийг зөвшөөрөх"
+
+#: controllers/SettingsController.php:106
+msgid ""
+"This will require an email address from contributors, and create a guest "
+"user from that information. If those users want to use the account, they "
+"will have to request a new password for the account. If you want to collect "
+"additional information about contributors, they must create an account. See "
+"<a href='http://omeka.org/codex/Plugins/Contribution_2.0'>documentation</a> "
+"for details. "
+msgstr "Энэ нь хувь нэмэр оруулагчдаас и-мэйл хаяг шаарддаг ба, зочин хэрэглэгчийн мэдээлэл үүсгэнэ үү. Хэрэв тэдгээр хэрэглэгчид бүртгэлтэй болохыг хүсвэл, тэд бүртгэлдээ шинэ нууц үг хүсэж болно. Дэлгэрэнгүйг <a href='http://omeka.org/codex/Plugins/Contribution_2.0'> баримт бичиг </a>  хаягнаас үзнэ үү."
+
+#: controllers/SettingsController.php:113
+msgid "Allow Anonymous Contributions"
+msgstr "Дэмжин ажиллахыг зөвшөөрөх"
+
+#: controllers/SettingsController.php:114
+msgid ""
+"If non-registered contributions are allowed above, this option allows "
+"contributors to remain completely anonymous, even to administrators. A dummy"
+" user account will be created that stores no identifing information. See <a "
+"href='http://omeka.org/codex/Plugins/Contribution_2.0'>documentation</a> for"
+" details. "
+msgstr "Хэрэв бүртгүүлээгүй хүмүүст хувь нэмэр оруулахыг зөвшөөрсөн бол, энэ сонголт нь админ болон бүх хүмүүст зөвшөөрөгдөнө. Дэлгэрэнгүйг <a href='http://omeka.org/codex/Plugins/Contribution_2.0'> баримт бичиг </a> хаягнаас үзнэ үү."
+
+#: controllers/SettingsController.php:120
+msgid "Email text to send to contributors"
+msgstr "Зурвасыг Туслагчдад илгээх"
+
+#: controllers/SettingsController.php:121
+msgid ""
+"Email text to send to contributors when they submit an item. A link to their"
+" contribution will be appended. If using the 'Non-registered', but not "
+"'Anonymous', options, we recommend that you notify contributors that a guest"
+" user account has been created for them, and what they gain by confirming "
+"their account."
+msgstr "Мэдээллийг бүртгэх үед и-мэйл текст хувь нэмэр оруулагчдад илгээгдэнэ. Тэдний оруулсан хувь нэмрийн тухай нэг холбоос хавсаргасан байгаа. Хэрэв \"бүртгэлгүй\", гэвч \"хэн ч байж болно\" гэж тохируулагдсан бол бид зочид хувь нэмэр оруулсаны дараа хувь нэмэр оруулагчдад мэдэгдэнэ гэж санал болгоно."
+
+#: controllers/SettingsController.php:126
+msgid "Do not put contributions in any collection"
+msgstr "Дурын сан хөмрөгт хувь нэмэр оруулдаг байж болохгүй"
+
+#: controllers/SettingsController.php:129
+msgid "Contribution Collection"
+msgstr "Хувь нэмэр оруулагдсан /Contribution/ сан хөмрөг"
+
+#: controllers/SettingsController.php:130
+msgid ""
+"The collection to which contributions will be added. Changes here will only "
+"affect new contributions."
+msgstr "Сан хөмрөг ямар нэг хувь нэмэрт /contributions/ нэмэгдэх болно. Энэ өөрчлөлт зөвхөн шинэ хувь нэмэрт нөлөөлнө."
+
+#: controllers/SettingsController.php:135
+msgid "No default type"
+msgstr "Үндсэн төрөл байхгүй"
+
+#: controllers/SettingsController.php:138
+msgid "Default Contribution Type"
+msgstr "Дэмжин ажиллах /Contribution/ үндсэн төрөл"
+
+#: controllers/SettingsController.php:139
+msgid "The type that will be chosen for contributors by default."
+msgstr "Үгдсэн байдлаар дэмжин ажиллагчдад зориулан сонгогдсон төрөл."
+
+#: controllers/SettingsController.php:146
+msgid "Choose a profile type for contributors"
+msgstr "Хувь нэмэр оруулагчдын профилийн төрлийг сонгох"
+
+#: controllers/SettingsController.php:147
+msgid "Configure the profile type under User Profiles"
+msgstr "Хэрэглэгчийн профилд профилийн төрлийг тохируулах"
+
+#: controllers/SettingsController.php:148
+msgid "None"
+msgstr "Үгүй"
+
+#: models/ContributionContributedItem.php:46
+msgid "Unknown User"
+msgstr "Үл мэдэгдэх хэрэглэгч"
+
+#: models/ContributionContributedItem.php:56
+#: views/admin/contributors/show.php:48 views/admin/items/browse.php:115
+#: views/public/contribution/my-contributions.php:9
+msgid "Anonymous"
+msgstr "Тодорхой нэргүй"
+
+#: models/Mixin/ContributionOrder.php:101
+msgid "Cannot add a child to a record that does not exist yet!"
+msgstr "Бичлэгт дэд хэсэг /child/ нэмж чадахгүй байна!"
+
+#: models/Mixin/ContributionOrder.php:105
+#, php-format
+msgid "Child must be an instance of \"%s\""
+msgstr "Дэд хэсэг /child/ \"%s\" -ий загвар байх ёстой."
+
+#: views/admin/common/contribution-quick-filters.php:2
+#: views/admin/common/contribution-quick-filters.php:4
+msgid "Filter by status"
+msgstr "Статусаар нь шүүлт хийх"
+
+#: views/admin/common/contribution-quick-filters.php:8
+#: views/admin/contributors/show.php:40 views/admin/items/browse.php:88
+msgid "Needs review"
+msgstr "Тойм хэрэгцээ"
+
+#: views/admin/contribution-navigation.php:6 views/admin/index/index.php:9
+#: views/admin/index/index.php:19
+msgid "Getting Started"
+msgstr "Эхэлсэн"
+
+#: views/admin/contribution-navigation.php:7 views/admin/index/index.php:37
+msgid "Contribution Types"
+msgstr "Дэмжин ажиллах /Contribution/ төрөл"
+
+#: views/admin/contribution-navigation.php:8 views/admin/settings/edit.php:13
+msgid "Submission Settings"
+msgstr "Хүлээж авах тохиргоо"
+
+#: views/admin/contribution-navigation.php:15 views/admin/index/index.php:54
+msgid "Contributions"
+msgstr "Хувь нэмэр оруулах /Дэмжин ажиллагч/"
+
+#: views/admin/contributors/browse.php:28
+msgid "ID"
+msgstr "ID"
+
+#: views/admin/contributors/show.php:20
+#, php-format
+msgid "%s's contributions"
+msgstr "%s's дэмжлэг /contributions/"
+
+#: views/admin/contributors/show.php:26
+msgid "Profile: "
+msgstr "Хувийн мэдээлэл:"
+
+#: views/admin/contributors/show.php:42 views/admin/items/browse.php:93
+msgid "Private contribution"
+msgstr "Хувийн дэмжлэг /contribution/"
+
+#: views/admin/index/index.php:20
+msgid ""
+"A basic contribution form is installed and ready to ask users to submit a "
+"Story or Image type, and to include their name and email address. If you "
+"want to modify the form, follow the steps below."
+msgstr "Дэмжлэг үзүүлэх форм суугдаад уншигчдын асуултыг нэр, и-мэйл хаягийн хамт оруулахад бэлэн болсон байна. Хэрэв формд өөрчлөлт хийхийг хүсвэл, дараах алхмуудыг мөрдөнө үү."
+
+#: views/admin/index/index.php:21
+msgid ""
+"While an account exists for all contributors, they can make any contribution"
+" anonymously. Only the admin and super roles can see the full information."
+msgstr "Бүх хувь нэмэр оруулагчдад байгаа үндэслэл,  тэд аль нэг зүйлд хувь нэмэр оруулж чадна. Зөвхөн админ болон супер эрхтэй хүмүүс л дэлгэрэнгүй мэдээллийг харж чадна."
+
+#: views/admin/index/index.php:22
+msgid ""
+"Contributors can make any contribution public or not. Non-public "
+"contributions cannot be made publicly available on the site, but they are "
+"visible to the super, admin, contributor, and researcher roles, as well as "
+"to the contributors themselves."
+msgstr "Аль нэг дэмжлэгийг хувь нэмэр оруулагчид нийтийн болгох эсэхийг шийдэж чадна. Нийтийн бус дэмжлэг нь сайтад нийтэд харагдахгүй, гэвч тэр нь супер хэрэглэгч, админ, хувь нэмэр оруулагч болон судлаачийн эрх үүрэгтэй хүмүүст харагдана."
+
+#: views/admin/index/index.php:24
+msgid "1. Set up Guest User information:"
+msgstr "1. Зочин хэрэглэгчийн мэдээллийг тохируулах:"
+
+#: views/admin/index/index.php:26
+msgid ""
+"To make repeat contributions easier, a reusable 'Guest User' account is "
+"created for contributors."
+msgstr "Дахин Хувь нэмэр оруулахыг хялбар болгохын тулд, дахин хэрэглэх боломжтой \"Зочин хэрэглэгч\" -ийн бүртгэл хувь нэмэр оруулагчдад зориулагдан үүссэн."
+
+#: views/admin/index/index.php:26
+msgid "Configure Guest Users"
+msgstr "Зочин хэрэглэгчийг тохируулах"
+
+#: views/admin/index/index.php:26
+msgid "with the following suggestions."
+msgstr "дараах зөвлөмжүүд."
+
+#: views/admin/index/index.php:28
+msgid ""
+"Let visitors know a bit about how their contributions will be used and why "
+"they are so valuable in the 'Registration Features' information."
+msgstr "'Бүртгэлийн давуу тал' мэдээлэл нь маш үнэтэй ч зочид тэдний хувь нэмэр цаашид хэрэглэгдэнэ гэдэг талаар бага мэддэг.."
+
+#: views/admin/index/index.php:29
+msgid ""
+"It is easiest to contribute if administrator approval is not required and "
+"you allow 20 minute instant access. To prevent spam, using ReCaptcha is "
+"recommended."
+msgstr "Энэ нь хувь нэмэр оруулахад хамгийн хялбар бөгөөд админий баталгаа шаардлагатай биш бол 20 минутанд багтаж болно. Спамаас сэргийлэхийн тулд ReCaptcha ашиглахыг санал болгож байна."
+
+#: views/admin/index/index.php:30
+msgid ""
+"Additional contribution-specific information for guest users can be created "
+"here."
+msgstr "Энд үүсгэгдсэн Зочин хэрэглэгчдэд зориулсан  тодорхой хувь нэмэр оруулсан нэмэлт мэдээлэл."
+
+#: views/admin/index/index.php:34
+msgid "2. Modify the contribution form:"
+msgstr "2. Дэмжлэг үзүүлэх формыг засварлах:"
+
+#: views/admin/index/index.php:37
+#, php-format
+msgid ""
+"Choose item types you wish visitors to share, and customize the fields they "
+"should use, in %s"
+msgstr "Та зочидтой хуваалцахыг хүсэж байвал Мэдээллийн төрлийг сонгох ба %s ашиглан талбарыг өөрчилнө."
+
+#: views/admin/index/index.php:39
+msgid "user profiles type"
+msgstr "Хэрэглэгчийн хувийн мэдээллийн төрөл"
+
+#: views/admin/index/index.php:39
+#, php-format
+msgid ""
+"Set up profile information you would like from your contributors by setting "
+"up a %s "
+msgstr "Таны Хувь нэмэр оруулагчдын Профилийн мэдээллийг засах ыг  хүсвэл доорхын тусламжтай тохируулаарай %s"
+
+#: views/admin/index/index.php:41
+msgid ""
+"The optional User Profiles plugin lets you set up additional information you"
+" would like to ask from your contributors. To use those features, please "
+"install that, then return here for additional guidance."
+msgstr "Хэрэглэгчийн мэдээллийн плагинд нэмэлт мэдээлэл тохируулахыг хүсвэл та хувь нэмэр оруулагчаас асууна уу. Эдгээр боломжуудыг ашиглаж суулгаад, дараа нь  энэ нэмэлт зааврыг буцаана."
+
+#: views/admin/index/index.php:45
+msgid "submission settings"
+msgstr "Хүлээж авах тохиргоо"
+
+#: views/admin/index/index.php:45
+#, php-format
+msgid "3. Configure the %s for contributions:"
+msgstr "3. Дэмжлэгийн %s -г тохируулах:"
+
+#: views/admin/index/index.php:48
+msgid "Set the terms of service for contributing to the site."
+msgstr "Сайтад дэмжлэг үзүүлэх үйлчилгээний журмыг тогтоох."
+
+#: views/admin/index/index.php:49
+msgid ""
+"Set up an auto-generated email to send to all contributors after they submit"
+" their contribution."
+msgstr " Хувь нэмэрээ оруулсаны дараа бүх хувь нэмэр оруулагчдад илгээх Автомат и-мэйлийг тохируулах."
+
+#: views/admin/index/index.php:50
+msgid ""
+"Decide whether to use the 'Simple' options. This requires only that "
+"contributors provide an email address."
+msgstr "'Энгийн' тохиргоог хэрэглэх эсэхийг шийднэ. Энд хувь нэмэр оруулагчид и-мэйл хаяг оруулахыг шаарддаг."
+
+#: views/admin/index/index.php:51
+msgid "Specify a collection for new contributed items."
+msgstr "Шинээр дэмжлэг авсан /contributed/ мэдээллийн тогтоосон сан хөмрөг."
+
+#: views/admin/index/index.php:54
+#, php-format
+msgid ""
+"4. Browse contributions and their status, with links to more contributor "
+"information, in %s"
+msgstr "4. Хувь нэмэр /contributions/ болон түүний статус, бусад хувь нэмэр оруулагчдын мэдээлийг холбоосын тусламжтайгаар харах %s"
+
+#: views/admin/items/browse.php:13
+#, php-format
+msgid "Contributed Items (%d)"
+msgstr "Дэмжлэг авсан мэдээлэл /Contributed Items/ (%d)"
+
+#: views/admin/items/browse.php:27
+msgid "security settings"
+msgstr "Хамгаалалтын тохиргоо"
+
+#: views/admin/items/browse.php:27
+#, php-format
+msgid ""
+"You have not entered your %s API keys under %s. We recommend adding these "
+"keys, or the contribution form will be vulnerable to spam."
+msgstr "Таны %s API түлхүүр %s -д оруулаагүй байна. Сэтгэгдэл оруулахад эдгээр түлхүүр хэрэгтэй."
+
+#: views/admin/items/browse.php:36 views/admin/items/browse.php:137
+msgid "Set public"
+msgstr "Нийтийнх болгох"
+
+#: views/admin/items/browse.php:39 views/admin/items/browse.php:140
+msgid "Set Needs review"
+msgstr "Тойм хэрэгцээг тохируулах"
+
+#: views/admin/items/browse.php:57 views/admin/items/browse.php:59
+msgid "Publication Status"
+msgstr "Хэвлэгдсэн байдал"
+
+#: views/admin/items/browse.php:78 views/admin/items/browse.php:156
+msgid "Public (click to put in review)"
+msgstr "Нийтийн (дараад хянаарай)"
+
+#: views/admin/items/browse.php:86 views/admin/items/browse.php:155
+msgid "Needs review (click to make public)"
+msgstr "Хянах шаардлагатай (Сонголт хийхэд нийтэд харагдана)"
+
+#: views/admin/items/browse.php:118
+msgid "Info and contributions"
+msgstr "Мэдээлэл ба дэмжлэг /contributions/"
+
+#: views/admin/items/browse.php:158
+msgid "Rejected"
+msgstr "Татгалзсан"
+
+#: views/admin/items/browse.php:159
+msgid "Are you sure you want to remove these contributions?"
+msgstr "Эдгээр дэмжлэгийг /contributions/ хасахыг хүсэж байна уу?"
+
+#: views/admin/items/browse.php:167
+msgid "There is no contribution yet."
+msgstr "Энэ нь ямар нэг дэмжлэггүй /contribution/ байна."
+
+#: views/admin/items/browse.php:169
+#, php-format
+msgid "The query searched %d contributions and returned no results."
+msgstr "%d хайлтад /contributions/  дэмжлэг ба үр дүн илрэсэнгүй."
+
+#: views/admin/items/browse.php:170
+msgid "See all contributions."
+msgstr "Бүх туслалцааг /contributions/ үзэх"
+
+#: views/admin/types/add-existing-element.php:15
+msgid "Prompt:"
+msgstr "Сануулах:"
+
+#: views/admin/types/add-existing-element.php:18 views/admin/types/form.php:60
+msgid "Multiple rows"
+msgstr "Олон мөр"
+
+#: views/admin/types/add.php:35 views/admin/types/browse.php:9
+#: views/admin/types/edit.php:30
+msgid "Types"
+msgstr "Төрөл"
+
+#: views/admin/types/add.php:35
+msgid "Add a new type"
+msgstr "Шинэ төрөл нэмэх"
+
+#: views/admin/types/browse.php:11
+msgid "Add a Type"
+msgstr "Төрөл нэмэх"
+
+#: views/admin/types/browse.php:27
+msgid "File Upload"
+msgstr "Файл илгээх"
+
+#: views/admin/types/form.php:13
+msgid "The Item Type, from your site's list of types, you would like to use."
+msgstr "Сайтын жагсаалтаас таны хэрэглэхийг хүсэж байгаа, мэдээллийн төрөл."
+
+#: views/admin/types/form.php:28
+msgid ""
+"The label you would like to use for this contribution type. If blank, the "
+"Item Type name will be used."
+msgstr "Таны хэрэглэхийг хүсэж байгаа хувь нэмэр оруулах төрлийн /contribution type/ Шошго. Хэрэв хоосон бол, мэдээллийн төрлийн нэрийг хэрэглэнэ."
+
+#: views/admin/types/form.php:37
+msgid "Allow File Upload Via Form"
+msgstr "Формын тусламжтай файл оруулах"
+
+#: views/admin/types/form.php:40
+msgid ""
+"Enable or disable file uploads through the public contribution form. If set "
+"to &#8220;Required,&#8220; users must add a file to their contribution when "
+"selecting this item type."
+msgstr "Нийтийн хувь нэмэр оруулах формд файл хавсаргахыг идэвхжүүлэх эсвэл хаах. Хэрэв &#8220;Шаардлагатай,&#8220 гэж тохируулбал; хэрэглэгчид сонгосон мэдээллийн төрөлд файл нэмж чадна."
+
+#: views/admin/types/form.php:58
+msgid "Prompt"
+msgstr "Сануулах"
+
+#: views/public/contribution/contribute.php:50
+msgid "What type of item do you want to contribute?"
+msgstr "Мэдээллийн ямар төрлийг дэмжих /contribute/ хүсэлтэй байна?"
+
+#: views/public/contribution/contribute.php:68
+msgid "Publish my contribution on the web."
+msgstr "Миний дэмжлэгийг /contribution/ вэбэд нийтлэх."
+
+#: views/public/contribution/contribute.php:73
+msgid "Keep identity private."
+msgstr "Хувийн төсөөг хадгалах."
+
+#: views/public/contribution/contribute.php:75
+msgid "Terms and Conditions"
+msgstr "Нөхцөл, Болзол"
+
+#: views/public/contribution/contribute.php:75
+#, php-format
+msgid "In order to contribute, you must read and agree to the %s"
+msgstr "Хувь нэмэр оруулахын тулд дараах зүйлийг уншаад , зөвөөрөх ёстой %s"
+
+#: views/public/contribution/contribute.php:79
+msgid "I agree to the Terms and Conditions."
+msgstr "Би нөхцлийг хүлээн зөвшөөрч байна."
+
+#: views/public/contribution/contribute.php:81
+msgid "Contribute"
+msgstr "Дэмжин ажиллах /Contribute/"
+
+#: views/public/contribution/my-contributions.php:11
+msgid "Added"
+msgstr "Нэмэгдсэн"
+
+#: views/public/contribution/terms.php:2
+msgid "Contribution Terms of Service"
+msgstr "Дэмжлэг үзүүлэх нөхцөл"
+
+#: views/public/contribution/thankyou.php:3
+msgid "Thank you for contributing!"
+msgstr "Дэмжлэг үзүүлсэнд баярлалаа!"
+
+#: views/public/contribution/thankyou.php:4
+msgid "make another contribution"
+msgstr "Өөр дэмжлэг үзүүлэх /contribution/"
+
+#: views/public/contribution/thankyou.php:4
+msgid "browse the archive"
+msgstr "архив үзэх"
+
+#: views/public/contribution/thankyou.php:4
+#, php-format
+msgid ""
+"Your contribution will show up in the archive once an administrator approves"
+" it. Meanwhile, feel free to %s or %s ."
+msgstr "Админ баталсанаар таны оруулсан хувь нэмэр архивт хүртэл харагдана. Үүний зэрэгцээ, %s эсвэл %s чөлөөтэй байна."
+
+#: views/public/contribution/thankyou.php:7
+msgid "this page"
+msgstr "энэ хуудас"
+
+#: views/public/contribution/thankyou.php:7
+#, php-format
+msgid ""
+"If you would like to interact with the site further, you can use an account "
+"that is ready for you. Visit %s, and request a new password for the email "
+"you used"
+msgstr "Хэрэв та сайттай цаашид хамтрахыг хүсэж байгаа бол, одоо хэрэглэж байгаа бүртгэлээ ашиглаж болно.  %s -рүү хандаж, хүсэлт илгээснээр та и-мэйл хаягаараа шинэ нууц үг хүлээн авах болно."
+
+#: views/public/contribution/type-form.php:3
+msgid "You must choose a contribution type to continue."
+msgstr "Та дэмжин ажиллах /contribution/ төрлийг сонгоод үргэлжлүүлнэ үү."
+
+#: views/public/contribution/type-form.php:5
+#, php-format
+msgid "Contribute a %s"
+msgstr "Хувь нэмэр оруулах /Contribute/ %s"
+
+#: views/public/contribution/type-form.php:14
+msgid "Upload a file"
+msgstr "Файлыг илгээх"
+
+#: views/public/contribution/type-form.php:34
+msgid "Upload a file (Optional)"
+msgstr "Файлыг илгээх (Заавал биш)"
+
+#: views/public/contribution/type-form.php:48
+msgid "Email (Optional)"
+msgstr "и-мэйл (заавал биш)"
+
+#: views/public/contribution/type-form.php:50
+msgid "Email (Required)"
+msgstr "Имэйл (Шаардлагатай)"
+
+#: views/public/contribution/type-form.php:67
+#, php-format
+msgid "You are logged in as: %s"
+msgstr "Та системд нэвтэрсэн байна: %s"
+
+#: views/public/contribution/type-form.php:82
+#, php-format
+msgid "Your %s profile"
+msgstr "Таны %s хувийн мэдээлэл"
+
+#: views/public/contribution/type-form.php:85
+#: views/public/contribution/type-form.php:87
+msgid "Show"
+msgstr "Харуулах"
+
+#: views/public/contribution/type-form.php:85
+#: views/public/contribution/type-form.php:87
+msgid "Hide"
+msgstr "Нуух"
