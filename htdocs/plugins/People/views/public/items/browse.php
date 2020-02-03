@@ -17,7 +17,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
         <?php foreach (range('A', 'Z') as $letter): ?>
         <?php if (in_array($letter, $validLetters)): ?>
                 <li<?php echo ($curLetter == $letter ? ' class="active"' : '');?>>
-                <a href="/people/<?php echo $letter?>"><?php echo $letter ?></a>
+                <a href="/people?firstLetter=<?php echo $letter?>"><?php echo $letter ?></a>
                 </li>
         <?php else: ?>
                 <li class="disabled">

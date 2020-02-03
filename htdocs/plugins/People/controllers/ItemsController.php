@@ -24,7 +24,24 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
     }
 
     // Filter by first letter of last name
-    $letter = $this->getParam('letter');
+
+    // Validate parameter
+    $letter = ucfirst((string)($this->getParam('firstLetter')));
+    if (strlen($letter) > 1) {
+      $letter = substr($letter, 0, 1);
+    }
+    if (!ctype_alpha($letter)) {
+      $letter = null;
+    }
+
+    // If the param is invalid, redirect.
+    if (!$letter && $this->getParam('firstLetter')) {
+      $this->redirect('/people');
+    }
+    elseif ($letter && $this->getParam('firstLetter') !== $letter) {
+      $this->redirect("/people?firstLetter={$letter}");
+    }
+
     if ($letter && $letter!== '') {
       $this->setParam('advanced', array(
         array(

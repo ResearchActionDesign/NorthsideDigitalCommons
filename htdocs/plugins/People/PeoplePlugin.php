@@ -23,16 +23,12 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
     $router = $args['router'];
 
     $router->addRoute('peopleDefault',
-      new Zend_Controller_Router_Route('people/:letter',
+      new Zend_Controller_Router_Route('people',
         array(
           'module'     => 'people',
           'controller' => 'items',
           'action'     => 'browse',
-          'letter' => '',
-        ),
-    array(
-      'letter' => '[A-Z]',
-    )
+        )
       )
     );
 
@@ -48,14 +44,6 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
         )
       )
     );
-
-//    if (is_admin_theme()) {
-//      $router->addRoute('contributionAdmin',
-//        new Zend_Controller_Router_Route('people/:controller/:action/*',
-//          array('module' => 'people',
-//            'controller' => 'items',
-//            'action' => 'index')));
-//    }
   }
 }
 
