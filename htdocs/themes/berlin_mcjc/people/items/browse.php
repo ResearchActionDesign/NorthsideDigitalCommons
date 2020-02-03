@@ -29,7 +29,12 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 </div>
 
 <?php foreach (loop('items') as $item): ?>
-    <div class="item record">
+  <?php
+    $itemClasses = "";
+    if (metadata('item', 'has files')) $itemClasses = " has-picture";
+    if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-bio";
+  ?>
+    <div class="item record<?php echo $itemClasses ?>">
         <h2><?php echo people_get_link_to_item(metadata('item', array('Dublin Core', 'Title')), array('class'=>'permalink')); ?></h2>
         <div class="item-meta">
           <?php if (metadata('item', 'has files')): ?>
@@ -41,12 +46,6 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
           <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
               <div class="item-description">
                 <?php echo $description; ?>
-              </div>
-          <?php endif; ?>
-
-          <?php if (metadata('item', 'has tags')): ?>
-              <div class="tags"><p><strong><?php echo __('Tags'); ?>:</strong>
-                  <?php echo tag_string('items'); ?></p>
               </div>
           <?php endif; ?>
 
