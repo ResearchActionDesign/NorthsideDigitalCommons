@@ -23,12 +23,16 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
     $router = $args['router'];
 
     $router->addRoute('peopleDefault',
-      new Zend_Controller_Router_Route('people',
+      new Zend_Controller_Router_Route('people/:letter',
         array(
           'module'     => 'people',
           'controller' => 'items',
-          'action'     => 'browse'
-        )
+          'action'     => 'browse',
+          'letter' => '',
+        ),
+    array(
+      'letter' => '[A-Z]',
+    )
       )
     );
 

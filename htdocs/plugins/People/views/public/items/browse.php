@@ -1,33 +1,32 @@
 <?php
 
 $browseByPerson = TRUE;
-$pageTitle = __('Browse People');
+$pageTitle = __('Meet our Neighbors');
+$curLetter = $vars['cur_letter'];
+$validLetters = $vars['letters'];
 
 echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 ?>
 
-<h1><?php echo $pageTitle;?> <?php echo __('(%s total)', $total_results); ?></h1>
+<h1><?php echo $pageTitle;?></h1>
 
-<?php if (!$browseByPerson): ?>
-    <nav class="items-nav navigation secondary-nav">
-      <?php echo public_nav_items(); ?>
-    </nav>
-
-<?php
-endif;
-echo $browseByPerson ? '' : item_search_filters();
-
-if (($total_results > 0) && (!$browseByPerson)):
-  $sortLinks[__('Title')] = 'Dublin Core,Title';
-  $sortLinks[__('Creator')] = 'Dublin Core,Creator';
-  $sortLinks[__('Date Added')] = 'added';
-  ?>
-    <div id="sort-links">
-        <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
-    </div>
-
-<?php endif; ?>
-<?php echo pagination_links(); ?>
+<div class="search-by-lastname">
+    <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
+    <ul>
+        <li<?php echo (!$curLetter ? ' class="active"' : '');?>><a href="/people">All</a></li>
+        <?php foreach (range('A', 'Z') as $letter): ?>
+        <?php if (in_array($letter, $validLetters)): ?>
+                <li<?php echo ($curLetter == $letter ? ' class="active"' : '');?>>
+                <a href="/people/<?php echo $letter?>"><?php echo $letter ?></a>
+                </li>
+        <?php else: ?>
+                <li class="disabled">
+                    <?php echo $letter ?>
+                </li>
+        <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>
 
 <?php foreach (loop('items') as $item): ?>
     <div class="item record">
