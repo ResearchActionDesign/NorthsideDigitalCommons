@@ -26,7 +26,7 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
       new Zend_Controller_Router_Route('people',
         array(
           'module'     => 'people',
-          'controller' => 'items',
+          'controller' => 'index',
           'action'     => 'browse',
         )
       )
