@@ -54,7 +54,8 @@ function people_get_link_to_item($title = null, $item = null) {
   if (empty($title)) {
     $title = metadata($item, array('Dublin Core', 'Title'));
   }
+  $url = url(array('name' => mb_strtolower(str_replace(' ', '-', $title))), 'peopleShow');
 
-  return '<a href="/people/show/'. html_escape(mb_strtolower(str_replace(' ', '-', $title))) . '">' . $title . '</a>';
+  return "<a href='{$url}'>{$title}</a>";
 
 }

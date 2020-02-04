@@ -13,11 +13,11 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 <div class="search-by-lastname">
     <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
     <ul>
-        <li<?php echo (!$curLetter ? ' class="active"' : '');?>><a href="/people">All</a></li>
+        <li<?php echo (!$curLetter ? ' class="active"' : '');?>><a href="<?php echo $this->url(array(), 'peopleDefault')?>">All</a></li>
         <?php foreach (range('A', 'Z') as $letter): ?>
         <?php if (in_array($letter, $validLetters)): ?>
                 <li<?php echo ($curLetter == $letter ? ' class="active"' : '');?>>
-                <a href="/people?firstLetter=<?php echo $letter?>"><?php echo $letter ?></a>
+                <a href="<?php echo $this->url(array(), 'peopleDefault', array('firstLetter' => $letter)) ?>"><?php echo $letter ?></a>
                 </li>
         <?php else: ?>
                 <li class="disabled">
