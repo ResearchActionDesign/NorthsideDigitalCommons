@@ -1,5 +1,6 @@
 <?php queue_css_file('lity', 'all', false, 'lity'); ?>
-<?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'people show person')); ?>
+<?php $itemTitle = metadata('item', 'display_title'); ?>
+<?php echo head(array('title' => $itemTitle,'bodyclass' => 'people show person')); ?>
 <?php
     $backButtonText = __('Back to all people');
     $itemClasses = "";
@@ -7,7 +8,7 @@
     $picture = false;
     if (metadata('item', 'has files')) {
       $itemClasses = " has-picture";
-      $picture = mcjc_files_for_item('item', array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""), 'show' => TRUE));
+      $picture = item_image('fullsize', array('alt' => $itemTitle));
     }
     if (metadata('item', array('Dublin Core', 'Description'))) {
       $itemClasses .= " has-bio";
@@ -15,7 +16,7 @@
     }
 ?>
 <div class="primary person<?php echo $itemClasses?>">
-  <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
+  <h1><?php echo metadata('item', 'display_title'); ?></h1>
 
   <!-- Item files -->
   <?php if ($picture): ?>

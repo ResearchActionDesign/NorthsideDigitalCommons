@@ -24,7 +24,7 @@ class People_IndexController extends Omeka_Controller_AbstractActionController
     $this->setParam('type', 12);
 
     if (!$this->getParam('sort_field')) {
-      $this->setParam('sort_field', 'Dublin Core:Subject');
+      $this->setParam('sort_field', 'Dublin Core,Subject');
     }
 
     // Filter by first letter of last name

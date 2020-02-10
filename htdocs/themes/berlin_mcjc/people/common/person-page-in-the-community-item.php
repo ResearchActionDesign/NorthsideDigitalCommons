@@ -1,22 +1,14 @@
-<div class="oral-history">
-  <h2><?php echo metadata($item, array('Dublin Core','Title')); ?>: <?php echo oral_history_item_subtitle($item); ?></h2>
-
-  <!-- Item files -->
-  <?php if (metadata($item, 'has files')): ?>
-    <div id="player" class="element">
-      <?php echo mcjc_render_oral_history_players($item); ?>
+<?php $itemTitle = metadata($item,'display_title'); ?>
+<div class="in-the-community-item tile">
+  <div class="item-label tile__label">
+    <div class="item-title tile__title"><?php echo link_to_item($itemTitle, array('class'=>'permalink')); ?></div>
+    <div class="item-description tile__description">
+      <?php echo metadata($item, array('Dublin Core','Description')); ?>
     </div>
-  <?php endif; ?>
-
-  <div id="item-description">
-    <?php echo metadata($item, array('Dublin Core','Description')); ?>
   </div>
-
-  <?php if ($sohp_url = mcjc_get_linked_sohp_interview($item)): ?>
-    <div class="item-metadata sohp">
-      <a target="_blank" href="<?php echo html_escape($sohp_url) ?>"><?php echo __('View Details at Southern Oral History Program website'); ?></a>
+  <?php if (metadata($item, 'has files')): ?>
+    <div class="item-img tile__image">
+      <?php echo item_image('square_thumbnail', array('alt' => $itemTitle), 0, $item) ?>
     </div>
   <?php endif; ?>
-
-  <?php echo link_to_item(__('View oral history details'), array('class' => 'button item-link'), 'show', $item); ?>
 </div>

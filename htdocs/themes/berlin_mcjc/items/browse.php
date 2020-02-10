@@ -25,12 +25,13 @@ $sortLinks[__('Date Added')] = 'added';
 <?php echo pagination_links(); ?>
 
 <?php foreach (loop('items') as $item): ?>
+<?php $itemTitle = metadata('item', 'display_title');
 <div class="item record">
-    <h2><?php echo link_to_item(metadata('item', array('Dublin Core', 'Title')), array('class'=>'permalink')); ?></h2>
+    <h2><?php echo link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
     <div class="item-meta">
     <?php if (metadata('item', 'has files')): ?>
     <div class="item-img">
-        <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
+        <div class="item-images"><?php echo mcjc_files_for_item(); // TODO: replace with item_image? ?></div>
     </div>
     <?php endif; ?>
 

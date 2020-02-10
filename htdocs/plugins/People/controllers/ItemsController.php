@@ -143,6 +143,7 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
    * @return array
    */
   private function _getInTheCommunity() {
+    // TODO: Fill in In the Community Section.
     return array();
   }
 

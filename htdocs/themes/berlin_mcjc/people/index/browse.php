@@ -30,16 +30,17 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 
 <?php foreach (loop('items') as $item): ?>
   <?php
+    $itemTitle = metadata('item', 'display_title');
     $itemClasses = "";
     if (metadata('item', 'has files')) $itemClasses = " has-picture";
     if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-bio";
   ?>
     <div class="item record<?php echo $itemClasses ?>">
-        <h2><?php echo people_get_link_to_item(metadata('item', array('Dublin Core', 'Title')), array('class'=>'permalink')); ?></h2>
+        <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
         <div class="item-meta">
           <?php if (metadata('item', 'has files')): ?>
               <div class="item-img">
-                  <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
+                  <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
               </div>
           <?php endif; ?>
 
@@ -57,6 +58,6 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 
 <?php echo pagination_links(); ?>
 
-<?php fire_plugin_hook('public_items_browse', array('items'=>$items, 'view' => $this)); ?>
+<?php fire_plugin_hook('public_items_browse', array('items'=> $items, 'view' => $this)); ?>
 
 <?php echo foot(); ?>
