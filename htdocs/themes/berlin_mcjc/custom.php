@@ -6,8 +6,9 @@
  *
  * @return string
  */
-function oral_history_item_subtitle() {
-  $item = get_current_record('item');
+function oral_history_item_subtitle($item = false) {
+  if (!$item) $item = get_current_record('item');
+
   $convertNameFormat = function ($s) {
     if (strpos($s,
         ',') !== FALSE
@@ -79,6 +80,18 @@ function mcjc_random_featured_items($count = 5, $hasImage = null)
     $html = '<p>' . __('No featured items are available.') . '</p>';
   }
   return $html;
+}
+
+/**
+ * Render audio player for an oral history item.
+ */
+function mcjc_render_oral_history_players($item, $wrapperAttributes = array('class' => 'item-file')) {
+  $files = $item->Files;
+  $output = "";
+  foreach (array_filter($files, function($file) { return substr($file->mime_type, 0, 5) === 'audio'; }) as $audiofile) {
+    $output .= get_view()->mcjcFileMarkup($audiofile, array(), $wrapperAttributes);
+  }
+  return $output;
 }
 
 /**
@@ -192,9 +205,9 @@ function mcjc_sort_files($files) {
   return($files);
 }
 
-function mcjc_get_linked_sohp_interview()
+function mcjc_get_linked_sohp_interview($item = false)
 {
-  $item = get_current_record('item');
+  if (!$item) $item = get_current_record('item');
 
   if (metadata($item, array('Dublin Core', 'Creator')) === "Southern Oral History Program") {
     // TODO: Check if source is a valid link.

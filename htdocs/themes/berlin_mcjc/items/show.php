@@ -1,8 +1,9 @@
 <?php queue_css_file('lity', 'all', false, 'lity'); ?>
-<?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
+<?php $itemTitle = metadata('item', 'display_title');
+<?php echo head(array('title' => $itemTitle,'bodyclass' => 'items show')); ?>
 <?php $isPerson = (metadata('item', array('Dublin Core', 'Type')) === 'Person'); ?>
 <div id="primary">
-    <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
+    <h1><?php echo $itemTitle; ?></h1>
   <?php
   if (metadata('item', array('Dublin Core', 'Type')) == 'Oral History'):?>
     <div id="item-__oral-history-subtitle">
