@@ -63,7 +63,7 @@ if (
         'Skip to main content'
     ); ?></a>
     <?php fire_plugin_hook('public_body', ['view' => $this]); ?>
-        <header role="banner">
+        <header id="home_page_header_container" role="banner">
             <?php fire_plugin_hook('public_header', ['view' => $this]); ?>
             <div id="site-title"><?php echo link_to_home_page(
                 theme_logo()
