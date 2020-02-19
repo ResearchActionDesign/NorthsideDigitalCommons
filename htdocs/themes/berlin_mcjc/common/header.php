@@ -58,16 +58,12 @@ if (
   <?php queue_js_file('globals'); ?>
   <?php echo head_js(); ?>
 </head>
- <?php echo body_tag(['id' => @$bodyid, 'class' => @$bodyclass]); ?>
-    <a href="#content" id="skipnav"><?php echo __(
-        'Skip to main content'
-    ); ?></a>
-    <?php fire_plugin_hook('public_body', ['view' => $this]); ?>
-        <header role="banner">
-            <?php fire_plugin_hook('public_header', ['view' => $this]); ?>
-            <div id="site-title"><?php echo link_to_home_page(
-                theme_logo()
-            ); ?></div>
+ <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass)); ?>
+    <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
+    <?php fire_plugin_hook('public_body', array('view'=>$this)); ?>
+        <header id="home_page_header_container" role="banner">
+            <?php fire_plugin_hook('public_header', array('view'=>$this)); ?>
+            <div id="site-title"><?php echo link_to_home_page(theme_logo()); ?></div>
             <div id="primary-nav" role="navigation">
               <?php echo public_nav_main(); ?>
             </div>
