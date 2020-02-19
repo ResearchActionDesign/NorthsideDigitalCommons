@@ -56,7 +56,7 @@ if ($title == "Search Items" AND @$_REQUEST['query'] AND empty(@$_REQUEST['searc
  <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass)); ?>
     <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
     <?php fire_plugin_hook('public_body', array('view'=>$this)); ?>
-        <header role="banner">
+        <header id="home_page_header_container" role="banner">
             <?php fire_plugin_hook('public_header', array('view'=>$this)); ?>
             <div id="site-title"><?php echo link_to_home_page(theme_logo()); ?></div>
             <div id="primary-nav" role="navigation">
