@@ -1,6 +1,6 @@
 <?php echo head(['bodyid' => 'home', 'bodyclass']); ?>
-<div id="primary">
-    <?php if (get_theme_option('homepage_video')): ?>
+<div id="video-container">
+<?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
         <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/images/homepage_video.jpg" muted>
             <source src="/themes/berlin_mcjc/video/MCJCOrig--vp9.webm" type='video/webm;codecs="vp9, vorbis"'>
@@ -9,7 +9,8 @@
         </video>
     </div>
     <?php endif; ?>
-
+</div>
+<div id="primary">
   <?php if ($homepageText = get_theme_option('Homepage Text')): ?>
     <div id="homepage-text"><?php echo $homepageText; ?></div>
   <?php endif; ?>
