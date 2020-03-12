@@ -11,6 +11,8 @@ based on Omeka version 2.5.1
 * To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
 * Visit http://0.0.0.0 in your browser to view the site. You can also add a hosts file config mapping a different URL
 to this IP address, for example: `0.0.0.0		mcjc-omeka.l`.
+* You may need to reset the admin password, which can be done by running `docker-compose exec db sh -c 'exec mysql -uroot -proot omeka -e "UPDATE omeka_users SET password=sha1(concat(salt, \'password\')) WHERE username=\'adminmcjc\';"'` from the command line.
+* After running that command, the admin user will be `adminmcjc` with password `password`.
 
 ### Refreshing local database
 
