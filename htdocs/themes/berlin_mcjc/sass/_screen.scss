@@ -188,7 +188,7 @@ img a {
 
 header {
   @include container;
-  padding: rhythm(2) 0;
+  padding: 0 0;
   position: relative;
 }
 
@@ -423,10 +423,6 @@ header {
     float: left;
     position: relative;
     overflow: visible;
-
-    &:first-child > a {
-      border-left: 1px solid #ccc;
-    }
   }
 
   /* first descendant link within a top level navigation item */
@@ -434,7 +430,6 @@ header {
     position: relative;
     display: inline-block;
     margin: 0 0 -1px 0;
-    border: 1px solid #ccc;
   }
 
   .nav-item:not(:first-child) > a {
@@ -517,11 +512,10 @@ header {
 
   a {
     behavior: url("../javascripts/boxsizing.htc");
-    @include box-sizing(border-box);
+    // @include box-sizing(border-box);
     text-decoration: none;
     display: block;
     padding: rhythm(0.5) 18px;
-    background: #fafafa;
   }
 
   a:hover,
@@ -624,10 +618,9 @@ header {
 
 #content {
   overflow: hidden;
-  border: 1px solid #ccc;
   background: #fff;
   @include container;
-  padding: rhythm(1) 10px;
+  padding: 0 0;
   z-index: 0;
 }
 
@@ -676,18 +669,16 @@ nav + .exhibit {
 
 #home {
   #primary {
-    float: left;
     @include columns(8);
     @include alpha;
-    margin-right: 0;
-    padding-right: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
-
   #secondary {
-    float: right;
     @include columns(8);
     @include omega;
-    padding-left: 10px;
   }
 
   #content h2 {
@@ -1191,6 +1182,7 @@ footer {
   @include container;
   overflow: hidden;
   @include leader();
+  background-color: #eaeaea;
 
   a {
     text-decoration: none;

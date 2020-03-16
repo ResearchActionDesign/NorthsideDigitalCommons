@@ -31,8 +31,8 @@ $margin: 10px;
 @mixin container {
   position: relative;
   margin: 0 auto;
-  padding: 0;
-  width: $base-width;
+  padding: 0 0;
+  width: 100%;
 
   &:after {
     content: "\0020";
@@ -42,24 +42,22 @@ $margin: 10px;
     visibility: hidden;
   }
 
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
-    width: $tablet-width;
-  }
+  //   @media only screen and (min-width: 768px) and (max-width: 959px) {
+  //     width: 100%;
+  //   }
 
-  @media only screen and (max-width: 767px) {
-    width: $mobile-portrait-width;
-  }
+  //   @media only screen and (max-width: 767px) {
+  //     width: 100%;
+  //   }
 
-  @media only screen and (min-width: 480px) and (max-width: 767px) {
-    width: $mobile-landscape-width;
-  }
+  //   @media only screen and (min-width: 480px) and (max-width: 767px) {
+  //     width: 100%;
+  //   }
 }
 
 @mixin column {
-  float: left;
-  display: inline;
-  margin-left: $margin;
-  margin-right: $margin;
+  margin-left: auto;
+  margin-right: auto;
 
   @media only screen and (max-width: 767px) {
     margin: 0;
@@ -78,51 +76,51 @@ $margin: 10px;
   margin-right: 0;
 }
 
-@mixin columns($num: 1) {
-  @include column;
-  width: skeleton-column-width($num, $base-width);
+// @mixin columns($num: 1) {
+//   @include column;
+//   width: 100%;
 
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
-    width: skeleton-column-width($num, $tablet-width);
-  }
+//   @media only screen and (min-width: 768px) and (max-width: 959px) {
+//     width: 100%;
+//   }
 
-  @media only screen and (max-width: 767px) {
-    width: $mobile-portrait-width;
-  }
+//   @media only screen and (max-width: 767px) {
+//     width: 100%;
+//   }
 
-  @media only screen and (min-width: 480px) and (max-width: 767px) {
-    width: $mobile-landscape-width;
-  }
-}
+//   @media only screen and (min-width: 480px) and (max-width: 767px) {
+//     width: $mobile-landscape-width;
+//   }
+// }
 
 @mixin third($num: 1) {
   @include column;
   width: skeleton-third-width($num, $base-width);
 
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
-    width: skeleton-third-width($num, $tablet-width);
-  }
+  //   @media only screen and (min-width: 768px) and (max-width: 959px) {
+  //     width: skeleton-third-width($num, $tablet-width);
+  //   }
 
-  @media only screen and (max-width: 767px) {
-    width: $mobile-portrait-width;
-  }
+  //   @media only screen and (max-width: 767px) {
+  //     width: $mobile-portrait-width;
+  //   }
 
-  @media only screen and (min-width: 480px) and (max-width: 767px) {
-    width: $mobile-landscape-width;
-  }
+  //   @media only screen and (min-width: 480px) and (max-width: 767px) {
+  //     width: $mobile-landscape-width;
+  //   }
 }
 
 @mixin offset($num: 1) {
   $offset: 2 * $margin;
   padding-left: skeleton-column-width($num, $base-width) + $offset;
 
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
-    padding-left: skeleton-column-width($num, $tablet-width) + $offset;
-  }
+  //   @media only screen and (min-width: 768px) and (max-width: 959px) {
+  //     padding-left: skeleton-column-width($num, $tablet-width) + $offset;
+  //   }
 
-  @media only screen and (max-width: 767px) {
-    padding-left: 0;
-  }
+  //   @media only screen and (max-width: 767px) {
+  //     padding-left: 0;
+  //   }
 }
 
 // #Clearing
