@@ -1,9 +1,10 @@
 /* styles for home page header */
 #home_page_header_container {
   display: grid;
-  grid-template-columns: 400px 450px 130px;
+  grid-template-columns: 30% 45% 25%;
   justify-content: center;
   grid-template-areas: "title nav search";
+  padding: 50px;
 }
 /* styles for homepage bottom menu */
 
@@ -77,4 +78,5 @@
   } */
 #video-container {
   width: 100%;
+  padding-bottom: 100px;
 }
