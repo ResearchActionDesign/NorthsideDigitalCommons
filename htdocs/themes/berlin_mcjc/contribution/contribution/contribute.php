@@ -21,19 +21,20 @@ if(get_option('contribution_user_profile_type') && plugin_is_active('UserProfile
     queue_css_string("input.add-element {display: block}");
 }
 
-$head = array('title' => 'Contribute',
-              'bodyclass' => 'contribution');
+$head = array('title' => 'Add Your Story',
+              'bodyclass' => 'contribution form');
 echo head($head); ?>
 <script type="text/javascript">
 // <![CDATA[
 enableContributionAjaxForm(<?php echo js_escape(url($contributionPath.'/type-form')); ?>);
 // ]]>
 </script>
-
+<div class="title">
+    <h1><?php echo $head['title']; ?></h1>
+</div>
 <div id="primary">
 <?php echo flash(); ?>
-    
-    <h1><?php echo $head['title']; ?></h1>
+
 
     <?php if(! ($user = current_user() )
               && !(get_option('contribution_open') )
