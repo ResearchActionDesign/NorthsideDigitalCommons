@@ -253,3 +253,75 @@ function mcjc_get_submenu() {
   return $view->navigation()->menu($nav)->setMaxDepth(1)->renderSubmenu();
   // @TODO: Handle Zend_Navigation_Exception
 }
+
+function mcjc_sort_tags_by_first_letter($tags = null) {
+  if (!$tags) return [];
+
+  $output = [];
+
+  foreach ($tags as $tag) {
+    $firstLetter = ucfirst($tag->name)[0];
+    if (!ctype_alpha($firstLetter)) {
+      $firstLetter = '123';
+    }
+    if (!isset($output[$firstLetter])) {
+      $output[$firstLetter] = [];
+    }
+    $output[$firstLetter][] = $tag;
+  }
+
+  return $output;
+}
+
+/**
+ * Create a tag list with alphabetical pager.
+ *
+ * Based on globals.php tag_cloud function.
+ *
+ * @param Omeka_Record_AbstractRecord|array $recordOrTags The record to retrieve
+ * tags from, or the actual array of tags
+ * @param string|null $link The URI to use in the link for each tag. If none
+ * given, tags in the cloud will not be given links.
+ * @param int $maxClasses
+ * @param bool $tagNumber
+ * @param string $tagNumberOrder
+ * @return string HTML for the tag cloud
+ */
+function mcjc_tags_list($recordOrTags = null, $tagNumber = false, $tagNumberOrder = null)
+{
+  if (!$recordOrTags) {
+    $tags = array();
+  } elseif (is_string($recordOrTags)) {
+    $tags = get_current_record($recordOrTags)->Tags;
+  } elseif ($recordOrTags instanceof Omeka_Record_AbstractRecord) {
+    $tags = $recordOrTags->Tags;
+  } else {
+    $tags = $recordOrTags;
+  }
+
+  if (empty($tags)) {
+    return '<p>' . __('No tags are available.') . '</p>';
+  }
+  $html = '<div class="tags__list">';
+  $tagCount = count($tags);
+  foreach ($tags as $index => $tag) {
+    $html .= '<span class="tags__tag">';
+    // TODO -- should be url(array('tag' => $tag['name']), 'tagShow') once that controller has been created.
+    $html .= '<a href="/tags/' . utf8_htmlspecialchars($tag['name']) . '">';
+    if ($tagNumber && $tagNumberOrder == 'before') {
+      $html .= ' <span class="count">'.$tag['tagCount'].'</span> ';
+    }
+    $html .= html_escape($tag['name']);
+    if ($tagNumber && $tagNumberOrder == 'after') {
+      $html .= ' <span class="count">'.$tag['tagCount'].'</span> ';
+    }
+    $html .= '</a>';
+    $html .= '</span>';
+    if ($index !== $tagCount - 1) {
+      $html .= ', ';
+    }
+  }
+  $html .= '</div>';
+
+  return $html;
+}
