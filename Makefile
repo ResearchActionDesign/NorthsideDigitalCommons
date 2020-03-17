@@ -4,7 +4,7 @@ prepare-site:
 	cp htdocs/application/config/config.ini.example htdocs/application/config/config.ini
 
 up:
-	docker-compose up -d
+	docker-sync-stack start
 
 down:
 	docker-compose down

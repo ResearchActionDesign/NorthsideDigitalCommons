@@ -4,6 +4,7 @@ based on Omeka version 2.5.1
 
 ## Local set-up
 
+* Install docker-sync by running `gem install docker-sync`.
 * Run `make prepare-site`. This will copy each of the the example config files into a new file without the `.example` extension.
 * Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
 * Optional: Put a version of the files directory in `htdocs/files`
