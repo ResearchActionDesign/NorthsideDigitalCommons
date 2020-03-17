@@ -5,8 +5,8 @@ services:
     # Uncomment the next line if you need to build the docker image locally.
     # build: .docker/
     volumes:
-      - ./htdocs:/var/www/html:cached
-      - ./.docker:/etc/apache2/sites-available:cached
+      - htdocs-sync:/var/www/html:nocopy
+      - ./.docker:/etc/apache2/sites-available:delegated
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
     container_name: mcjc-omeka.l
@@ -20,7 +20,7 @@ services:
   db:
       image: mysql:5.7
       volumes:
-        - ./db:/docker-entrypoint-initdb.d:cached
+        - db-sync:/docker-entrypoint-initdb.d:nocopy
       environment:
         MYSQL_DATABASE: 'omeka'
         MYSQL_ROOT_PASSWORD: 'root'
@@ -36,7 +36,10 @@ services:
       - ./htdocs/themes/berlin_mcjc/images:/images
 
 volumes:
-  mysql-data:
-    driver: local
+  db-sync:
+    external: true
+  htdocs-sync:
+    external: true
+
 #  omeka-htdocs-sync:
 #    external: true
