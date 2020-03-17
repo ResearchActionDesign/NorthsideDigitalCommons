@@ -1,5 +1,5 @@
 <?php queue_css_file('lity', 'all', false, 'lity'); ?>
-<?php $itemTitle = metadata('item', 'display_title');
+<?php $itemTitle = metadata('item', 'display_title'); ?>
 <?php echo head(array('title' => $itemTitle,'bodyclass' => 'items show')); ?>
 <?php $isPerson = (metadata('item', array('Dublin Core', 'Type')) === 'Person'); ?>
 <div id="primary">
