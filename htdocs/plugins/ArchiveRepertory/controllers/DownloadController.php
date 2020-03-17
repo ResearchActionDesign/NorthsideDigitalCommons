@@ -20,12 +20,18 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
     protected $_sourcePage;
     protected $_toConfirm;
 
+    // Make compatible with plugin AdminImages
+    protected $_hasPluginAdminImages;
+    protected $_isAdminImage;
+
     /**
      * Initialize the controller.
      */
     public function init()
     {
         $this->session = new Zend_Session_Namespace('DownloadFile');
+        // The files of plugin AdminImages are available even when disabled.
+        $this->_hasPluginAdminImages = file_exists(PLUGIN_DIR . '/AdminImages/AdminImagesPlugin.php');
     }
 
     /**
@@ -39,10 +45,23 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
     }
 
     /**
-     * Check if a file can be deliver in order to avoid bandwidth theft.
+     * Check if a file can be delivered in order to avoid bandwidth theft.
      */
     public function filesAction()
     {
+        $confirmBySession = (bool) get_option('archive_repertory_confirm_by_session');
+        if ($confirmBySession) {
+            $session = new Zend_Session_Namespace('ArchiveRepertoryDownload');
+            $lastConfirm = isset($session->last_confirm)
+                ? $session->last_confirm
+                : 0;
+            // Check if the session is less than 24h old.
+            if (($lastConfirm + 86400) > time()) {
+                $this->_sendFile();
+                return;
+            }
+        }
+
         // Prepare session (allow only one confirmation).
         $this->session->setExpirationHops(2);
 
@@ -56,7 +75,14 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
         }
 
         // File is good.
-        if ($this->_getToConfirm()) {
+
+        // Plugin AdminImage uses the same folders than standards files, but
+        // should not be checked.
+        if ($this->_isAdminImage) {
+            $this->_sendFile();
+        }
+        // Check if the user should confirm download.
+        elseif ($this->_getToConfirm()) {
             // Filepath is not saved in session for security reason.
             $this->session->filename = $this->_filename;
             $this->session->type = $this->_type;
@@ -91,6 +117,15 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
         if (!$form->isValid($post)) {
             $this->_helper->flashMessenger(__('Invalid form input. Please see errors below and try again.'), 'error');
             return;
+        }
+
+        $confirmBySession = (bool) get_option('archive_repertory_confirm_by_session');
+        if ($confirmBySession) {
+            $session = new Zend_Session_Namespace('ArchiveRepertoryDownload');
+            if (!isset($session->last_confirm)) {
+                $session->setExpirationSeconds(86400);
+            }
+            $session->last_confirm = time();
         }
 
         // Reset filename and type in session, because they have been checked.
@@ -144,7 +179,8 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
             $this->view->stats()->new_hit(
                 // The redirect to is not useful, so keep original url.
                 '/files/' . $type . '/' . $filename,
-                $file);
+                $file
+            );
         }
 
         // Clears all active output buffers to avoid memory overflow.
@@ -189,6 +225,10 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
 
         if (!$this->_getFilesize()) {
             return false;
+        }
+
+        if ($this->_hasPluginAdminImages && $this->isAdminImage()) {
+            return true;
         }
 
         if (!$this->_getFile()) {
@@ -249,6 +289,10 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
 
         if (!$this->_getFilesize()) {
             return false;
+        }
+
+        if ($this->_hasPluginAdminImages && $this->isAdminImage()) {
+            return true;
         }
 
         if (!$this->_getFile()) {
@@ -341,7 +385,7 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
         if (is_null($this->_filepath)) {
             $filename = $this->_getFilename();
             $storage = $this->_getStorage();
-            $storagePath = FILES_DIR . DIRECTORY_SEPARATOR . $this->_storage . DIRECTORY_SEPARATOR;
+            $storagePath = FILES_DIR . DIRECTORY_SEPARATOR . $storage . DIRECTORY_SEPARATOR;
             $filepath = realpath($storagePath . $filename);
             if (strpos($filepath, $storagePath) !== 0) {
                 return false;
@@ -376,11 +420,12 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
     {
         if (is_null($this->_file)) {
             $filename = $this->_getFilename();
-            if ($this->_getStorage() == 'original') {
+            $storage = $this->_getStorage();
+            if ($storage == 'original') {
                 $this->_file = get_db()->getTable('File')->findBySql('filename = ?', array($filename), true);
             }
-           // Get a derivative: this is functional only because filenames are
-           // hashed.
+            // Get a derivative: this is functional only because filenames are
+            // hashed.
             else {
                 $originalFilename = substr($filename, 0, strlen($filename) - strlen(File::DERIVATIVE_EXT) - 1);
                 $this->_file = get_db()->getTable('File')->findBySql('filename LIKE ?', array($originalFilename . '%'), true);
@@ -389,7 +434,9 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
             // Check rights: if the file belongs to a public item.
             if (empty($this->_file)) {
                 $this->_file = false;
-            } else {
+            }
+            // Check public item only if item id exists (plugin AdminImages).
+            elseif ($this->_file->item_id) {
                 $item = $this->_file->getItem();
                 if (empty($item)) {
                     $this->_file = false;
@@ -435,7 +482,7 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
             // Check for captcha;
             else {
                 $filesize = $this->_getFilesize();
-                $this->_toConfirm = ($filesize > (integer) get_option('archive_repertory_download_max_free_download'));
+                $this->_toConfirm = ($filesize > (int) get_option('archive_repertory_download_max_free_download'));
             }
         }
 
@@ -468,7 +515,7 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
 
                 case 'size':
                     $filesize = $this->_getFilesize();
-                    $this->_mode = ($filesize > (integer) get_option('archive_repertory_download_max_free_download'))
+                    $this->_mode = ($filesize > (int) get_option('archive_repertory_download_max_free_download'))
                         ? 'attachment'
                         : 'inline';
                     break;
@@ -484,7 +531,7 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
                     $filesize = $this->_getFilesize();
                     $contentType = $this->_getContentType();
                     $this->_mode = (strpos($contentType, 'image') === false
-                            || $filesize > (integer) get_option('archive_repertory_download_max_free_download'))
+                            || $filesize > (int) get_option('archive_repertory_download_max_free_download'))
                         ? 'attachment'
                         : 'inline';
                     break;
@@ -571,5 +618,59 @@ class ArchiveRepertory_DownloadController extends Omeka_Controller_AbstractActio
                 return (int) $size . ' ' . $unit;
             }
         }
+    }
+
+    /**
+     * Check if the file is an admin image.
+     *
+     * @return bool
+     */
+    protected function isAdminImage()
+    {
+        // The plugin is not checked: even disabled, the image should load.
+        if (!is_null($this->_isAdminImage)) {
+            return $this->_isAdminImage;
+        }
+
+        $filename = $this->_getFilename();
+        $isOriginal = $this->_getType() === 'original';
+        if ($isOriginal) {
+            $bind = array($filename);
+            $equalOrLike = '=';
+        } else {
+            $originalFilename = substr($filename, 0, strlen($filename) - strlen(File::DERIVATIVE_EXT) - 1);
+            $bind = array($originalFilename . '%');
+            $equalOrLike = 'LIKE';
+        }
+
+        $db = get_db();
+        $sql = <<<SQL
+SELECT files.id, files.mime_type
+FROM $db->File AS files
+WHERE files.item_id = 0
+AND files.filename $equalOrLike ?
+LIMIT 1
+SQL;
+        $result = $db->fetchPairs($sql, $bind);
+
+        if ($result) {
+            if ($isOriginal) {
+                $this->_contentType = reset($result);
+            } else {
+                $this->_contentType = 'image/jpeg';
+                reset($result);
+            }
+            $this->_file = array(
+                'record_type' => 'File',
+                'record_id' => key($result),
+            );
+            $this->_mode = 'inline';
+            $this->_toConfirm = false;
+            $this->_isAdminImage = true;
+        } else {
+            $this->_isAdminImage = false;
+        }
+
+        return $this->_isAdminImage;
     }
 }
