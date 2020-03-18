@@ -29,7 +29,7 @@ and then `docker push timstallmann/apache-omeka:latest`.
 To use a locally built customized image, comment out the `image` line under the `web` service in `docker-compose.yml` and 
 uncomment the `build` line.
 
-## Required plug-ins
+## Required plug-ins`
 
 The following plugins are required:
 * Archive Repertory
