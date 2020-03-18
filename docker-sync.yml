@@ -1,0 +1,6 @@
+version: "2"
+syncs:
+  htdocs-sync:
+    src: './htdocs'
+  db-sync:
+    src: './db'

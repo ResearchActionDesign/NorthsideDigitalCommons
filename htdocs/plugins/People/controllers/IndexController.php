@@ -4,7 +4,7 @@
  */
 
 /**
- * Class People_IndexsController
+ * Class People_IndexController
  *
  * Renders root /people page.
  */
