@@ -1,6 +1,3 @@
-.test {
-  margin: auto;
-}
 @import "normalize";
 @import "screen";
 
@@ -8,6 +5,7 @@
 @import "screen-custom";
 @import "home-page";
 @import "header";
+@import "search";
 
 // Small screen styles.
 @media screen and (max-width: 768px) {

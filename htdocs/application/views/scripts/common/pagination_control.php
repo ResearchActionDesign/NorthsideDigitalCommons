@@ -3,17 +3,18 @@ if ($this->pageCount > 1):
     $getParams = $_GET;
 ?>
 <nav class="pagination-nav" aria-label="<?php echo __('Pagination'); ?>">
-    <ul class="pagination">
-        <?php if (isset($this->previous)): ?>
-        <!-- Previous page link -->
-        <li class="pagination_previous">
-            <?php $getParams['page'] = $previous; ?>
-            <a rel="prev" href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>"><?php echo __('Previous Page'); ?></a>
-        </li>
-        <?php endif; ?>
+  <ul class="pagination">
+    <?php if (isset($this->previous)): ?>
+    <!-- Previous page link -->
+    <li class="pagination_previous">
+      <?php $getParams['page'] = $previous; ?>
+      <a rel="prev"
+        href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>"><?php echo __('Previous Page'); ?></a>
+    </li>
+    <?php endif; ?>
 
-        <li class="page-input">
-        <form action="<?php echo html_escape($this->url()); ?>" method="get" accept-charset="utf-8">
+    <li class="page-input">
+      <div action="<?php echo html_escape($this->url()); ?>" method="get" accept-charset="utf-8">
         <?php
         $hiddenParams = array();
         $entries = explode('&', http_build_query($getParams));
@@ -38,17 +39,18 @@ if ($this->pageCount > 1):
                     . html_escape($this->current) . '">';
         echo __('%s of %s', $pageInput, $this->last);
         ?>
-        </form>
-        </li>
+      </div>
+    </li>
 
-        <?php if (isset($this->next)): ?>
-        <!-- Next page link -->
-        <li class="pagination_next">
-            <?php $getParams['page'] = $next; ?>
-            <a rel="next" href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>"><?php echo __('Next Page'); ?></a>
-        </li>
-        <?php endif; ?>
-    </ul>
+    <?php if (isset($this->next)): ?>
+    <!-- Next page link -->
+    <li class="pagination_next">
+      <?php $getParams['page'] = $next; ?>
+      <a rel="next"
+        href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>"><?php echo __('Next Page'); ?></a>
+    </li>
+    <?php endif; ?>
+  </ul>
 </nav>
 
 <?php endif; ?>
