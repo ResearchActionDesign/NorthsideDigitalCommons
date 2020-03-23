@@ -39,24 +39,30 @@
 /*footer*/
 #footer-content {
   display: flex;
-  margin-left: 100px;
-  margin-top: 20px;
+  flex-wrap: wrap;
 }
 #footer-text {
+  display: block;
   flex: 1;
-  margin-right: 200px;
+  padding: 20px;
+  width: 50%;
 }
 .center-div nav {
   width: 10px;
   padding-top: 40px;
 }
 #footer-nav {
-  width: 200px;
+  display: block;
+  width: 20%;
+  padding: 20px;
 }
 #footer-logo {
-  flex: 1;
-  padding-top: 50px;
+  display: block;
   align-content: center;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
 }
 #footer-omeka {
   flex: 1;
