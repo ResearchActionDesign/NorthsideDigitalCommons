@@ -9,51 +9,19 @@ const PERSON_ITEM_TYPE = 12;
 const DUBLIN_CORE_TITLE_ELEMENT_ID = 50;
 
 
-class People_ItemsController extends Omeka_Controller_AbstractActionController
+class People_ItemsController extends AbstractMCJCItemController
 {
-  private $_person = false;
   private $_subjectRelations = [];
   private $_objectRelations = [];
-
-  /**
-   * Retrieve correct person record for this action, based on 'name' parameter (only used on show action).
-   *
-   * @return object|bool
-   * @uses Omeka_Controller_Action_Helper_Db::findById()
-   * @throws Omeka_Controller_Exception_404
-   */
-  private function _getPersonRecordForShow() {
-    $personName = str_replace('-',' ', $this->getParam('name'));
-    $peopleTable = $this->_helper->_db->getTable();
-    $namesTable = $this->_helper->_db->getTable('ElementText');
-
-    $nameSelect = $namesTable->getSelectForFindBy([
-      'record_type' => 'Item',
-      'element_id' => DUBLIN_CORE_TITLE_ELEMENT_ID,
-    ]);
-    $nameSelect->where("`element_texts`.`text` LIKE ?", $personName);
-    $matchingNames = $namesTable->fetchObjects($nameSelect);
-
-    $matchingIds = array_map(function ($record) { return $record->record_id; }, $matchingNames);
-
-    if (count($matchingIds) === 0) {
-      throw new Omeka_Controller_Exception_404;
-    }
-
-    $select = $peopleTable->getSelect();
-    $peopleTable->filterByItemType($select, 'Person');
-    $select->where("`items`.`id` IN (?)", $matchingIds);
-    $records = $peopleTable->fetchObjects($select);
-
-    if (count($records)) {
-      $this->_person = $records[0];
-    }
+  protected function getItemType()
+  {
+    return PERSON_ITEM_TYPE;
   }
 
   private function _getRelations() {
-    if (!$this->_person) return;
-    $this->_subjectRelations = ItemRelationsPlugin::prepareSubjectRelations($this->_person);
-    $this->_objectRelations = ItemRelationsPlugin::prepareObjectRelations($this->_person);
+    if (!$this->_item) return;
+    $this->_subjectRelations = ItemRelationsPlugin::prepareSubjectRelations($this->_item);
+    $this->_objectRelations = ItemRelationsPlugin::prepareObjectRelations($this->_item);
 
     // Create one array of just the IDs of related items.
     $this->_relatedIds = array_merge(
@@ -106,7 +74,7 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
         array_merge($this->_objectRelations, $this->_subjectRelations),
         function ($relation) {
           return array_key_exists('item', $relation)
-            && $relation['item']['id'] !== $this->_person->id
+            && $relation['item']['id'] !== $this->_item->id
             && $relation['item']['item_type_id'] !== ORAL_HISTORY_ITEM_TYPE
             && $relation['item']['item_type_id'] !== PERSON_ITEM_TYPE;
         }
@@ -173,55 +141,20 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
     return array_merge($family, $collections);
   }
 
-  public function init()
-  {
-    $this->_helper->db->setDefaultModelName('Item');
-    $this->_browseRecordsPerPage = 10;
-  }
-
   /**
    * Retrieve a single person and render it.
    *
    * Every request to this action must pass a record name in the 'name' parameter.
-   *
-   * @uses Omeka_Controller_Action_Helper_Db::getDefaultModelName()
    */
   public function showAction()
   {
-    // Load person record based on name parameter.
-    $singularName = $this->view->singularize($this->_helper->db->getDefaultModelName());
-    $this->_getPersonRecordForShow();
-    if (!$this->_person) {
-      throw new Omeka_Controller_Exception_404;
-    }
+    parent::showAction();
 
     $this->_getRelations();
-
     $this->view->assign(array(
-      $singularName => $this->_person,
       'oral_history_items' => $this->_getOralHistories(),
       'related_items' => $this->_getRelatedItems(),
       'in_the_community_items' => $this->_getInTheCommunity(),
     ));
-  }
-
-  public function browseAction()
-  {
-    throw new Omeka_Controller_Exception_404;
-  }
-
-  public function addAction()
-  {
-    throw new Omeka_Controller_Exception_404;
-  }
-
-  public function editAction()
-  {
-    throw new Omeka_Controller_Exception_404;
-  }
-
-  public function deleteAction()
-  {
-    throw new Omeka_Controller_Exception_404;
   }
 }

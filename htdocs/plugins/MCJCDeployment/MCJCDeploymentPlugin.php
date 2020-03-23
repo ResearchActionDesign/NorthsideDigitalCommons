@@ -8,15 +8,19 @@
 
 require_once('vendor/autoload.php');
 
+// TODO: Make this less hacky and use an actual namespace. Doesn't seem to currently work with the way Omeka + Zend are
+// set up, though.
+include 'Controller/AbstractMCJCItemController.php';
+
 use \Rollbar\Rollbar;
 
 class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
 {
 
   protected $_hooks = array(
-    'install',
-    'upgrade',
     'initialize',
+    'install',
+    'upgrade'
   );
 
   protected $_filters = array(
@@ -70,6 +74,25 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       'label' => 'kin to',
       'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
     ));
+
+  /**
+   * Add rollbar error handling on every request.
+   */
+  public function hookInitialize()
+  {
+    try {
+      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
+
+      if ($rollbar_token) {
+        Rollbar::init([
+          'access_token' => $rollbar_token,
+          'environment' => APPLICATION_ENV,
+          'root' => BASE_DIR,
+        ]);
+      }
+    } catch (Exception $e) {
+    }
+  }
 
   /**
    * Install the plugin.
@@ -249,25 +272,6 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
         $property->description = $formalProperty['description'];
         $property->save();
       }
-    }
-  }
-
-  /**
-   * Add rollbar error handling on every request.
-   */
-  function hookInitialize()
-  {
-    try {
-      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
-
-      if ($rollbar_token) {
-        Rollbar::init([
-          'access_token' => $rollbar_token,
-          'environment' => APPLICATION_ENV,
-          'root' => BASE_DIR,
-        ]);
-      }
-    } catch (Exception $e) {
     }
   }
 

@@ -5,13 +5,6 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
 
   protected $_hooks = array(
     'define_routes',
-//    'items_browse_sql',
-  );
-
-  protected $_filters = array(
-//    'items_browse_per_page',
-//    'public_navigation_main',
-//    'item_search_filters',
   );
 
   /**
@@ -55,7 +48,6 @@ function people_get_link_to_item($title = null, $item = null) {
   $url = url(array('name' => mb_strtolower(str_replace(' ', '-', $personName))), 'peopleShow');
 
   return "<a href='{$url}'>{$title}</a>";
-
 }
 
 /**
