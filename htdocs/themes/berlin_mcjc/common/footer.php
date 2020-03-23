@@ -1,6 +1,6 @@
 </div><!-- end content -->
 
-<footer role="contentinfo">
+<footer role="contentinfo" id="footer-content">
 
     <div id="footer-content" class="center-div">
         <div id="footer-nav">
