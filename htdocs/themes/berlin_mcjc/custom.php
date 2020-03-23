@@ -355,8 +355,8 @@ function mcjc_link_to_item($text = null, $item = null, $props = array('class' =>
   );
 
   if (array_key_exists($item->item_type_id, $routesForItemType)) {
-    $itemName = metadata($item, array('Dublin Core', 'Title'));
-    $url = url(array('name' => mb_strtolower(str_replace(' ', '-', $itemName))), $routesForItemType[$item->item_type_id] . ucfirst($action));
+    $permalink = metadata($item, array('Dublin Core', 'Permalink'));
+    $url = url(array('permalink' => $permalink), $routesForItemType[$item->item_type_id] . ucfirst($action));
     $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
     return "<a href='{$url}'{$attr}>{$text}</a>";
   }

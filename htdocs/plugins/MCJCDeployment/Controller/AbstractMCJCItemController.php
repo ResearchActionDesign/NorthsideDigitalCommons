@@ -13,8 +13,17 @@
 abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActionController
 {
 
-  protected function getDublinCoreTitleElementId() {
-    return 50; // TODO: pull this dynamically?
+  protected function getPermalinkElementId() {
+    static $permalinkElementId = false;
+    if (!$permalinkElementId) {
+      $elementTable = $this->_helper->_db->getTable('Element');
+      $sql = $elementTable->getSelectForFindBy(array(
+        'name' => 'Permalink'
+      ));
+      $results = $elementTable->fetchObjects($sql);
+      $permalinkElementId = $results[0]['id'];
+    }
+    return $permalinkElementId;
   }
 
   // Return string representing item type to be returned by this controller.
@@ -30,15 +39,15 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
    */
   protected function _getRecordForShow()
   {
-    $itemName = str_replace('-', ' ', $this->getParam('name'));
+    $permalink = $this->getParam('permalink');
     $itemsTable = $this->_helper->_db->getTable();
     $namesTable = $this->_helper->_db->getTable('ElementText');
 
     $nameSelect = $namesTable->getSelectForFindBy([
       'record_type' => 'Item',
-      'element_id' => $this->getDublinCoreTitleElementId(),
+      'element_id' => $this->getPermalinkElementId(),
+      'text' => $permalink,
     ]);
-    $nameSelect->where("`element_texts`.`text` LIKE ?", $itemName);
     $matchingNames = $namesTable->fetchObjects($nameSelect);
 
     $matchingIds = array_map(function ($record) {

@@ -18,7 +18,7 @@ class ImagesPlugin extends Omeka_Plugin_AbstractPlugin
     $router->addRoute('imagesBrowse',
       new Zend_Controller_Router_Route('images',
         array(
-          'module'     => 'mcjc-images',
+          'module'     => 'images',
           'controller' => 'index',
           'action'     => 'browse',
         )
@@ -26,14 +26,14 @@ class ImagesPlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     $router->addRoute('imagesShow',
-      new Zend_Controller_Router_Route('images/:name',
+      new Zend_Controller_Router_Route('images/:permalink',
         array(
-          'module'     => 'mcjc-images',
+          'module'     => 'images',
           'controller' => 'items',
           'action'     => 'show'
         ),
         array(
-          'name' => '[a-zA-z][a-zA-Z\-]*'
+          'permalink' => '[a-zA-z0-9][a-zA-Z0-9\-]*'
         )
       )
     );
