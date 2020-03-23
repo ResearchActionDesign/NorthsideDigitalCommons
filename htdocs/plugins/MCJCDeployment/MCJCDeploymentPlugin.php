@@ -23,6 +23,54 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     'items_browse_per_page',
   );
 
+  // Relationship types which should count as "family" in the "In the community" section.
+  public static $familyRelations = array(
+    array(
+      'local_part' => 'parentOf',
+      'label' => 'parent of',
+      'description' => 'Someone who is a direct parent of someone else. Includes step-parents.'
+    ),
+    array(
+      'local_part' => 'grandparentOf',
+      'label' => 'grandparent of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'childOf',
+      'label' => 'child of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'grandchildOf',
+      'label' => 'grandchild of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'partnerOf',
+      'label' => 'partner of',
+      'description' => 'Partner (depending on how people want to be referred to, consider using husbandOf/wifeOf)'
+    ),
+    array(
+      'local_part' => 'husbandOf',
+      'label' => 'husband of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'wifeOf',
+      'label' => 'wife of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'siblingOf',
+      'label' => 'sibling of',
+      'description' => 'Sibling or half-sibling'
+    ),
+    array(
+      'local_part' => 'kinOf',
+      'label' => 'kin to',
+      'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
+    ));
+
   /**
    * Install the plugin.
    */
@@ -148,57 +196,12 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
 
       $vocabularyId = $vocabulary->id;
       // Add our own terms to module.
-      $relationProperties = array(
-        array(
-          'local_part' => 'parentOf',
-          'label' => 'parent of',
-          'description' => 'Someone who is a direct parent of someone else. Includes step-parents.'
-        ),
-        array(
-          'local_part' => 'grandparentOf',
-          'label' => 'grandparent of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'childOf',
-          'label' => 'child of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'grandchildOf',
-          'label' => 'grandchild of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'partnerOf',
-          'label' => 'partner of',
-          'description' => 'Partner (depending on how people want to be referred to, consider using husbandOf/wifeOf)'
-        ),
-        array(
-          'local_part' => 'husbandOf',
-          'label' => 'husband of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'wifeOf',
-          'label' => 'wife of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'siblingOf',
-          'label' => 'sibling of',
-          'description' => 'Sibling or half-sibling'
-        ),
-        array(
-          'local_part' => 'kinOf',
-          'label' => 'kin to',
-          'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
-        ),
+      $relationProperties = array_merge(MCJCDeploymentPlugin::$familyRelations, array(
         array(
           'local_part' => 'friendOf',
           'label' => 'friend of',
           'description' => ''
-        ),
+        )),
       );
 
       foreach ($relationProperties as $formalProperty) {
