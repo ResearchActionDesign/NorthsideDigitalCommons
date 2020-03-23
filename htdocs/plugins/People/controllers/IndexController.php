@@ -12,6 +12,7 @@ class People_IndexController extends Omeka_Controller_AbstractActionController
 {
   public function init()
   {
+    parent::init();
     $this->_helper->db->setDefaultModelName('Item');
     $this->_browseRecordsPerPage = 10;
   }

@@ -36,7 +36,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
     if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-bio";
   ?>
     <div class="item record<?php echo $itemClasses ?>">
-        <h2><?php echo people_get_link_to_item($itemTitle, $item); ?></h2>
+        <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
         <div class="item-meta">
           <?php if (metadata('item', 'has files')): ?>
               <div class="item-img">

@@ -1,14 +1,11 @@
 <?php
 
-class StoriesPlugin extends Omeka_Plugin_AbstractPlugin
+class ImagesPlugin extends Omeka_Plugin_AbstractPlugin
 {
 
   protected $_hooks = array(
     'define_routes',
   );
-
-
-  public static $ORAL_HISTORY_ITEM_TYPE = 4;
 
   /**
    * People define_routes hook
@@ -18,20 +15,20 @@ class StoriesPlugin extends Omeka_Plugin_AbstractPlugin
   {
     $router = $args['router'];
 
-    $router->addRoute('storiesBrowse',
-      new Zend_Controller_Router_Route('stories',
+    $router->addRoute('imagesBrowse',
+      new Zend_Controller_Router_Route('images',
         array(
-          'module'     => 'stories',
+          'module'     => 'mcjc-images',
           'controller' => 'index',
           'action'     => 'browse',
         )
       )
     );
 
-    $router->addRoute('storiesShow',
-      new Zend_Controller_Router_Route('stories/:name',
+    $router->addRoute('imagesShow',
+      new Zend_Controller_Router_Route('images/:name',
         array(
-          'module'     => 'stories',
+          'module'     => 'mcjc-images',
           'controller' => 'items',
           'action'     => 'show'
         ),

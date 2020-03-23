@@ -40,16 +40,6 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
   }
 }
 
-function people_get_link_to_item($title = null, $item = null) {
-  if (!$item) {
-    $item = get_current_record('item');
-  }
-  $personName = metadata($item, array('Dublin Core', 'Title'));
-  $url = url(array('name' => mb_strtolower(str_replace(' ', '-', $personName))), 'peopleShow');
-
-  return "<a href='{$url}'>{$title}</a>";
-}
-
 /**
  * Helper function to load a single collection from the DB.
  *

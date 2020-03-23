@@ -11,6 +11,7 @@ require_once('vendor/autoload.php');
 // TODO: Make this less hacky and use an actual namespace. Doesn't seem to currently work with the way Omeka + Zend are
 // set up, though.
 include 'Controller/AbstractMCJCItemController.php';
+include 'Controller/AbstractMCJCIndexController.php';
 
 use \Rollbar\Rollbar;
 

@@ -14,7 +14,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'stories browse'));
     if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-description";
   ?>
     <div class="item record<?php echo $itemClasses ?>">
-        <h2><?php echo stories_get_link_to_item($itemTitle, $item); ?></h2>
+        <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
         <div class="item-meta">
           <?php if (metadata('item', 'has files')): ?>
               <div class="item-img">
