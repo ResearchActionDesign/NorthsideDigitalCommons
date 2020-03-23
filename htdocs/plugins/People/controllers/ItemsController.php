@@ -14,7 +14,6 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
   private $_person = false;
   private $_subjectRelations = [];
   private $_objectRelations = [];
-  private $_secondDegreeRelations = [];
 
   /**
    * Retrieve correct person record for this action, based on 'name' parameter (only used on show action).
@@ -57,30 +56,10 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
     $this->_objectRelations = ItemRelationsPlugin::prepareObjectRelations($this->_person);
 
     // Create one array of just the IDs of related items.
-    $existing_related_ids = array_merge(
+    $this->_relatedIds = array_merge(
       array_map(function($item) { return $item['subject_item_id']; }, $this->_subjectRelations),
       array_map(function($item) { return $item['object_item_id']; }, $this->_objectRelations)
     );
-
-    // Pull second degree relations as well.
-    foreach ($this->_subjectRelations as $subjectRelation) {
-      $secondDegreeRelations = get_db()->getTable('ItemRelationsRelation')->findByObjectItemId($subjectRelation['object_item_id']);
-      foreach ($secondDegreeRelations as $relation) {
-
-        // Don't add an item to its own related items view, and don't re-add existing items.
-        if ($relation['subject_item_id'] <> $this->_person->id && !array_key_exists($relation['subject_item_id'], $existing_related_ids)) {
-          $this->_secondDegreeRelations[] = array(
-            'id' => $relation['subject_item_id'],
-          );
-        }
-      }
-    }
-
-    foreach ($this->_objectRelations as $objectRelation) {
-      $relatedItemIds[] = $objectRelation['subject_item_id'];
-    }
-
-    $relatedItemIds = array_unique($relatedItemIds);
   }
 
   /**
@@ -97,13 +76,13 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
       }
     });
 
-    return array_map(
+    return people_filter_for_unique_id(array_map(
       function($relation) { return $relation['item']; },
       array_filter(
         $this->_objectRelations,
-        function($relation) { return array_key_exists('item', $relation) && $relation['item']['item_type_id'] === ORAL_HISTORY_ITEM_TYPE; }
+        function($relation) { return $relation['relation_text'] === 'depicts' && array_key_exists('item', $relation) && $relation['item']['item_type_id'] === ORAL_HISTORY_ITEM_TYPE; }
         )
-    );
+    ));
   }
 
   /**
@@ -120,31 +99,78 @@ class People_ItemsController extends Omeka_Controller_AbstractActionController
     array_walk($this->_subjectRelations, function(&$relation) {
       if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['object_item_id']);
     });
-    array_walk($this->_secondDegreeRelations, function(&$relation) {
-      if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['id']);
-    });
 
-    return array_map(
+    return people_filter_for_unique_id(array_map(
       function ($relation) { return $relation['item']; },
       array_filter(
-        array_merge($this->_objectRelations, $this->_subjectRelations, $this->_secondDegreeRelations),
+        array_merge($this->_objectRelations, $this->_subjectRelations),
         function ($relation) {
           return array_key_exists('item', $relation)
+            && $relation['item']['id'] !== $this->_person->id
             && $relation['item']['item_type_id'] !== ORAL_HISTORY_ITEM_TYPE
             && $relation['item']['item_type_id'] !== PERSON_ITEM_TYPE;
         }
       )
-    );
+    ));
   }
 
   /**
-   * Retrieve "in the community" related items.
+   * Retrieve "in the community" section.
+   *
+   * "In the community" section contains family members (Person items with a family relationship), as well as
+   * collections and exhibits which include/mention this person and topics.
    *
    * @return array
    */
   private function _getInTheCommunity() {
-    // TODO: Fill in In the Community Section.
-    return array();
+    $familyRelationTexts = array_map(
+      function($relation) { return $relation['label']; },
+      MCJCDeploymentPlugin::$familyRelations
+    );
+
+    // Pull family.
+    $family = people_filter_for_unique_id(array_map(
+      function ($relation) {
+        $item = $relation['item'];
+        $item->inTheCommunity = 'Family';
+        return $item;
+      },
+      array_filter(
+        array_merge($this->_objectRelations, $this->_subjectRelations),
+        function ($relation) use ($familyRelationTexts) {
+          return array_key_exists('relation_text', $relation)
+            && array_search($relation['relation_text'], $familyRelationTexts);
+        }
+      )
+    ));
+
+    // Pull collections.
+    $collectionIds = array_unique(array_map(
+      function ($relation) {
+        return $relation['item']->collection_id;
+      },
+      array_filter(
+        array_merge($this->_objectRelations, $this->_subjectRelations),
+        function ($relation) {
+          return array_key_exists('item', $relation)
+            && $relation['item']->collection_id;
+        }
+      )
+    ), SORT_NUMERIC);
+
+    $collections = array_map(
+      function ($collectionId) {
+        $collection = people_get_collection_by_id($collectionId, $this->_helper->_db);
+        $collection->inTheCommunity = 'Collection';
+        return $collection;
+      },
+      $collectionIds
+    );
+
+    // TODO: pull exhibits.
+    // TODO: pull topics.
+
+    return array_merge($family, $collections);
   }
 
   public function init()

@@ -1,7 +1,7 @@
 <?php $itemTitle = metadata($item,'display_title'); ?>
 <div class="related-item tile">
     <div class="item-label tile__label">
-      <div class="item-title tile__title"><?php echo link_to_item($itemTitle, array('class'=>'permalink')); ?></div>
+      <div class="item-title tile__title"><?php echo link_to_item($itemTitle, array('class'=>'permalink'), 'show', $item); ?></div>
       <div class="item-description tile__description">
         <?php echo metadata($item, array('Dublin Core','Description')); ?>
       </div>
