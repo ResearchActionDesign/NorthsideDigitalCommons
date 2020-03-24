@@ -47,7 +47,7 @@ if (metadata('item', array('Dublin Core', 'Description'))) {
           <a target="_blank" href="<?php echo html_escape($sohp_url) ?>">View Details at Southern Oral History Program
               website</a>
       </div>
-  <?php elseif (metadata('item', 'has files')): ?>
+  <?php elseif ($itemType !== 'Photograph' && $itemType !== 'Still Image' && metadata('item', 'has files')): ?>
       <div id="itemfiles" class="element">
           <div class="item-images"><?php echo mcjc_files_for_item('item', array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""), 'show' => TRUE)); ?>
           </div>
@@ -67,20 +67,29 @@ if (metadata('item', array('Dublin Core', 'Description'))) {
         </div>
     </div>
 </div>
+<?php if (!empty($depicted_items)): ?>
 <div class="explore-grid depicted">
     <h2><?php echo __('In this ') . $itemType; ?></h2>
-  <?php foreach (loop('depicted') as $relatedItem): ?>
+  <?php foreach (loop('depicted_items') as $relatedItem): ?>
     <?php echo common('related-item', array('item' => $relatedItem, 'class' => 'depicted')); ?>
   <?php endforeach; ?>
 </div>
+<?php endif; ?>
+<?php if (!empty($related_items) || !empty($collection)): ?>
 <div class="explore-grid related-items">
     <h2><?php echo __('More to explore'); ?></h2>
-  <?php foreach (loop('related_items') as $relatedItem): ?>
+    <?php if (!empty($collection)): ?>
+        <?php
+            $collectionTitle = __('Collection') . ": " . metadata($collection, 'display_title');
+            echo common('related-item', array('item' => $collection, 'class' => 'related-item', 'title' => $collectionTitle, 'isCollection'=> TRUE));
+        ?>
+    <?php endif; ?>
+    <?php foreach (loop('related_items') as $relatedItem): ?>
     <?php echo common('related-item', array('item' => $relatedItem, 'class' => 'related-item')); ?>
   <?php endforeach; ?>
 </div>
+<?php endif; ?>
 
-<?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
 <a class="button back" href="<?php echo $this->url(array(), 'peopleDefault'); ?>"><?php echo $backButtonText; ?></a>
 
 <?php echo js_tag('lity', 'lity'); ?>

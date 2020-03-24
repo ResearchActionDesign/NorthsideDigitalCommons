@@ -5,23 +5,9 @@
 
 class People_ItemsController extends AbstractMCJCItemController
 {
-  private $_subjectRelations = [];
-  private $_objectRelations = [];
   protected function getItemType()
   {
     return 'Person';
-  }
-
-  private function _getRelations() {
-    if (!$this->_item) return;
-    $this->_subjectRelations = ItemRelationsPlugin::prepareSubjectRelations($this->_item);
-    $this->_objectRelations = ItemRelationsPlugin::prepareObjectRelations($this->_item);
-
-    // Create one array of just the IDs of related items.
-    $this->_relatedIds = array_merge(
-      array_map(function($item) { return $item['subject_item_id']; }, $this->_subjectRelations),
-      array_map(function($item) { return $item['object_item_id']; }, $this->_objectRelations)
-    );
   }
 
   /**
@@ -31,14 +17,14 @@ class People_ItemsController extends AbstractMCJCItemController
    * @return array
    */
   private function _getOralHistories() {
-    // First load the related items which this item "depicts", so we can check their item type.
+    // First load the related items which this "depict" this item, so we can check their item type.
     array_walk($this->_objectRelations, function(&$relation) {
       if ($relation['relation_text'] === 'depicts') {
         $relation['item'] = get_record_by_id('item', $relation['subject_item_id']);
       }
     });
 
-    return people_filter_for_unique_id(array_map(
+    return $this->filterForUniqueId(array_map(
       function($relation) { return $relation['item']; },
       array_filter(
         $this->_objectRelations,
@@ -53,27 +39,14 @@ class People_ItemsController extends AbstractMCJCItemController
    *
    * @return array
    */
-  private function _getRelatedItems() {
-    // First, load items for matching relations, as needed.
-    array_walk($this->_objectRelations, function(&$relation) {
-      if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['subject_item_id']);
-    });
-    array_walk($this->_subjectRelations, function(&$relation) {
-      if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['object_item_id']);
-    });
-
-    return people_filter_for_unique_id(array_map(
-      function ($relation) { return $relation['item']; },
-      array_filter(
-        array_merge($this->_objectRelations, $this->_subjectRelations),
-        function ($relation) {
-          return array_key_exists('item', $relation)
-            && $relation['item']['id'] !== $this->_item->id
-            && $relation['item']['item_type_id'] !== ORAL_HISTORY_ITEM_TYPE
-            && $relation['item']['item_type_id'] !== PERSON_ITEM_TYPE;
-        }
-      )
-    ));
+  protected function _getRelatedItems() {
+    return array_filter(
+      parent::_getRelatedItems(),
+      function($item) {
+        return $item->item_type_id !== ORAL_HISTORY_ITEM_TYPE
+          && $item->item_type_id !== PERSON_ITEM_TYPE;
+      }
+    );
   }
 
   /**
@@ -84,14 +57,14 @@ class People_ItemsController extends AbstractMCJCItemController
    *
    * @return array
    */
-  private function _getInTheCommunity() {
+  protected function _getInTheCommunity() {
     $familyRelationTexts = array_map(
       function($relation) { return $relation['label']; },
       MCJCDeploymentPlugin::$familyRelations
     );
 
     // Pull family.
-    $family = people_filter_for_unique_id(array_map(
+    $family = $this->filterForUniqueId(array_map(
       function ($relation) {
         $item = $relation['item'];
         $item->inTheCommunity = 'Family';
@@ -122,7 +95,7 @@ class People_ItemsController extends AbstractMCJCItemController
 
     $collections = array_map(
       function ($collectionId) {
-        $collection = people_get_collection_by_id($collectionId, $this->_helper->_db);
+        $collection = $this->getCollectionById($collectionId);
         $collection->inTheCommunity = 'Collection';
         return $collection;
       },
@@ -144,10 +117,8 @@ class People_ItemsController extends AbstractMCJCItemController
   {
     parent::showAction();
 
-    $this->_getRelations();
     $this->view->assign(array(
       'oral_history_items' => $this->_getOralHistories(),
-      'related_items' => $this->_getRelatedItems(),
       'in_the_community_items' => $this->_getInTheCommunity(),
     ));
   }

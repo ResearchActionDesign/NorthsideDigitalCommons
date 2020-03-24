@@ -351,7 +351,7 @@ function mcjc_link_to_item($text = null, $item = null, $props = array('class' =>
   $routesForItemType = array(
     ORAL_HISTORY_ITEM_TYPE => 'stories',
     PERSON_ITEM_TYPE => 'people',
-    IMAGE_ITEM_TYPE => 'image',
+    IMAGE_ITEM_TYPE => 'images',
   );
 
   if (array_key_exists($item->item_type_id, $routesForItemType)) {

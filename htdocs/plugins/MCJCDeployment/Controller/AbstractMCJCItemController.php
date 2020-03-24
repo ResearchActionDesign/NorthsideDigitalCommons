@@ -12,6 +12,37 @@
  */
 abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActionController
 {
+  protected $_subjectRelations = [];
+  protected $_objectRelations = [];
+  protected $_secondDegreeRelations = [];
+  protected $_depictedItems = []; // Items depicted by this items.
+
+  /**
+   * Helper function to filter an array of Items for unique items, by ID.
+   * @param array $items
+   * @return array
+   */
+  protected function filterForUniqueId(array $items) {
+    $unique = [];
+    foreach ($items as $item) {
+      if (isset($item->id)) {
+        $unique[$item->id] = $item;
+      }
+    }
+    return array_values($unique);
+  }
+
+  /**
+   * Helper function to load a single collection from the DB.
+   *
+   * @param int|null $collectionId
+   * @return Omeka_Record_AbstractRecord|null
+   */
+  protected function getCollectionById(int $collectionId = null) {
+    if (!$collectionId) return null;
+    $table = $this->_helper->_db->getTable('Collection');
+    return $table->find($collectionId);
+  }
 
   protected function getPermalinkElementId() {
     static $permalinkElementId = false;
@@ -25,8 +56,8 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     return $permalinkElementId;
   }
 
-  // Return string representing item type to be returned by this controller.
-  abstract protected function getItemType();
+  // Return string or array representing item type(s) to be returned by this controller.
+  abstract protected function getItemTypes();
   protected $_item;
 
   /**
@@ -53,7 +84,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     }
 
     $select = $itemsTable->getSelect();
-    $itemsTable->filterByItemType($select, $this->getItemType());
+    $itemsTable->filterByItemType($select, $this->getItemTypes());
     $select->where("`items`.`id` = ?", $matchingNames[0]->record_id);
     $records = $itemsTable->fetchObjects($select);
 
@@ -62,6 +93,80 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     } else {
       throw new Omeka_Controller_Exception_404;
     }
+  }
+
+  protected function _getRelations() {
+    if (!$this->_item) return;
+    $this->_subjectRelations = ItemRelationsPlugin::prepareSubjectRelations($this->_item);
+    $this->_objectRelations = ItemRelationsPlugin::prepareObjectRelations($this->_item);
+
+    // Create one array of just the IDs of related items.
+    $existing_related_ids = array_merge(
+      array_map(function($item) { return $item['subject_item_id']; }, $this->_subjectRelations),
+      array_map(function($item) { return $item['object_item_id']; }, $this->_objectRelations)
+    );
+
+    // Pull second degree relations as well.
+    foreach ($this->_subjectRelations as $subjectRelation) {
+      $secondDegreeRelations = get_db()->getTable('ItemRelationsRelation')->findByObjectItemId($subjectRelation['object_item_id']);
+      foreach ($secondDegreeRelations as $relation) {
+        // Don't add an item to its own related items view, and don't re-add existing items.
+        if ($relation['subject_item_id'] <> $this->_item->id && !array_key_exists($relation['subject_item_id'], $existing_related_ids)) {
+          $this->_secondDegreeRelations[] = array(
+            'id' => $relation['subject_item_id'],
+          );
+        }
+      }
+    }
+
+    // First, load items for matching relations, as needed.
+    // TODO: Can this be optimized?
+    array_walk($this->_objectRelations, function(&$relation) {
+      if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['subject_item_id']);
+    });
+    array_walk($this->_subjectRelations, function(&$relation) {
+      if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['object_item_id']);
+    });
+    array_walk($this->_secondDegreeRelations, function(&$relation) {
+      if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['id']);
+    });
+  }
+
+  protected function _getDepictedItems() {
+    if (!count($this->_subjectRelations)) return;
+    $this->_depictedItems = array_map(
+      function($relation) {
+        return $relation['item'];
+      },
+      array_filter(
+      $this->_subjectRelations,
+      function($relation) {
+        return $relation['relation_text'] === 'depicts';
+      })
+    );
+  }
+
+  /**
+   * Retrieve any related content items.
+   *
+   * @return array
+   */
+  protected function _getRelatedItems() {
+    // TODO: Add second-degree relations and collections.
+    return $this->filterForUniqueId(array_map(
+      function ($relation) { return $relation['item']; },
+      array_filter(
+        array_merge($this->_objectRelations,
+          array_filter($this->_subjectRelations,
+            // Filter out items which will be in Depicted items array.
+            function($relation) { return $relation['relation_text'] !== 'depicts'; }),
+          $this->_secondDegreeRelations),
+        function ($relation) {
+          return array_key_exists('item', $relation)
+            && $relation['item']['id'] !== $this->_item->id;
+        }
+      )
+    ));
   }
 
   public function init()
@@ -86,8 +191,14 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
       throw new Omeka_Controller_Exception_404;
     }
 
+    $this->_getRelations();
+    $this->_getDepictedItems();
+
     $this->view->assign(array(
       $singularName => $this->_item,
+      'related_items' => $this->_getRelatedItems(),
+      'depicted_items' => $this->_depictedItems,
+      'collection' => isset($this->_item->collection_id) ? $this->getCollectionById($this->_item->collection_id) : false,
     ));
   }
 

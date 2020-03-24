@@ -12,6 +12,6 @@ class Images_IndexController extends AbstractMCJCIndexController
 {
   protected function getItemTypeId()
   {
-    return 6;
+    return 6; // Note this is different from the Dublin Core item Type.
   }
 }

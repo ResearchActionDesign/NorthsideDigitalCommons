@@ -17,7 +17,7 @@ abstract class AbstractMCJCIndexController extends Omeka_Controller_AbstractActi
   {
     $db = $this->_helper->_db;
 
-    // Filter by item type = Oral History.
+    // Filter by item type.
     $this->setParam('type', $this->getItemTypeId());
 
     if (!$this->getParam('sort_field')) {
