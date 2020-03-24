@@ -25,7 +25,7 @@ class ImagesPlugin extends Omeka_Plugin_AbstractPlugin
       )
     );
 
-    $router->addRoute('imagesShow',
+    $router->addRoute('imageShow',
       new Zend_Controller_Router_Route('images/:permalink',
         array(
           'module'     => 'images',

@@ -17,10 +17,9 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     static $permalinkElementId = false;
     if (!$permalinkElementId) {
       $elementTable = $this->_helper->_db->getTable('Element');
-      $sql = $elementTable->getSelectForFindBy(array(
+      $results = $elementTable->findBy(array(
         'name' => 'Permalink'
       ));
-      $results = $elementTable->fetchObjects($sql);
       $permalinkElementId = $results[0]['id'];
     }
     return $permalinkElementId;
@@ -43,28 +42,25 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     $itemsTable = $this->_helper->_db->getTable();
     $namesTable = $this->_helper->_db->getTable('ElementText');
 
-    $nameSelect = $namesTable->getSelectForFindBy([
+    $matchingNames = $namesTable->findBy([
       'record_type' => 'Item',
       'element_id' => $this->getPermalinkElementId(),
       'text' => $permalink,
-    ]);
-    $matchingNames = $namesTable->fetchObjects($nameSelect);
+    ], 1);
 
-    $matchingIds = array_map(function ($record) {
-      return $record->record_id;
-    }, $matchingNames);
-
-    if (count($matchingIds) === 0) {
+    if (count($matchingNames) === 0) {
       throw new Omeka_Controller_Exception_404;
     }
 
     $select = $itemsTable->getSelect();
     $itemsTable->filterByItemType($select, $this->getItemType());
-    $select->where("`items`.`id` IN (?)", $matchingIds);
+    $select->where("`items`.`id` = ?", $matchingNames[0]->record_id);
     $records = $itemsTable->fetchObjects($select);
 
     if (count($records)) {
       $this->_item = $records[0];
+    } else {
+      throw new Omeka_Controller_Exception_404;
     }
   }
 

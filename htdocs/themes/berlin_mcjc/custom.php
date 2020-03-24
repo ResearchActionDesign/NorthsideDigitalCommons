@@ -363,3 +363,21 @@ function mcjc_link_to_item($text = null, $item = null, $props = array('class' =>
 
   return link_to_item($text, $props, $action, $item);
 }
+
+/**
+ * Returns a human-readable paragraph of key element texts.
+ */
+function mcjc_element_metadata_paragraph($item) {
+//  $texts = array(
+//    'subject' => metadata($item, array('Dublin Core', 'Subject')),
+//    'type' => metadata($item, array('Dublin Core', 'Type')),
+//    'coverage' => metadata($item, array('Dublin Core', 'Coverage')),
+//    'creator' => metadata($item, array('Dublin Core', 'Creator')),
+//    'date' => metadata($item, array('Dublin Core', 'Date')),
+//    'identifier' => metadata($item, array('Dublin Core', 'Identifier')),
+//    'format' => metadata($item, array('Dublin Core', 'Format')),
+//  );
+
+  // TODO.
+  return 'STUB ELEMENT PARAGRAPH DESCRIPTION';
+}
