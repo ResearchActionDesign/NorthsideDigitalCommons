@@ -1,39 +1,17 @@
 <?php
+$pageTitle = __('Images');
 
-$browseByPerson = TRUE;
-$pageTitle = __('Meet our Neighbors');
-$curLetter = $vars['cur_letter'];
-$validLetters = $vars['letters'];
-
-echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
+echo head(array('title'=>$pageTitle,'bodyclass' => 'images browse'));
 ?>
 
 <h1><?php echo $pageTitle;?></h1>
-
-<div class="search-by-lastname">
-    <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
-    <ul>
-        <li<?php echo (!$curLetter ? ' class="active"' : '');?>><a href="<?php echo $this->url(array(), 'peopleDefault')?>">All</a></li>
-        <?php foreach (range('A', 'Z') as $letter): ?>
-        <?php if (in_array($letter, $validLetters)): ?>
-                <li<?php echo ($curLetter == $letter ? ' class="active"' : '');?>>
-                <a href="<?php echo $this->url(array(), 'peopleDefault', array('firstLetter' => $letter)) ?>"><?php echo $letter ?></a>
-                </li>
-        <?php else: ?>
-                <li class="disabled">
-                    <?php echo $letter ?>
-                </li>
-        <?php endif; ?>
-        <?php endforeach; ?>
-    </ul>
-</div>
 
 <?php foreach (loop('items') as $item): ?>
   <?php
     $itemTitle = metadata('item', 'display_title');
     $itemClasses = "";
     if (metadata('item', 'has files')) $itemClasses = " has-picture";
-    if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-bio";
+    if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-description";
   ?>
     <div class="item record<?php echo $itemClasses ?>">
         <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>

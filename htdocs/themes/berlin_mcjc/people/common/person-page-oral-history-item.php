@@ -18,5 +18,5 @@
     </div>
   <?php endif; ?>
 
-  <?php echo link_to_item(__('View oral history details'), array('class' => 'button item-link'), 'show', $item); ?>
+  <?php echo mcjc_link_to_item(__('View oral history details'), $item, array('class' => 'button item-link')); ?>
 </div>

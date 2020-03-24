@@ -25,9 +25,9 @@ $sortLinks[__('Date Added')] = 'added';
 <?php echo pagination_links(); ?>
 
 <?php foreach (loop('items') as $item): ?>
-<?php $itemTitle = metadata('item', 'display_title');
+<?php $itemTitle = metadata('item', 'display_title'); ?>
 <div class="item record">
-    <h2><?php echo link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
+    <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
     <div class="item-meta">
     <?php if (metadata('item', 'has files')): ?>
     <div class="item-img">

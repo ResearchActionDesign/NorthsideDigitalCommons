@@ -35,7 +35,7 @@
 </div> <!-- End of Primary. -->
 
 <?php if (count($oral_history_items)): ?>
-<div class="oral-histories">
+<div class="explore-grid oral-histories">
   <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>
     <?php echo common('person-page-oral-history-item', array('item' => $oralHistoryItem)); ?>
   <?php endforeach; ?>
@@ -43,18 +43,24 @@
 <?php endif; ?>
 
 <?php if (count($related_items)): ?>
-<div class="related-items">
-    <?php foreach (loop('related_items') as $relatedItem): ?>
-    <?php echo common('person-page-related-item', array('item' => $relatedItem)); ?>
+<div class="explore-grid related-items">
+  <?php foreach (loop('related_items') as $relatedItem): ?>
+    <?php echo common('related-item', array('item' => $relatedItem, 'class' => 'related-item')); ?>
   <?php endforeach; ?>
 </div>
 <?php endif; ?>
 
 <?php if (count($in_the_community_items)): ?>
-<div class="in-the-community">
+<div class="explore-grid in-the-community">
   <h3><?php echo __('In the community'); ?></h3>
   <?php foreach (loop('in_the_community_items') as $inTheCommunityItem): ?>
-    <?php echo common('person-page-in-the-community-item', array('item' => $inTheCommunityItem)); ?>
+    <?php $loopItemTitle = metadata($inTheCommunityItem, array('Dublin Core', 'Title')); ?>
+    <?php echo common('related-item', array(
+            'item' => $inTheCommunityItem,
+            'class' => 'in-the-community',
+            'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
+            'isCollection' => $inTheCommunityItem->inTheCommunity === 'Collection',)
+    ); ?>
   <?php endforeach; ?>
 </div>
 <?php endif; ?>

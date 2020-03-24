@@ -8,19 +8,22 @@
 
 require_once('vendor/autoload.php');
 
+// TODO: Make this less hacky and use an actual namespace. Doesn't seem to currently work with the way Omeka + Zend are
+// set up, though.
+include 'Controller/AbstractMCJCItemController.php';
+include 'Controller/AbstractMCJCIndexController.php';
+
 use \Rollbar\Rollbar;
 
 class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
 {
 
   protected $_hooks = array(
-    'install',
-    'upgrade',
+    'before_save_element_text',
+    'before_save_item',
     'initialize',
-  );
-
-  protected $_filters = array(
-    'items_browse_per_page',
+    'install',
+    'upgrade'
   );
 
   // Relationship types which should count as "family" in the "In the community" section.
@@ -70,6 +73,122 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       'label' => 'kin to',
       'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
     ));
+  public static $elementTypes = array(
+    'Oral History' => 4,
+    'Person' => 12,
+    'Still Image' => 6,
+    'Photograph' => 6,
+  );
+
+  public static function getPermalinkFromItem($item) {
+    $title = metadata($item, array('Dublin Core', 'Title'));
+    return str_replace('--','-', mb_strtolower(str_replace(' ', '-', str_replace('-', '',$title))));
+  }
+
+  public function getPermalinkElementId() {
+    static $permalinkElementId = false;
+    if (!$permalinkElementId) {
+      $sql = $this->_db->getTable('Element')->getSelectForFindBy(array(
+        'name' => 'Permalink'
+      ));
+      $results = $this->_db->query($sql)->fetchAll();
+      $permalinkElementId = $results[0]['id'];
+    }
+    return $permalinkElementId;
+  }
+
+  protected function checkPermalinkValidForItem($permalink, $itemId) {
+    $elementTextTable = $this->_db->getTable('ElementText');
+    $sql = $elementTextTable->getSelectForFindBy(array(
+      'element_id' => $this->getPermalinkElementId(),
+      'text' => $permalink,
+    ));
+    $results = $elementTextTable->fetchObjects($sql);
+    if (!$results || count($results) === 0) {
+      return TRUE;
+    }
+    return !count(array_filter($results, function($elementText) use ($itemId) {
+      return $elementText->record_id !== $itemId;
+    }));
+  }
+
+  // Check permalink for uniqueness each time an item is saved.
+  public function hookBeforeSaveElementText($args) {
+    $elementTextItem = &$args['record'];
+    if ($elementTextItem->element_id !== $this->getPermalinkElementId()) {
+      return;
+    }
+
+    $permalinkBase = $elementTextItem->text;
+    $permalink = $permalinkBase;
+
+    // Check for duplicates.
+    $index = 2;
+    while (!$this->checkPermalinkValidForItem($permalink, $elementTextItem->record_id)) {
+      // If this is an existing permalink, check if it already ends in a number before changing.
+      if (ctype_digit($permalinkBase[mb_strlen($permalinkBase) - 1])) {
+        $index = $permalinkBase[mb_strlen($permalinkBase) - 1];
+        $permalinkBase = mb_substr($permalinkBase, 0, -2);
+      }
+      $permalink = "{$permalinkBase}-{$index}";
+      $index++;
+    }
+    $elementTextItem->text = $permalink;
+  }
+
+  // Populate permalink for new items, and set Item Type.
+  public function hookBeforeSaveItem($args)
+  {
+    $item = &$args['record'];
+
+    // Check item type.
+    if (!$item->item_type_id) {
+      $dublinCoreType = metadata($item, array('Dublin Core', 'Type'));
+      if (!empty(MCJCDeploymentPlugin::$elementTypes[$dublinCoreType])) {
+        $item->item_type_id = MCJCDeploymentPlugin::$elementTypes[$dublinCoreType];
+      }
+    }
+
+    // Set permalink.
+    if (!empty($item->Elements[$this->getPermalinkElementId()]) && !empty($item->Elements[$this->getPermalinkElementId()][0]['text'])) {
+      return;
+    }
+
+    $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
+    $permalink = $permalinkBase;
+    $index = 2;
+
+    while (!$this->checkPermalinkValidForItem($permalink, $item->id)) {
+      $permalink = "{$permalinkBase}-{$index}";
+      $index++;
+    }
+
+    $elementText = new ElementText();
+    $elementText->record_id = $item->id;
+    $elementText->element_id = $this->getPermalinkElementId();
+    $elementText->setText($permalink);
+    $elementText->record_type = 'Item';
+    $elementText->save();
+  }
+
+    /**
+   * Add rollbar error handling on every request.
+   */
+  public function hookInitialize()
+  {
+    try {
+      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
+
+      if ($rollbar_token) {
+        Rollbar::init([
+          'access_token' => $rollbar_token,
+          'environment' => APPLICATION_ENV,
+          'root' => BASE_DIR,
+        ]);
+      }
+    } catch (Exception $e) {
+    }
+  }
 
   /**
    * Install the plugin.
@@ -201,7 +320,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
           'local_part' => 'friendOf',
           'label' => 'friend of',
           'description' => ''
-        )),
+        ))
       );
 
       foreach ($relationProperties as $formalProperty) {
@@ -250,34 +369,50 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
         $property->save();
       }
     }
-  }
 
-  /**
-   * Add rollbar error handling on every request.
-   */
-  function hookInitialize()
-  {
-    try {
-      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
+    // Add new permalink element to all items.
+    if ((double)$params['old_version'] < 2.17) {
+      $sql = $this->_db->getTable('Element')->getSelectForFindBy(array(
+        'name' => 'Permalink'
+      ));
+      $results = $this->_db->query($sql)->fetchAll();
 
-      if ($rollbar_token) {
-        Rollbar::init([
-          'access_token' => $rollbar_token,
-          'environment' => APPLICATION_ENV,
-          'root' => BASE_DIR,
-        ]);
+      // Create permalink element if it doesn't exist, add to Dublin core.
+      if (!$results || count($results) === 0) {
+        $permalink = new Element();
+        $permalink->element_set_id = 1; // Dublin core.
+        $permalink->name = 'Permalink';
+        $permalink->description = 'URL for permalink to this item. Under normal circumstances, don\'t edit this field.';
+        $permalink->order = 16;
+        $permalink->save();
+        $permalinkElementId = $permalink->id;
+      } else {
+        $permalinkElementId = $results[0]->id;
       }
-    } catch (Exception $e) {
-    }
-  }
 
-  public function filterItemsBrowsePerPage($number_items, $controller)
-  {
-    // If this query is specifically the browse-by-person view, show all people.
-    if ($_SERVER['REQUEST_URI'] == '/items/browse?search=&advanced[0][element_id]=&advanced[0][type]=&advanced[0][terms]=&range=&collection=&type=12&tags=&featured=&exhibit=&submit_search=Search') {
-      return 0;
-    } else {
-      return max($number_items, 20);
+      // Populate permalink field for all elements where it doesn't exist
+      $existingPermalinks = [];
+      $select = $this->_db->getTable('Item')->getSelect()->assemble();
+      $items = $this->_db->query($select)->fetchAll();
+      foreach ($items as $item) {
+        $item = get_record_by_id('Item', $item['id']);
+        if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
+          $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
+          $permalink = $permalinkBase;
+          $index = 2;
+          while (array_search($permalink, $existingPermalinks)) {
+            $permalink = "{$permalinkBase}-{$index}";
+            $index++;
+          }
+          $existingPermalinks[] = $permalink;
+          $elementText = new ElementText();
+          $elementText->record_id = $item['id'];
+          $elementText->element_id = $permalinkElementId;
+          $elementText->setText($permalink);
+          $elementText->record_type = 'Item';
+          $elementText->save();
+        }
+      }
     }
   }
 }
