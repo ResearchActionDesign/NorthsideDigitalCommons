@@ -1,0 +1,9 @@
+/* line 1, ../../input/components/search.scss */
+#search-form {
+  display: none;
+}
+
+/* line 5, ../../input/components/search.scss */
+#close-search {
+  left: 0;
+}

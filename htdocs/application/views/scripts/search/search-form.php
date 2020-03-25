@@ -1,4 +1,5 @@
 <?php echo $this->form('search-form', $options['form_attributes']); ?>
+    <?php echo $this->formButton('close-search', $options['close_search'], array('type' => 'button')); ?>
     <?php echo $this->formText('query', $filters['query'], array('title' => __('Search'))); ?>
     <?php if ($options['show_advanced']): ?>
     <div id="advanced-form">
@@ -26,3 +27,4 @@
     <?php endif; ?>
     <?php echo $this->formButton('submit_search', $options['submit_value'], array('type' => 'submit')); ?>
 </form>
+<?php echo $this->formButton('search-toggle', $options['search_toggle'], array('type' => 'button')); ?>
