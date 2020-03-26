@@ -50,9 +50,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
       <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
     </div>
     <div class="item-meta">
-      <div>
         <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
-      </div>
       <?php if (metadata('item', 'has files')): ?>
       <?php endif; ?>
 
@@ -65,6 +63,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
       <?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
 
     </div><!-- end class="item-meta" -->
+    <div class="person-name"><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></div>
   </div><!-- end class="item entry" -->
 
   <?php endforeach; ?>
