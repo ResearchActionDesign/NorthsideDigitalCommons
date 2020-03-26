@@ -88,39 +88,22 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
       <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
     </div>
     <div class="item-meta">
-      <div>
-        <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
-      </div>
+      <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
       <?php if (metadata('item', 'has files')): ?>
       <?php endif; ?>
-
-      <<<<<<< HEAD
-        <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?> <div
+      <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?> <div
         class="item-description">
         <?php echo $description; ?>
-    </div>
-    <?php endif; ?><?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
-    <?php fire_plugin_hook('public_items_browse', [
+      </div>
+      <?php endif; ?><?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
+      <?php fire_plugin_hook('public_items_browse', [
     'items' => $items,
     'view' => $this,
 ]); ?>
-  </div>
-  <!-- end class="item-meta" -->
-</div><!-- end class="item entry" -->
+    </div>
+    <!-- end class="item-meta" -->
+  </div><!-- end class="item entry" -->
 </div>
-=======
-<?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
-<div class="item-description">
-  <?php echo $description; ?>
-</div>
-<?php endif; ?>
-
-<?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
-
-</div><!-- end class="item-meta" -->
-</div><!-- end class="item entry" -->
-
->>>>>>> people cards have full width img and desscription
 <?php endforeach; ?>
 </div>
 <div <?php echo pagination_links(); ?>
