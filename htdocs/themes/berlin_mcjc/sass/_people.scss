@@ -23,9 +23,45 @@
 	justify-content: space-between;
 }
 
-.person-cards {
-	width: 33%;
+.browse .item {
+	width: 32%;
 	background: #eee;
-	padding: 20px 0px;
-	margin-top: 10px;
+	padding:0;
+	margin-top: 15px;
+}
+
+.item.record.has-picture.has-bio {
+	overflow: hidden;
+	position: relative;
+}
+
+.item.record.has-bio {
+	position: relative;
+	overflow: hidden;
+}
+
+.item.record {
+	position: relative;
+	overflow: hidden;
+}
+
+.item-meta {
+	opacity: 0.85;
+	position: absolute;
+	bottom: 0;
+	background: #333;
+	color: #ffffff;
+	padding: 5px;
+	height: 100%;
+}
+
+
+.item-img {
+	position: relative;
+}
+
+.item-img img {
+	width: 100%;
+	position: relative;
+	display: block;
 }
