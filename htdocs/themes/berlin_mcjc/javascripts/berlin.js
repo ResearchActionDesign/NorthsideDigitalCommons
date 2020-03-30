@@ -24,4 +24,26 @@ if (!Berlin) {
         })
         }
     );
+
+    // Filtering on topics & items page.
+    $().ready(function() {
+        if (!$('#grid__filter').length) return;
+        $('#grid__filter input:checkbox').change(
+            function() {
+                var filter = $(this).attr('data-filter');
+                if ($(this).is(':checked')) {
+                    if ($('#grid__filter input:checked').length === 1) {
+                        $('.grid div.grid__item').hide();
+                    }
+                    $('.grid div.grid__item.' + filter).show();
+                } else {
+                    if (!$('#grid__filter input:checked').length) {
+                        $('.grid div.grid__item').show();
+                    } else {
+                        $('.grid div.grid__item.' + filter).hide();
+                    }
+                }
+            }
+        );
+    })
 })(jQuery);
