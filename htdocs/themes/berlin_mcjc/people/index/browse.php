@@ -1,21 +1,18 @@
 <?php
 
 
-
-
-
 $browseByPerson = TRUE;
 $pageTitle = __('Meet our Neighbors');
 $curLetter = $vars['cur_letter'];
 $validLetters = $vars['letters'];
 
-
-
 echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 ?>
+<div>
 
-<h1><?php echo $pageTitle; ?></h1>
+  <h1><?php echo $pageTitle;?></h1>
 
+</div>
 <div class="search-by-lastname">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
   <ul>
