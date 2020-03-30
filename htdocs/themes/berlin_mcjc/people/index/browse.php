@@ -1,21 +1,18 @@
 <?php
 
 
-
-
-
 $browseByPerson = TRUE;
 $pageTitle = __('Meet our Neighbors');
 $curLetter = $vars['cur_letter'];
 $validLetters = $vars['letters'];
 
-
-
 echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 ?>
+<div>
 
-<h1><?php echo $pageTitle;?></h1>
+  <h1><?php echo $pageTitle;?></h1>
 
+</div>
 <div class="search-by-lastname">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
   <ul>
@@ -50,7 +47,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
       <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
     </div>
     <div class="item-meta">
-        <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
+      <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
       <?php if (metadata('item', 'has files')): ?>
       <?php endif; ?>
 
