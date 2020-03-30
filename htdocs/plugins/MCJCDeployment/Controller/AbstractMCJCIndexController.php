@@ -7,6 +7,13 @@ abstract class AbstractMCJCIndexController extends Omeka_Controller_AbstractActi
 {
   abstract protected function getItemTypeId();
 
+  public function getAllParams()
+  {
+    $params = parent::getAllParams();
+    $params['public'] = True;
+    return $params;
+  }
+
   public function init()
   {
     $this->_helper->db->setDefaultModelName('Item');

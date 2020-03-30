@@ -5,7 +5,7 @@
 
 class People_ItemsController extends AbstractMCJCItemController
 {
-  protected function getItemType()
+  protected function getItemTypes()
   {
     return 'Person';
   }

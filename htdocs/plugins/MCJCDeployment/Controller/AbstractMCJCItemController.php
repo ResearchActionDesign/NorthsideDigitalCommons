@@ -85,6 +85,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
 
     $select = $itemsTable->getSelect();
     $itemsTable->filterByItemType($select, $this->getItemTypes());
+    $itemsTable->filterByPublic($select, True); // Only return public records.
     $select->where("`items`.`id` = ?", $matchingNames[0]->record_id);
     $records = $itemsTable->fetchObjects($select);
 
@@ -130,6 +131,12 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     array_walk($this->_secondDegreeRelations, function(&$relation) {
       if (!array_key_exists('item', $relation)) $relation['item'] = get_record_by_id('item', $relation['id']);
     });
+
+    // Filter out non-public items.
+    $isPublic = function($relation) { return $relation['item'] && $relation['item']->public; };
+    $this->_objectRelations = array_filter($this->_objectRelations, $isPublic);
+    $this->_subjectRelations = array_filter($this->_subjectRelations, $isPublic);
+    $this->_secondDegreeRelations = array_filter($this->_secondDegreeRelations, $isPublic);
   }
 
   protected function _getDepictedItems() {
