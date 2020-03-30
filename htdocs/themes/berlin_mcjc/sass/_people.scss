@@ -21,6 +21,9 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	.item {
+		min-width: 250px;
+	}
 }
 
 .has-picture {
@@ -95,12 +98,17 @@
 	width: 100%;
 	position: relative;
 	display: block;
+	height: 250px;
 }
 
 .item.record.has-picture {
 	padding: 0;
 }
 
+.item-description {
+	font-size: 12px;
+	text-align: center;
+}
 .person-name {
 	text-align: center;
 	background: #505050;
@@ -128,6 +136,7 @@
 		position: relative;
 	}
 	.browse .item {
+		height: 115px;
 		padding: 0;
 	}
 	.item.record.has-picture.has-bio {
