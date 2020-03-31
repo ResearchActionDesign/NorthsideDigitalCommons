@@ -1,34 +1,37 @@
 <?php
 
-class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
+class StoriesPlugin extends Omeka_Plugin_AbstractPlugin
 {
 
   protected $_hooks = array(
     'define_routes',
   );
 
+
+  public static $ORAL_HISTORY_ITEM_TYPE = 4;
+
   /**
    * People define_routes hook
-   * Defines public-only routes for browse all people and view a single person page.
+   * Defines public-only routes for browse all stories and view a single oral history.
    */
   public function hookDefineRoutes($args)
   {
     $router = $args['router'];
 
-    $router->addRoute('peopleDefault',
-      new Zend_Controller_Router_Route('people',
+    $router->addRoute('storiesBrowse',
+      new Zend_Controller_Router_Route('stories',
         array(
-          'module'     => 'people',
+          'module'     => 'stories',
           'controller' => 'index',
           'action'     => 'browse',
         )
       )
     );
 
-    $router->addRoute('peopleShow',
-      new Zend_Controller_Router_Route('people/show/:permalink',
+    $router->addRoute('storiesShow',
+      new Zend_Controller_Router_Route('stories/:permalink',
         array(
-          'module'     => 'people',
+          'module'     => 'stories',
           'controller' => 'items',
           'action'     => 'show'
         ),

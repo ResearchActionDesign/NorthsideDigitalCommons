@@ -41,15 +41,23 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
     $itemClasses = "";
     if (metadata('item', 'has files')) $itemClasses = " has-picture";
     if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-bio";
-?>
+  ?>
   <div class="item record<?php echo $itemClasses ?>">
-    <div class="item-img">
-      <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
-    </div>
+    <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
     <div class="item-meta">
-      <h2><?php echo people_get_link_to_item($itemTitle, array('class'=>'permalink')); ?></h2>
       <?php if (metadata('item', 'has files')): ?>
+      <div class="item-img">
+        <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
+      </div>
       <?php endif; ?>
+
+      <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
+      <div class="item-description">
+        <?php echo $description; ?>
+      </div>
+      <?php endif; ?>
+
+      <?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
 
       <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
       <div class="item-description">

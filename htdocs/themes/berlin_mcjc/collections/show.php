@@ -15,8 +15,8 @@ $collectionTitle = metadata('collection', 'display_title');
     <?php if (metadata('collection', 'total_items') > 0): ?>
         <?php foreach (loop('items') as $item): ?>
         <?php $itemTitle = metadata('item', 'display_title'); ?>
-        <div class="item hentry">
-            <h3><?php echo link_to_item($itemTitle, array('class'=>'permalink')); ?></h3>
+        <div class="item entry">
+            <h3><?php echo mcjc_link_to_item($itemTitle, $item); ?></h3>
 
             <?php if ($collectionImage = record_image('collection')): ?>
                 <div class="item-img">

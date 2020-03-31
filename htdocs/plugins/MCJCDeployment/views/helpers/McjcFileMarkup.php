@@ -94,7 +94,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
       if ($options['show'] === TRUE) {
         $html = $this->_linkToFile($file, $options, $html);
       } else {
-        $html = link_to_item($html, array('class' => $imgClasses[$imageSize]), 'show', $options['item']);
+        $html = mcjc_link_to_item($html, $options['item'], array('class' => $imgClasses[$imageSize]), 'show');
       }
     }
 
