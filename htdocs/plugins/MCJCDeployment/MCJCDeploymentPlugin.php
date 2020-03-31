@@ -378,6 +378,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       $results = $this->_db->query($sql)->fetchAll();
 
       // Create permalink element if it doesn't exist, add to Dublin core.
+      $permalinkElementId = FALSE;
       if (!$results || count($results) === 0) {
         $permalink = new Element();
         $permalink->element_set_id = 1; // Dublin core.
@@ -387,30 +388,32 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
         $permalink->save();
         $permalinkElementId = $permalink->id;
       } else {
-        $permalinkElementId = $results[0]->id;
+        $permalinkElementId = $results[0]['id'];
       }
 
-      // Populate permalink field for all elements where it doesn't exist
-      $existingPermalinks = [];
-      $select = $this->_db->getTable('Item')->getSelect()->assemble();
-      $items = $this->_db->query($select)->fetchAll();
-      foreach ($items as $item) {
-        $item = get_record_by_id('Item', $item['id']);
-        if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
-          $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
-          $permalink = $permalinkBase;
-          $index = 2;
-          while (array_search($permalink, $existingPermalinks)) {
-            $permalink = "{$permalinkBase}-{$index}";
-            $index++;
+      if ($permalinkElementId) {
+        // Populate permalink field for all elements where it doesn't exist
+        $existingPermalinks = [];
+        $select = $this->_db->getTable('Item')->getSelect()->assemble();
+        $items = $this->_db->query($select)->fetchAll();
+        foreach ($items as $item) {
+          $item = get_record_by_id('Item', $item['id']);
+          if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
+            $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
+            $permalink = $permalinkBase;
+            $index = 2;
+            while (array_search($permalink, $existingPermalinks)) {
+              $permalink = "{$permalinkBase}-{$index}";
+              $index++;
+            }
+            $existingPermalinks[] = $permalink;
+            $elementText = new ElementText();
+            $elementText->record_id = $item['id'];
+            $elementText->element_id = $permalinkElementId;
+            $elementText->setText($permalink);
+            $elementText->record_type = 'Item';
+            $elementText->save();
           }
-          $existingPermalinks[] = $permalink;
-          $elementText = new ElementText();
-          $elementText->record_id = $item['id'];
-          $elementText->element_id = $permalinkElementId;
-          $elementText->setText($permalink);
-          $elementText->record_type = 'Item';
-          $elementText->save();
         }
       }
     }
