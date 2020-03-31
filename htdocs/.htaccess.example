@@ -69,4 +69,5 @@ RewriteRule .* index.php
 <IfModule mod_php5.c>
     php_flag register_globals off
     php_flag magic_quotes_gpc off
+    php_value max_execution_time 600
 </IfModule>
