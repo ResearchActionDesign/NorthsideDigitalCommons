@@ -253,18 +253,20 @@ header {
   button {
     color: black;
     position: absolute;
+    background-color: transparent;
     border: 0;
-    right: 0;
-    top: 0;
+    right: 5px;
+    top: 25px;
     width: 30px;
     text-indent: -9999px;
 
     &:after {
       font-family: "FontAwesome";
+      background-color: transparent;
       content: "\f002";
       text-indent: 0;
       position: absolute;
-      top: 0;
+      top: 25px;
       left: 0;
       height: 30px;
       line-height: 30px;
@@ -336,9 +338,10 @@ header {
 #search-form fieldset fieldset {
   margin-bottom: $base-line-height;
 }
-
+//hidding options on search form for now *to be edited*
 #search-container.with-advanced .button {
   right: 30px;
+  display: none;
 }
 
 #skipnav {

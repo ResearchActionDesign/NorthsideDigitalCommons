@@ -1,5 +1,5 @@
 <?php echo $this->form('search-form', $options['form_attributes']); ?>
-    <?php echo $this->formButton('close-search', $options['close_search'], array('type' => 'button')); ?>
+    <!-- <?php echo $this->formButton('close-search', $options['close_search'], array('type' => 'button')); ?> -->
     <?php echo $this->formText('query', $filters['query'], array('title' => __('Search'))); ?>
     <?php if ($options['show_advanced']): ?>
     <div id="advanced-form">
