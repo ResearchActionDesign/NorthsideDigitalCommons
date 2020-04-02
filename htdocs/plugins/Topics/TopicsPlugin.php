@@ -1,6 +1,6 @@
 <?php
 
-class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
+class TopicsPlugin extends Omeka_Plugin_AbstractPlugin
 {
 
   protected $_hooks = array(
@@ -9,26 +9,26 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
 
   /**
    * People define_routes hook
-   * Defines public-only routes for browse all people and view a single person page.
+   * Defines public-only routes for browse all stories and view a single oral history.
    */
   public function hookDefineRoutes($args)
   {
     $router = $args['router'];
 
-    $router->addRoute('peopleDefault',
-      new Zend_Controller_Router_Route('people',
+    $router->addRoute('topicsBrowse',
+      new Zend_Controller_Router_Route('topics',
         array(
-          'module'     => 'people',
+          'module'     => 'topics',
           'controller' => 'index',
           'action'     => 'browse',
         )
       )
     );
 
-    $router->addRoute('peopleShow',
-      new Zend_Controller_Router_Route('people/show/:permalink',
+    $router->addRoute('topicsShow',
+      new Zend_Controller_Router_Route('topics/:permalink',
         array(
-          'module'     => 'people',
+          'module'     => 'topics',
           'controller' => 'items',
           'action'     => 'show'
         ),

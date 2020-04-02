@@ -43,7 +43,7 @@ $relatedItemIds = array_unique($relatedItemIds);
               if ($item_type <> '') {
                 $item_type = ' (' . $item_type . ')';
               }
-              echo link_to_item('<h3>' . metadata($item, 'display_title') . $item_type . '</h3>', array(), 'show', $item); ?>
+              echo mcjc_link_to_item('<h3>' . metadata($item, 'display_title') . $item_type . '</h3>', $item); ?>
             </div>
             <?php if ($description = metadata($item, array('Dublin Core', 'Description'), array('snippet'=>325))): ?>
               <div class="item-description">
