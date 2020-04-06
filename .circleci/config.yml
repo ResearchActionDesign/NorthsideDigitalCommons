@@ -24,7 +24,7 @@ jobs:
 
       - run:
           name: Prettier
-          command: yarn run prettier:check
+          command: yarn run prettier:check-ci
 
       - restore_cache:
           keys:
