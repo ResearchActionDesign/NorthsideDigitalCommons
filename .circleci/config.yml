@@ -95,20 +95,17 @@ workflows:
             - build
           filters:
             branches:
-              only:
-                develop
+              only: develop
       - hold: # Hold deployment to prod for manual review.
           type: approval
           requires:
             - build
           filters:
             branches:
-              only:
-                master
+              only: master
       - deploy_prod:
           requires:
             - hold
           filters:
             branches:
-              only:
-                master
+              only: master

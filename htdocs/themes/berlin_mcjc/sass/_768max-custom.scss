@@ -86,7 +86,6 @@ footer {
   clear: left;
 }
 
-
 .hTagcloud ul li a {
   line-height: normal;
 }
@@ -125,10 +124,10 @@ footer {
 }
 
 .items.browse .item-file.application-pdf {
-  margin: 0 .5em .5em 0;
+  margin: 0 0.5em 0.5em 0;
 
   a {
-    padding: .25em .5em;
+    padding: 0.25em 0.5em;
   }
 }
 
@@ -187,11 +186,11 @@ footer {
 
   .item {
     h3 {
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
     }
 
     img {
-      margin: 0 auto .75em;
+      margin: 0 auto 0.75em;
     }
   }
 }
@@ -216,7 +215,7 @@ footer {
       width: 100%;
 
       .download-file {
-        margin-bottom: .5em;
+        margin-bottom: 0.5em;
       }
     }
   }
@@ -230,7 +229,7 @@ footer {
 .exhibits.browse {
   .exhibit {
     h2 {
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
     }
 
     img {
@@ -241,14 +240,12 @@ footer {
 
 /* @end */
 
-
-
 /* @group ----- Expander ----- */
 
 details#item-metadata {
   > * {
-    margin-left: .5 * $base-font-size;
-    margin-right: .5 * $base-font-size;
+    margin-left: 0.5 * $base-font-size;
+    margin-right: 0.5 * $base-font-size;
   }
 }
 
