@@ -4,16 +4,17 @@ based on Omeka version 2.5.1
 
 ## Local set-up
 
-* Install docker-sync by running `gem install docker-sync`.
-* Run `make prepare-site`. This will copy each of the the example config files into a new file without the `.example` extension.
-* Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
-* Optional: Put a version of the files directory in `htdocs/files`
-* Run `make up`
-* To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
-* Visit http://0.0.0.0 in your browser to view the site. You can also add a hosts file config mapping a different URL
-to this IP address, for example: `0.0.0.0		mcjc-omeka.l`.
-* You may need to reset the admin password, which can be done by running `docker-compose exec db sh -c 'exec mysql -uroot -proot omeka -e "UPDATE omeka_users SET password=sha1(concat(salt, \'password\')) WHERE username=\'adminmcjc\';"'` from the command line.
-* After running that command, the admin user will be `adminmcjc` with password `password`.
+- Run `yarn install` to install prettier locally (needed only for code formatting; if you have a global install of prettier you can use that instead).
+- Install docker-sync by running `gem install docker-sync`.
+- Run `make prepare-site`. This will copy each of the the example config files into a new file without the `.example` extension.
+- Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
+- Optional: Put a version of the files directory in `htdocs/files`
+- Run `make up`
+- To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
+- Visit http://0.0.0.0 in your browser to view the site. You can also add a hosts file config mapping a different URL
+  to this IP address, for example: `0.0.0.0 mcjc-omeka.l`.
+- You may need to reset the admin password, which can be done by running `docker-compose exec db sh -c 'exec mysql -uroot -proot omeka -e "UPDATE omeka_users SET password=sha1(concat(salt, \'password\')) WHERE username=\'adminmcjc\';"'` from the command line.
+- After running that command, the admin user will be `adminmcjc` with password `password`.
 
 ### Refreshing local database
 
@@ -23,38 +24,40 @@ DB data store. When you next run `make up` the site should re-load whatever data
 
 ### Rebuilding or modifying docker image
 
-The current docker-compose file pulls a pre-built image from Docker hub, which is built 
-from the Docker file in the .docker directory. 
+The current docker-compose file pulls a pre-built image from Docker hub, which is built
+from the Docker file in the .docker directory.
 
 To rebuild this image and push a new one to the repository, run `docker build . -t timstallmann/apache-omeka:latest`
 and then `docker push timstallmann/apache-omeka:latest`.
 
-To use a locally built customized image, comment out the `image` line under the `web` service in `docker-compose.yml` and 
+To use a locally built customized image, comment out the `image` line under the `web` service in `docker-compose.yml` and
 uncomment the `build` line.
 
 ## Required plug-ins
 
 The following plugins are required:
-* Archive Repertory
-* Clean Url - using a schema of `/collections/collection-identifier/item-identifier`
-* COinS
-* Contribution
-* CSVExport
-* CSV Import
-* Derivative Images
-* Element Types
-* Exhibit Builder
-* Guest User
-* HTML5 Media
-* Item Relations
-* Simple Pages
-* Simple Vocab
-* Taxonomy
+
+- Archive Repertory
+- Clean Url - using a schema of `/collections/collection-identifier/item-identifier`
+- COinS
+- Contribution
+- CSVExport
+- CSV Import
+- Derivative Images
+- Element Types
+- Exhibit Builder
+- Guest User
+- HTML5 Media
+- Item Relations
+- Simple Pages
+- Simple Vocab
+- Taxonomy
 
 ## Modified plug-ins
 
 The following manual changes have been made to plugin code:
-* Guest User -- comment out two lines to remove header bar (see https://omeka.org/classic/docs/Plugins/GuestUser/)
+
+- Guest User -- comment out two lines to remove header bar (see https://omeka.org/classic/docs/Plugins/GuestUser/)
 
 ## Custom plug-ins
 
@@ -64,16 +67,16 @@ you'll need to force the migrations to run by manually setting the `MCJCDeployme
 
 The plugin also provides a few custom view handlers and overrides which are needed for the `berlin_mcjc` theme to function; these are:
 
-* `ExhibitAttachment.php` - completely copies the `plugins/ExhibitBuilder/helpers/ExhibitAttachment.php` code except for forcing the `$forceImage` parameter to always have a value of `false` so that in-line HTML5 players display on exhibit pages.
-This view handler overrides the `ExhibitBuilder` one purely by virtue of the fact that the Zend view handler stack is last-in, first-out, so the `MCJCDeployment` plugin views handler directory is searched before `ExhibitBuilder`.
-* `McjcFileMarkup.php` - copies the default file markup handler except for customizing the behavior of tape log, transcript, and abstract PDFs. This handler is called explicitly in the `berlin_mcjc` theme code.
+- `ExhibitAttachment.php` - completely copies the `plugins/ExhibitBuilder/helpers/ExhibitAttachment.php` code except for forcing the `$forceImage` parameter to always have a value of `false` so that in-line HTML5 players display on exhibit pages.
+  This view handler overrides the `ExhibitBuilder` one purely by virtue of the fact that the Zend view handler stack is last-in, first-out, so the `MCJCDeployment` plugin views handler directory is searched before `ExhibitBuilder`.
+- `McjcFileMarkup.php` - copies the default file markup handler except for customizing the behavior of tape log, transcript, and abstract PDFs. This handler is called explicitly in the `berlin_mcjc` theme code.
 
 ## Rollbar error handling
 
 The MCJCDeployment plugin provides Rollbar error notification functionality by default; in order for this to work the option `log.rollbar_access_token` needs to be set to
 a valid access token inside `application/config.ini`.
 
-## Berlin_mcjc theme 
+## Berlin_mcjc theme
 
 The MCJC Oral History Trust website uses the Berlin MCJC theme.
 

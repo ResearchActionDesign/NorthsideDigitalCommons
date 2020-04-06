@@ -1,4 +1,4 @@
-version: '2'
+version: "2"
 services:
   web:
     image: timstallmann/apache-omeka:latest
@@ -18,14 +18,14 @@ services:
       - db
 
   db:
-      image: mysql:5.7
-      volumes:
-        - db-sync:/docker-entrypoint-initdb.d:nocopy
-      environment:
-        MYSQL_DATABASE: 'omeka'
-        MYSQL_ROOT_PASSWORD: 'root'
-      ports:
-        - '33308:3306'
+    image: mysql:5.7
+    volumes:
+      - db-sync:/docker-entrypoint-initdb.d:nocopy
+    environment:
+      MYSQL_DATABASE: "omeka"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "33308:3306"
 
   compass:
     image: stevevega/compass
@@ -40,6 +40,5 @@ volumes:
     external: true
   htdocs-sync:
     external: true
-
 #  omeka-htdocs-sync:
 #    external: true

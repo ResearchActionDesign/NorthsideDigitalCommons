@@ -43,3 +43,6 @@ db/
 
 # Compiled SASS
 htdocs/themes/berlin_mcjc/css/*.css
+
+# Node_modules
+node_modules/
