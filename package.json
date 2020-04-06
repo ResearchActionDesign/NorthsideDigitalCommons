@@ -9,5 +9,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "scripts": {
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check ."
   }
 }

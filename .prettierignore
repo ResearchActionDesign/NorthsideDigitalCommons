@@ -1,4 +1,7 @@
 node_modules/
+htdocs/bootstrap.php
+htdocs/index.php
+htdocs/README.md
 htdocs/admin/
 htdocs/application/
 htdocs/install/
@@ -9,4 +12,3 @@ htdocs/files/
 !htdocs/plugins/Images
 !htdocs/plugins/Stories
 !htdocs/plugins/Topics
-

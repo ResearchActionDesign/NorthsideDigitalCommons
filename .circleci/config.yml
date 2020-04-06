@@ -2,15 +2,34 @@ version: 2.1
 jobs:
   build: # Build CSS files only
     docker:
-      - image: circleci/ruby:latest
+      - image: circleci/ruby:2.7-node
     working_directory: ~/repo
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
 
+      # Install yarn and run prettier
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "~/repo/htdocs/themes/berlin_mcjc/Gemfile.lock" }}
-            - rails-demo-bundle-v2-
+            - ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
+            - ndc-yarn-
+
+      - run: # Install yarn dependencies
+          name: Yarn install
+          command: yarn install --production=false
+
+      - save_cache:
+          key: ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
+          paths:
+            - ~/repo/node_modules
+
+      - run:
+          name: Prettier
+          command: yarn run prettier:check
+
+      - restore_cache:
+          keys:
+            - ndc-ruby-{{ checksum "~/repo/htdocs/themes/berlin_mcjc/Gemfile.lock" }}
+            - ndc-ruby-
 
       - run: # Install Ruby dependencies
           name: Bundle Install
