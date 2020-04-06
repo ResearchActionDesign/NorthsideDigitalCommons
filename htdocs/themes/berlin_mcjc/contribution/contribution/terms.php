@@ -1,5 +1,5 @@
-<?php 
-$head = array('title' => __('Add Your Story'), 'bodyclass' => 'contribution terms');
+<?php
+$head = ['title' => __('Add Your Story'), 'bodyclass' => 'contribution terms'];
 echo head($head);
 ?>
 <div class="title">

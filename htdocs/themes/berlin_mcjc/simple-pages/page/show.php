@@ -11,11 +11,11 @@ if ($is_about_page) {
     $div_class = "page-about";
 }
 
-echo head(array(
+echo head([
     'title' => metadata('simple_pages_page', 'title'),
     'bodyclass' => $bodyclass,
-    'bodyid' => metadata('simple_pages_page', 'slug')
-));
+    'bodyid' => metadata('simple_pages_page', 'slug'),
+]);
 ?>
 <div id="primary <?php echo $div_class; ?>">
     <?php if (!$is_home_page): ?>
@@ -23,7 +23,7 @@ echo head(array(
     <h1><?php echo metadata('simple_pages_page', 'title'); ?></h1>
     <?php endif; ?>
     <?php
-    $text = metadata('simple_pages_page', 'text', array('no_escape' => true));
+    $text = metadata('simple_pages_page', 'text', ['no_escape' => true]);
     echo $this->shortcodes($text);
     ?>
 </div>

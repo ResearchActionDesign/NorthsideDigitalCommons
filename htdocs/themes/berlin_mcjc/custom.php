@@ -6,53 +6,44 @@
  *
  * @return string
  */
-function oral_history_item_subtitle($item = false) {
-  if (!$item) $item = get_current_record('item');
+function oral_history_item_subtitle($item = false)
+{
+    if (!$item) {
+        $item = get_current_record('item');
+    }
 
-  $convertNameFormat = function ($s) {
-    if (strpos($s,
-        ',') !== FALSE
-    ) {
-      return trim(substr(strstr($s,
-        ','),
-        1)) . ' ' . trim(strstr($s,
-        ',',
-        TRUE));
+    $convertNameFormat = function ($s) {
+        if (strpos($s, ',') !== false) {
+            return trim(substr(strstr($s, ','), 1)) .
+                ' ' .
+                trim(strstr($s, ',', true));
+        } else {
+            return $s;
+        }
+    };
+    $interviewers = array_map(function ($a) use ($convertNameFormat) {
+        return $convertNameFormat($a->text);
+    }, $item->getElementTexts('Item Type Metadata', 'Interviewer'));
+    $date = $item->getElementTexts('Item Type Metadata', 'Interview Date');
+    $text = '';
+    if (empty($interviewers)) {
+        if (empty($date)) {
+            return "";
+        } else {
+            return sprintf(
+                'Interviewed on %s',
+                date_format(date_create($date[0]->text), 'F j, Y')
+            );
+        }
+    } elseif (empty($date)) {
+        return sprintf('Interviewed by %s', implode(' and ', $interviewers));
+    } else {
+        return sprintf(
+            'Interviewed by %s on %s',
+            implode(' and ', $interviewers),
+            date_format(date_create($date[0]->text), 'F j, Y')
+        );
     }
-    else {
-      return $s;
-    }
-  };
-  $interviewers = array_map(function ($a) use ($convertNameFormat) {
-    return $convertNameFormat($a->text);
-  },
-    $item->getElementTexts('Item Type Metadata',
-      'Interviewer'));
-  $date = $item->getElementTexts('Item Type Metadata',
-    'Interview Date');
-  $text = '';
-  if (empty($interviewers)) {
-    if (empty($date)) {
-      return "";
-    }
-    else {
-      return sprintf('Interviewed on %s',
-        date_format(date_create($date[0]->text),
-          'F j, Y'));
-    }
-  }
-  elseif (empty($date)) {
-    return sprintf('Interviewed by %s',
-      implode(' and ',
-        $interviewers));
-  }
-  else {
-    return sprintf('Interviewed by %s on %s',
-      implode(' and ',
-        $interviewers),
-      date_format(date_create($date[0]->text),
-        'F j, Y'));
-  }
 }
 
 /**
@@ -69,29 +60,43 @@ function oral_history_item_subtitle($item = false) {
  */
 function mcjc_random_featured_items($count = 5, $hasImage = null)
 {
-  $items = get_random_featured_items($count, $hasImage);
-  if ($items) {
-    $html = '';
-    foreach ($items as $item) {
-      $html .= get_view()->partial('items/featured-item.php', array('item' => $item));
-      release_object($item);
+    $items = get_random_featured_items($count, $hasImage);
+    if ($items) {
+        $html = '';
+        foreach ($items as $item) {
+            $html .= get_view()->partial('items/featured-item.php', [
+                'item' => $item,
+            ]);
+            release_object($item);
+        }
+    } else {
+        $html = '<p>' . __('No featured items are available.') . '</p>';
     }
-  } else {
-    $html = '<p>' . __('No featured items are available.') . '</p>';
-  }
-  return $html;
+    return $html;
 }
 
 /**
  * Render audio player for an oral history item.
  */
-function mcjc_render_oral_history_players($item, $wrapperAttributes = array('class' => 'item-file')) {
-  $files = $item->Files;
-  $output = "";
-  foreach (array_filter($files, function($file) { return substr($file->mime_type, 0, 5) === 'audio'; }) as $audiofile) {
-    $output .= get_view()->mcjcFileMarkup($audiofile, array(), $wrapperAttributes);
-  }
-  return $output;
+function mcjc_render_oral_history_players(
+    $item,
+    $wrapperAttributes = ['class' => 'item-file']
+) {
+    $files = $item->Files;
+    $output = "";
+    foreach (
+        array_filter($files, function ($file) {
+            return substr($file->mime_type, 0, 5) === 'audio';
+        })
+        as $audiofile
+    ) {
+        $output .= get_view()->mcjcFileMarkup(
+            $audiofile,
+            [],
+            $wrapperAttributes
+        );
+    }
+    return $output;
 }
 
 /**
@@ -104,20 +109,24 @@ function mcjc_render_oral_history_players($item, $wrapperAttributes = array('cla
  * @param Item|null $item Check for this specific item record (current item if null).
  * @return string HTML
  */
-function mcjc_files_for_item($type = 'item', $options = array(), $wrapperAttributes = array('class' => 'item-file'), $item = null)
-{
-  if (!$item) {
-    $item = get_current_record($type);
-  }
-  $options['item'] = $item;
+function mcjc_files_for_item(
+    $type = 'item',
+    $options = [],
+    $wrapperAttributes = ['class' => 'item-file'],
+    $item = null
+) {
+    if (!$item) {
+        $item = get_current_record($type);
+    }
+    $options['item'] = $item;
 
-  if ($type == 'collection') {
-    $files = mcjc_get_collection_files($item);
-  } else {
-    $files = $item->Files;
-  }
+    if ($type == 'collection') {
+        $files = mcjc_get_collection_files($item);
+    } else {
+        $files = $item->Files;
+    }
 
-  return mcjc_file_markup($files, $options, $wrapperAttributes);
+    return mcjc_file_markup($files, $options, $wrapperAttributes);
 }
 
 /**
@@ -128,22 +137,22 @@ function mcjc_files_for_item($type = 'item', $options = array(), $wrapperAttribu
  */
 function mcjc_get_collection_files($collection)
 {
-  $itemTable = $collection->getDb()->getTable('Item');
-  $itemArray = $itemTable->findBy(array(
-    'collection' => $collection->id,
-    'hasImage' => true,
-    'sort_field' => 'featured',
-    'sort_dir' => 'd'
-  ));
-  if ($itemArray) {
-    $files = array();
-    foreach ($itemArray as $item) {
-      $files[] = $item->getFile();
+    $itemTable = $collection->getDb()->getTable('Item');
+    $itemArray = $itemTable->findBy([
+        'collection' => $collection->id,
+        'hasImage' => true,
+        'sort_field' => 'featured',
+        'sort_dir' => 'd',
+    ]);
+    if ($itemArray) {
+        $files = [];
+        foreach ($itemArray as $item) {
+            $files[] = $item->getFile();
+        }
+        return $files;
+    } else {
+        return null;
     }
-    return $files;
-  } else {
-    return null;
-  }
 }
 
 /**
@@ -158,26 +167,36 @@ function mcjc_get_collection_files($collection)
  * file in a div.
  * @return string HTML
  */
-function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = array('class' => 'item-file'))
-{
-  if (!is_array($files)) {
-    $files = array($files);
-  }
-  $output = '';
-
-  $files = mcjc_sort_files($files);
-
-  // Create file output.
-  foreach ($files as $key=>$file) {
-    // Don't create markup for PDFs unless this is an item show page, and
-    // only create markup for the first file if this is Browse Collections.
-    if (!isset($props['show']) && strpos($file->mime_type, 'pdf') !== FALSE
-    || isset($props['browse_collections']) && $key != 0) {
-      continue;
+function mcjc_file_markup(
+    $files,
+    array $props = [],
+    $wrapperAttributes = ['class' => 'item-file']
+) {
+    if (!is_array($files)) {
+        $files = [$files];
     }
-    $output .= get_view()->mcjcFileMarkup($file, $props, $wrapperAttributes);
-  }
-  return $output;
+    $output = '';
+
+    $files = mcjc_sort_files($files);
+
+    // Create file output.
+    foreach ($files as $key => $file) {
+        // Don't create markup for PDFs unless this is an item show page, and
+        // only create markup for the first file if this is Browse Collections.
+        if (
+            (!isset($props['show']) &&
+                strpos($file->mime_type, 'pdf') !== false) ||
+            (isset($props['browse_collections']) && $key != 0)
+        ) {
+            continue;
+        }
+        $output .= get_view()->mcjcFileMarkup(
+            $file,
+            $props,
+            $wrapperAttributes
+        );
+    }
+    return $output;
 }
 
 /**
@@ -186,54 +205,62 @@ function mcjc_file_markup($files, array $props = array(), $wrapperAttributes = a
  * @param array $files The initial array of files.
  * @return array The sorted array, with PDFs last.
  */
-function mcjc_sort_files($files) {
-  // Remove PDF files so we can append them to the end of the file list.
-  $pdfs = array();
-  foreach ($files as $key => $file) {
-    if ($file->mime_type == 'application/pdf') {
-      $pdfs[] = $file;
-      unset($files[$key]);
+function mcjc_sort_files($files)
+{
+    // Remove PDF files so we can append them to the end of the file list.
+    $pdfs = [];
+    foreach ($files as $key => $file) {
+        if ($file->mime_type == 'application/pdf') {
+            $pdfs[] = $file;
+            unset($files[$key]);
+        }
     }
-  }
 
-  // Reset the array keys.
-  $files = array_values($files);
+    // Reset the array keys.
+    $files = array_values($files);
 
-  // Add PDF files to end of array of files.
-  $files = array_merge($files, $pdfs);
+    // Add PDF files to end of array of files.
+    $files = array_merge($files, $pdfs);
 
-  return($files);
+    return $files;
 }
 
 function mcjc_get_linked_sohp_interview($item = false)
 {
-  if (!$item) $item = get_current_record('item');
-
-  if (metadata($item, array('Dublin Core', 'Creator')) === "Southern Oral History Program") {
-    // TODO: Check if source is a valid link.
-    $source = metadata('item', array('Dublin Core', 'Source'));
-    if (substr($source, 0, 4) === "http") {
-      return $source;
+    if (!$item) {
+        $item = get_current_record('item');
     }
-  }
-  return FALSE;
+
+    if (
+        metadata($item, ['Dublin Core', 'Creator']) ===
+        "Southern Oral History Program"
+    ) {
+        // TODO: Check if source is a valid link.
+        $source = metadata('item', ['Dublin Core', 'Source']);
+        if (substr($source, 0, 4) === "http") {
+            return $source;
+        }
+    }
+    return false;
 }
 
 /**
  * Determines if a SimplePages page object is part of the `About` page hierarchy.
  * @param $page SimplePagesPage Page to check.
  */
-function mcjc_is_about_page($page) {
-  if ($page->slug && $page->slug === 'about') {
-    return true;
-  }
-  else {
-    if ($page->parent_id) {
-      $parent = get_db()->getTable('SimplePagesPage')->find($page->parent_id);
-      return $parent && mcjc_is_about_page($parent);
+function mcjc_is_about_page($page)
+{
+    if ($page->slug && $page->slug === 'about') {
+        return true;
+    } else {
+        if ($page->parent_id) {
+            $parent = get_db()
+                ->getTable('SimplePagesPage')
+                ->find($page->parent_id);
+            return $parent && mcjc_is_about_page($parent);
+        }
     }
-  }
-  return false;
+    return false;
 }
 
 /**
@@ -245,32 +272,42 @@ function mcjc_is_about_page($page) {
  * @return mixed
  * @throws Zend_Navigation_Exception
  */
-function mcjc_get_submenu() {
-  $view = get_view();
-  $nav = new Omeka_Navigation;
-  $nav->loadAsOption(Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_OPTION_NAME);
-  $nav->addPagesFromFilter(Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_FILTER_NAME);
-  return $view->navigation()->menu($nav)->setMaxDepth(1)->renderSubmenu();
-  // @TODO: Handle Zend_Navigation_Exception
+function mcjc_get_submenu()
+{
+    $view = get_view();
+    $nav = new Omeka_Navigation();
+    $nav->loadAsOption(Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_OPTION_NAME);
+    $nav->addPagesFromFilter(
+        Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_FILTER_NAME
+    );
+    return $view
+        ->navigation()
+        ->menu($nav)
+        ->setMaxDepth(1)
+        ->renderSubmenu();
+    // @TODO: Handle Zend_Navigation_Exception
 }
 
-function mcjc_sort_tags_by_first_letter($tags = null) {
-  if (!$tags) return [];
-
-  $output = [];
-
-  foreach ($tags as $tag) {
-    $firstLetter = ucfirst($tag->name)[0];
-    if (!ctype_alpha($firstLetter)) {
-      $firstLetter = '123';
+function mcjc_sort_tags_by_first_letter($tags = null)
+{
+    if (!$tags) {
+        return [];
     }
-    if (!isset($output[$firstLetter])) {
-      $output[$firstLetter] = [];
-    }
-    $output[$firstLetter][] = $tag;
-  }
 
-  return $output;
+    $output = [];
+
+    foreach ($tags as $tag) {
+        $firstLetter = ucfirst($tag->name)[0];
+        if (!ctype_alpha($firstLetter)) {
+            $firstLetter = '123';
+        }
+        if (!isset($output[$firstLetter])) {
+            $output[$firstLetter] = [];
+        }
+        $output[$firstLetter][] = $tag;
+    }
+
+    return $output;
 }
 
 /**
@@ -287,43 +324,46 @@ function mcjc_sort_tags_by_first_letter($tags = null) {
  * @param string $tagNumberOrder
  * @return string HTML for the tag cloud
  */
-function mcjc_tags_list($recordOrTags = null, $tagNumber = false, $tagNumberOrder = null)
-{
-  if (!$recordOrTags) {
-    $tags = array();
-  } elseif (is_string($recordOrTags)) {
-    $tags = get_current_record($recordOrTags)->Tags;
-  } elseif ($recordOrTags instanceof Omeka_Record_AbstractRecord) {
-    $tags = $recordOrTags->Tags;
-  } else {
-    $tags = $recordOrTags;
-  }
+function mcjc_tags_list(
+    $recordOrTags = null,
+    $tagNumber = false,
+    $tagNumberOrder = null
+) {
+    if (!$recordOrTags) {
+        $tags = [];
+    } elseif (is_string($recordOrTags)) {
+        $tags = get_current_record($recordOrTags)->Tags;
+    } elseif ($recordOrTags instanceof Omeka_Record_AbstractRecord) {
+        $tags = $recordOrTags->Tags;
+    } else {
+        $tags = $recordOrTags;
+    }
 
-  if (empty($tags)) {
-    return '<p>' . __('No tags are available.') . '</p>';
-  }
-  $html = '<div class="tags__list">';
-  $tagCount = count($tags);
-  foreach ($tags as $index => $tag) {
-    $html .= '<span class="tags__tag">';
-    // TODO -- should be url(array('tag' => $tag['name']), 'tagShow') once that controller has been created.
-    $html .= '<a href="/tags/' . utf8_htmlspecialchars($tag['name']) . '">';
-    if ($tagNumber && $tagNumberOrder == 'before') {
-      $html .= ' <span class="count">'.$tag['tagCount'].'</span> ';
+    if (empty($tags)) {
+        return '<p>' . __('No tags are available.') . '</p>';
     }
-    $html .= html_escape($tag['name']);
-    if ($tagNumber && $tagNumberOrder == 'after') {
-      $html .= ' <span class="count">'.$tag['tagCount'].'</span> ';
+    $html = '<div class="tags__list">';
+    $tagCount = count($tags);
+    foreach ($tags as $index => $tag) {
+        $html .= '<span class="tags__tag">';
+        // TODO -- should be url(array('tag' => $tag['name']), 'tagShow') once that controller has been created.
+        $html .= '<a href="/tags/' . utf8_htmlspecialchars($tag['name']) . '">';
+        if ($tagNumber && $tagNumberOrder == 'before') {
+            $html .= ' <span class="count">' . $tag['tagCount'] . '</span> ';
+        }
+        $html .= html_escape($tag['name']);
+        if ($tagNumber && $tagNumberOrder == 'after') {
+            $html .= ' <span class="count">' . $tag['tagCount'] . '</span> ';
+        }
+        $html .= '</a>';
+        $html .= '</span>';
+        if ($index !== $tagCount - 1) {
+            $html .= ', ';
+        }
     }
-    $html .= '</a>';
-    $html .= '</span>';
-    if ($index !== $tagCount - 1) {
-      $html .= ', ';
-    }
-  }
-  $html .= '</div>';
+    $html .= '</div>';
 
-  return $html;
+    return $html;
 }
 
 // TODO: Pull these dynamically and store in plugin variables as part of install process.
@@ -343,41 +383,50 @@ const IMAGE_ITEM_TYPE = 6;
  * outside the context of a loop.
  * @return string HTML
  */
-function mcjc_link_to_item($text = null, $item = null, $props = array('class' => 'item-link'), $action = 'show') {
-  if (!$item) {
-    $item = get_current_record('item');
-  }
+function mcjc_link_to_item(
+    $text = null,
+    $item = null,
+    $props = ['class' => 'item-link'],
+    $action = 'show'
+) {
+    if (!$item) {
+        $item = get_current_record('item');
+    }
 
-  $routesForItemType = array(
-    ORAL_HISTORY_ITEM_TYPE => 'stories',
-    PERSON_ITEM_TYPE => 'people',
-    IMAGE_ITEM_TYPE => 'images',
-  );
+    $routesForItemType = [
+        ORAL_HISTORY_ITEM_TYPE => 'stories',
+        PERSON_ITEM_TYPE => 'people',
+        IMAGE_ITEM_TYPE => 'images',
+    ];
 
-  if (array_key_exists($item->item_type_id, $routesForItemType)) {
-    $permalink = metadata($item, array('Dublin Core', 'Permalink'));
-    $url = url(array('permalink' => $permalink), $routesForItemType[$item->item_type_id] . ucfirst($action));
-    $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
-    return "<a href='{$url}'{$attr}>{$text}</a>";
-  }
+    if (array_key_exists($item->item_type_id, $routesForItemType)) {
+        $permalink = metadata($item, ['Dublin Core', 'Permalink']);
+        $url = url(
+            ['permalink' => $permalink],
+            $routesForItemType[$item->item_type_id] . ucfirst($action)
+        );
+        $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
+        return "<a href='{$url}'{$attr}>{$text}</a>";
+    }
 
-  return link_to_item($text, $props, $action, $item);
+    return link_to_item($text, $props, $action, $item);
 }
 
 /**
  * Returns a human-readable paragraph of key element texts.
  */
-function mcjc_element_metadata_paragraph($item) {
-//  $texts = array(
-//    'subject' => metadata($item, array('Dublin Core', 'Subject')),
-//    'type' => metadata($item, array('Dublin Core', 'Type')),
-//    'coverage' => metadata($item, array('Dublin Core', 'Coverage')),
-//    'creator' => metadata($item, array('Dublin Core', 'Creator')),
-//    'date' => metadata($item, array('Dublin Core', 'Date')),
-//    'identifier' => metadata($item, array('Dublin Core', 'Identifier')),
-//    'format' => metadata($item, array('Dublin Core', 'Format')),
-//  );
+function mcjc_element_metadata_paragraph($item)
+{
+    //  $texts = array(
+    //    'subject' => metadata($item, array('Dublin Core', 'Subject')),
+    //    'type' => metadata($item, array('Dublin Core', 'Type')),
+    //    'coverage' => metadata($item, array('Dublin Core', 'Coverage')),
+    //    'creator' => metadata($item, array('Dublin Core', 'Creator')),
+    //    'date' => metadata($item, array('Dublin Core', 'Date')),
+    //    'identifier' => metadata($item, array('Dublin Core', 'Identifier')),
+    //    'format' => metadata($item, array('Dublin Core', 'Format')),
+    //  );
 
-  // TODO.
-  return 'STUB ELEMENT PARAGRAPH DESCRIPTION';
+    // TODO.
+    return 'STUB ELEMENT PARAGRAPH DESCRIPTION';
 }
