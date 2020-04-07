@@ -5,7 +5,7 @@ if (!isset($title)) {
 
 $hasFiles = $isCollection || metadata($item, 'has files');
 ?>
-<div class="related-item tile<?php echo $class && " {$class}"; ?>">
+<div class="related-item tile<?php echo $class ? " {$class}" : ""; ?>">
     <div class="item-label tile__label">
       <div class="item-title tile__title"><?php echo mcjc_link_to_item(
           $title,
