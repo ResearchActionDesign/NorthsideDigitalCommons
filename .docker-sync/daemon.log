@@ -1,0 +1,213 @@
+          ok  Starting native_osx for sync htdocs-sync
+          ok  htdocs-sync container still running, restarting unison in container
+unison: stopped
+unison: started
+     success  Sync container started
+     success  Showing unison logs from your sync container: htdocs-sync
+          ok  Starting native_osx for sync db-sync
+          ok  db-sync container still running, restarting unison in container
+[2020-04-07 09:31:10 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 17:31:03.59 on 06 Apr 2020
+[2020-04-07 09:31:10 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/css/style.css from /host_sync to /app_sync
+[2020-04-07 09:31:10 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/css/style.css
+[2020-04-07 09:31:10 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 17:31:03.60 on 06 Apr 2020
+[2020-04-07 09:31:10 -0400] Sync Log:  Synchronization complete at 17:31:03  (1 item transferred, 0 skipped, 0 failed)
+[2020-04-07 09:31:10 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 17:31:17.80 on 06 Apr 2020
+[2020-04-07 09:31:10 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/css/style.css from /host_sync to /app_sync
+[2020-04-07 09:31:10 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/css/style.css
+[2020-04-07 09:31:10 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 17:31:17.80 on 06 Apr 2020
+[2020-04-07 09:31:10 -0400] Sync Log:  Synchronization complete at 17:31:17  (1 item transferred, 0 skipped, 0 failed)
+unison: stopped
+unison: started
+     success  Sync container started
+     success  Showing unison logs from your sync container: db-sync
+[2020-04-07 09:31:15 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:31:15.36 on 07 Apr 2020
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file README.md from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file README.md
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/README.md from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/README.md
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/collections/browse.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/collections/browse.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/collections/show.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/collections/show.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/collections/single.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/collections/single.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/common/footer.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/common/footer.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/common/header.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/common/header.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/common/item-relations-show.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/common/item-relations-show.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/common/related-item.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/common/related-item.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/config.ini from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/config.ini
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/contribution/contribution/contribute.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/contribution/contribution/contribute.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/contribution/contribution/terms.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/contribution/contribution/terms.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/contribution/contribution/thankyou.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/contribution/contribution/thankyou.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/contribution/contribution/type-form.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/contribution/contribution/type-form.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/custom.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/custom.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/exhibits/single.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/exhibits/single.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/images/index/browse.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/images/index/browse.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/images/manifest.json from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/images/manifest.json
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/index.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/index.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/items/browse.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/items/browse.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/items/featured-item.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/items/featured-item.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/items/show.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/items/show.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/items/tags.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/items/tags.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/javascripts/berlin.js from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/javascripts/berlin.js
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/lity/lity.css from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/lity/lity.css
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/lity/lity.js from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/lity/lity.js
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/lity/lity.min.css from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/lity/lity.min.css
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/lity/lity.min.js from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/lity/lity.min.js
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/people/common/person-page-oral-history-item.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/people/common/person-page-oral-history-item.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/people/index/browse.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/people/index/browse.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/people/items/show.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/people/items/show.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_768max-custom.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_768max-custom.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_768max.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_768max.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_base-custom.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_base-custom.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_base.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_base.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Copying themes/berlin_mcjc/sass/_home-page.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Copying themes/berlin_mcjc/sass/_home-page.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_normalize.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_normalize.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_screen-custom.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_screen-custom.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_screen.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_screen.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_skeleton.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_skeleton.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/print.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/print.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/style.scss from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/style.scss
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/search/index.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/search/index.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/search/search-filters.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/search/search-filters.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/simple-pages/page/show.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/simple-pages/page/show.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/stories/index/browse.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/stories/index/browse.php
+[2020-04-07 09:31:15 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/topics/index/browse.php from /host_sync to /app_sync
+[2020-04-07 09:31:15 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/topics/index/browse.php
+[2020-04-07 09:31:15 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:31:15.50 on 07 Apr 2020
+[2020-04-07 09:31:15 -0400] Sync Log:  Synchronization complete at 09:31:15  (47 items transferred, 0 skipped, 0 failed)
+[2020-04-07 09:32:23 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:32:22.87 on 07 Apr 2020
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/css/print.css from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/css/print.css
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_base-custom.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_base-custom.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_base.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_base.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_normalize.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_normalize.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_skeleton.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_skeleton.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/print.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/print.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/style.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:23 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/style.scssc
+[2020-04-07 09:32:23 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:32:22.90 on 07 Apr 2020
+[2020-04-07 09:32:23 -0400] Sync Log:  Synchronization complete at 09:32:22  (8 items transferred, 0 skipped, 0 failed)
+[2020-04-07 09:32:24 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:32:23.93 on 07 Apr 2020
+[2020-04-07 09:32:24 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/css/style.css from /host_sync to /app_sync
+[2020-04-07 09:32:24 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/css/style.css
+[2020-04-07 09:32:24 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_768max-custom.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:24 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_768max-custom.scssc
+[2020-04-07 09:32:24 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_768max.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:24 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_768max.scssc
+[2020-04-07 09:32:24 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen-custom.scssc from /host_sync to /app_sync
+[2020-04-07 09:32:24 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen-custom.scssc
+[2020-04-07 09:32:24 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:32:23.95 on 07 Apr 2020
+[2020-04-07 09:32:24 -0400] Sync Log:  Synchronization complete at 09:32:23  (4 items transferred, 0 skipped, 0 failed)
+[2020-04-07 09:37:31 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:37:31.68 on 07 Apr 2020
+[2020-04-07 09:37:31 -0400] Sync Log:  [BGN] Deleting themes/berlin_mcjc/sass/_home-page.scss from /app_sync
+[2020-04-07 09:37:31 -0400] Sync Log:  [END] Deleting themes/berlin_mcjc/sass/_home-page.scss
+[2020-04-07 09:37:31 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:37:31.68 on 07 Apr 2020
+[2020-04-07 09:37:31 -0400] Sync Log:  Synchronization complete at 09:37:31  (1 item transferred, 0 skipped, 0 failed)
+[2020-04-07 09:37:34 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:37:34.76 on 07 Apr 2020
+[2020-04-07 09:37:34 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/style.scssc from /host_sync to /app_sync
+[2020-04-07 09:37:34 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/style.scssc
+[2020-04-07 09:37:34 -0400] Sync Log:  [BGN] Copying themes/berlin_mcjc/sass/_home-page.scss from /host_sync to /app_sync
+[2020-04-07 09:37:34 -0400] Sync Log:  [END] Copying themes/berlin_mcjc/sass/_home-page.scss
+[2020-04-07 09:37:34 -0400] Sync Log:  [BGN] Deleting themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc from /app_sync
+[2020-04-07 09:37:34 -0400] Sync Log:  [END] Deleting themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc
+[2020-04-07 09:37:34 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:37:34.77 on 07 Apr 2020
+[2020-04-07 09:37:34 -0400] Sync Log:  Synchronization complete at 09:37:34  (3 items transferred, 0 skipped, 0 failed)
+[2020-04-07 09:37:35 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:37:35.81 on 07 Apr 2020
+[2020-04-07 09:37:35 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/css/style.css from /host_sync to /app_sync
+[2020-04-07 09:37:35 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/css/style.css
+[2020-04-07 09:37:35 -0400] Sync Log:  [BGN] Copying themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc from /host_sync to /app_sync
+[2020-04-07 09:37:35 -0400] Sync Log:  [END] Copying themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc
+[2020-04-07 09:37:35 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:37:35.82 on 07 Apr 2020
+[2020-04-07 09:37:35 -0400] Sync Log:  Synchronization complete at 09:37:35  (2 items transferred, 0 skipped, 0 failed)
+[2020-04-07 09:41:05 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:41:05.04 on 07 Apr 2020
+[2020-04-07 09:41:05 -0400] Sync Log:  [BGN] Deleting themes/berlin_mcjc/sass/_home-page.scss from /app_sync
+[2020-04-07 09:41:05 -0400] Sync Log:  [END] Deleting themes/berlin_mcjc/sass/_home-page.scss
+[2020-04-07 09:41:05 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:41:05.04 on 07 Apr 2020
+[2020-04-07 09:41:05 -0400] Sync Log:  Synchronization complete at 09:41:05  (1 item transferred, 0 skipped, 0 failed)
+[2020-04-07 09:41:07 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:41:07.13 on 07 Apr 2020
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/collections/browse.php from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/collections/browse.php
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/common/footer.php from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/common/footer.php
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/common/header.php from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/common/header.php
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/config.ini from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/config.ini
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/index.php from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/index.php
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen.scssc
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_skeleton.scssc from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_skeleton.scssc
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/style.scssc from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/style.scssc
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_768max-custom.scss from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_768max-custom.scss
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_screen-custom.scss from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_screen-custom.scss
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_screen.scss from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_screen.scss
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/_skeleton.scss from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/_skeleton.scss
+[2020-04-07 09:41:07 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/style.scss from /host_sync to /app_sync
+[2020-04-07 09:41:07 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/style.scss
+[2020-04-07 09:41:07 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:41:07.18 on 07 Apr 2020
+[2020-04-07 09:41:07 -0400] Sync Log:  Synchronization complete at 09:41:07  (13 items transferred, 0 skipped, 0 failed)
+[2020-04-07 09:41:08 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) started propagating changes at 09:41:08.22 on 07 Apr 2020
+[2020-04-07 09:41:08 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/css/style.css from /host_sync to /app_sync
+[2020-04-07 09:41:08 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/css/style.css
+[2020-04-07 09:41:08 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_768max-custom.scssc from /host_sync to /app_sync
+[2020-04-07 09:41:08 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_768max-custom.scssc
+[2020-04-07 09:41:08 -0400] Sync Log:  [BGN] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen-custom.scssc from /host_sync to /app_sync
+[2020-04-07 09:41:08 -0400] Sync Log:  [END] Updating file themes/berlin_mcjc/sass/.sass-cache/70ac7bfdfc7449ef7c2ab38755d04c6a7fab908e/_screen-custom.scssc
+[2020-04-07 09:41:08 -0400] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 09:41:08.23 on 07 Apr 2020
+[2020-04-07 09:41:08 -0400] Sync Log:  Synchronization complete at 09:41:08  (3 items transferred, 0 skipped, 0 failed)
