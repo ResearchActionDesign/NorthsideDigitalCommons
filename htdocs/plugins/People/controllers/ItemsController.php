@@ -3,6 +3,8 @@
  * @package People
  */
 
+const ORAL_HISTORY_ITEM_TYPE = 4;
+
 class People_ItemsController extends AbstractMCJCItemController
 {
   protected function getItemTypes()
