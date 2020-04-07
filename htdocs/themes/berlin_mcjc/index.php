@@ -1,5 +1,5 @@
 <?php echo head(['bodyid' => 'home', 'bodyclass']); ?>
-<div id="video-container">
+<div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
         <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/images/homepage_video.jpg" muted>
@@ -16,10 +16,10 @@
   <?php endif; ?>
     <div id="homepage-menu">
       <div class="homepage-menu__item">
-        <div id='homepage-menu-image'>
+        <div class='homepage-menu-image'>
          <img src="https://via.placeholder.com/250">
         </div>
-        <div id="homepage-menu-content">
+        <div class="homepage-menu-content">
           <h2>Meet our neighbors</h2>
           <?php if (
               $link_text = get_theme_option('homepage_meet_our_neighbors_text')
@@ -30,10 +30,10 @@
         </div>
       </div>
       <div class="homepage-menu__item">
-        <div id="homepage-menu-image">
+        <div class="homepage-menu-image">
           <img src="https://via.placeholder.com/250">
         </div>
-        <div id="homepage-menu-content">
+        <div class="homepage-menu-content">
           <h2>Explore themes</h2>
           <?php if (
               $link_text = get_theme_option('homepage_explore_themes_text')
@@ -44,10 +44,10 @@
         </div>
       </div>
       <div class="homepage-menu__item">
-        <div id="homepage-menu-image">
+        <div class="homepage-menu-image">
          <img src="https://via.placeholder.com/250">
         </div>
-        <div id="homepage-menu-content">
+        <div class="homepage-menu-content">
           <h2>Explore themes</h2>
           <?php if (
               $link_text = get_theme_option('homepage_tell_your_story_text')

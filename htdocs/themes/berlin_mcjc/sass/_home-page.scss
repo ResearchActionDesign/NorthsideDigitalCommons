@@ -1,5 +1,5 @@
 /* styles for home page header */
-#home_page_header_container {
+.home_page_header_container {
   display: grid;
   grid-template-columns: 30% 45% 25%;
   justify-content: center;
@@ -25,11 +25,11 @@
 /* #homepage-menu-image {
     padding-left: 100px;
   } */
-#homepage-menu-content {
+.homepage-menu-content {
   padding-left: 50px;
   justify-content: center;
 }
-#homepage-menu-content a {
+.homepage-menu-content a {
   background-color: #58735a;
   color: white;
   padding: 0.5em 2em;
@@ -40,12 +40,18 @@
 #footer-content {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 0.5em;
+  // max-width: 1250px;
+  margin: 0 auto;
 }
 #footer-text {
   display: block;
   flex: 1;
   padding: 20px;
-  width: 50%;
+  min-width: 250px;
+  max-width: 650px;
 }
 .center-div nav {
   width: 10px;
@@ -53,13 +59,20 @@
 }
 #footer-nav {
   display: block;
-  width: 20%;
-  padding-left: 100px;
+  margin-left: 0.5em;
+  nav {
+    width: 100%;
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: column;
+  }
 }
 #footer-logo {
   display: block;
   align-content: center;
-  width: 30%;
+  // width: 225px;
   justify-content: center;
   align-items: center;
   padding: 50px;
@@ -82,7 +95,20 @@
 /* #primary {
     width: 100%;
   } */
-#video-container {
+.video-container {
   width: 100%;
   padding-bottom: 100px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  #homepage-menu {
+    padding: 0 0.5em;
+  }
+}
+
+@media only screen and (min-width: 1750px) {
+  .video-container {
+    max-width: 1350px;
+  }
 }
