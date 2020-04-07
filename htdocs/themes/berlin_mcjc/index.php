@@ -1,5 +1,5 @@
 <?php echo head(array('bodyid'=>'home', 'bodyclass')); ?>
-<div id="video-container">
+<div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
         <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/images/homepage_video.jpg" muted>
@@ -16,40 +16,10 @@
   <?php endif; ?>
     <div id="homepage-menu">
       <div class="homepage-menu__item">
-<<<<<<< HEAD
-        <img src="https://via.placeholder.com/250">
-        <h2>Meet our neighbors</h2>
-        <?php if (
-            $link_text = get_theme_option('homepage_meet_our_neighbors_text')
-        ): ?>
-        <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
-        <?php endif; ?>
-        <a href="/people" class="homepage-menu__item__button">View all people</a>
-      </div>
-      <div class="homepage-menu__item">
-        <img src="https://via.placeholder.com/250">
-        <h2>Explore themes</h2>
-        <?php if (
-            $link_text = get_theme_option('homepage_explore_themes_text')
-        ): ?>
-          <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
-        <?php endif; ?>
-        <a href="/topics" class="homepage-menu__item__button">Explore themes</a>
-      </div>
-      <div class="homepage-menu__item">
-        <img src="https://via.placeholder.com/250">
-        <h2>Explore themes</h2>
-        <?php if (
-            $link_text = get_theme_option('homepage_tell_your_story_text')
-        ): ?>
-          <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
-        <?php endif; ?>
-        <a href="/add-your-story" class="homepage-menu__item__button">Add your story</a>
-=======
-        <div id='homepage-menu-image'>
+        <div class='homepage-menu-image'>
          <img src="https://via.placeholder.com/250">
         </div>
-        <div id="homepage-menu-content">
+        <div class="homepage-menu-content">
           <h2>Meet our neighbors</h2>
           <?php if ($link_text = get_theme_option('homepage_meet_our_neighbors_text')): ?>
           <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
@@ -58,10 +28,10 @@
         </div>
       </div>
       <div class="homepage-menu__item">
-        <div id="homepage-menu-image">
+        <div class="homepage-menu-image">
           <img src="https://via.placeholder.com/250">
         </div>
-        <div id="homepage-menu-content">
+        <div class="homepage-menu-content">
           <h2>Explore themes</h2>
           <?php if ($link_text = get_theme_option('homepage_explore_themes_text')): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
@@ -70,17 +40,16 @@
         </div>
       </div>
       <div class="homepage-menu__item">
-        <div id="homepage-menu-image">
+        <div class="homepage-menu-image">
          <img src="https://via.placeholder.com/250">
         </div>
-        <div id="homepage-menu-content">
+        <div class="homepage-menu-content">
           <h2>Explore themes</h2>
           <?php if ($link_text = get_theme_option('homepage_tell_your_story_text')): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
           <a href="/add-your-story" class="homepage-menu__item__button">Add your story</a>
        </div>
->>>>>>> home page styling changes. Need to fix search bar and mobile view on;y
       </div>
     </div>
   <?php if ($map_html = get_theme_option('homepage_map')): ?>
