@@ -22,17 +22,6 @@ h6 {
 	font-family: $heading-font-family;
 }
 
-h1 {
-	&::after {
-		background: $grey--medium;
-		content: '';
-		display: block;
-		height: 2px;
-		margin: 10px 0 0.5em;
-		width: 30px;
-	}
-}
-
 a,
 a:link,
 a:visited {

@@ -18,26 +18,27 @@ $grey--dark: #414042;
 $grey--medium: #dedae2;
 $grey--light: #f4f3f5;
 $white: #fff;
+$accent-color: #7b5c7e;
 
 //* @end */
 
 //* @group ----- Mixins ----- */
 
 @mixin outline-button() {
-  background-color: $white;
-  border: solid 1px $teal;
-  color: $teal;
-  display: inline-block;
-  padding: 0.5em 0.75em;
-  text-decoration: none;
-  transition: all 0.1s linear;
+	background-color: $white;
+	border: solid 1px $teal;
+	color: $teal;
+	display: inline-block;
+	padding: 0.5em 0.75em;
+	text-decoration: none;
+	transition: all 0.1s linear;
 
-  &:hover,
-  &:focus {
-    background-color: $purple--light;
-    border-color: $purple--light;
-    color: $white;
-  }
+	&:hover,
+	&:focus {
+		background-color: $purple--light;
+		border-color: $purple--light;
+		color: $white;
+	}
 }
 
 //* @end */

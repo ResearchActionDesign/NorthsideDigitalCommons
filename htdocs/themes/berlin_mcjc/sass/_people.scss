@@ -1,9 +1,40 @@
-.search-by-lastname ul {
+.search-by-lastname {
 	display: flex;
-	flex-direction: row;
-	list-style: none;
-	letter-spacing: 20px;
-	text-decoration: none;
+	flex-direction: column;
+	background-color: #eeeee8;
+
+	ul {
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+		letter-spacing: 20px;
+		text-decoration: none;
+	}
+
+	span {
+		margin-left: 37px;
+		margin-bottom: -20px;
+		font-size: 13px;
+		font-weight: bold;
+	}
+}
+
+.top-header {
+	height: 300px;
+	margin-bottom: 5px;
+
+	h1 {
+		font-size: 28px;
+		font-family: Montserrat;
+		line-height: 27px;
+		font-weight: bold;
+		color: #0b2243;
+	}
+
+	p {
+		width: 50%;
+		color: #0b2243;
+	}
 }
 
 .active {
@@ -28,12 +59,13 @@
 
 .has-picture {
 	.item-meta {
-		visibility: hidden;
+		top: 85%;
+		transition: 0.5s;
 	}
 
 	&:hover {
 		.item-meta {
-			visibility: visible;
+			top: 0;
 		}
 
 		.person-name {
@@ -77,7 +109,7 @@
 	opacity: 0.85;
 	position: relative;
 	bottom: 0;
-	background: #333;
+	background: $accent-color;
 	color: #ffffff;
 	padding: 5px;
 	height: 100%;
@@ -86,19 +118,19 @@
 .item-meta a {
 	color: white;
 	text-decoration: none;
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .item-img {
 	position: absolute;
 	width: 100%;
+	max-height: 100%;
 }
 
 .item-img img {
 	width: 100%;
 	position: relative;
 	display: block;
-	height: 250px;
 }
 
 .item.record.has-picture {
@@ -120,26 +152,95 @@
 }
 
 @media (min-width: 768px) and (max-width: 959px) {
-	.item-img img {
-		width: 100%;
-		position: absolute;
-		display: block;
+	.top-header {
+		h1 {
+			text-align: center;
+		}
+		p {
+			width: 100%;
+			text-align: center;
+		}
 	}
 
-	.item-meta a {
-		color: white;
-		text-decoration: none;
-		font-size: 15px;
-	}
-
-	.item-img {
-		position: relative;
-	}
 	.browse .item {
-		height: 115px;
+		width: 49%;
+		background: #eee;
+		margin-top: 15px;
 		padding: 0;
+		height: 250px;
 	}
 	.item.record.has-picture.has-bio {
 		padding: 0;
+	}
+
+	.top-header {
+		text-align: center;
+	}
+
+	.search-by-lastname ul {
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 767px) and (min-width: 481px) {
+	.top-header {
+		h1 {
+			text-align: center;
+		}
+		p {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.peoples-item-container {
+		justify-content: center;
+		width: 100%;
+	}
+
+	.browse .item {
+		width: 100%;
+
+		img {
+			margin-top: 0px !important;
+		}
+	}
+
+	.search-by-lastname ul {
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 481px) and (min-width: 320px) {
+	.top-header {
+		h1 {
+			text-align: center;
+		}
+		p {
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	.peoples-item-container {
+		justify-content: center;
+	}
+
+	.search-by-lastname {
+		width: 275px;
+		ul {
+			flex-wrap: wrap;
+			letter-spacing: 15px;
+			padding: 0px 5px 0px 15px;
+		}
+		span {
+			font-size: 13px;
+			text-align: center;
+			font-weight: bold;
+		}
+	}
+
+	.browse .item img {
+		margin-top: 0px !important;
 	}
 }

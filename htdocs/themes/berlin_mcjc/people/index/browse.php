@@ -8,10 +8,12 @@ $validLetters = $vars['letters'];
 
 echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 ?>
-<div>
-
+<div class="top-header">
   <h1><?php echo $pageTitle;?></h1>
-
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit diam a nulla tempus rhoncus. Aliquam erat
+    volutpat.
+  </p>
 </div>
 <div class="search-by-lastname">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
