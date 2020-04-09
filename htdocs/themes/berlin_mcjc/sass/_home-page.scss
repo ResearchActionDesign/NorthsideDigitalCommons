@@ -1,4 +1,7 @@
-/* styles for home page header */
+#home {
+  background-image: url("../images/nsdc.png");
+  background-size: cover;
+}
 .home_page_header_container {
   display: grid;
   grid-template-columns: 30% 45% 25%;
@@ -21,10 +24,16 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
+  background: white;
+  width: 820px;
 }
-/* #homepage-menu-image {
-    padding-left: 100px;
-  } */
+.homepage-menu-image {
+  width: 250px;
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
 .homepage-menu-content {
   padding-left: 50px;
   justify-content: center;
@@ -99,6 +108,21 @@
   width: 100%;
   padding-bottom: 100px;
   margin: 0 auto;
+}
+@media only screen and (max-width: 850px) {
+  .homepage-menu__item {
+    flex-direction: column;
+    width: 325px;
+    text-align: center;
+    padding: 1.35em;
+    border-radius: 0.3em;
+  }
+  .homepage-menu-image {
+    margin: 0 auto;
+  }
+  .homepage-menu-content {
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 768px) {
