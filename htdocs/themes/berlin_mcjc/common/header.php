@@ -65,22 +65,41 @@ if (
     <?php fire_plugin_hook('public_body', ['view' => $this]); ?>
         <header id="home_page_header_container" role="banner">
             <?php fire_plugin_hook('public_header', ['view' => $this]); ?>
-            <div id="site-title"><?php echo link_to_home_page(
-                theme_logo()
-            ); ?></div>
-            <div id="primary-nav" role="navigation">
-              <?php echo public_nav_main(); ?>
+            <div class="header-content-wrapper">
+                <div id="site-title"><?php echo link_to_home_page(
+                    theme_logo()
+                ); ?></div>
+
+                <div class="nav-search-wrapper">
+                    <div id="primary-nav" role="navigation">
+                        <?php echo public_nav_main(); ?>
+                    </div>    
+
+                    <div id="search-container" role="search">
+                        <!-- <div class="search-toggle">OOO</div> -->
+                        <?php if (
+                            get_theme_option('use_advanced_search') === null ||
+                            get_theme_option('use_advanced_search')
+                        ): ?>
+                        <?php echo $this->formButton(
+                            'search-toggle',
+                            $options['search_toggle'],
+                            ['type' => 'button']
+                        ); ?>
+                        <div class="search-form-container">
+                            <div class="search-close">X</div>
+                                <?php echo search_form([
+                                    'show_advanced' => true,
+                                ]); ?>
+                                <?php else: ?>
+                                <?php echo search_form(); ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                       
+                </div>
             </div>
-            <div id="search-container" role="search">
-                <?php if (
-                    get_theme_option('use_advanced_search') === null ||
-                    get_theme_option('use_advanced_search')
-                ): ?>
-                <?php echo search_form(['show_advanced' => true]); ?>
-                <?php else: ?>
-                <?php echo search_form(); ?>
-                <?php endif; ?>
-            </div>
+           
         </header>
 
 
