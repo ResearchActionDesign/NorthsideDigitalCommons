@@ -1,7 +1,13 @@
+.people {
+  background-image: url("../images/nsdc.png");
+  background-size: cover;
+}
+
 .search-by-lastname {
   display: flex;
   flex-direction: column;
   background-color: #eeeee8;
+  padding-top: 0.5em;
 
   ul {
     display: flex;
@@ -9,6 +15,7 @@
     list-style: none;
     letter-spacing: 20px;
     text-decoration: none;
+    margin-bottom: 0.75em;
   }
 
   span {
@@ -79,7 +86,7 @@
   background: #eee;
   margin-top: 15px;
   padding: 0;
-  height: 250px;
+  height: 350px;
 }
 
 .item.record.has-picture.has-bio {
@@ -111,8 +118,11 @@
   bottom: 0;
   background: $accent-color;
   color: #ffffff;
-  padding: 5px;
+  padding: 1em;
   height: 100%;
+  h2 {
+    margin-top: 1.5em;
+  }
 }
 
 .item-meta a {
@@ -139,7 +149,7 @@
 
 .item-description {
   font-size: 12px;
-  text-align: center;
+  text-align: left;
 }
 .person-name {
   text-align: center;
@@ -149,6 +159,8 @@
 .person-name a {
   text-decoration: none;
   color: #fff;
+  position: relative;
+  top: -40px;
 }
 
 @media (min-width: 768px) and (max-width: 959px) {
@@ -167,7 +179,6 @@
     background: #eee;
     margin-top: 15px;
     padding: 0;
-    height: 250px;
   }
   .item.record.has-picture.has-bio {
     padding: 0;
@@ -182,7 +193,7 @@
   }
 }
 
-@media (max-width: 767px) and (min-width: 481px) {
+@media (max-width: 767px) {
   .top-header {
     h1 {
       text-align: center;
@@ -192,7 +203,9 @@
       text-align: center;
     }
   }
-
+  .item .item-meta h2 {
+    margin-top: 1.5em;
+  }
   .peoples-item-container {
     justify-content: center;
     width: 100%;
