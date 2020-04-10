@@ -1,4 +1,10 @@
-</div><!-- end content -->
+<?php
+if (!isset($showContentDiv)) {
+    $showContentDiv = true;
+} ?>
+<?php if ($showContentDiv): ?>
+</div>
+<?php endif; ?>
 
 <footer role="contentinfo" id="footer-content">
 

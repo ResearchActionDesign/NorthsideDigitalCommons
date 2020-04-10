@@ -1,12 +1,17 @@
 <?php
 
+if (!isset($showContentDiv)) {
+    $showContentDiv = true;
+}
+
 if (
     $title == "Search Items" and
     @$_REQUEST['query'] and
     empty(@$_REQUEST['search'])
 ) {
     $_REQUEST['search'] = $_REQUEST['query'];
-} ?>
+}
+?>
 <!DOCTYPE html>
 <html class="<?php echo get_theme_option(
     'Style Sheet'
@@ -112,6 +117,8 @@ if (
 
         <?php echo theme_header_image(); ?>
 
+<?php if ($showContentDiv): ?>
     <div id="content" role="main" tabindex="-1">
+<?php endif; ?>
 
 <?php fire_plugin_hook('public_content_top', ['view' => $this]); ?>

@@ -1,4 +1,4 @@
-<?php echo head(['bodyid' => 'home', 'bodyclass']); ?>
+<?php echo head(['bodyid' => 'home', 'showContentDiv' => false]); ?>
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
@@ -69,6 +69,4 @@
 
   </div>
 </div>
-<!-- end primary -->
-
-<?php echo foot(); ?>
+<?php echo foot(['showContentDiv' => false]); ?>
