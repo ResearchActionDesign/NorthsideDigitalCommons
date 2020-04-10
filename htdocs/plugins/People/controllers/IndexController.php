@@ -63,7 +63,7 @@ class People_IndexController extends Omeka_Controller_AbstractActionController
     $peopleTable = $db->getTable();
     $select = $peopleTable->getSelect();
     $peopleTable->filterByItemType($select, 'Person');
-    $joinTable = "omeka_element_texts";
+    $joinTable = $db->getTable('ElementText')->getTableName();
 
     // Note that 49 is hardcoded element ID for Dublin Core: Subject.
     $joinCondition = "{$joinTable}.record_id = items.id AND {$joinTable}.record_type = 'Item' AND {$joinTable}.element_id = '49'";
