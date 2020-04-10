@@ -1,4 +1,4 @@
-<?php echo head(['bodyid' => 'home', 'bodyclass']); ?>
+<?php echo head(['bodyid' => 'home']); ?>
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">

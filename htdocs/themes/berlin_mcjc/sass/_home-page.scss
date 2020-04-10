@@ -1,6 +1,9 @@
 #home {
   background-image: url("../images/nsdc.png");
   background-size: cover;
+  #content {
+    width: 100%;
+  }
 }
 .home_page_header_container {
   display: grid;
