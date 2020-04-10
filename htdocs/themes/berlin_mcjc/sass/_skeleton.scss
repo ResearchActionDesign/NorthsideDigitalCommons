@@ -10,7 +10,8 @@
 
 // #Variable Definitions
 // ==================================================
-$base-width: 960px;
+$base-width: 1250px;
+$narrow-screen: 950px;
 $tablet-width: 768px;
 $mobile-portrait-width: 300px;
 $mobile-landscape-width: 420px;
@@ -32,7 +33,7 @@ $margin: 10px;
   position: relative;
   margin: 0 auto;
   padding: 0 0;
-  width: 100%;
+  width: $base-width;
 
   &:after {
     content: "\0020";
@@ -42,17 +43,21 @@ $margin: 10px;
     visibility: hidden;
   }
 
-  //   @media only screen and (min-width: 768px) and (max-width: 959px) {
-  //     width: 100%;
-  //   }
+  @media only screen and (min-width: 959px) and (max-width: 1286px) {
+    width: $narrow-screen;
+  }
 
-  //   @media only screen and (max-width: 767px) {
-  //     width: 100%;
-  //   }
+  @media only screen and (min-width: 768px) and (max-width: 959px) {
+    width: $tablet-width;
+  }
 
-  //   @media only screen and (min-width: 480px) and (max-width: 767px) {
-  //     width: 100%;
-  //   }
+  @media only screen and (max-width: 767px) {
+    width: $mobile-portrait-width;
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 767px) {
+    width: $mobile-landscape-width;
+  }
 }
 
 @mixin column {

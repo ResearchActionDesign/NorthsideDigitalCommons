@@ -188,7 +188,7 @@ img a {
 
 header {
   @include container;
-  padding: 0 0;
+  padding: 3em 0;
   position: relative;
 }
 
@@ -1155,6 +1155,7 @@ ul.title-list {
 footer {
   clear: both;
   @include container;
+  width: 100%;
   overflow: hidden;
   @include leader();
   background-color: #eaeaea;
