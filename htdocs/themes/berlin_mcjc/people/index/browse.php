@@ -1,16 +1,15 @@
 <?php
 
-
-$browseByPerson = TRUE;
+$browseByPerson = true;
 $pageTitle = __('Meet our Neighbors');
 $curLetter = $vars['cur_letter'];
 $validLetters = $vars['letters'];
 
-echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
+echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 ?>
 <div class="top-header">
 
-  <h1><?php echo $pageTitle;?></h1>
+  <h1><?php echo $pageTitle; ?></h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit diam a nulla tempus rhoncus. Aliquam erat
     volutpat.
@@ -20,17 +19,19 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 <div class="search-by-lastname">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
   <ul>
-    <li<?php echo (!$curLetter ? ' class="active"' : '');?>><a
-        href="<?php echo $this->url(array(), 'peopleDefault')?>">All</a></li>
+    <li<?php echo !$curLetter ? ' class="active"' : ''; ?>><a
+        href="<?php echo $this->url([], 'peopleDefault'); ?>">All</a></li>
       <?php foreach (range('A', 'Z') as $letter): ?>
       <?php if (in_array($letter, $validLetters)): ?>
-      <li<?php echo ($curLetter == $letter ? ' class="active"' : '');?>>
+      <li<?php echo $curLetter == $letter ? ' class="active"' : ''; ?>>
         <a
-          href="<?php echo $this->url(array(), 'peopleDefault', array('firstLetter' => $letter)) ?>"><?php echo $letter ?></a>
+          href="<?php echo $this->url([], 'peopleDefault', [
+              'firstLetter' => $letter,
+          ]); ?>"><?php echo $letter; ?></a>
         </li>
         <?php else: ?>
         <li class="disabled">
-          <?php echo $letter ?>
+          <?php echo $letter; ?>
         </li>
         <?php endif; ?>
         <?php endforeach; ?>
@@ -41,14 +42,18 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
 
 
   <?php foreach (loop('items') as $item): ?> <?php
-    $itemTitle = metadata('item', 'display_title');
-    $itemClasses = "";
-    if (metadata('item', 'has files')) $itemClasses = " has-picture";
-    if (metadata('item', array('Dublin Core', 'Description'))) $itemClasses .= " has-bio";
-  ?>
-  <div class="item record<?php echo $itemClasses ?>">
+ $itemTitle = metadata('item', 'display_title');
+ $itemClasses = "";
+ if (metadata('item', 'has files')) {
+     $itemClasses = " has-picture";
+ }
+ if (metadata('item', ['Dublin Core', 'Description'])) {
+     $itemClasses .= " has-bio";
+ }
+ ?>
+  <div class="item record<?php echo $itemClasses; ?>">
     <div class="item-img">
-      <?php echo item_image('square_thumbnail', array('alt' => $itemTitle)); ?>
+      <?php echo item_image('square_thumbnail', ['alt' => $itemTitle]); ?>
     </div>
 
     <div class="item-meta">
@@ -56,13 +61,22 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
       <?php if (metadata('item', 'has files')): ?>
       <?php endif; ?>
 
-      <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
+      <?php if (
+          $description = metadata(
+              'item',
+              ['Dublin Core', 'Description'],
+              ['snippet' => 250]
+          )
+      ): ?>
       <div class="item-description">
         <?php echo $description; ?>
       </div>
       <?php endif; ?>
 
-      <?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
+      <?php fire_plugin_hook('public_items_browse_each', [
+          'view' => $this,
+          'item' => $item,
+      ]); ?>
 
 
 
@@ -74,4 +88,7 @@ echo head(array('title'=>$pageTitle,'bodyclass' => 'people browse'));
   <?php endforeach; ?>
 </div>
 <div <?php echo pagination_links(); ?>
-  <?php fire_plugin_hook('public_items_browse', array('items'=> $items, 'view' => $this)); ?> <?php echo foot(); ?>
+<?php fire_plugin_hook('public_items_browse', [
+    'items' => $items,
+    'view' => $this,
+]); ?> <?php echo foot(); ?>
