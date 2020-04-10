@@ -3,11 +3,11 @@
 }
 @import "normalize";
 @import "screen";
-@import "header";
 
 // Custom styles.
 @import "screen-custom";
 @import "home-page";
+@import "header";
 
 // Small screen styles.
 @media screen and (max-width: 768px) {
