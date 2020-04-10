@@ -32,6 +32,8 @@ db/
 # For macs
 .DS_Store
 .idea/
+.docker-sync/
+
 
 # For VIM
 .*.sw*
