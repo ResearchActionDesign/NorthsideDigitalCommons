@@ -15,6 +15,29 @@ if (!Berlin) {
     });
   };
 
+  //handle search bar open/close
+  $().ready(function () {
+    var searchToggle = $("#search-toggle");
+    var closeSearch = $(".search-close");
+    var primaryNav = $("#primary-nav");
+    var searchContainer = $(".search-form-container");
+    console.log(searchToggle);
+    if (searchToggle.length > 0) {
+      searchToggle.on("click", () => {
+        console.log("click");
+        searchContainer.css("display", "flex");
+        searchToggle.hide();
+        primaryNav.hide();
+      });
+
+      closeSearch.on("click", () => {
+        searchContainer.hide();
+        searchToggle.show();
+        primaryNav.show();
+      });
+    }
+  });
+
   $().ready(function () {
     $(".download-file").attr("target", "_blank");
   });

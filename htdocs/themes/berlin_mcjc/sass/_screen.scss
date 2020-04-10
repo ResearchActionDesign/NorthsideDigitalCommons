@@ -390,6 +390,7 @@ header {
 #primary-nav {
   clear: both;
   @include container;
+  width: 500px;
   z-index: 50;
 
   /* mega menu list */
@@ -425,7 +426,7 @@ header {
     overflow: visible;
 
     &:first-child > a {
-      border-left: 1px solid #ccc;
+      // border-left: 1px solid #ccc;
     }
   }
 
@@ -434,7 +435,7 @@ header {
     position: relative;
     display: inline-block;
     margin: 0 0 -1px 0;
-    border: 1px solid #ccc;
+    // border: 1px solid #ccc;
   }
 
   .nav-item:not(:first-child) > a {
@@ -521,7 +522,7 @@ header {
     text-decoration: none;
     display: block;
     padding: rhythm(0.5) 18px;
-    background: #fafafa;
+    color: #333;
   }
 
   a:hover,
