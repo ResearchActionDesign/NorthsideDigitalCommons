@@ -28,7 +28,7 @@ echo head([
     ?>
 </div>
 <?php if ($is_about_page): ?>
-    <div id="secondary simple-pages-submenu"><?php echo $submenu; ?></div>
+    <div class="simple-pages-submenu" id="secondary simple-pages-submenu"><?php echo $submenu; ?></div>
 <?php endif; ?>
 
 <?php echo foot(); ?>

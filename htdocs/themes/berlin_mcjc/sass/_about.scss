@@ -1,0 +1,29 @@
+#about {
+  background-image: url("../images/nsdc2.png");
+  background-size: cover;
+  #content {
+    display: flex;
+    background: transparent;
+  }
+  .simple-pages-submenu {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+    li {
+      background: white;
+      padding: 1em 2em;
+      margin: 1em 0;
+      width: 300px;
+      text-align: center;
+      a {
+        font-weight: 700;
+      }
+    }
+  }
+  h2 {
+    color: $black;
+  }
+  a {
+    color: $green;
+  }
+}
