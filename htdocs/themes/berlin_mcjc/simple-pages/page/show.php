@@ -37,4 +37,5 @@ echo head([
     </div>
 </div>
 
+
 <?php echo foot(); ?>
