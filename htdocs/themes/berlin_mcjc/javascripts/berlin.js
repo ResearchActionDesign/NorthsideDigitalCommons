@@ -50,8 +50,8 @@ if (!Berlin) {
   });
   //readmore/less related-items
   $().ready(function () {
-    var textItem = $("#item-description");
-    var textToHide = textItem.text().substring(280);
+    var textItem = $(".item-description");
+    var textToHide = textItem.$(this).text().substring(280);
     var visibleText = textItem.text().substring(1, 280);
 
     textItem
@@ -68,8 +68,9 @@ if (!Berlin) {
     textItem.click(function () {
       console.log(this);
       $(this).find(".hidden").toggle();
+      $(this).find("a:last").hide();
     });
-    $("#item-description .hidden").hide();
+    $(".item-description .hidden").hide();
     $("#read-more").click(function () {
       $("#read-more").hide();
       $("#read-less").show();

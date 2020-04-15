@@ -250,3 +250,50 @@ details#item-metadata {
 }
 
 /* @end */
+
+/* @group ----- Person ----- */
+.primary.person {
+  display: block;
+  h1 {
+    text-align: center;
+    text-transform: capitalize;
+    color: $black;
+  }
+}
+.oral-history {
+  display: block;
+  // .item-description {
+
+  // }
+}
+.explore-grid.related-items {
+  display: flex;
+  margin: 20px;
+  .related-item.tile.related-item {
+    width: 100%;
+  }
+}
+.explore-grid.in-the-community {
+  .community-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .related-item.tile.in-the-community {
+      width: 500px;
+      height: 500px;
+    }
+  }
+}
+#footer-content {
+  text-align: center;
+  #footer-nav {
+    display: inline-block;
+  }
+  #footer-logo {
+    display: block;
+  }
+  #footer-text {
+    display: block;
+  }
+}
+/* @end */
