@@ -15,3 +15,42 @@
   padding: 10px;
   margin-left: 10px;
 }
+
+.search-title {
+  color: $letter-blue;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.results-row-info {
+  color: $letter-blue;
+}
+
+.search-item__title {
+  color: $letter-blue;
+}
+
+@media (max-width: 480px) {
+  .search-results-rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .results-row-info {
+    max-width: 220px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+  }
+
+  .search-title {
+    font-size: 20px;
+  }
+
+  #search-results h2 {
+    font-size: 15px;
+    line-height: 30px;
+  }
+}
+
+//Advance Search

@@ -1,9 +1,9 @@
 <?php
-$pageTitle = __('Search') . ' ' . __('(%s total)', $total_results);
+$pageTitle = __('%s results for' . ' ' . __('Search'), $total_results);
 echo head(['title' => $pageTitle, 'bodyclass' => 'search']);
 $searchRecordTypes = get_search_record_types();
 ?>
-<h1><?php echo $pageTitle; ?></h1>
+<h1 class="search-title"><?php echo $pageTitle; ?></h1>
 <?php echo search_filters(); ?>
 <?php if ($total_results): ?>
 
@@ -31,11 +31,10 @@ $searchRecordTypes = get_search_record_types();
           <?php echo $searchRecordTypes[$recordType]; ?>
         </span>
         <span>
-          <h2 class="search-item__title"><a
-              href="<?php echo record_url(
-                  $record,
-                  'show'
-              ); ?>"><?php echo $searchText['title']
+          <h2 class="search-item__title"><a href="<?php echo record_url(
+              $record,
+              'show'
+          ); ?>"><?php echo $searchText['title']
     ? $searchText['title']
     : '[Unknown]'; ?></a>
           </h2>
