@@ -41,33 +41,37 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 <div class="peoples-item-container">
 
 
-  <?php foreach (loop('items') as $item): ?> <?php
- $itemTitle = metadata('item', 'display_title');
- $itemClasses = "";
- if (metadata('item', 'has files')) {
-     $itemClasses = " has-picture";
- }
- if (metadata('item', ['Dublin Core', 'Description'])) {
-     $itemClasses .= " has-bio";
- }
- ?>
+  <?php foreach (loop('items') as $item): ?>
+  <?php
+  // TODO: Replace this with the related-item common file potentially.
+  $itemTitle = metadata('item', 'display_title');
+  $itemClasses = "";
+  $hasImg = false;
+  if (metadata('item', 'has files')) {
+      $itemClasses = " has-picture";
+      $hasImg = true;
+  }
+  $description = metadata(
+      'item',
+      ['Dublin Core', 'Description'],
+      ['snippet' => 250]
+  );
+  if ($description) {
+      $itemClasses .= " has-description";
+  }
+  ?>
   <div class="item record<?php echo $itemClasses; ?>">
-    <div class="item-img">
+    <?php if ($hasImg): ?>
+        <div class="item-img">
       <?php echo item_image('square_thumbnail', ['alt' => $itemTitle]); ?>
-    </div>
+        </div>
+  <?php endif; ?>
+
 
     <div class="item-meta">
       <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
-      <?php if (metadata('item', 'has files')): ?>
-      <?php endif; ?>
 
-      <?php if (
-          $description = metadata(
-              'item',
-              ['Dublin Core', 'Description'],
-              ['snippet' => 250]
-          )
-      ): ?>
+      <?php if ($description): ?>
       <div class="item-description">
         <?php echo $description; ?>
       </div>
@@ -78,10 +82,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
           'item' => $item,
       ]); ?>
 
-
-
     </div><!-- end class="item-meta" -->
-    <div class="person-name"><?php echo mcjc_link_to_item($itemTitle); ?></div>
+    <div class="item-title"><?php echo mcjc_link_to_item($itemTitle); ?></div>
     <!-- end class="item entry" -->
   </div>
 
