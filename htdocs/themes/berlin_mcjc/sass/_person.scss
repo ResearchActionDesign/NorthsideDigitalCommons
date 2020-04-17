@@ -71,9 +71,11 @@
 .explore-grid.related-items {
   display: inline-flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: 96px;
   a.button.back {
     position: relative;
+    left: -30%;
     display: block;
     margin: 20px 0;
     background-color: darkgreen;
