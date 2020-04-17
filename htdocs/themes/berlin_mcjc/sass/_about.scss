@@ -1,0 +1,62 @@
+.page.simple-page {
+  background-image: url("../images/nsdc2.png");
+  background-size: cover;
+  #content {
+    display: flex;
+    background: transparent;
+  }
+  .simple-pages-submenu {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+    li {
+      background: white;
+      padding: 1em 2em;
+      margin: 1em 1em;
+      width: 300px;
+      text-align: center;
+      a {
+        font-weight: 700;
+      }
+    }
+  }
+  h2 {
+    color: $black;
+  }
+  a {
+    color: $green;
+  }
+}
+
+.about-content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 768px) {
+  .about-content-wrapper {
+    flex-direction: column;
+  }
+
+  .page.simple-page {
+    .simple-pages-text-wrapper {
+      order: 2;
+    }
+    .simple-pages-submenu {
+      display: flex;
+      flex-direction: column;
+      margin-left: 0;
+      order: 1;
+      .navigation {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      li {
+        width: 180px;
+        margin: 0.5em;
+      }
+    }
+  }
+}

@@ -19,16 +19,23 @@ echo head([
 ?>
 <div id="primary <?php echo $div_class; ?>">
     <?php if (!$is_home_page): ?>
-    <p id="simple-pages-breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
-    <h1><?php echo metadata('simple_pages_page', 'title'); ?></h1>
+        <p id="simple-pages-breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
+        <h1><?php echo metadata('simple_pages_page', 'title'); ?></h1>
     <?php endif; ?>
-    <?php
-    $text = metadata('simple_pages_page', 'text', ['no_escape' => true]);
-    echo $this->shortcodes($text);
-    ?>
+    <div class="about-content-wrapper">
+        <div class="simple-pages-text-wrapper">
+            <?php
+            $text = metadata('simple_pages_page', 'text', [
+                'no_escape' => true,
+            ]);
+            echo $this->shortcodes($text);
+            ?>
+        </div>
+        <?php if ($is_about_page): ?>
+        <div class="simple-pages-submenu" id="secondary simple-pages-submenu"><?php echo $submenu; ?></div>
+        <?php endif; ?>
+    </div>
 </div>
-<?php if ($is_about_page): ?>
-    <div id="secondary simple-pages-submenu"><?php echo $submenu; ?></div>
-<?php endif; ?>
+
 
 <?php echo foot(); ?>
