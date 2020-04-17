@@ -6,7 +6,7 @@
 
   <!-- Item files -->
   <?php if (metadata($item, 'has files')): ?>
-    <div class="player-element">
+    <div class="player element">
       <?php echo mcjc_render_oral_history_players($item); ?>
     </div>
   <?php endif; ?>

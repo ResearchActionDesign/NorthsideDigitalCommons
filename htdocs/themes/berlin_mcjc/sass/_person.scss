@@ -7,10 +7,8 @@
   align-items: center;
   .person.title {
     grid-area: title;
-    h1 {
-      text-align: center;
-      text-transform: capitalize;
-    }
+    text-align: center;
+    text-transform: capitalize;
   }
   .bio {
     grid-area: bio;
@@ -44,7 +42,7 @@
     font-family: "Times New Roman", Times, serif;
     color: $black;
   }
-  .player-element {
+  .player.element {
     grid-area: sound;
     position: relative;
     .mejs-container {
