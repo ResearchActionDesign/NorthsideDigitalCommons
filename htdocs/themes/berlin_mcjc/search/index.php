@@ -23,7 +23,7 @@ $searchRecordTypes = get_search_record_types();
     ); ?>">
       <span class="results-row-img">
         <?php if ($recordImage = record_image($recordType)): ?>
-        <?php echo mcjc_files_for_item(strtolower($recordType)); ?>
+        <?php echo $recordImage; ?>
         <?php endif; ?>
       </span>
       <div class="results-row-info">
