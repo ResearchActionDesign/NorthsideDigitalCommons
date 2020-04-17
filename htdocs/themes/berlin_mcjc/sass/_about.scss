@@ -1,4 +1,4 @@
-#about {
+.page.simple-page {
   background-image: url("../images/nsdc2.png");
   background-size: cover;
   #content {
@@ -12,7 +12,7 @@
     li {
       background: white;
       padding: 1em 2em;
-      margin: 1em 0;
+      margin: 1em 1em;
       width: 300px;
       text-align: center;
       a {
@@ -38,7 +38,7 @@
     flex-direction: column;
   }
 
-  #about {
+  .page.simple-page {
     .simple-pages-text-wrapper {
       order: 2;
     }
