@@ -38,7 +38,7 @@
     "head . ."
     "info . sound"
     "button . .";
-  margin-left: 20px;
+  // margin-left: 20px;
   h2 {
     grid-area: head;
     font-family: "Times New Roman", Times, serif;
@@ -55,7 +55,6 @@
     grid-area: info;
     width: 100%;
     height: auto;
-    margin: 20px;
   }
   a.button.item-link {
     grid-area: button;
@@ -67,14 +66,14 @@
     text-align: center;
     text-decoration: none;
     width: 60%;
-    margin: 20px;
+    margin-top: 20px;
   }
 }
 
 .explore-grid.related-items {
   display: inline-flex;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-top: 96px;
   a.button.back {
     position: relative;
     display: block;
@@ -97,7 +96,8 @@
     position: relative;
     width: 500px;
     height: 500px;
-    margin: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 
     .item-label.tile__label {
       overflow: hidden;
@@ -159,10 +159,14 @@
       }
     }
   }
+  .related-item.tile.related-item:nth-child(even) {
+    margin-top: 40px;
+  }
 }
 .explore-grid.in-the-community {
   background-color: whitesmoke;
-  width: 1250px;
+  @include container;
+  margin-top: 96px;
   h3 {
     padding: 70px;
   }
