@@ -2,21 +2,20 @@
 if (!isset($title)) {
     $title = metadata($item, 'display_title');
 }
+$description = metadata(
+    'item',
+    ['Dublin Core', 'Description'],
+    ['snippet' => 250]
+);
 
 $hasFiles = $isCollection || metadata($item, 'has files');
 ?>
-<div class="related-item tile<?php echo $class ? " {$class}" : ""; ?>">
-    <div class="item-label tile__label">
-      <div class="item-title tile__title"><?php echo mcjc_link_to_item(
-          $title,
-          $item
-      ); ?></div>
-      <div class="item-description tile__description">
-        <?php echo metadata($item, ['Dublin Core', 'Description']); ?>
-      </div>
-    </div>
-    <?php if ($hasFiles): ?>
-      <div class="item-img tile__image">
+<div class="item record related-item tile<?php
+echo $hasFiles ? " has-picture" : "";
+echo $description ? " has-description" : "";
+echo $class ? " {$class}" : "";
+?>">
+      <div class="item-img">
         <?php echo item_image(
             'square_thumbnail',
             ['alt' => $title],
@@ -24,5 +23,16 @@ $hasFiles = $isCollection || metadata($item, 'has files');
             $item
         ); ?>
       </div>
-    <?php endif; ?>
+      <div class="item-meta">
+          <h2><?php echo mcjc_link_to_item($title, $item); ?></h2>
+          <?php if ($description): ?>
+            <div class="item-description">
+              <?php echo $description; ?>
+            </div>
+        <?php endif; ?>
+      </div>
+    <div class="item-title"><?php echo mcjc_link_to_item(
+        $title,
+        $item
+    ); ?></div>
 </div>

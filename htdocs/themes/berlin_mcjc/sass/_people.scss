@@ -1,195 +1,83 @@
 .people {
   background-image: url("../images/nsdc.png");
   background-size: cover;
-}
 
-.search-by-lastname {
-  display: flex;
-  flex-direction: column;
-  background-color: #eeeee8;
-  padding-top: 0.5em;
-
-  ul {
+  .search-by-lastname {
     display: flex;
-    flex-direction: row;
-    list-style: none;
-    letter-spacing: 20px;
-    text-decoration: none;
-    margin-bottom: 0.75em;
-  }
+    flex-direction: column;
+    background-color: #eeeee8;
+    padding-top: 0.5em;
 
-  span {
-    margin-left: 37px;
-    margin-bottom: -20px;
-    font-size: 13px;
-    font-weight: bold;
-  }
-}
-
-.top-header {
-  height: 300px;
-  margin-bottom: 5px;
-
-  h1 {
-    font-size: 28px;
-    font-family: Montserrat;
-    line-height: 27px;
-    font-weight: bold;
-    color: #0b2243;
-  }
-
-  p {
-    width: 50%;
-    color: #0b2243;
-  }
-}
-
-.active {
-  letter-spacing: normal;
-  margin-right: 10px;
-}
-
-.people-page-header {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.peoples-item-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  .item {
-    min-width: 250px;
-  }
-}
-
-.has-picture {
-  .item-meta {
-    top: 85%;
-    transition: 0.5s;
-  }
-
-  &:hover {
-    .item-meta {
-      top: 0;
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      letter-spacing: 20px;
+      text-decoration: none;
+      margin-bottom: 0.75em;
     }
 
-    .person-name {
-      display: none;
+    span {
+      margin-left: 37px;
+      margin-bottom: -20px;
+      font-size: 13px;
+      font-weight: bold;
     }
   }
-}
 
-.browse .item {
-  width: 32%;
-  background: #eee;
-  margin-top: 15px;
-  padding: 0;
-  height: 350px;
-}
-
-.item.record.has-picture.has-bio {
-  overflow: hidden;
-  position: relative;
-  padding: 0;
-}
-
-.item.record.has-bio {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-
-  &:not(.has-picture) {
-    .person-name {
-      display: none;
-    }
-  }
-}
-
-.item.record {
-  position: relative;
-  overflow: hidden;
-}
-
-.item-meta {
-  opacity: 0.85;
-  position: relative;
-  bottom: 0;
-  background: $accent-color;
-  color: #ffffff;
-  padding: 1em;
-  height: 100%;
-  h2 {
-    margin-top: 1.5em;
-  }
-}
-
-.item-meta a {
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.item-img {
-  position: absolute;
-  width: 100%;
-  max-height: 100%;
-}
-
-.item-img img {
-  width: 100%;
-  position: relative;
-  display: block;
-}
-
-.item.record.has-picture {
-  padding: 0;
-}
-
-.item-description {
-  font-size: 12px;
-  text-align: left;
-}
-.person-name {
-  text-align: center;
-  background: #505050;
-}
-
-.person-name a {
-  text-decoration: none;
-  color: #fff;
-  position: relative;
-  top: -40px;
-}
-
-@media (min-width: 768px) and (max-width: 1286px) {
   .top-header {
+    height: 300px;
+    margin-bottom: 5px;
+
     h1 {
-      text-align: center;
+      font-size: 28px;
+      font-family: Montserrat;
+      line-height: 27px;
+      font-weight: bold;
+      color: #0b2243;
     }
+
     p {
-      width: 100%;
-      text-align: center;
+      width: 50%;
+      color: #0b2243;
     }
   }
 
-  .browse .item {
-    width: 49%;
-    background: #eee;
-    margin-top: 15px;
-    padding: 0;
-  }
-  .item.record.has-picture.has-bio {
-    padding: 0;
+  .active {
+    letter-spacing: normal;
+    margin-right: 10px;
   }
 
-  .top-header {
-    text-align: center;
+  .people-page-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
-  .search-by-lastname ul {
-    flex-wrap: wrap;
+  .item-description {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) and (max-width: 1286px) {
+    .top-header {
+      h1 {
+        text-align: center;
+      }
+
+      p {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .top-header {
+      text-align: center;
+    }
+
+    .search-by-lastname ul {
+      flex-wrap: wrap;
+    }
   }
 }
 
@@ -203,24 +91,11 @@
       text-align: center;
     }
   }
-  .item .item-meta h2 {
-    margin-top: 1.5em;
-  }
-  .peoples-item-container {
-    justify-content: center;
-    width: 100%;
-  }
 
-  .browse .item {
-    width: 100%;
-
-    img {
-      margin-top: 0px !important;
+  .people {
+    .search-by-lastname ul {
+      flex-wrap: wrap;
     }
-  }
-
-  .search-by-lastname ul {
-    flex-wrap: wrap;
   }
 }
 
@@ -235,25 +110,21 @@
     }
   }
 
-  .peoples-item-container {
-    justify-content: center;
-  }
+  .people {
+    .search-by-lastname {
+      width: 275px;
 
-  .search-by-lastname {
-    width: 275px;
-    ul {
-      flex-wrap: wrap;
-      letter-spacing: 15px;
-      padding: 0px 5px 0px 15px;
-    }
-    span {
-      font-size: 13px;
-      text-align: center;
-      font-weight: bold;
-    }
-  }
+      ul {
+        flex-wrap: wrap;
+        letter-spacing: 15px;
+        padding: 0px 5px 0px 15px;
+      }
 
-  .browse .item img {
-    margin-top: 0px !important;
+      span {
+        font-size: 13px;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
   }
 }

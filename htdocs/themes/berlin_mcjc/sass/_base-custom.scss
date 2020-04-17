@@ -22,15 +22,17 @@ $white: #fff;
 $accent-color: #7b5c7e;
 $green: #316034;
 $ivory: #eeeee8;
+$button-dark: #316034;
+$letter-blue: #0b2243;
 
 //* @end */
 
 //* @group ----- Mixins ----- */
 
 @mixin outline-button() {
-  background-color: $white;
-  border: solid 1px $teal;
-  color: $teal;
+  background-color: $button-dark;
+  border: solid 1px;
+  color: $white;
   display: inline-block;
   padding: 0.5em 0.75em;
   text-decoration: none;
