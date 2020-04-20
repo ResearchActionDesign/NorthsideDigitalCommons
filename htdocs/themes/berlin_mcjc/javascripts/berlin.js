@@ -21,7 +21,6 @@ if (!Berlin) {
     var closeSearch = $(".search-close");
     var primaryNav = $("#primary-nav");
     var searchContainer = $(".search-form-container");
-    console.log(searchToggle);
     if (searchToggle.length > 0) {
       searchToggle.on("click", () => {
         console.log("click");
@@ -50,34 +49,35 @@ if (!Berlin) {
   });
   //readmore/less related-items
   $().ready(function () {
-    var textItem = $(".item-description");
-    var textToHide = textItem.$(this).text().substring(280);
-    var visibleText = textItem.text().substring(1, 280);
+    $(".oral-history .item-description").each(function (i, domItem) {
+      var textItem = $(domItem);
+      var textToHide = textItem.text().substring(280);
+      var visibleText = textItem.text().substring(1, 280);
 
-    textItem
-      .html(
-        visibleText +
-          ("<div class='hidden'>" +
-            textToHide +
-            '<a id="read-less" title="Read Less" style="display: block; cursor: pointer;">Read Less&hellip;</a>')
-      )
-      .append(
-        '<a id="read-more" title="Read More" style="display: block; cursor: pointer;">Read More&hellip;</a>'
-      );
+      textItem
+        .html(
+          visibleText +
+            ("<div class='hidden'>" +
+              textToHide +
+              '<a id="read-less" title="Read Less" style="display: block; cursor: pointer;">Read Less&hellip;</a>')
+        )
+        .append(
+          '<a id="read-more" title="Read More" style="display: block; cursor: pointer;">Read More&hellip;</a>'
+        );
 
-    textItem.click(function () {
-      console.log(this);
-      $(this).find(".hidden").toggle();
-      $(this).find("a:last").hide();
-    });
-    $(".item-description .hidden").hide();
-    $("#read-more").click(function () {
-      $("#read-more").hide();
-      $("#read-less").show();
-    });
-    $("#read-less").click(function () {
-      $("#read-less").hide();
-      $("#read-more").show();
+      textItem.click(function () {
+        $(this).find(".hidden").toggle();
+        $(this).find("a:last").hide();
+      });
+      $(".item-description .hidden").hide();
+      $("#read-more").click(function () {
+        $(this).hide();
+        $("#read-less").show();
+      });
+      $("#read-less").click(function () {
+        $(this).hide();
+        $("#read-more").show();
+      });
     });
   });
 

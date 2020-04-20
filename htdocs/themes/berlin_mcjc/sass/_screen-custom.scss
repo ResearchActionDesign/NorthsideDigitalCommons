@@ -446,6 +446,17 @@ a:visited {
   }
 }
 
+a.button {
+  grid-area: button;
+  background-color: darkgreen;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+}
+
 .item-file {
   &.audio-mpeg {
     margin-bottom: 0.5em;

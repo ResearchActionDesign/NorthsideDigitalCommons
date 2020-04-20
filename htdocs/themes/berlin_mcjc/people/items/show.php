@@ -39,7 +39,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 </div> <!-- End of Primary. -->
 
 <?php if (count($oral_history_items)): ?>
-<div class="explore-grid oral-histories">
+<div class="oral-histories">
   <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>
     <?php echo common('person-page-oral-history-item', [
         'item' => $oralHistoryItem,
@@ -50,14 +50,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 
 <?php if (count($related_items)): ?>
 <div class="browse explore-grid related-items">
- 
 <?php foreach (loop('related_items') as $relatedItem): ?>
-    <?php echo common('related-item', [
-        'item' => $relatedItem,
-        'class' => 'related-item',
-    ]); ?>
+    <?php echo common('related-item', ['item' => $relatedItem]); ?>
   <?php endforeach; ?>
-
+</div>
 <?php endif; ?>
 
 <?php if (count($in_the_community_items)): ?>

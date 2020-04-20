@@ -39,8 +39,6 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 </div>
 
 <div class="peoples-item-container">
-
-
   <?php foreach (loop('items') as $item): ?>
   <?php
   // TODO: Replace this with the related-item common file potentially.
