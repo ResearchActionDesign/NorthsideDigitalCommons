@@ -51,8 +51,8 @@ if (!Berlin) {
   $().ready(function () {
     $(".oral-history .item-description").each(function (i, domItem) {
       var textItem = $(domItem);
-      var textToHide = textItem.text().substring(280);
-      var visibleText = textItem.text().substring(1, 280);
+      var textToHide = textItem.text().slice(280);
+      var visibleText = textItem.text().slice(1, 280);
 
       textItem
         .html(

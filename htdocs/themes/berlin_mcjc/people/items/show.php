@@ -19,9 +19,9 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 }
 ?>
 <div class="primary person<?php echo $itemClasses; ?>">
-<div class="person title">
-  <h1><?php echo metadata('item', 'display_title'); ?></h1>
-</div>
+
+  <h1 class='person title'><?php echo metadata('item', 'display_title'); ?></h1>
+
   <!-- Item files -->
   <?php if ($picture): ?>
     <div id="picture" class="element">

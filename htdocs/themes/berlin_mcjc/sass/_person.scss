@@ -1,17 +1,16 @@
-.show.person {
+.person.show {
   .primary {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "title pic" "bio pic";
     align-items: center;
-
+    h1 {
+      text-align: center;
+      text-transform: capitalize;
+      color: $black;
+    }
     .person.title {
       grid-area: title;
-
-      h1 {
-        text-align: center;
-        text-transform: capitalize;
-      }
     }
 
     .bio {
@@ -27,13 +26,15 @@
       .item-images {
         img {
           width: 100%;
-          height: auto;
           padding: 20px;
         }
       }
     }
   }
-
+  div.peoples-item-container .item .item-img img,
+  div.explore-grid .item .item-img img {
+    height: auto;
+  }
   .oral-histories {
     .oral-history {
       display: grid;
@@ -74,7 +75,7 @@ div.explore-grid.related-items {
   display: inline-flex;
   flex-wrap: wrap;
   margin-top: 96px;
-
+  justify-content: center;
   .related-item.tile {
     overflow: hidden;
     position: relative;
@@ -85,7 +86,8 @@ div.explore-grid.related-items {
   }
 
   .related-item.tile.related-item:nth-child(even) {
-    margin-top: 40px;
+    margin-top: 60px;
+    margin-bottom: -40px;
   }
 }
 
@@ -94,7 +96,11 @@ div.explore-grid.related-items {
   @include container;
   margin-top: 96px;
   h3 {
-    padding: 70px;
+    padding: 0;
+    margin-top: 60px;
+    margin-left: 90px;
+    margin-bottom: 0;
+    font-weight: bolder;
   }
   .community-container {
     display: grid;
@@ -111,5 +117,31 @@ div.explore-grid.related-items {
         height: 100%;
       }
     }
+  }
+}
+a.button.back {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+@media screen and (max-width: 768px) {
+  .person.show .oral-histories .oral-history {
+    display: inline-block;
+    h2 {
+      width: 300px;
+    }
+  }
+  .person.show .explore-grid.related-items .related-item.tile.related-item {
+    margin: 20px auto;
+  }
+  .explore-grid .item .item-img img {
+    height: 400px;
+  }
+  .explore-grid.in-the-community h3 {
+    margin-top: 35px;
+    margin-bottom: 0;
+    padding: 0;
   }
 }

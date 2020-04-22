@@ -255,21 +255,6 @@ details#item-metadata {
 .person.show {
   .primary {
     display: block;
-
-    h1 {
-      text-align: center;
-      text-transform: capitalize;
-      color: $black;
-    }
-  }
-
-  .oral-history {
-    display: block;
-
-    .item-description {
-      margin: 0;
-      margin-bottom: 20px;
-    }
   }
 
   .explore-grid.related-items {
@@ -307,6 +292,10 @@ details#item-metadata {
       .related-item.tile.in-the-community {
         width: 250px;
         height: 250px;
+      }
+
+      .item-meta {
+        top: 80%;
       }
     }
   }
