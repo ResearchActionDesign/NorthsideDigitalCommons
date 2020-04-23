@@ -8,6 +8,8 @@
       text-align: center;
       text-transform: capitalize;
       color: $black;
+      margin: 0;
+      align-self: flex-end;
     }
     .person.title {
       grid-area: title;
@@ -61,6 +63,7 @@
         grid-area: info;
         width: 100%;
         height: auto;
+        margin: 20px;
       }
 
       a.button.item-link {
