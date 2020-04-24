@@ -61,35 +61,36 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php endif; ?>
 
 <?php if (count($in_the_community_items)): ?>
-<div class="browse explore-grid in-the-community">
-  <h3><?php echo __('In the community'); ?></h3>
-  <div class='grid-items'>
-    <div class='community-container'>
-          <?php foreach (
-              loop('in_the_community_items')
-              as $inTheCommunityItem
-          ): ?>
-            <?php $loopItemTitle = metadata($inTheCommunityItem, [
-                'Dublin Core',
-                'Title',
-            ]); ?>
-            <?php echo common('related-item', [
-                'item' => $inTheCommunityItem,
-                'class' => 'in-the-community',
-                'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
-                'isCollection' =>
-                    $inTheCommunityItem->inTheCommunity === 'Collection',
-            ]); ?>
-          <?php endforeach; ?>
-        </div>
+<div class="browse in-the-community">
+  <div class="community-content">
+    <h3><?php echo __('In the community'); ?></h3>
+    <div class='grid-items'>
+            <?php foreach (
+                loop('in_the_community_items')
+                as $inTheCommunityItem
+            ): ?>
+              <?php $loopItemTitle = metadata($inTheCommunityItem, [
+                  'Dublin Core',
+                  'Title',
+              ]); ?>
+              <?php echo common('related-item', [
+                  'item' => $inTheCommunityItem,
+                  'class' => 'in-the-community',
+                  'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
+                  'isCollection' =>
+                      $inTheCommunityItem->inTheCommunity === 'Collection',
+              ]); ?>
+            <?php endforeach; ?>
+    </div>
   </div>
 </div>
 <?php endif; ?>
 
-<a class="button back" href="<?php echo $this->url(
-    [],
-    'peopleDefault'
-); ?>"><?php echo $backButtonText; ?></a>
-
+<div class="back-container">
+  <a class="button back" href="<?php echo $this->url(
+      [],
+      'peopleDefault'
+  ); ?>"><?php echo $backButtonText; ?></a>
+</div>
 <?php echo js_tag('lity', 'lity'); ?>
 <?php echo foot(); ?>

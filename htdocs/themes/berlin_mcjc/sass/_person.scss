@@ -4,6 +4,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "title pic" "bio pic";
     align-items: center;
+    @include contentContainer;
     h1 {
       text-align: center;
       text-transform: capitalize;
@@ -75,7 +76,7 @@
 }
 
 div.explore-grid.related-items {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   margin-top: 96px;
   justify-content: center;
@@ -85,25 +86,20 @@ div.explore-grid.related-items {
   .related-item.tile {
     overflow: hidden;
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 460px;
     margin-right: 20px;
     margin-bottom: 20px;
   }
-
-  .related-item.tile.related-item:nth-child(even) {
-    margin-top: 60px;
-    margin-bottom: -40px;
-  }
 }
 
-.explore-grid.in-the-community {
+.in-the-community {
   background-color: whitesmoke;
-  @include container;
   margin-top: 96px;
+  width: 100%;
+  padding-bottom: 60px;
   h3 {
     padding-top: 60px;
-    margin-left: 90px;
     margin-bottom: 0;
     font-weight: bolder;
   }
@@ -124,6 +120,11 @@ div.explore-grid.related-items {
     }
   }
 }
+
+.community-content {
+  @include contentContainer;
+}
+
 a.button.back {
   display: inline-block;
   margin-top: 40px;

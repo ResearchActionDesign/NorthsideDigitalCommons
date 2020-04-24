@@ -1,3 +1,10 @@
+.explore-grid,
+.in-the-community,
+.oral-historys,
+.back-container {
+  @include contentContainer;
+}
+
 div.peoples-item-container,
 div.grid-items {
   display: flex;
@@ -10,9 +17,9 @@ div.grid-items {
     min-width: 250px;
     width: 32%;
     background: #eee;
-    margin-top: 15px;
     padding: 0;
     height: 295px;
+    margin: 15px 5px;
 
     &.has-description {
       position: relative;
@@ -75,9 +82,42 @@ div.grid-items {
         width: 100%;
         position: relative;
         display: block;
+        height: auto;
       }
     }
 
+    .item-title {
+      text-align: center;
+      background: #505050;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        position: relative;
+        top: -34px;
+      }
+    }
+  }
+}
+
+div.peoples-item-container {
+  @include contentContainer;
+  .item-title {
+    text-align: center;
+    background: #505050;
+
+    a {
+      text-decoration: none;
+      color: #fff;
+      position: relative;
+      top: -34px;
+    }
+  }
+}
+
+div.people,
+div.explore-grid {
+  .grid-items {
     .item-title {
       text-align: center;
       background: #505050;
@@ -107,7 +147,8 @@ div.depicted div.grid-items div.item {
 
 @media (min-width: 768px) and (max-width: 1286px) {
   div.peoples-item-container,
-  div.explore-grid {
+  div.explore-grid,
+  div.in-the-community {
     .item {
       width: 49%;
       background: #eee;
@@ -119,13 +160,23 @@ div.depicted div.grid-items div.item {
       padding: 0;
     }
   }
+  div.explore-grid div.grid-items {
+    .item:nth-child(even) {
+      margin-top: 0px;
+    }
+  }
+
+  div.in-the-community .item {
+    max-width: 350px;
+  }
 }
 
 @media (max-width: 767px) {
   div.peoples-item-container,
-  div.explore-grid {
+  div.explore-grid,
+  div.in-the-community {
     justify-content: center;
-    width: 100%;
+    // width: 100%;
 
     .item {
       width: 100%;
@@ -137,6 +188,22 @@ div.depicted div.grid-items div.item {
       .item-meta h2 {
         margin-top: 1.5em;
       }
+    }
+  }
+  div.explore-grid {
+    .grid-items {
+      .item-title a {
+        top: -34px;
+      }
+    }
+  }
+
+  div.explore-grid div.grid-items {
+    .item {
+      width: 49%;
+    }
+    .item:nth-child(even) {
+      margin-top: 60px;
     }
   }
 }

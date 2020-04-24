@@ -252,7 +252,8 @@ details#item-metadata {
 /* @end */
 
 /* @group ----- Person ----- */
-.person.show {
+.person.show,
+.items {
   .primary {
     display: block;
   }
@@ -260,7 +261,6 @@ details#item-metadata {
   .explore-grid.related-items {
     display: flex;
     margin-top: 20px;
-    width: 100%;
 
     a.button.back {
       width: 100%;

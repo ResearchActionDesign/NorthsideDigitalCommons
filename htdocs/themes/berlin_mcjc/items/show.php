@@ -126,11 +126,12 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   </div>
 </div>
 <?php endif; ?>
-
-<a class="button back" href="<?php echo $this->url(
-    [],
-    'peopleDefault'
-); ?>"><?php echo $backButtonText; ?></a>
+<div class="back-container">
+  <a class="button back" href="<?php echo $this->url(
+      [],
+      'peopleDefault'
+  ); ?>"><?php echo $backButtonText; ?></a>
+</div>
 
 <?php echo js_tag('lity', 'lity'); ?>
 <?php echo foot(); ?>
