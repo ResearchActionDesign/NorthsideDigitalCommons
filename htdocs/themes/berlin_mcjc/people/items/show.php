@@ -19,7 +19,8 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 }
 ?>
 <div class="primary person<?php echo $itemClasses; ?>">
-  <h1><?php echo metadata('item', 'display_title'); ?></h1>
+
+  <h1 class='person title'><?php echo metadata('item', 'display_title'); ?></h1>
 
   <!-- Item files -->
   <?php if ($picture): ?>
@@ -38,7 +39,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 </div> <!-- End of Primary. -->
 
 <?php if (count($oral_history_items)): ?>
-<div class="explore-grid oral-histories">
+<div class="oral-histories">
   <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>
     <?php echo common('person-page-oral-history-item', [
         'item' => $oralHistoryItem,
@@ -48,31 +49,40 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php endif; ?>
 
 <?php if (count($related_items)): ?>
-<div class="browse explore-grid related-items">
-  <?php foreach (loop('related_items') as $relatedItem): ?>
-    <?php echo common('related-item', [
-        'item' => $relatedItem,
-        'class' => 'related-item',
-    ]); ?>
-  <?php endforeach; ?>
-</div>
+  <div class="browse explore-grid related-items">
+    <div class='grid-items'>
+    <?php foreach (loop('related_items') as $relatedItem): ?>
+      <?php echo common('related-item', [
+          'item' => $relatedItem,
+      ]); ?>
+      <?php endforeach; ?>
+    </div>
+  </div>
 <?php endif; ?>
 
 <?php if (count($in_the_community_items)): ?>
 <div class="browse explore-grid in-the-community">
   <h3><?php echo __('In the community'); ?></h3>
-  <?php foreach (loop('in_the_community_items') as $inTheCommunityItem): ?>
-    <?php $loopItemTitle = metadata($inTheCommunityItem, [
-        'Dublin Core',
-        'Title',
-    ]); ?>
-    <?php echo common('related-item', [
-        'item' => $inTheCommunityItem,
-        'class' => 'in-the-community',
-        'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
-        'isCollection' => $inTheCommunityItem->inTheCommunity === 'Collection',
-    ]); ?>
-  <?php endforeach; ?>
+  <div class='grid-items'>
+    <div class='community-container'>
+          <?php foreach (
+              loop('in_the_community_items')
+              as $inTheCommunityItem
+          ): ?>
+            <?php $loopItemTitle = metadata($inTheCommunityItem, [
+                'Dublin Core',
+                'Title',
+            ]); ?>
+            <?php echo common('related-item', [
+                'item' => $inTheCommunityItem,
+                'class' => 'in-the-community',
+                'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
+                'isCollection' =>
+                    $inTheCommunityItem->inTheCommunity === 'Collection',
+            ]); ?>
+          <?php endforeach; ?>
+        </div>
+  </div>
 </div>
 <?php endif; ?>
 

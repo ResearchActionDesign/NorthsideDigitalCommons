@@ -2,7 +2,7 @@ div.peoples-item-container,
 div.grid-items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 
   .item {
     position: relative;
@@ -86,7 +86,7 @@ div.grid-items {
         text-decoration: none;
         color: #fff;
         position: relative;
-        top: -40px;
+        top: -50px;
       }
     }
   }

@@ -6,12 +6,12 @@
 
   <!-- Item files -->
   <?php if (metadata($item, 'has files')): ?>
-    <div id="player" class="element">
+    <div class="player-element">
       <?php echo mcjc_render_oral_history_players($item); ?>
     </div>
   <?php endif; ?>
 
-  <div id="item-description">
+  <div class='item-description'>
     <?php echo metadata($item, ['Dublin Core', 'Description']); ?>
   </div>
 

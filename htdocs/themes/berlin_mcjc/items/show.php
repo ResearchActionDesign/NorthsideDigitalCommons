@@ -98,6 +98,8 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     <?php endforeach; ?>
   </div>
 </div>
+</div>
+
 <?php endif; ?>
 <?php if (!empty($related_items) || !empty($collection)): ?>
 <div class="explore-grid related-items">
