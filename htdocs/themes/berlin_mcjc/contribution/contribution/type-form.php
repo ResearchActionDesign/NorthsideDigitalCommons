@@ -1,12 +1,7 @@
 
 <?php if (!$type): ?>
 <p><?php echo __('You must choose a contribution type to continue.'); ?></p>
-<?php
-    //pull in the user profile form if it is set // Allow other plugins to append to the form (pass the type to allow decisions // on a type-by-type basis).
-    //pull in the user profile form if it is set
-    // Allow other plugins to append to the form (pass the type to allow decisions
-    // on a type-by-type basis).
-    ?>else: ?>
+<?php else: ?>
 <h2><?php echo __('Contribute a %s', $type->display_name); ?></h2>
 
 <?php if ($type->isFileRequired()):
