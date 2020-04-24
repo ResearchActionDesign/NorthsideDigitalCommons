@@ -13,7 +13,9 @@ body {
   font: $base-font-size Helvetica, Arial, sans-serif;
   line-height: $base-line-height;
   color: #333;
-  background: #fff;
+  background-color: $grey--medium;
+  background-image: url("../assets/images/backgrounds/nsdc_background.png");
+  background-size: cover;
 }
 
 form,
