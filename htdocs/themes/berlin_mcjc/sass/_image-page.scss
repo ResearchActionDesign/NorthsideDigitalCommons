@@ -1,0 +1,17 @@
+.title-block h1 {
+  font-size: 35px;
+  line-height: 48px;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.tags-container {
+  background-color: $ivory;
+  padding: 15px;
+}
+
+.item-images {
+  display: flex;
+  justify-content: center;
+}
