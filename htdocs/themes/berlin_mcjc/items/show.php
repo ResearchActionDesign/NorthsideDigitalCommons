@@ -89,35 +89,39 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php if (!empty($depicted_items)): ?>
 <div class="explore-grid depicted">
   <h2><?php echo __('In this ') . $itemType; ?></h2>
-  <?php foreach (loop('depicted_items') as $relatedItem): ?>
-  <?php echo common('related-item', [
-      'item' => $relatedItem,
-      'class' => 'depicted',
-  ]); ?>
-  <?php endforeach; ?>
+  <div class="grid-items">
+    <?php foreach (loop('depicted_items') as $relatedItem): ?>
+    <?php echo common('related-item', [
+        'item' => $relatedItem,
+        'class' => 'depicted',
+    ]); ?>
+    <?php endforeach; ?>
+  </div>
 </div>
 <?php endif; ?>
 <?php if (!empty($related_items) || !empty($collection)): ?>
 <div class="explore-grid related-items">
   <h2><?php echo __('More to explore'); ?></h2>
-  <?php if (!empty($collection)): ?>
-  <?php
-  $collectionTitle =
-      __('Collection') . ': ' . metadata($collection, 'display_title');
-  echo common('related-item', [
-      'item' => $collection,
-      'class' => 'related-item',
-      'title' => $collectionTitle,
-      'isCollection' => true,
-  ]);
-  ?>
-  <?php endif; ?>
-  <?php foreach (loop('related_items') as $relatedItem): ?>
-  <?php echo common('related-item', [
-      'item' => $relatedItem,
-      'class' => 'related-item',
-  ]); ?>
-  <?php endforeach; ?>
+  <div class="grid-items">
+    <?php if (!empty($collection)): ?>
+    <?php
+    $collectionTitle =
+        __('Collection') . ': ' . metadata($collection, 'display_title');
+    echo common('related-item', [
+        'item' => $collection,
+        'class' => 'related-item',
+        'title' => $collectionTitle,
+        'isCollection' => true,
+    ]);
+    ?>
+    <?php endif; ?>
+    <?php foreach (loop('related_items') as $relatedItem): ?>
+    <?php echo common('related-item', [
+        'item' => $relatedItem,
+        'class' => 'related-item',
+    ]); ?>
+    <?php endforeach; ?>
+  </div>
 </div>
 <?php endif; ?>
 
