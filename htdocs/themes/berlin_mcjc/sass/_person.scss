@@ -79,6 +79,9 @@ div.explore-grid.related-items {
   flex-wrap: wrap;
   margin-top: 96px;
   justify-content: center;
+  h2 {
+    inline-size: -webkit-fill-available;
+  }
   .related-item.tile {
     overflow: hidden;
     position: relative;
@@ -99,8 +102,7 @@ div.explore-grid.related-items {
   @include container;
   margin-top: 96px;
   h3 {
-    padding: 0;
-    margin-top: 60px;
+    padding-top: 60px;
     margin-left: 90px;
     margin-bottom: 0;
     font-weight: bolder;
@@ -124,7 +126,7 @@ div.explore-grid.related-items {
 }
 a.button.back {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 20px;
   padding-left: 40px;
   padding-right: 40px;

@@ -49,31 +49,40 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php endif; ?>
 
 <?php if (count($related_items)): ?>
-<div class="browse explore-grid related-items">
-<?php foreach (loop('related_items') as $relatedItem): ?>
-    <?php echo common('related-item', ['item' => $relatedItem]); ?>
-  <?php endforeach; ?>
-</div>
+  <div class="browse explore-grid related-items">
+    <div class='grid-items'>
+    <?php foreach (loop('related_items') as $relatedItem): ?>
+      <?php echo common('related-item', [
+          'item' => $relatedItem,
+      ]); ?>
+      <?php endforeach; ?>
+    </div>
+  </div>
 <?php endif; ?>
 
 <?php if (count($in_the_community_items)): ?>
 <div class="browse explore-grid in-the-community">
   <h3><?php echo __('In the community'); ?></h3>
+  <div class='grid-items'>
     <div class='community-container'>
-      <?php foreach (loop('in_the_community_items') as $inTheCommunityItem): ?>
-        <?php $loopItemTitle = metadata($inTheCommunityItem, [
-            'Dublin Core',
-            'Title',
-        ]); ?>
-        <?php echo common('related-item', [
-            'item' => $inTheCommunityItem,
-            'class' => 'in-the-community',
-            'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
-            'isCollection' =>
-                $inTheCommunityItem->inTheCommunity === 'Collection',
-        ]); ?>
-      <?php endforeach; ?>
-    </div>
+          <?php foreach (
+              loop('in_the_community_items')
+              as $inTheCommunityItem
+          ): ?>
+            <?php $loopItemTitle = metadata($inTheCommunityItem, [
+                'Dublin Core',
+                'Title',
+            ]); ?>
+            <?php echo common('related-item', [
+                'item' => $inTheCommunityItem,
+                'class' => 'in-the-community',
+                'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
+                'isCollection' =>
+                    $inTheCommunityItem->inTheCommunity === 'Collection',
+            ]); ?>
+          <?php endforeach; ?>
+        </div>
+  </div>
 </div>
 <?php endif; ?>
 

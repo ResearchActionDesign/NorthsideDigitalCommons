@@ -1,8 +1,8 @@
 div.peoples-item-container,
-div.explore-grid {
+div.grid-items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 
   .item {
     position: relative;
