@@ -12,7 +12,7 @@ div.grid-items {
     background: #eee;
     margin-top: 15px;
     padding: 0;
-    height: 350px;
+    height: 295px;
 
     &.has-description {
       position: relative;
@@ -92,9 +92,17 @@ div.grid-items {
   }
 }
 
-div.explore-grid div.grid-items .item:nth-child(even) {
-  margin-top: 50px;
-  height: 300px;
+div.explore-grid div.grid-items {
+  .item {
+    width: 49%;
+  }
+  .item:nth-child(even) {
+    margin-top: 60px;
+  }
+}
+
+div.depicted div.grid-items div.item {
+  width: 32%;
 }
 
 @media (min-width: 768px) and (max-width: 1286px) {
