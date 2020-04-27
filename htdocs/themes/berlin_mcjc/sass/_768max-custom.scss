@@ -250,3 +250,54 @@ details#item-metadata {
 }
 
 /* @end */
+
+/* @group ----- Person ----- */
+.person.show,
+.items {
+  .primary {
+    display: block;
+  }
+
+  .explore-grid.related-items {
+    display: flex;
+    margin-top: 20px;
+
+    a.button.back {
+      width: 100%;
+      left: auto;
+    }
+
+    .related-item.tile.related-item {
+      width: 100%;
+      height: 300px;
+
+      .item-label.tile__label {
+        top: 65%;
+        bottom: 0;
+      }
+
+      .item-img.tile__image {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+
+  .explore-grid.in-the-community {
+    .community-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .related-item.tile.in-the-community {
+        width: 250px;
+        height: 250px;
+      }
+
+      .item-meta {
+        top: 80%;
+      }
+    }
+  }
+}
+/* @end */
