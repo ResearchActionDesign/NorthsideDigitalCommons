@@ -1,14 +1,43 @@
-.title-block h1 {
-  font-size: 35px;
-  line-height: 48px;
-  font-weight: bold;
-  text-transform: none;
-  letter-spacing: 0.04em;
+.primary.still-image.has-picture {
+  .oral-image-title-container {
+    display: block;
+    width: 100%;
+  }
+  .title-block {
+    text-align: center;
+    width: 100%;
+  }
+  .title-block h1 {
+    font-size: 35px;
+    line-height: 48px;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+  .oral-image-title-container {
+    width: 100%;
+    // width: 100%;
+    height: 100%;
+    display: block;
+    /* z-index: 4; */
+    margin-bottom: 100px;
+  }
+  .oral-image-title-container .element {
+    width: 100%;
+    margin: 0;
+  }
 }
-
 .tags-container {
   background-color: $ivory;
+  // padding: 15px;
+  /* justify-content: center; */
   padding: 15px;
+  width: 50%;
+  /* top: 16%; */
+  margin-top: 30px;
+  position: relative;
+  transform: translate(-50%, -50%);
+  left: 50%;
 }
 
 .item-images {

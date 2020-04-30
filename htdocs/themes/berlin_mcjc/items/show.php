@@ -25,47 +25,53 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     'bodyclass' => "items show {$itemTypeClass}",
 ]); ?>
 <div class="primary <?php echo "{$itemTypeClass} {$itemClasses}"; ?>">
-  <div class="title-block">
-    <span class="item-type"><?php echo $itemType; ?></span>
-    <h1><?php echo $itemTitle; ?></h1>
-    <?php if ($itemType === 'Oral History'): ?>
-    <span class="subtitle">
-      <?php echo oral_history_item_subtitle(); ?>
-    </span>
+ <div class="oral-image-title-container">
+        <div class="title-block">
+            <span class="item-type"><?php echo $itemType; ?></span>
+            <h1><?php echo $itemTitle; ?></h1>
+            <?php if ($itemType === 'Oral History'): ?>
+            <span class="subtitle">
+            <?php echo oral_history_item_subtitle(); ?>
+            </span>
+            <?php endif; ?>
+        </div>
+        <?php if ($picture): ?>
+        <div id="picture" class="element">
+            <div class="item-images"><?php echo $picture; ?>
+            </div>
+            </div>
+</div>
+  <?php endif; ?>
+  
+<div class='oral-descrition-player-container'>  
+    <?php if ($description): ?>
+    <div class="description">
+        <?php echo $description; ?>
+    </div>
     <?php endif; ?>
-  </div>
-  <?php if ($picture): ?>
-  <div id="picture" class="element">
-    <div class="item-images"><?php echo $picture; ?>
+    <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
+    <div class="item-metadata sohp">
+        <a target="_blank" href="<?php echo html_escape(
+            $sohp_url
+        ); ?>">View Details at Southern Oral History Program
+        website</a>
     </div>
-  </div>
-  <?php endif; ?>
-  <?php if ($description): ?>
-  <div class="description">
-    <?php echo $description; ?>
-  </div>
-  <?php endif; ?>
-  <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
-  <div class="item-metadata sohp">
-    <a target="_blank" href="<?php echo html_escape(
-        $sohp_url
-    ); ?>">View Details at Southern Oral History Program
-      website</a>
-  </div>
-  <?php elseif (
-      $itemType !== 'Photograph' &&
-      $itemType !== 'Still Image' &&
-      metadata('item', 'has files')
-  ): ?>
-  <div id="itemfiles" class="element">
-    <div class="item-images"><?php echo mcjc_files_for_item('item', [
-        'imageSize' => 'fullsize',
-        'linkAttributes' => ['data-lity' => ''],
-        'show' => true,
-    ]); ?>
+    <?php elseif (
+        $itemType !== 'Photograph' &&
+        $itemType !== 'Still Image' &&
+        metadata('item', 'has files')
+    ): ?>
+    <div id="itemfiles" class="element">
+        <div class="item-images"><?php echo mcjc_files_for_item('item', [
+            'imageSize' => 'fullsize',
+            'linkAttributes' => ['data-lity' => ''],
+            'show' => true,
+        ]); ?>
+        </div>
     </div>
-  </div>
-  <?php endif; ?>
+    <?php endif; ?>
+</div>
+
   <div class="tags-container">
     <div id="item-tags" class="element">
       <span class="element-title"><?php echo __('Tags: '); ?></span>
