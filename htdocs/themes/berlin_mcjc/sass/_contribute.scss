@@ -1,0 +1,40 @@
+div#primary {
+  // margin-left: 40px;
+}
+.header-background-container {
+  width: 100%;
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+// .header-background-container-content{
+
+// }
+.add-story-image {
+  background-image: url("../assets/images/Photo.png");
+}
+.descriptionParagraph {
+  margin: 40px;
+}
+.inputs {
+  margin: 40px;
+}
+
+div#contribution-type-form {
+  margin: 40px;
+  h2 {
+    background: navy;
+    padding: 15px;
+    width: fit-content;
+    color: white;
+    border-radius: 3px;
+  }
+  .field {
+    text-transform: uppercase;
+    margin: 20px;
+  }
+  // div#element-1 {
+  //   text-transform: uppercase;
+  // }
+}

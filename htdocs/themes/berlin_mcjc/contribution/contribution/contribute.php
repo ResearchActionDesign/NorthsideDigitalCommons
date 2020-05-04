@@ -25,6 +25,7 @@ if (
 }
 
 $head = ['title' => 'Add Your Story', 'bodyclass' => 'contribution form'];
+$imageTitle = __("Tell me your story");
 echo head($head);
 ?>
 <script type="text/javascript">
@@ -54,6 +55,17 @@ enableContributionAjaxForm(<?php echo js_escape(
     <?php else: ?>
         <form method="post" action="" enctype="multipart/form-data">
             <fieldset id="contribution-item-metadata">
+                <div class='header-background-container add-story-image'>
+                    <div class="header-background-container-content">
+                        <h2> <?php echo $imageTitle; ?> </h2>
+                        <p>Loerum Ipsoms paragraph</p>
+                    </div>
+                </div>
+                
+                <div class='descriptionParagraph'>
+                    <Text>Description or instructions on how to add your story</Text>    
+                </div>
+                
                 <div class="inputs">
                     <label for="contribution-type"><?php echo __(
                         "What type of item do you want to contribute?"
