@@ -80,9 +80,38 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     'Photograph' => 6,
   );
 
+  /**
+   * Return lowercase version of item title, with all special characters (except whitespace) removed, and all whitespace
+   * replaced with dashes.
+   *
+   * @param $item
+   * @return string
+   */
   public static function getPermalinkFromItem($item) {
     $title = metadata($item, array('Dublin Core', 'Title'));
-    return str_replace('--','-', mb_strtolower(str_replace(' ', '-', str_replace('-', '',$title))));
+    if (!$title) {
+      return false;
+    }
+    $title = trim($title);
+    $permalink = mb_strtolower(preg_replace("/[^A-Za-z0-9\- ]/", '', $title));
+    $permalink = preg_replace("/ +/", '-', $permalink);
+    $permalink = preg_replace("/\-+/", '-', $permalink);
+
+    if (mb_strlen($permalink) > 100) {
+      $parts = explode('-', $permalink);
+      $permalink = '';
+      $i = 0;
+
+      // Shorten long permalinks.
+      while (mb_strlen($permalink) <= 100 && $i < count($parts)) {
+        if ($permalink !== '') {
+          $permalink .= '-';
+        }
+        $permalink .= $parts[$i];
+        $i++;
+      }
+    }
+    return $permalink;
   }
 
   public function getPermalinkElementId() {
@@ -392,10 +421,18 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       }
 
       if ($permalinkElementId) {
-        // Populate permalink field for all elements where it doesn't exist
+        // Populate permalink field for all elements where it doesn't exist.
         $existingPermalinks = [];
-        $select = $this->_db->getTable('Item')->getSelect()->assemble();
-        $items = $this->_db->query($select)->fetchAll();
+
+        // First pull person items. This ensures that if oral histories share the name of the person
+        // the person item gets permalink with person name.
+        $personSelect = $this->_db->getTable('Item')->getSelect()->where('item_type_id = 12')->assemble();
+        $items = $this->_db->query($personSelect)->fetchAll();
+
+        // Then pull remainder.
+        $remainderSelect = $this->_db->getTable('Item')->getSelect()->where('item_type_id <> 12')->assemble();
+        $items = array_merge($items, $this->_db->query($remainderSelect)->fetchAll());
+
         foreach ($items as $item) {
           $item = get_record_by_id('Item', $item['id']);
           if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
