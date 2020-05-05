@@ -412,21 +412,72 @@ function mcjc_link_to_item(
     return link_to_item($text, $props, $action, $item);
 }
 
+function _mcjc_oral_history_metadata_paragraph($item)
+{
+    $metadata = [
+        'interviewer' => metadata($item, ['Item Type Metadata', 'Interviewer']),
+        'interviewee' => metadata($item, ['Item Type Metadata', 'Interviewee']),
+        'location' => metadata($item, ['Item Type Metadata', 'Location']),
+        'processor' => metadata($item, [
+            'Item Type Metadata',
+            'Interview Processor',
+        ]),
+        'date' => metadata($item, ['Item Type Metadata', 'Interview Date']),
+        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        'rights' => metadata($item, ['Dublin Core', 'Rights']),
+    ];
+
+    if ($metadata['date']) {
+        $metadata['date'] = date_format(
+            date_create($metadata['date']),
+            'F j, Y'
+        );
+    }
+
+    $first_sentence_chunks = [
+        'Oral history interview',
+        $metadata['interviewee'] ? "of {$metadata['interviewee']}" : false,
+        $metadata['interviewer']
+            ? "conducted by {$metadata['interviewer']}"
+            : false,
+        $metadata['date'] ? "on {$metadata['date']}" : false,
+        $metadata['location'] ? "at {$metadata['location']}" : false,
+    ];
+
+    $sentences = [
+        implode(" ", array_filter($first_sentence_chunks)) . '.',
+        $metadata['processor']
+            ? "Processed by {$metadata['processor']}."
+            : false,
+        $metadata['publisher']
+            ? "Published by {$metadata['publisher']}."
+            : false,
+        $metadata['rights'] ? $metadata['rights'] : false,
+    ];
+
+    return implode(" ", array_filter($sentences));
+}
+
 /**
  * Returns a human-readable paragraph of key element texts.
  */
 function mcjc_element_metadata_paragraph($item)
 {
-    //  $texts = array(
-    //    'subject' => metadata($item, array('Dublin Core', 'Subject')),
-    //    'type' => metadata($item, array('Dublin Core', 'Type')),
-    //    'coverage' => metadata($item, array('Dublin Core', 'Coverage')),
-    //    'creator' => metadata($item, array('Dublin Core', 'Creator')),
-    //    'date' => metadata($item, array('Dublin Core', 'Date')),
-    //    'identifier' => metadata($item, array('Dublin Core', 'Identifier')),
-    //    'format' => metadata($item, array('Dublin Core', 'Format')),
-    //  );
+    $item_type = metadata($item, ['Dublin Core', 'Type']);
+    if ($item_type === 'Oral History') {
+        return _mcjc_oral_history_metadata_paragraph($item);
+    }
+    //
+    //    $texts = array(
+    //      'subject' => metadata($item, array('Dublin Core', 'Subject')),
+    //      'type' => metadata($item, array('Dublin Core', 'Type')),
+    //      'coverage' => metadata($item, array('Dublin Core', 'Coverage')),
+    //      'creator' => metadata($item, array('Dublin Core', 'Creator')),
+    //      'date' => metadata($item, array('Dublin Core', 'Date')),
+    //      'identifier' => metadata($item, array('Dublin Core', 'Identifier')),
+    //      'format' => metadata($item, array('Dublin Core', 'Format')),
+    //    );
 
-    // TODO.
+    // TODO for still images. Need to check with Kathryn about Metadata.
     return 'STUB ELEMENT PARAGRAPH DESCRIPTION';
 }
