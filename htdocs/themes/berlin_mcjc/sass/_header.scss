@@ -1,3 +1,11 @@
+.top-header {
+  background-color: $ivory;
+
+  h1 {
+    margin-top: 0;
+  }
+}
+
 .header-content-wrapper {
   display: flex;
   justify-content: space-between;

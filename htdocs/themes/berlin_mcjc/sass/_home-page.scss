@@ -81,7 +81,6 @@
 #footer-logo {
   display: block;
   align-content: center;
-  // width: 225px;
   justify-content: center;
   align-items: center;
   padding: 50px;
@@ -101,14 +100,18 @@
   font-size: 12px;
 }
 /*homepage video*/
-/* #primary {
-    width: 100%;
-  } */
+
 .video-container {
   width: 100%;
-  padding-bottom: 100px;
-  margin: 0 auto;
+  margin: 0 auto 100px auto;
 }
+
+#homepage-video video {
+  max-width: $base-width;
+  margin: 0 auto;
+  display: block;
+}
+
 @media only screen and (max-width: 850px) {
   .homepage-menu__item {
     flex-direction: column;
@@ -128,11 +131,5 @@
 @media only screen and (max-width: 768px) {
   #homepage-menu {
     padding: 0 0.5em;
-  }
-}
-
-@media only screen and (min-width: 1750px) {
-  .video-container {
-    max-width: 1350px;
   }
 }
