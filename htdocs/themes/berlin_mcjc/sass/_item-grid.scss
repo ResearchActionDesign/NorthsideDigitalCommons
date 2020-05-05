@@ -134,7 +134,7 @@ div.explore-grid {
 
 div.explore-grid div.grid-items {
   .item {
-    width: 49%;
+    width: 40%;
   }
   .item:nth-child(even) {
     margin-top: 60px;
@@ -149,13 +149,6 @@ div.depicted div.grid-items div.item {
   div.peoples-item-container,
   div.explore-grid,
   div.in-the-community {
-    .item {
-      width: 49%;
-      background: #eee;
-      margin-top: 15px;
-      padding: 0;
-    }
-
     .item.has-picture.has-description {
       padding: 0;
     }
@@ -176,7 +169,6 @@ div.depicted div.grid-items div.item {
   div.explore-grid,
   div.in-the-community {
     justify-content: center;
-    // width: 100%;
 
     .item {
       width: 100%;
@@ -200,7 +192,7 @@ div.depicted div.grid-items div.item {
 
   div.explore-grid div.grid-items {
     .item {
-      width: 49%;
+      width: 40%;
     }
     .item:nth-child(even) {
       margin-top: 60px;

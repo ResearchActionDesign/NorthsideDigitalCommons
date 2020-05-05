@@ -52,6 +52,7 @@
         font-size: 24px;
         font-weight: bold;
         color: $black;
+        line-height: 1.2;
       }
 
       .player-element {
@@ -89,15 +90,15 @@ div.explore-grid.related-items {
   .related-item.tile {
     overflow: hidden;
     position: relative;
-    width: 600px;
-    height: 460px;
+    width: 38vw;
+    height: 29.1vw;
     margin-right: 20px;
     margin-bottom: 20px;
   }
 }
 
 .in-the-community {
-  background-color: whitesmoke;
+  background-color: $ivory;
   margin-top: 96px;
   width: 100%;
   padding-bottom: 60px;
