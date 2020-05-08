@@ -1,0 +1,135 @@
+.header-background-container {
+  width: 100%;
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.topics-image {
+  background-image: url(../assets/images/Video.png);
+  background-size: cover;
+  margin-bottom: 45px;
+  background-repeat: no-repeat;
+}
+
+.header-background-container-content {
+  width: 40%;
+  padding: 30px;
+  margin-left: 10%;
+
+  h1 {
+    color: #ffff;
+    font-weight: bold;
+    font-size: 35px;
+  }
+  p {
+    width: 50%;
+    color: #ffff;
+  }
+}
+
+.filter_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: $ivory;
+
+  .grid__filter {
+    margin-top: 10px;
+  }
+
+  .grid__filter__title {
+    padding: 15px;
+    font-weight: bold;
+  }
+
+  .grid__filter__option {
+    margin-right: 20px;
+
+    .checkbox {
+      zoom: 2;
+      margin-right: 10px;
+    }
+  }
+}
+
+#sort-links {
+  padding-right: 15px;
+}
+
+span.filter-titles {
+  position: relative;
+  top: -3px;
+}
+
+.topic.item {
+  overflow: hidden;
+  position: relative;
+  width: 600px;
+  height: 460px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  .item-meta.topics-card {
+    top: 85%;
+    transition: 0.5s;
+  }
+
+  .item-meta.topics-card:hover {
+    top: 0;
+
+    .item-title {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header-background-container-content {
+    width: 100%;
+    padding: 30px;
+    margin-left: 0;
+  }
+  .filter_container {
+    display: flex;
+    flex-direction: column;
+
+    .filter {
+      display: flex;
+      flex-direction: column;
+    }
+    .grid__filter__title {
+      padding: 0;
+    }
+    .checkbox {
+      zoom: 1.5;
+    }
+  }
+}
+
+@media (max-width: 481px) and (min-width: 320px) {
+  .filter_container {
+    display: flex;
+    flex-direction: column;
+
+    .filter {
+      display: flex;
+      flex-direction: column;
+    }
+    .grid__filter__title {
+      padding: 0;
+    }
+    .checkbox {
+      zoom: 1.5;
+    }
+  }
+
+  .header-background-container-content {
+    .h1 {
+      font-size: 25px;
+    }
+    .p {
+      width: 100%;
+    }
+  }
+}
