@@ -1,6 +1,3 @@
-div#primary {
-  // margin-left: 40px;
-}
 .header-background-container {
   width: 100%;
   height: 850px;
@@ -8,33 +5,109 @@ div#primary {
   flex-direction: column;
   justify-content: center;
 }
-// .header-background-container-content{
-
-// }
 .add-story-image {
   background-image: url("../assets/images/Photo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
 }
-.descriptionParagraph {
-  margin: 40px;
-}
-.inputs {
-  margin: 40px;
+.header-background-container-content {
+  margin-left: 10%;
+  .image-title {
+    color: white;
+    line-height: 30px;
+    font-size: 4rem;
+  }
+  .image-text {
+    color: white;
+    line-height: 5px;
+    font-size: 2rem;
+  }
 }
 
+.descriptionParagraph {
+  margin: 10%;
+  line-height: 5px;
+}
+.inputs.contribution {
+  margin: 10%;
+}
+input#Elements-50-0-text,
+textarea#Elements-41-0-text,
+textarea#Elements-1-0-text,
+input#contribution_email {
+  border-radius: 5px;
+  width: 450px;
+  height: 50px;
+}
+textarea#Elements-41-0-text,
+textarea#Elements-1-0-text {
+  height: 150px;
+}
 div#contribution-type-form {
-  margin: 40px;
+  margin: 10%;
   h2 {
-    background: navy;
-    padding: 15px;
+    background: $letter-blue;
+    padding-left: 10px;
+    padding-right: 10px;
     width: fit-content;
     color: white;
-    border-radius: 3px;
+    font-size: larger;
   }
   .field {
     text-transform: uppercase;
     margin: 20px;
+    margin-left: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    .columns.alpha {
+      margin-left: 10px;
+    }
   }
-  // div#element-1 {
-  //   text-transform: uppercase;
-  // }
+}
+#contribution-type {
+  margin-left: 10%;
+}
+
+fieldset#contribution-confirm-submit {
+  margin-left: 10%;
+
+  div.inputs {
+    margin: 10px;
+  }
+}
+.contribute-terms a {
+  text-decoration: underline;
+}
+input#form-submit {
+  background-color: darkgreen;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  padding: 15px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+@media only screen and (max-width: 767px) {
+  fieldset#contribution-confirm-submit,
+  div#contribution-type-form {
+    margin-left: 10%;
+  }
+  .descriptionParagraph {
+    margin: 5%;
+    font-size: 2vw;
+  }
+  .header-background-container {
+    height: 400px;
+  }
+  .header-background-container-content {
+    .image-title {
+      font-size: 2rem;
+    }
+    .image-text {
+      font-size: 1rem;
+    }
+  }
 }

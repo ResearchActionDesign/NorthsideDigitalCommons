@@ -25,7 +25,7 @@ if (
 }
 
 $head = ['title' => 'Add Your Story', 'bodyclass' => 'contribution form'];
-$imageTitle = __("Tell me your story");
+$imageTitle = __("Tell Your Story");
 echo head($head);
 ?>
 <script type="text/javascript">
@@ -57,16 +57,24 @@ enableContributionAjaxForm(<?php echo js_escape(
             <fieldset id="contribution-item-metadata">
                 <div class='header-background-container add-story-image'>
                     <div class="header-background-container-content">
-                        <h2> <?php echo $imageTitle; ?> </h2>
-                        <p>Loerum Ipsoms paragraph</p>
+                        <h2 class='image-title'> <?php echo $imageTitle; ?> </h2>
+                        <div class='image-text'>
+                            <p>Loerum Ipsoms dolor sit amet, consectetur</p>
+                            <p>adipiscing elit. Integer suscitpit diam a nulla</p>
+                            <p>tempus rhoncus. Aliquam erat volutpat</p>
+                        </div>
+                        
                     </div>
                 </div>
                 
                 <div class='descriptionParagraph'>
-                    <Text>Description or instructions on how to add your story</Text>    
+                    <p>Description or instructions on how to add your own story, things people might want to add or</p>
+                    <p>consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem.</p> 
+                    <p>Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a </p> 
+                    <p>explicabo ut inventore, rerum sint sit nam! </p>  
                 </div>
                 
-                <div class="inputs">
+                <div class="inputs contribution">
                     <label for="contribution-type"><?php echo __(
                         "What type of item do you want to contribute?"
                     ); ?></label>
@@ -125,7 +133,7 @@ enableContributionAjaxForm(<?php echo js_escape(
                         __("Keep identity private.")
                     ); ?>
                 </div>
-                <p><?php echo __(
+                <p class='contribute-terms'><?php echo __(
                     "In order to contribute, you must read and agree to the %s",
                     "<a href='" .
                         contribution_contribute_url('terms') .
@@ -148,9 +156,13 @@ enableContributionAjaxForm(<?php echo js_escape(
                         __('I agree to the Terms and Conditions.')
                     ); ?>
                 </div>
-                <?php echo $this->formSubmit('form-submit', __('Contribute'), [
-                    'class' => 'submitinput',
-                ]); ?>
+                <?php echo $this->formSubmit(
+                    'form-submit',
+                    __('Contribute your Story'),
+                    [
+                        'class' => 'submitinput',
+                    ]
+                ); ?>
             </fieldset>
             <?php echo $csrf; ?>
         </form>
