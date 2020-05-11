@@ -12,8 +12,9 @@
   display: flex;
   justify-content: center;
 }
+
 .header-background-container-content {
-  margin-left: 10%;
+  @include contentContainer;
   .image-title {
     color: white;
     line-height: 30px;
@@ -25,13 +26,11 @@
     font-size: 2rem;
   }
 }
-
-.descriptionParagraph {
-  margin: 10%;
-  line-height: 5px;
+.contribution-content-wrapper {
+  @include contentContainer;
 }
-.inputs.contribution {
-  margin: 10%;
+.descriptionParagraph {
+  line-height: 30px;
 }
 input#Elements-50-0-text,
 textarea#Elements-41-0-text,
@@ -40,13 +39,13 @@ input#contribution_email {
   border-radius: 5px;
   width: 450px;
   height: 50px;
+  padding: 10px;
 }
 textarea#Elements-41-0-text,
 textarea#Elements-1-0-text {
   height: 150px;
 }
 div#contribution-type-form {
-  margin: 10%;
   h2 {
     background: $letter-blue;
     padding-left: 10px;
@@ -58,25 +57,15 @@ div#contribution-type-form {
   .field {
     text-transform: uppercase;
     margin: 20px;
-    margin-left: 18px;
+    margin-left: -10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    .columns.alpha {
-      margin-left: 10px;
-    }
   }
-}
-#contribution-type {
-  margin-left: 10%;
 }
 
 fieldset#contribution-confirm-submit {
-  margin-left: 10%;
-
-  div.inputs {
-    margin: 10px;
-  }
+  @include contentContainer;
 }
 .contribute-terms a {
   text-decoration: underline;
@@ -91,23 +80,15 @@ input#form-submit {
   margin-bottom: 5%;
 }
 @media only screen and (max-width: 767px) {
-  fieldset#contribution-confirm-submit,
-  div#contribution-type-form {
-    margin-left: 10%;
-  }
-  .descriptionParagraph {
-    margin: 5%;
-    font-size: 2vw;
-  }
   .header-background-container {
     height: 400px;
   }
   .header-background-container-content {
     .image-title {
-      font-size: 2rem;
+      font-size: 32px;
     }
     .image-text {
-      font-size: 1rem;
+      font-size: 20px;
     }
   }
 }

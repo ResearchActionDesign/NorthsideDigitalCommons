@@ -66,32 +66,35 @@ enableContributionAjaxForm(<?php echo js_escape(
                         
                     </div>
                 </div>
-                
-                <div class='descriptionParagraph'>
-                    <p>Description or instructions on how to add your own story, things people might want to add or</p>
-                    <p>consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem.</p> 
-                    <p>Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a </p> 
-                    <p>explicabo ut inventore, rerum sint sit nam! </p>  
-                </div>
-                
-                <div class="inputs contribution">
-                    <label for="contribution-type"><?php echo __(
-                        "What type of item do you want to contribute?"
-                    ); ?></label>
-                    <?php $options = get_table_options('ContributionType'); ?>
-                    <?php $typeId = isset($type) ? $type->id : ''; ?>
-                    <?php echo $this->formSelect(
-                        'contribution_type',
-                        $typeId,
-                        ['multiple' => false, 'id' => 'contribution-type'],
-                        $options
-                    ); ?>
-                    <input type="submit" name="submit-type" id="submit-type" value="Select" />
-                </div>
-                <div id="contribution-type-form">
-                <?php if (isset($type)) {
-                    include 'type-form.php';
-                } ?>
+                <div class='contribution-content-wrapper'>
+                    <div class='descriptionParagraph'>
+                        <p>Description or instructions on how to add your own story, things people might want to add or
+                        consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem. 
+                        Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a  
+                        explicabo ut inventore, rerum sint sit nam! </p>  
+                    </div>
+                    
+                    <div class="inputs contribution">
+                        <label for="contribution-type"><?php echo __(
+                            "What type of item do you want to contribute?"
+                        ); ?></label>
+                        <?php $options = get_table_options(
+                            'ContributionType'
+                        ); ?>
+                        <?php $typeId = isset($type) ? $type->id : ''; ?>
+                        <?php echo $this->formSelect(
+                            'contribution_type',
+                            $typeId,
+                            ['multiple' => false, 'id' => 'contribution-type'],
+                            $options
+                        ); ?>
+                        <input type="submit" name="submit-type" id="submit-type" value="Select" />
+                    </div>
+                    <div id="contribution-type-form">
+                    <?php if (isset($type)) {
+                        include 'type-form.php';
+                    } ?>
+                    </div>
                 </div>
             </fieldset>
 
