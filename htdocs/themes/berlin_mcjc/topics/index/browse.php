@@ -72,7 +72,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 
         </div>
       </div><!-- end class="item-meta" -->
-      <div class="item-title tile__title"><?php echo $titleLink; ?></div>
+      <div class="item-title"><?php echo $titleLink; ?></div>
 
       <!-- end class="item entry" -->
     </div>

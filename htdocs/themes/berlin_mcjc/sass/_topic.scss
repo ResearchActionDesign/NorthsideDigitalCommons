@@ -34,7 +34,7 @@
   padding: 10px;
   background-color: $ivory;
 
-  .grid__filter {
+  #grid__filter {
     margin-top: 10px;
   }
 
@@ -78,7 +78,7 @@ span.filter-titles {
   .item-meta.topics-card:hover {
     top: 0;
 
-    .item-title {
+    ~ .item-title {
       display: none;
     }
   }
@@ -131,5 +131,16 @@ span.filter-titles {
     .p {
       width: 100%;
     }
+  }
+
+  div.topics-grid .item:nth-child(even) {
+    margin-top: 0;
+  }
+
+  div.topics-grid .item:nth-child(1) {
+    height: 295px;
+  }
+  div.topics-grid .item .item-title a {
+    top: -28px;
   }
 }
