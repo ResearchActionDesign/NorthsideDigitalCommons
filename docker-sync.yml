@@ -2,5 +2,5 @@ version: "2"
 syncs:
   htdocs-sync:
     src: "./htdocs"
-  db-sync:
-    src: "./db"
+    sync_excludes: [".git", "sass-cache", ".sass-cache"]
+    watch_excludes: [".git", "sass-cache", ".sass-cache"]
