@@ -31,7 +31,6 @@ if (
     <?php fire_plugin_hook('public_head', ['view' => $this]); ?>
     <!-- Stylesheets -->
     <?php queue_css_file(['iconfonts', 'style']); ?>
-    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans:400,400i,700" rel="stylesheet">
 	<link rel="apple-touch-icon" sizes="57x57" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-72x72.png">
@@ -76,30 +75,21 @@ if (
                     </div>    
 
                     <div id="search-container" role="search">
-                        <!-- <div class="search-toggle">OOO</div> -->
-                        <?php if (
-                            get_theme_option('use_advanced_search') === null ||
-                            get_theme_option('use_advanced_search')
-                        ): ?>
-                        <?php echo $this->formButton(
-                            'search-toggle',
-                            $options['search_toggle'],
-                            ['type' => 'button']
-                        ); ?>
+                      <?php echo $this->formButton(
+                          'search-toggle',
+                          $options['search_toggle'],
+                          [
+                              'type' => 'button',
+                              'aria-label' => 'Show search bar',
+                          ]
+                      ); ?>
                         <div class="search-form-container">
-                            <div class="search-close">X</div>
-                                <?php echo search_form([
-                                    'show_advanced' => true,
-                                ]); ?>
-                                <?php else: ?>
+                            <div class="search-close" aria-label="Hide search bar"><i class="fa fa-times" aria-hidden="true"></i></div>
                                 <?php echo search_form(); ?>
-                                <?php endif; ?>
                             </div>
                         </div>
-                       
                 </div>
             </div>
-           
         </header>
 
 
