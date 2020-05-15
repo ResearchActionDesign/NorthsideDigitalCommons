@@ -36,11 +36,26 @@ enableContributionAjaxForm(<?php echo js_escape(
 // ]]>
 </script>
 <div class="title">
-    <h1><?php echo $head['title']; ?></h1>
+    <div class='header-background-container add-story-image'>
+        <div class="header-background-container-content">
+            <h2 class='image-title'> <?php echo $imageTitle; ?> </h2>
+            <div class='image-text'>
+                <p>Loerum Ipsoms dolor sit amet, consectetur</p>
+                <p>adipiscing elit. Integer suscitpit diam a nulla</p>
+                <p>tempus rhoncus. Aliquam erat volutpat</p>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="primary">
 <?php echo flash(); ?>
-
+    <div class='contribution-content-wrapper'>
+        <div class='descriptionParagraph'>
+            <p>Description or instructions on how to add your own story, things people might want to add or
+                consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem.
+                Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a
+                explicabo ut inventore, rerum sint sit nam! </p>
+        </div>
 
     <?php if (!($user = current_user()) && !get_option('contribution_open')): ?>
         <?php
@@ -55,25 +70,6 @@ enableContributionAjaxForm(<?php echo js_escape(
     <?php else: ?>
         <form method="post" action="" enctype="multipart/form-data">
             <fieldset id="contribution-item-metadata">
-                <div class='header-background-container add-story-image'>
-                    <div class="header-background-container-content">
-                        <h2 class='image-title'> <?php echo $imageTitle; ?> </h2>
-                        <div class='image-text'>
-                            <p>Loerum Ipsoms dolor sit amet, consectetur</p>
-                            <p>adipiscing elit. Integer suscitpit diam a nulla</p>
-                            <p>tempus rhoncus. Aliquam erat volutpat</p>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class='contribution-content-wrapper'>
-                    <div class='descriptionParagraph'>
-                        <p>Description or instructions on how to add your own story, things people might want to add or
-                        consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem. 
-                        Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a  
-                        explicabo ut inventore, rerum sint sit nam! </p>  
-                    </div>
-                    
                     <div class="inputs contribution">
                         <label for="contribution-type"><?php echo __(
                             "What type of item do you want to contribute?"
@@ -95,7 +91,6 @@ enableContributionAjaxForm(<?php echo js_escape(
                         include 'type-form.php';
                     } ?>
                     </div>
-                </div>
             </fieldset>
 
             <fieldset id="contribution-confirm-submit" <?php if (
@@ -170,5 +165,6 @@ enableContributionAjaxForm(<?php echo js_escape(
             <?php echo $csrf; ?>
         </form>
     <?php endif; ?>
+    </div>
 </div>
 <?php echo foot();
