@@ -25,6 +25,7 @@ if (
 }
 
 $head = ['title' => 'Add Your Story', 'bodyclass' => 'contribution form'];
+$imageTitle = __("Tell Your Story");
 echo head($head);
 ?>
 <script type="text/javascript">
@@ -35,11 +36,26 @@ enableContributionAjaxForm(<?php echo js_escape(
 // ]]>
 </script>
 <div class="title">
-    <h1><?php echo $head['title']; ?></h1>
+    <div class='header-background-container add-story-image'>
+        <div class="header-background-container-content">
+            <h2 class='image-title'> <?php echo $imageTitle; ?> </h2>
+            <div class='image-text'>
+                <p>Loerum Ipsoms dolor sit amet, consectetur</p>
+                <p>adipiscing elit. Integer suscitpit diam a nulla</p>
+                <p>tempus rhoncus. Aliquam erat volutpat</p>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="primary">
 <?php echo flash(); ?>
-
+    <div class='contribution-content-wrapper'>
+        <div class='descriptionParagraph'>
+            <p>Description or instructions on how to add your own story, things people might want to add or
+                consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem.
+                Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a
+                explicabo ut inventore, rerum sint sit nam! </p>
+        </div>
 
     <?php if (!($user = current_user()) && !get_option('contribution_open')): ?>
         <?php
@@ -54,25 +70,27 @@ enableContributionAjaxForm(<?php echo js_escape(
     <?php else: ?>
         <form method="post" action="" enctype="multipart/form-data">
             <fieldset id="contribution-item-metadata">
-                <div class="inputs">
-                    <label for="contribution-type"><?php echo __(
-                        "What type of item do you want to contribute?"
-                    ); ?></label>
-                    <?php $options = get_table_options('ContributionType'); ?>
-                    <?php $typeId = isset($type) ? $type->id : ''; ?>
-                    <?php echo $this->formSelect(
-                        'contribution_type',
-                        $typeId,
-                        ['multiple' => false, 'id' => 'contribution-type'],
-                        $options
-                    ); ?>
-                    <input type="submit" name="submit-type" id="submit-type" value="Select" />
-                </div>
-                <div id="contribution-type-form">
-                <?php if (isset($type)) {
-                    include 'type-form.php';
-                } ?>
-                </div>
+                    <div class="inputs contribution">
+                        <label for="contribution-type"><?php echo __(
+                            "What type of item do you want to contribute?"
+                        ); ?></label>
+                        <?php $options = get_table_options(
+                            'ContributionType'
+                        ); ?>
+                        <?php $typeId = isset($type) ? $type->id : ''; ?>
+                        <?php echo $this->formSelect(
+                            'contribution_type',
+                            $typeId,
+                            ['multiple' => false, 'id' => 'contribution-type'],
+                            $options
+                        ); ?>
+                        <input type="submit" name="submit-type" id="submit-type" value="Select" />
+                    </div>
+                    <div id="contribution-type-form">
+                    <?php if (isset($type)) {
+                        include 'type-form.php';
+                    } ?>
+                    </div>
             </fieldset>
 
             <fieldset id="contribution-confirm-submit" <?php if (
@@ -113,7 +131,7 @@ enableContributionAjaxForm(<?php echo js_escape(
                         __("Keep identity private.")
                     ); ?>
                 </div>
-                <p><?php echo __(
+                <p class='contribute-terms'><?php echo __(
                     "In order to contribute, you must read and agree to the %s",
                     "<a href='" .
                         contribution_contribute_url('terms') .
@@ -136,12 +154,17 @@ enableContributionAjaxForm(<?php echo js_escape(
                         __('I agree to the Terms and Conditions.')
                     ); ?>
                 </div>
-                <?php echo $this->formSubmit('form-submit', __('Contribute'), [
-                    'class' => 'submitinput',
-                ]); ?>
+                <?php echo $this->formSubmit(
+                    'form-submit',
+                    __('Contribute your Story'),
+                    [
+                        'class' => 'submitinput',
+                    ]
+                ); ?>
             </fieldset>
             <?php echo $csrf; ?>
         </form>
     <?php endif; ?>
+    </div>
 </div>
 <?php echo foot();
