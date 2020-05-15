@@ -30,7 +30,7 @@ if (
 
     <?php fire_plugin_hook('public_head', ['view' => $this]); ?>
     <!-- Stylesheets -->
-    <?php queue_css_file(['iconfonts', 'skeleton', 'style']); ?>
+    <?php queue_css_file(['iconfonts', 'style']); ?>
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans:400,400i,700" rel="stylesheet">
 	<link rel="apple-touch-icon" sizes="57x57" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-60x60.png">
