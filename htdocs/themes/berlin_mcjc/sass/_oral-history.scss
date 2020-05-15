@@ -68,7 +68,7 @@
     margin: 1.5em;
   }
 }
-.oral-descrition-player-container {
+.oral-description-player-container {
   display: grid;
   grid-template-areas:
     "text sound"
@@ -96,7 +96,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .oral-descrition-player-container {
+  .oral-description-player-container {
     display: block;
     #itemfiles.element .item-images {
       display: flex;

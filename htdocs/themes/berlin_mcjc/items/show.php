@@ -43,7 +43,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 </div>
   <?php endif; ?>
   
-<div class='oral-descrition-player-container'>  
+<div class='oral-description-player-container'>
     <?php if ($description): ?>
     <div class="description">
         <?php echo $description; ?>
