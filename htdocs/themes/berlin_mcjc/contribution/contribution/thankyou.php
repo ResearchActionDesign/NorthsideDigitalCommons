@@ -1,11 +1,8 @@
 <?php echo head(['bodyclass' => 'contribution thank-you']); ?>
 
-<div class="title">
-    <h1><?php echo __("Add Your Story"); ?></h1>
-</div>
 <div class='header-background-container add-story-image'>
     <div class="header-background-container-content">
-        <!-- <h2 class='image-title'>  </h2> -->
+         <h1 class='image-title'><?php echo __("Add Your Story"); ?></h1>
         <h2 class='image-title'><?php echo __("Tell your Story"); ?></h2>
         <div class='image-text'>
             <p>Loerum Ipsoms dolor sit amet, consectetur</p>
