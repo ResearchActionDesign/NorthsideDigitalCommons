@@ -38,7 +38,7 @@ enableContributionAjaxForm(<?php echo js_escape(
 <div class="title">
     <div class='header-background-container add-story-image'>
         <div class="header-background-container-content">
-            <h2 class='image-title'> <?php echo $imageTitle; ?> </h2>
+            <h1 class='image-title'> <?php echo $imageTitle; ?> </h1>
             <div class='image-text'>
                 <p>Loerum Ipsoms dolor sit amet, consectetur</p>
                 <p>adipiscing elit. Integer suscitpit diam a nulla</p>
