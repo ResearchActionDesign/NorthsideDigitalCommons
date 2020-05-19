@@ -1,0 +1,37 @@
+.tags {
+  @include contentContainer;
+
+  .tags-title {
+    h1 {
+      font-weight: bold;
+      color: $letter-blue;
+    }
+
+    p {
+      color: $letter-blue;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .tags-content {
+    background: $ivory;
+  }
+
+  .tags__letter {
+    padding: 15px;
+
+    h2 {
+      font-weight: bolder;
+      color: $letter-blue;
+    }
+  }
+
+  #123 {
+    .tags_list.tags_tag {
+      text-decoration: underline;
+    }
+  }
+}
