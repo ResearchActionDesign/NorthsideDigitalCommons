@@ -5,8 +5,8 @@
   flex-direction: column;
   justify-content: center;
 }
-.topics-image {
-  background-image: url(../assets/images/Video.png);
+.topics-header-image {
+  background-image: url(../assets/images/topicImage.png);
   background-size: cover;
   margin-bottom: 45px;
   background-repeat: no-repeat;
@@ -31,11 +31,13 @@
 .filter_container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   background-color: $ivory;
 
   #grid__filter {
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
   }
 
   .grid__filter__title {
