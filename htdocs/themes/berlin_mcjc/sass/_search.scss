@@ -1,5 +1,14 @@
-//Search Rows
+// Search bar
+#search-container {
+  input[type="text"] {
+    padding: 0.5em;
+    color: $grey--dark;
+    font: $base-font-size $body-font-family;
+    line-height: $base-font-size * 1.5;
+  }
+}
 
+// Search Rows
 .search-results-body {
   display: flex;
   flex-direction: column;

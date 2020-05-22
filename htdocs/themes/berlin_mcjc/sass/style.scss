@@ -1,16 +1,19 @@
 @import "normalize";
 @import "screen";
+@import "font-awesome";
 
 // Custom styles.
 @import "screen-custom";
 @import "home-page";
 @import "header";
+@import "header-background-container"; // hero image header for top-level pages.
 @import "search";
 @import "people";
 @import "about";
 @import "item-grid";
 @import "person";
 @import "image-page";
+@import "topic";
 @import "contribute";
 @import "contribute_thankyou";
 
