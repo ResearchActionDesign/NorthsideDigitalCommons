@@ -27,10 +27,9 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
       <?php foreach (range('A', 'Z') as $letter): ?>
       <?php if (in_array($letter, $validLetters)): ?>
       <li<?php echo $curLetter == $letter ? ' class="active"' : ''; ?>>
-        <a
-          href="<?php echo $this->url([], 'peopleDefault', [
-              'firstLetter' => $letter,
-          ]); ?>"><?php echo $letter; ?></a>
+        <a href="<?php echo $this->url([], 'peopleDefault', [
+            'firstLetter' => $letter,
+        ]); ?>"><?php echo $letter; ?></a>
         </li>
         <?php else: ?>
         <li class="disabled">
@@ -46,10 +45,10 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   <?php
   // TODO: Replace this with the related-item common file potentially.
   $itemTitle = metadata('item', 'display_title');
-  $itemClasses = "";
+  $itemClasses = '';
   $hasImg = false;
   if (metadata('item', 'has files')) {
-      $itemClasses = " has-picture";
+      $itemClasses = ' has-picture';
       $hasImg = true;
   }
   $description = metadata(
@@ -58,15 +57,15 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
       ['snippet' => 250]
   );
   if ($description) {
-      $itemClasses .= " has-description";
+      $itemClasses .= ' has-description';
   }
   ?>
   <div class="item record<?php echo $itemClasses; ?>">
     <?php if ($hasImg): ?>
-        <div class="item-img">
+    <div class="item-img">
       <?php echo item_image('square_thumbnail', ['alt' => $itemTitle]); ?>
-        </div>
-  <?php endif; ?>
+    </div>
+    <?php endif; ?>
 
 
     <div class="item-meta">
@@ -83,15 +82,18 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
           'item' => $item,
       ]); ?>
 
-    </div><!-- end class="item-meta" -->
+    </div>
+    <!-- end class="item-meta" -->
     <div class="item-title"><?php echo mcjc_link_to_item($itemTitle); ?></div>
     <!-- end class="item entry" -->
   </div>
 
   <?php endforeach; ?>
 </div>
-<div <?php echo pagination_links(); ?>
-<?php fire_plugin_hook('public_items_browse', [
-    'items' => $items,
-    'view' => $this,
-]); ?> <?php echo foot(); ?>
+<div <?php echo pagination_links(); ?> <?php fire_plugin_hook(
+     'public_items_browse',
+     [
+         'items' => $items,
+         'view' => $this,
+     ]
+ ); ?> <?php echo foot(); ?>
