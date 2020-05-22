@@ -1,0 +1,83 @@
+.exhibit-content {
+  @include contentContainer;
+}
+.exhibit-header-container {
+  display: flex;
+  flex-direction: row;
+}
+.exhibit-title-container {
+  width: 575px;
+  padding-right: 35px;
+  padding-top: 80px;
+}
+.exhibit-title h1 {
+  text-align: left;
+  columns: 0 !important;
+}
+.exhibit-img-wrapper {
+  width: 700px;
+  height: 700px;
+  background: #eee;
+  .exhibit-img-placeholder {
+    width: 100%;
+    height: auto;
+    /* top: 50%; */
+    /* right: 50%; */
+    /* text-align: center; */
+    padding-top: 50%;
+    padding-left: 40%;
+  }
+}
+#exhibit-description-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.placeholder-wrapper {
+  display: flex;
+  padding-top: 80px;
+  .PlaceholderParagraph {
+    width: 775px;
+    padding-right: 35px;
+  }
+  .Related-People-list {
+    ul {
+      list-style: none;
+      padding-left: 80px;
+    }
+  }
+}
+#exhibit-pages {
+  width: 100%;
+  .exhibit-items {
+    width: 1250px;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      li {
+        position: relative;
+        overflow: hidden;
+        min-width: 250px;
+        width: 32%;
+        background: #eee;
+        padding: 0;
+        height: 295px;
+        margin: 5px;
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+        a {
+          color: #fff;
+          background: #7b5c7e;
+          height: 30px;
+          /* width: 00px; */
+          transition: all 0.1s linear;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+.exhibits.show {
+  @include contentContainer;
+}

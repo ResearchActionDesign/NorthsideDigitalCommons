@@ -1,13 +1,17 @@
 <?php echo head(array('title' => metadata('exhibit', 'title'), 'bodyclass'=>'exhibits summary')); ?>
-
-<h1><?php echo metadata('exhibit', 'title'); ?></h1>
+<div class=exhibit-content>
+<div class='exhibit-header-container'>
+<div class='exhibit-title-container'>
+<h2 class='exhibit-title'><?php echo metadata('exhibit', 'title'); ?></h2>
 <?php echo exhibit_builder_page_nav(); ?>
 
-<div id="primary">
+<div id="primary exhibit-description-wrapper">
 <?php if ($exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true))): ?>
 <div class="exhibit-description">
     <?php echo $exhibitDescription; ?>
 </div>
+</div>
+
 <?php endif; ?>
 
 <?php if (($exhibitCredits = metadata('exhibit', 'credits'))): ?>
@@ -22,9 +26,42 @@
 $pageTree = exhibit_builder_page_tree();
 if ($pageTree):
 ?>
+<div class='exhibit-img-wrapper'>
+    <div class='exhibit-img-placeholder'>Placeholder</div>
+</div>
+</div>
+<div class='placeholder-wrapper'>
+    <div class='PlaceholderParagraph'>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Voluptatibus hic omnis recusandae repudiandae molestiae 
+        laudantium esse facilis asperiores! Dolores fuga aspernatur 
+        in mollitia ratione dolorem consequatur deleniti quaerat 
+        adipisci earum.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Voluptatibus hic omnis recusandae repudiandae molestiae 
+        laudantium esse facilis asperiores! Dolores fuga aspernatur 
+        in mollitia ratione dolorem consequatur deleniti quaerat 
+        adipisci earum.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Voluptatibus hic omnis recusandae repudiandae molestiae 
+        laudantium esse facilis asperiores! Dolores fuga aspernatur 
+        in mollitia ratione dolorem consequatur deleniti quaerat 
+        adipisci earum.</p>
+    </div>
+    <div class='Related-People-list'>
+        <ul>
+            <h3>Related people</h3>
+            <li>placeholder</li>
+            <li>placeholder2</li>
+            <li>placeholder3</li>
+            <li>placeholder4</li>
+        </ul>
+    </div>
+</div>
 <nav id="exhibit-pages">
-    <?php echo $pageTree; ?>
+    <div class='exhibit-items'><?php echo $pageTree;?> </div>
 </nav>
+</div>
 <?php endif; ?>
 
 <?php echo foot(); ?>
