@@ -187,6 +187,11 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     $permalink = $permalinkBase;
     $index = 2;
 
+    // Don't try to set a permalink if this element doesn't yet have text associated to it.
+    if (!$permalink) {
+      return;
+    }
+
     while (!$this->checkPermalinkValidForItem($permalink, $item->id)) {
       $permalink = "{$permalinkBase}-{$index}";
       $index++;
