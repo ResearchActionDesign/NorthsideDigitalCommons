@@ -58,6 +58,7 @@ if ($pageTree):
         </ul>
     </div>
 </div>
+<h2>In this Exhibit</h2>
 <nav id="exhibit-pages">
     <div class='exhibit-items'><?php echo $pageTree;?> </div>
 </nav>
