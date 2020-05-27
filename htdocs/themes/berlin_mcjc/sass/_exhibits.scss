@@ -49,7 +49,7 @@
 #exhibit-pages {
   width: 100%;
   .exhibit-items {
-    width: 1250px;
+    // width: 1250px;
     ul {
       display: flex;
       flex-wrap: wrap;
@@ -58,7 +58,7 @@
       li {
         position: relative;
         overflow: hidden;
-        min-width: 250px;
+        min-width: 300px;
         width: 32%;
         background: #eee;
         padding: 0;
@@ -83,7 +83,25 @@
   @include contentContainer;
 }
 @media (max-width: 767px) {
+  .exhibit-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .exhibit-header-container {
+    display: block;
+  }
+  .exhibit-img-wrapper {
+    width: 450px;
+    height: 450px;
+  }
+  .placeholder-wrapper {
+    display: block;
+    .PlaceholderParagraph {
+      width: 450px;
+    }
+  }
   .exhibit-title-container {
     width: 450px;
+    padding: 0px;
   }
 }
