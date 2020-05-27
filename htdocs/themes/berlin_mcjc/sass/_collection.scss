@@ -1,0 +1,84 @@
+.collections {
+  @include contentContainer;
+
+  .collection-top-header {
+    h1 {
+      font-weight: bold;
+    }
+  }
+  .header-description {
+    display: flex;
+    p {
+      width: 40%;
+      line-height: 25px;
+      margin: 50px 35px 0 0;
+    }
+
+    .collection-header-img {
+      background-image: url(../assets/images/Collection-placeholder.png);
+      width: 500px;
+      height: 300px;
+      margin-bottom: 35px;
+    }
+  }
+
+  .collection-main-content {
+    display: flex;
+
+    .collection-description {
+      width: 50%;
+    }
+
+    .related-items {
+      width: 15%;
+      height: 400px;
+      background-image: url(../assets/images/related-palceholder.png);
+      margin-left: 100px;
+    }
+  }
+
+  .collection.item {
+    .collection.item-meta {
+      top: 90%;
+      transition: 0.5s;
+    }
+
+    .collection.item-meta:hover {
+      top: 0;
+
+      ~ .item-title {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .collections .header-description {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  .collections .collection-main-content {
+    display: flex;
+    flex-direction: column;
+
+    .collection-description {
+      width: 100%;
+    }
+
+    .related-items {
+      width: 100%;
+      height: 400px;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 481px) and (min-width: 320px) {
+}
