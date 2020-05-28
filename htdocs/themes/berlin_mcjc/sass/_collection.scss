@@ -39,7 +39,7 @@
 
   .collection.item {
     .collection.item-meta {
-      top: 90%;
+      top: 85%;
       transition: 0.5s;
     }
 
@@ -61,6 +61,7 @@
     p {
       width: 100%;
       margin: 0;
+      padding-bottom: 25px;
     }
   }
 
@@ -78,7 +79,4 @@
       margin-left: 0;
     }
   }
-}
-
-@media (max-width: 481px) and (min-width: 320px) {
 }
