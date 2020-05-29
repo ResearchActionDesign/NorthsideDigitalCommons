@@ -49,6 +49,15 @@
 .exhibit-page {
   display: flex;
 }
+.exhibit-page-title {
+  display: flex;
+}
+div#exhibit-blocks {
+  display: flex;
+}
+div#exhibit-page-navigation {
+  display: flex;
+}
 #exhibit-pages {
   width: 100%;
   .exhibit-items {

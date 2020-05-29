@@ -4,7 +4,7 @@ echo head(array(
     'bodyclass' => 'exhibits show'));
 ?>
 
-<h1><span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></span></h1>
+<h1 class='exhibit-page-title'><span class="exhibit-page"><?php echo metadata('exhibit_page', 'title'); ?></span></h1>
 
 <div id="exhibit-blocks">
 <?php exhibit_builder_render_exhibit_page(); ?>
@@ -26,8 +26,8 @@ echo head(array(
     </div>
 </div>
 
-<nav id="exhibit-pages">
-    <h4><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h4>
-    <?php echo exhibit_builder_page_tree($exhibit, $exhibit_page); ?>
-</nav>
+<!-- <nav id="exhibit-pages">
+    <h4><php echo exhibit_builder_link_to_exhibit($exhibit); ?></h4>
+    <php echo exhibit_builder_page_tree($exhibit, $exhibit_page); ?>
+</nav> -->
 <?php echo foot(); ?>
