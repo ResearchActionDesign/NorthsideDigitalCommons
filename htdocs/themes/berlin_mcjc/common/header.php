@@ -57,7 +57,7 @@ if (
   <?php queue_js_file('globals'); ?>
   <?php echo head_js(); ?>
 </head>
- <?php echo body_tag(['id' => @$bodyid, 'class' => @$bodyclass]); ?>
+ <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
     <a href="#content" id="skipnav"><?php echo __(
         'Skip to main content'
     ); ?></a>
@@ -77,7 +77,7 @@ if (
                     <div id="search-container" role="search">
                       <?php echo $this->formButton(
                           'search-toggle',
-                          $options['search_toggle'],
+                          $options['search_toggle'] ?? '',
                           [
                               'type' => 'button',
                               'aria-label' => 'Show search bar',

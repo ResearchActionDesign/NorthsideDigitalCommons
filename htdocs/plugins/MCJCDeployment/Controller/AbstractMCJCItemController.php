@@ -102,10 +102,10 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     $this->_objectRelations = ItemRelationsPlugin::prepareObjectRelations($this->_item);
 
     // Create one array of just the IDs of related items.
-    $existing_related_ids = array_merge(
-      array_map(function($item) { return $item['subject_item_id']; }, $this->_subjectRelations),
-      array_map(function($item) { return $item['object_item_id']; }, $this->_objectRelations)
-    );
+    $existing_related_ids = array_filter(array_merge(
+      array_map(function($item) { return $item['subject_item_id'] ?? false; }, $this->_subjectRelations),
+      array_map(function($item) { return $item['object_item_id'] ?? false; }, $this->_objectRelations)
+    ));
 
     // Pull second degree relations as well.
     foreach ($this->_subjectRelations as $subjectRelation) {

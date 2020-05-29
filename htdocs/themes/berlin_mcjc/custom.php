@@ -458,6 +458,47 @@ function _mcjc_oral_history_metadata_paragraph($item)
     return implode(" ", array_filter($sentences));
 }
 
+function _mcjc_image_metadata_paragraph($item)
+{
+    $metadata = [
+        'subject' => metadata($item, ['Dublin Core', 'Subject']),
+        'creator' => metadata($item, ['Dublin Core', 'Creator']),
+        'date' => metadata($item, ['Dublin Core', 'Date']),
+        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        'rights' => metadata($item, ['Dublin Core', 'Rights']),
+    ];
+
+    if ($metadata['date']) {
+        $metadata['date'] = date_format(
+            date_create($metadata['date']),
+            'F j, Y'
+        );
+    }
+
+    $first_sentence_chunks = [];
+    if ($metadata['creator'] || $metadata['subject'] || $metadata['date']) {
+        $first_sentence_chunks = [
+            $metadata['creator'] === 'Jim Wallace'
+                ? 'Photograph by Jim Wallace'
+                : 'Image',
+            $metadata['subject'] ? "of {$metadata['subject']}" : false,
+            $metadata['date'] ? "made on {$metadata['date']}" : false,
+        ];
+    }
+
+    $sentences = [
+        count($first_sentence_chunks)
+            ? implode(" ", array_filter($first_sentence_chunks)) . '.'
+            : false,
+        $metadata['publisher']
+            ? "Published by {$metadata['publisher']}."
+            : false,
+        $metadata['rights'] ? $metadata['rights'] : false,
+    ];
+
+    return implode(" ", array_filter($sentences));
+}
+
 /**
  * Returns a human-readable paragraph of key element texts.
  */
@@ -466,18 +507,10 @@ function mcjc_element_metadata_paragraph($item)
     $item_type = metadata($item, ['Dublin Core', 'Type']);
     if ($item_type === 'Oral History') {
         return _mcjc_oral_history_metadata_paragraph($item);
+    } elseif ($item_type === 'Still Image') {
+        return _mcjc_image_metadata_paragraph($item);
     }
-    //
-    //    $texts = array(
-    //      'subject' => metadata($item, array('Dublin Core', 'Subject')),
-    //      'type' => metadata($item, array('Dublin Core', 'Type')),
-    //      'coverage' => metadata($item, array('Dublin Core', 'Coverage')),
-    //      'creator' => metadata($item, array('Dublin Core', 'Creator')),
-    //      'date' => metadata($item, array('Dublin Core', 'Date')),
-    //      'identifier' => metadata($item, array('Dublin Core', 'Identifier')),
-    //      'format' => metadata($item, array('Dublin Core', 'Format')),
-    //    );
 
-    // TODO for still images. Need to check with Kathryn about Metadata.
-    return 'STUB ELEMENT PARAGRAPH DESCRIPTION';
+    // TODO for other item types if needed.
+    return '';
 }
