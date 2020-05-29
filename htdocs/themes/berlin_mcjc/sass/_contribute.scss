@@ -22,39 +22,34 @@ textarea#Elements-1-0-text {
   height: 150px;
 }
 div#contribution-type-form {
-  h2 {
-    background: $letter-blue;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: fit-content;
-    color: white;
-    font-size: larger;
-  }
   .field {
     label {
       text-transform: uppercase;
       font-weight: bold;
     }
+
     margin: 20px;
     margin-left: -10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
   }
-}
 
-fieldset#contribution-confirm-submit {
-  @include contentContainer;
-}
-.contribute-terms a {
-  text-decoration: underline;
-}
-input#form-submit {
-  background-color: darkgreen;
-  border: none;
-  border-radius: 3px;
-  color: white;
-  padding: 15px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  fieldset#contribution-confirm-submit {
+    @include contentContainer;
+  }
+
+  .contribute-terms a {
+    text-decoration: underline;
+  }
+
+  input#form-submit {
+    background-color: darkgreen;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 15px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
 }
