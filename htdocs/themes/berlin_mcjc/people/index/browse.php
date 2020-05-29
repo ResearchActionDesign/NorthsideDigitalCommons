@@ -83,7 +83,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
           'item' => $item,
       ]); ?>
 
-    </div><!-- end class="item-meta" -->
+    </div>
+    <!-- end class="item-meta" -->
     <div class="item-title"><?php echo mcjc_link_to_item($itemTitle); ?></div>
     <!-- end class="item entry" -->
   </div>
