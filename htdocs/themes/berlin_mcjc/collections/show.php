@@ -20,7 +20,7 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
   <div class="collection-description">
     <?php echo metadata('collection', ['Dublin Core', 'Description']); ?>
   </div>
-  <div class=" related-items">PlaceHolder</div>
+  <div class=" related-items">Related-item PlaceHolder</div>
 </div>
 
 
