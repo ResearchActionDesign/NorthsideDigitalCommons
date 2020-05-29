@@ -3,7 +3,7 @@ if (!isset($title)) {
     $title = metadata($item, 'display_title');
 }
 $description = metadata(
-    'item',
+    $item,
     ['Dublin Core', 'Description'],
     ['snippet' => 250]
 );
