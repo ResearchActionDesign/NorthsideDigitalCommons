@@ -46,8 +46,6 @@ $validLetters = array_keys($tagsByLetter);
   </ul>
 </div>
 
-
-
 <?php foreach ($validLetters as $letter): ?>
 <div class="tags-content">
   <div class=" tags__letter" id="<?php echo $letter; ?>">
