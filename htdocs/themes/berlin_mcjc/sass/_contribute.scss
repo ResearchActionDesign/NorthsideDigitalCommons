@@ -22,18 +22,17 @@ textarea#Elements-1-0-text {
   height: 150px;
 }
 div#contribution-type-form {
-    .field {
-      label {
-        text-transform: uppercase;
-        font-weight: bold;
-      }
-
-      margin: 20px;
-      margin-left: -10px;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
+  .field {
+    label {
+      text-transform: uppercase;
+      font-weight: bold;
     }
+
+    margin: 20px;
+    margin-left: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   fieldset#contribution-confirm-submit {
