@@ -8,7 +8,7 @@ $description = metadata(
     ['snippet' => 250]
 );
 
-$hasFiles = $isCollection ?? false || metadata($item, 'has files');
+$hasFiles = ($isCollection ?? false) || metadata($item, 'has files');
 ?>
 <div class="item record related-item tile<?php
 echo $hasFiles ? " has-picture" : "";

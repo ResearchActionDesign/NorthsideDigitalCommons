@@ -33,6 +33,20 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
   }
 
   /**
+   * Helper function to sort item relations.
+   * @param array $items
+   * @return array
+   */
+  protected function sortRelations(array $items) {
+    static $northside_news_collection_id = 12; // TODO: Replace with non-hard-coded-value
+    $sorted =  array_merge(
+      array_filter($items, function ($item) use ($northside_news_collection_id) { return ($item['collection_id'] ?? null) !== $northside_news_collection_id;}),
+      array_filter($items, function ($item) use ($northside_news_collection_id) { return ($item['collection_id'] ?? null) === $northside_news_collection_id;})
+    );
+    return $sorted;
+  }
+
+  /**
    * Helper function to load a single collection from the DB.
    *
    * @param int|null $collectionId
@@ -160,7 +174,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
    */
   protected function _getRelatedItems() {
     // TODO: Add second-degree relations and collections.
-    return $this->filterForUniqueId(array_map(
+    return $this->sortRelations($this->filterForUniqueId(array_map(
       function ($relation) { return $relation['item']; },
       array_filter(
         array_merge($this->_objectRelations,
@@ -173,7 +187,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
             && $relation['item']['id'] !== $this->_item->id;
         }
       )
-    ));
+    )));
   }
 
   public function init()
