@@ -7,13 +7,7 @@
     text-align: center;
     width: 100%;
   }
-  .title-block h1 {
-    font-size: 35px;
-    line-height: 48px;
-    font-weight: bold;
-    text-transform: none;
-    letter-spacing: 0.04em;
-  }
+
   .oral-image-title-container {
     width: 100%;
     height: 100%;
@@ -43,6 +37,9 @@
 .items {
   .grid-items {
     justify-content: flex-start;
+    // margin-right: 40px;
+    margin: 0 auto;
+    width: 95%;
   }
   div.explore-grid .grid-items .item-title a {
     top: -34px;
