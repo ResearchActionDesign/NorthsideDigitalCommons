@@ -1,41 +1,9 @@
 .people {
-  .search-by-lastname {
-    display: flex;
-    flex-direction: column;
-    background-color: #eeeee8;
-    padding-top: 0.5em;
-    @include contentContainer;
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      list-style: none;
-      text-decoration: none;
-      margin-bottom: 0.75em;
-      li {
-        padding: 10px;
-
-        &.active {
-          font-weight: bold;
-          a {
-            color: $black;
-          }
-        }
-      }
-    }
-
-    span {
-      margin-left: 37px;
-      margin-bottom: -20px;
-      font-size: 13px;
-      font-weight: bold;
-    }
-  }
+  @include contentContainer;
 
   .top-header {
     height: 300px;
     margin-bottom: 5px;
-    @include contentContainer;
 
     h1 {
       font-size: 28px;
@@ -63,7 +31,6 @@
   }
 
   .pagination-nav {
-    @include contentContainer;
   }
 
   @media (max-width: 1286px) {

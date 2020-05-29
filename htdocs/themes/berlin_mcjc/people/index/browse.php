@@ -16,14 +16,15 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   </p>
 
 </div>
-<div class="search-by-lastname">
+<div class="filter-by-letter">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
   <ul>
-    <li<?php echo !$curLetter ? ' class="active"' : ''; ?>><a
-        href="<?php echo $this->url(
-            [],
-            'peopleDefault'
-        ); ?>" class="search-by-lastname__all">All</a></li>
+    <li<?php echo !$curLetter
+        ? ' class="active"'
+        : ''; ?>><a href="<?php echo $this->url(
+    [],
+    'peopleDefault'
+); ?>" class="search-by-lastname__all">All</a></li>
       <?php foreach (range('A', 'Z') as $letter): ?>
       <?php if (in_array($letter, $validLetters)): ?>
       <li<?php echo $curLetter == $letter ? ' class="active"' : ''; ?>>
