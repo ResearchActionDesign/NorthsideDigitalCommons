@@ -28,40 +28,11 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
 
   <?php if (metadata('collection', 'total_items') > 0): ?>
   <?php foreach (loop('items') as $item): ?>
-  <?php $itemTitle = metadata('item', 'display_title'); ?>
-
-  <div class="collection item">
-    <div class="collection-item-img">
-      <?php if ($collectionImage = record_image('collection')): ?>
-      <?php echo mcjc_files_for_item(
-          'item',
-          [],
-          ['class' => 'item-file'],
-          $item
-      ); ?>
-    </div>
-    <div class="collection item-meta">
-      <div class="item-description">
-        <?php echo $description; ?>
-      </div>
-    </div><!-- end class="item-meta" -->
-    <div class="item-title"><?php echo mcjc_link_to_item(
-        $itemTitle,
-        $item
-    ); ?></div>
-    <?php endif; ?>
-
-    <?php if (
-        $description = metadata(
-            'item',
-            ['Dublin Core', 'Description'],
-            ['snippet' => 250]
-        )
-    ): ?>
-
-    <?php endif; ?>
-  </div>
-  <?php endforeach; ?>
+  <?php echo common('related-item', [
+      'item' => $item,
+      'class' => 'collection',
+  ]); ?>
+    <?php endforeach; ?>
   <?php else: ?>
   <p><?php echo __(
       'There are currently no items within this collection.'
