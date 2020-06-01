@@ -6,7 +6,7 @@ services:
     # build: .docker/
     volumes:
       - htdocs-sync:/var/www/html:nocopy
-      - ./.docker:/etc/apache2/sites-available:delegated
+      - ./.docker:/etc/apache2/sites-available:cached
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
     container_name: mcjc-omeka.l
@@ -20,7 +20,7 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - db-sync:/docker-entrypoint-initdb.d:nocopy
+      - ./db:/docker-entrypoint-initdb.d:cached
     environment:
       MYSQL_DATABASE: "omeka"
       MYSQL_ROOT_PASSWORD: "root"
@@ -31,9 +31,9 @@ services:
     image: stevevega/compass
     command: watch
     volumes:
-      - ./htdocs/themes/berlin_mcjc/sass:/input
-      - ./htdocs/themes/berlin_mcjc/css:/output
-      - ./htdocs/themes/berlin_mcjc/images:/images
+      - ./htdocs/themes/berlin_mcjc/sass:/input:cached
+      - ./htdocs/themes/berlin_mcjc/css:/output:delegated
+      - ./htdocs/themes/berlin_mcjc/images:/images:cached
 
 volumes:
   db-sync:

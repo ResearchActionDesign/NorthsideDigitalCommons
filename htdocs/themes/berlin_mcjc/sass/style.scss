@@ -1,10 +1,12 @@
 @import "normalize";
 @import "screen";
+@import "font-awesome";
 
 // Custom styles.
 @import "screen-custom";
 @import "home-page";
 @import "header";
+@import "header-background-container"; // hero image header for top-level pages.
 @import "search";
 @import "people";
 @import "about";
@@ -12,7 +14,11 @@
 @import "person";
 @import "image-page";
 @import "oral-history";
+@import "topic";
 @import "contribute";
+@import "tags";
+@import "contribute_thankyou";
+@import "collection";
 
 // Small screen styles.
 @media screen and (max-width: 768px) {

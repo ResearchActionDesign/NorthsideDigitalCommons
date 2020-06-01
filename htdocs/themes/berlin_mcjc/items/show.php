@@ -69,26 +69,34 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         ]); ?>
         </div>
     </div>
-    <?php endif; ?>
-</div>
-
+  </div>
+  <?php endif; ?>
+  <?php
+  $tags = tag_string('item');
+  $metadata_paragraph = mcjc_element_metadata_paragraph($item);
+  $citation = metadata('item', 'citation', [
+      'no_escape' => true,
+  ]);
+  ?>
   <div class="tags-container">
+      <?php if ($tags): ?>
     <div id="item-tags" class="element">
       <span class="element-title"><?php echo __('Tags: '); ?></span>
       <span class="element-text"><?php echo tag_string('item'); ?></span>
     </div>
+      <?php endif; ?>
     <div class="details">
+        <?php if ($metadata_paragraph): ?>
       <div id="item-detail" class="element">
-        <span class="element-text"><?php echo mcjc_element_metadata_paragraph(
-            $item
-        ); ?></span>
+        <span class="element-text"><?php echo $metadata_paragraph; ?></span>
       </div>
+        <?php endif; ?>
+        <?php if ($citation): ?>
       <div id="item-citation" class="element">
         <span class="element-title"><?php echo __('Citation: '); ?></span>
-        <span class="element-text"><?php echo metadata('item', 'citation', [
-            'no_escape' => true,
-        ]); ?></span>
+        <span class="element-text"><?php echo $citation; ?></span>
       </div>
+        <?php endif; ?>
     </div>
   </div>
 </div>

@@ -610,7 +610,6 @@ a.button {
 // Image styles for collections.
 .collections .item-img {
   float: right;
-  margin: 0 0 0 10px;
   text-align: right;
 
   a img {
@@ -670,7 +669,6 @@ a.button {
 
 .collections.show {
   .item-img {
-    max-width: 49%;
     width: auto;
   }
 }
@@ -791,6 +789,43 @@ footer {
     @media only screen and (min-width: 768px) and (max-width: 959px) {
       text-align: left;
     }
+  }
+}
+
+/* @end */
+
+// Search by letter used in mutiply pages
+
+.filter-by-letter {
+  display: flex;
+  flex-direction: column;
+  background-color: #eeeee8;
+  padding-top: 0.5em;
+  margin: 15px 0 15px 0;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+    margin-bottom: 0.75em;
+    li {
+      padding: 10px;
+
+      &.active {
+        font-weight: bold;
+        a {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  span {
+    margin-left: 37px;
+    margin-bottom: -20px;
+    font-size: 13px;
+    font-weight: bold;
   }
 }
 
