@@ -610,7 +610,6 @@ a.button {
 // Image styles for collections.
 .collections .item-img {
   float: right;
-  margin: 0 0 0 10px;
   text-align: right;
 
   a img {
@@ -670,7 +669,6 @@ a.button {
 
 .collections.show {
   .item-img {
-    max-width: 49%;
     width: auto;
   }
 }

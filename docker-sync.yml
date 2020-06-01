@@ -2,5 +2,12 @@ version: "2"
 syncs:
   htdocs-sync:
     src: "./htdocs"
-    sync_excludes: [".git", "sass-cache", ".sass-cache", ".scssc"]
+    sync_excludes:
+      [
+        ".git",
+        "sass-cache",
+        "themes/berlin_mcjc/.sass-cache",
+        "themes/berlin_mcjc/sass/.sass-cache",
+        ".scssc",
+      ]
     watch_excludes: [".git", "sass-cache", ".sass-cache", ".scssc"]

@@ -8,7 +8,8 @@
 
 div.peoples-item-container,
 div.grid-items,
-div.topics-grid {
+div.topics-grid,
+div.collection-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -96,14 +97,14 @@ div.topics-grid {
         text-decoration: none;
         color: #fff;
         position: relative;
-        top: -34px;
+        top: -30px;
       }
     }
   }
 }
 
-div.peoples-item-container {
-  @include contentContainer;
+div.peoples-item-container,
+div.collection-grid {
   .item-title {
     text-align: center;
     background: #505050;
@@ -119,7 +120,8 @@ div.peoples-item-container {
 
 div.people,
 div.explore-grid,
-div.topics-grid {
+div.topics-grid,
+div.collection-grid {
   .grid-items {
     .item-title {
       text-align: center;
@@ -136,7 +138,8 @@ div.topics-grid {
 }
 
 div.explore-grid,
-div.topics-grid {
+div.topics-grid,
+div.collection-grid {
   .item {
     width: 40%;
   }
@@ -145,7 +148,8 @@ div.topics-grid {
   }
 }
 
-div.topics-grid {
+div.topics-grid,
+div.collection-grid {
   .item:nth-child(1) {
     height: 450px;
   }
@@ -156,7 +160,6 @@ div.depicted div.grid-items div.item {
 }
 
 @media (min-width: 768px) and (max-width: 1286px) {
-  div.peoples-item-container,
   div.explore-grid,
   div.in-the-community,
   div.topics-grid {
@@ -182,11 +185,19 @@ div.depicted div.grid-items div.item {
   }
 }
 
+div.topics-grid,
+div.collection-grid {
+  .item:nth-child(1) {
+    height: 295px;
+  }
+}
+
 @media (max-width: 767px) {
   div.peoples-item-container,
   div.explore-grid,
   div.in-the-community,
-  div.topics-grid {
+  div.topics-grid,
+  div.collection-grid {
     justify-content: center;
 
     .item {
@@ -202,31 +213,48 @@ div.depicted div.grid-items div.item {
     }
   }
   div.explore-grid {
-    .grid-items {
+    .grid-items,
+    div.collection-grid {
       .item-title a {
-        top: -34px;
+        top: -29px;
       }
     }
   }
 
-  div.explore-grid div.grid-items {
+  div.explore-grid div.grid-items,
+  div.collection-grid {
     .item {
       width: 40%;
     }
     .item:nth-child(even) {
-      margin-top: 60px;
+      margin-top: 0;
     }
   }
-}
 
-@media (max-width: 481px) and (min-width: 320px) {
-  div.peoples-item-container,
-  div.explore-grid,
-  div.topics-grid {
-    justify-content: center;
+  div.topics-grid,
+  div.collection-grid {
+    .item:nth-child(1) {
+      height: 295px;
+    }
+  }
 
-    .item img {
-      margin-top: 0px !important;
+  @media (max-width: 481px) and (min-width: 320px) {
+    div.peoples-item-container,
+    div.explore-grid,
+    div.topics-grid,
+    div.collection-grid {
+      justify-content: center;
+
+      .item img {
+        margin-top: 0px !important;
+        height: 295px;
+      }
+    }
+  }
+  div.topics-grid,
+  div.collection-grid {
+    .item:nth-child(1) {
+      height: 295px;
     }
   }
 }
