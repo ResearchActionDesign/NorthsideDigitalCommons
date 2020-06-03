@@ -53,7 +53,7 @@
   display: flex;
 }
 div#exhibit-blocks {
-  display: flex;
+  display: grid;
 }
 div#exhibit-page-navigation {
   display: flex;
@@ -90,6 +90,40 @@ div#exhibit-page-navigation {
       }
     }
   }
+}
+.exhibit-block.layout-gallery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.layout-gallery .gallery.captions-center:not(.with-showcase) {
+  display: flex;
+  flex-direction: row;
+}
+.layout-gallery .gallery.captions-center:not(.with-showcase) .exhibit-item {
+  overflow: hidden;
+  position: relative;
+  width: 38vw;
+  height: 29.1vw;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.layout-gallery
+  .gallery.captions-center:not(.with-showcase)
+  .exhibit-item
+  .exhibit-item-caption,
+.layout-gallery
+  .gallery.captions-center:not(.with-showcase)
+  .exhibit-item
+  .exhibit-item-caption
+  p {
+  opacity: 0.85;
+  position: relative;
+  bottom: 0;
+  background: #7b5c7e;
+  color: #ffffff;
+  padding: 1em;
+  height: 100%;
 }
 .exhibits.show {
   @include contentContainer;
