@@ -24,7 +24,8 @@ div.collection-grid {
     height: 295px;
     margin: 15px 5px;
 
-    &.has-description {
+    &.has-description,
+    .exhibit-gallery-item {
       position: relative;
       overflow: hidden;
       padding: 0;

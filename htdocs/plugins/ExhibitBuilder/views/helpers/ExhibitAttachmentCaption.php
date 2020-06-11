@@ -19,7 +19,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentCaption extends Zend_View_Help
             return '';
         }
 
-        $html = '<div class="exhibit-item-caption">'
+        $html = '<div class="exhibit-item-caption item-meta">'
               . $attachment['caption']
               . '</div>';
 
