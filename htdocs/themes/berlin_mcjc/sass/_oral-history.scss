@@ -7,7 +7,6 @@
     text-transform: capitalize;
   }
   .details {
-    // width: 50%;
     background: $ivory;
     padding: 20px;
   }
@@ -37,7 +36,7 @@
   }
 }
 a.mejs-horizontal-volume-slider.mejs-mute {
-  background-color: black !important;
+  height: auto;
 }
 .items.show #itemfiles .item-images .item-file a {
   display: block;
@@ -45,7 +44,6 @@ a.mejs-horizontal-volume-slider.mejs-mute {
   color: $ivory;
   background-color: $green;
   border-radius: 3px;
-  // width: 475px;
 }
 #item-tags.element {
   margin: 20px;
@@ -61,10 +59,7 @@ a.mejs-horizontal-volume-slider.mejs-mute {
     width: 50%;
     padding-top: 40px;
     h1 {
-      // font-size: 38px;
-      // font-weight: 600;
       text-transform: none;
-      // letter-spacing: 0.04em;
     }
   }
   .element {
