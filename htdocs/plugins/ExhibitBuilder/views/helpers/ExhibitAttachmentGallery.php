@@ -24,8 +24,10 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
         
         $html = '';
         foreach  ($attachments as $attachment) {
-            $html .= '<div class="exhibit-item item exhibit-gallery-item">';
+            // $html .= '<div class=" item has-description has-picture">';
+            $html .= '<div class="item has-description has-picture">';
             $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, true);
+            // $html .= '</div>';
             $html .= '</div>';
         }
     
