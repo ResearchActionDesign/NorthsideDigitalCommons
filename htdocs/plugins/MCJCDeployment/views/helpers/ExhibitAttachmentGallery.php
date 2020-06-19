@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Exhibit gallery view helper.
- * 
- * @package ExhibitBuilder\View\Helper
+ * Exhibit gallery view helper. Customized for MCJC
+ *
+ * @package MCJCDeployment\View\Helper
  */
-class ExhibitBuilder_View_Helper_ExhibitAttachmentGallery extends Zend_View_Helper_Abstract
+class MCJCDeployment_View_Helper_ExhibitAttachmentGallery extends Zend_View_Helper_Abstract
 {
     /**
      * Return the markup for a gallery of exhibit attachments.
@@ -24,7 +24,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
         
         $html = '';
         foreach  ($attachments as $attachment) {
-            $html .= '<div class="exhibit-item exhibit-gallery-item">';
+            $html .= '<div class="item has-description has-picture">';
             $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, true);
             $html .= '</div>';
         }

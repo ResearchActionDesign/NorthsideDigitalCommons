@@ -326,7 +326,7 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
 
             // Wrap in a link that will download the file directly.
             $defaultLinkAttributes = array(
-                'class' => 'download-file item-img',
+                'class' => 'download-file',
                 'href' => $file->getWebPath($derivative)
                 );
             $linkAttributes = array_merge($defaultLinkAttributes, $linkAttributes);

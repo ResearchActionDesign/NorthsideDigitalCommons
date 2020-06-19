@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Exhibit attachment caption view helper.
- * 
- * @package ExhibitBuilder\View\Helper
+ * MCJC CUstomization of Exhibit attachment caption view helper.
+ *
+ * @package MCJCDeployment\View\Helper
  */
-class ExhibitBuilder_View_Helper_ExhibitAttachmentCaption extends Zend_View_Helper_Abstract
+class MCJCDeployment_View_Helper_ExhibitAttachmentCaption extends Zend_View_Helper_Abstract
 {
     /**
      * Return the markup for an exhibit attachment's caption.
@@ -19,7 +19,7 @@ class ExhibitBuilder_View_Helper_ExhibitAttachmentCaption extends Zend_View_Help
             return '';
         }
 
-        $html = '<div class="exhibit-item-caption">'
+        $html = '<div class="exhibit-item-caption item-meta">'
               . $attachment['caption']
               . '</div>';
 
