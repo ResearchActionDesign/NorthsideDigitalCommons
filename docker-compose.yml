@@ -28,12 +28,10 @@ services:
       - "33308:3306"
 
   compass:
-    image: stevevega/compass
+    image: timstallmann/compass-omeka
     command: watch
     volumes:
-      - ./htdocs/themes/berlin_mcjc/sass:/input:cached
-      - ./htdocs/themes/berlin_mcjc/css:/output:delegated
-      - ./htdocs/themes/berlin_mcjc/images:/images:cached
+      - htdocs-sync:/usr/src/app:nocopy
 
 volumes:
   db-sync:
