@@ -1,14 +1,32 @@
-.title-block h1 {
-  font-size: 35px;
-  line-height: 48px;
-  font-weight: bold;
-  text-transform: none;
-  letter-spacing: 0.04em;
+.primary.still-image.has-picture {
+  .oral-image-title-container {
+    display: block;
+    width: 100%;
+  }
+  .title-block {
+    text-align: center;
+    width: 100%;
+  }
+
+  .oral-image-title-container {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin-bottom: 100px;
+  }
+  .oral-image-title-container .element {
+    width: 100%;
+    margin: 0;
+  }
 }
 
-.tags-container {
-  background-color: $ivory;
-  padding: 15px;
+.still-image {
+  .tags-container {
+    background-color: $ivory;
+    width: 800px;
+    transform: none;
+    margin: 15px auto;
+  }
 }
 
 .item-images {
@@ -19,6 +37,9 @@
 .items {
   .grid-items {
     justify-content: flex-start;
+    // margin-right: 40px;
+    margin: 0 auto;
+    width: 95%;
   }
   div.explore-grid .grid-items .item-title a {
     top: -34px;
@@ -26,8 +47,12 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .items {
-    .grid-items .item {
+  .item.record.related-item.tile.has-picture.depicted {
+    width: 100%;
+    height: 350px;
+  }
+  .still-image {
+    .tags-container {
       width: 100%;
     }
   }

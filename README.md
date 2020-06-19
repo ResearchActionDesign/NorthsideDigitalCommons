@@ -24,14 +24,17 @@ DB data store. When you next run `make up` the site should re-load whatever data
 
 ### Rebuilding or modifying docker image
 
-The current docker-compose file pulls a pre-built image from Docker hub, which is built
-from the Docker file in the .docker directory.
+The current docker-compose file pulls two pre-built images from Docker hub, which are built
+from Docker files in the .docker directory (one for the Compass container, one for Apache container).
 
-To rebuild this image and push a new one to the repository, run `docker build . -t timstallmann/apache-omeka:latest`
+To rebuild the apache image and push a new one to the repository, run `docker build . -t timstallmann/apache-omeka:latest`
 and then `docker push timstallmann/apache-omeka:latest`.
 
-To use a locally built customized image, comment out the `image` line under the `web` service in `docker-compose.yml` and
+To use a locally built customized apache image, comment out the `image` line under the `web` service in `docker-compose.yml` and
 uncomment the `build` line.
+
+To rebuild the Compass image, run `docker build ./htdocs -f .docker/Compass.Dockerfile -t timstallmann/compass-omeka:latest` and
+then `docker push timstallmann/compass-omeka:latest`.
 
 ## Required plug-ins
 

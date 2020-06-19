@@ -31,6 +31,7 @@ db/
 
 # For macs
 .DS_Store
+._DS_Store
 .idea/
 .docker-sync/
 
