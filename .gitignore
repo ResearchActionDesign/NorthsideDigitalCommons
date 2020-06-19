@@ -27,11 +27,14 @@ files.zip
 
 # DB dumps
 *.sql
+*.zip
+*.gz
 db/
 
 # For macs
 .DS_Store
 ._DS_Store
+._.DS_Store
 .idea/
 .docker-sync/
 

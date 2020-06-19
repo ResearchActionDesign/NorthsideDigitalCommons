@@ -11,6 +11,9 @@
  * should be in the core of Omeka, define a method in this class and then make
  * sure that it responds to all the correct MIME types by modifying other
  * properties in this class.
+ *
+ * @package MCJCDeployment\View\Helper
+ *
  */
 class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMarkup
 {
