@@ -1,0 +1,28 @@
+.item + .pagination-nav ul,
+.collection + .pagination-nav ul,
+.exhibit + .pagination-nav ul {
+  @include leader();
+}
+
+.pagination-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1.5em;
+
+  ul.pagination {
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    ul {
+      margin-left: 0;
+    }
+
+    li {
+      list-style-type: none;
+    }
+  }
+}

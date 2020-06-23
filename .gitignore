@@ -52,3 +52,6 @@ htdocs/themes/berlin_mcjc/css/*.css
 
 # Node_modules
 node_modules/
+
+# Since we're using Yarn, this way no package-lock accidentally gets committed.
+package-lock.json

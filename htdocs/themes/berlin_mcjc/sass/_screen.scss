@@ -581,28 +581,6 @@ header {
   display: none;
 }
 
-/* Pagination Classes */
-
-.pagination {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  ul {
-    margin-left: 0;
-  }
-
-  li {
-    list-style-type: none;
-  }
-}
-
-.pagination .page-input {
-  border: none;
-}
-
-/* @end */
-
 /* @group ----- Global selectors ----- */
 
 #content {
@@ -639,12 +617,6 @@ header {
 #sort-links + .collection,
 nav + .exhibit {
   border-top: 1px solid #eee;
-}
-
-.item + .pagination-nav ul,
-.collection + .pagination-nav ul,
-.exhibit + .pagination-nav ul {
-  @include leader();
 }
 
 /* @end */

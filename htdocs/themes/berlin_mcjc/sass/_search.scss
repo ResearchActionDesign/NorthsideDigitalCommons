@@ -12,53 +12,50 @@
 .search-results-body {
   display: flex;
   flex-direction: column;
-}
 
-.search-results-rows {
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-}
+  .search-result {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
 
-.results-row-info {
-  padding: 10px;
-  margin-left: 10px;
-}
+    .item-info {
+      padding: 10px;
+      margin-left: 10px;
+    }
 
-.search-title {
-  color: $letter-blue;
-  font-weight: bolder;
-  font-size: 30px;
-}
+    .item-type {
+      color: $letter-blue;
+      text-transform: uppercase;
+    }
 
-.results-row-info {
-  color: $letter-blue;
-}
-
-.search-item__title {
-  color: $letter-blue;
+    .item-title,
+    .item-title a {
+      color: $letter-blue;
+      font-weight: bolder;
+      font-size: 30px;
+    }
+  }
 }
 
 @media (max-width: 480px) {
-  .search-results-rows {
+  .search-result {
     display: flex;
     flex-direction: column;
-  }
 
-  .results-row-info {
-    max-width: 220px;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-  }
+    .item-info {
+      max-width: 220px;
+      margin: 0;
+      padding: 0;
+    }
 
-  .search-title {
-    font-size: 20px;
-  }
+    .item-type {
+      font-weight: bold;
+    }
 
-  #search-results h2 {
-    font-size: 15px;
-    line-height: 30px;
+    .item-title {
+      font-size: 15px;
+      line-height: 30px;
+    }
   }
 }
 
