@@ -5,6 +5,14 @@ if ($options['expanded'] ?? false) {
     $options['form_attributes']['id'] = $id;
 }
 echo $this->form($id, $options['form_attributes']);
+
+// If the form has been submitted, retain the number of search
+// fields used and rebuild the form
+if (!empty($_GET['advanced'])) {
+    $search = $_GET['advanced'];
+} else {
+    $search = [['field' => '', 'type' => '', 'value' => '']];
+}
 ?>
 <?php if ($options['expanded'] ?? false): ?>
 <div class="field">
@@ -34,27 +42,9 @@ echo $this->form($id, $options['form_attributes']);
                 'Narrow by Specific Fields'
             ); ?></div>
             <div class="inputs">
-              <?php // If the form has been submitted, retain the number of search // fields used and rebuild the form // If the form has been submitted, retain the number of search // fields used and rebuild the form
-    // If the form has been submitted, retain the number of search // fields used and rebuild the form
-    // If the form has been submitted, retain the number of search
-    // fields used and rebuild the form
-    ?>
-              if (!empty($_GET['advanced'])) {
-                  $search = $_GET['advanced'];
-              } else {
-                  $search = [['field' => '', 'type' => '', 'value' => '']];
-              } //Here is where we actually build the search form
-              foreach ($search as $i => $rows): ?>
+              <?php foreach ($search as $i => $rows): ?>
                   <div class="search-entry">
-                    <?php //etc
-                  //etc
-                  ?>
-                    //etc
-                    //The POST looks like =>
-                    // advanced[0] =>
-                    //[field] = 'description'
-                    //[type] = 'contains'
-                    //[terms] = 'foobar'
+                    <?php
                     echo $this->formSelect(
                         "advanced[$i][joiner]",
                         @$rows['joiner'],
@@ -114,8 +104,7 @@ echo $this->form($id, $options['form_attributes']);
                           'Remove field'
                       ); ?></button>
                   </div>
-              <?php endforeach;
-              ?>
+              <?php endforeach; ?>
             </div>
             <button type="button" class="add_search"><?php echo __(
                 'Add a Field'
