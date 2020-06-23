@@ -25,9 +25,11 @@
 
     .item-type {
       color: $letter-blue;
+      text-transform: uppercase;
     }
 
-    .item-title {
+    .item-title,
+    .item-title a {
       color: $letter-blue;
       font-weight: bolder;
       font-size: 30px;

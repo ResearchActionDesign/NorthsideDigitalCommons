@@ -10,8 +10,8 @@ $searchRecordTypes = get_search_record_types();
         <div class="search-results--form">
           <?php echo search_form(['expanded' => true]); ?>
         </div>
-      <?php if ($total_results): ?>
     </div>
+    <?php if ($total_results): ?>
     <div class="search-results-body">
       <?php $filter = new Zend_Filter_Word_CamelCaseToDash(); ?>
       <?php foreach (loop('search_texts') as $searchText): ?>
@@ -19,7 +19,13 @@ $searchRecordTypes = get_search_record_types();
             $searchText['record_type'],
             $searchText['record_id']
         ); ?>
-        <?php $recordType = $searchText['record_type']; ?>
+        <?php
+        $recordType = $searchText['record_type'];
+        $detailed_record_type =
+            $recordType === 'Item'
+                ? metadata($record, ['Dublin Core', 'Type'])
+                : $recordType;
+        ?>
         <?php set_current_record($recordType, $record); ?>
           <div class="search-result <?php echo strtolower(
               $filter->filter($recordType)
@@ -31,17 +37,15 @@ $searchRecordTypes = get_search_record_types();
                   </div>
                   <div class="item-info">
                   <span class="item-type">
-                    <?php echo $searchRecordTypes[$recordType]; ?>
+                    <?php echo $detailed_record_type; ?>
                   </span>
-                  <span class="item-title">
-                      <h2><a class="item-link" href="<?php echo record_url(
+                      <h2 class="item-title"><a class="item-link" href="<?php echo record_url(
                           $record,
                           'show'
                       ); ?>"><?php echo $searchText['title']
     ? $searchText['title']
     : '[Unknown]'; ?></a>
                       </h2>
-                  </span>
                 <?php if (
                     $description = metadata(
                         $record,
@@ -57,7 +61,6 @@ $searchRecordTypes = get_search_record_types();
           </div>
       <?php endforeach; ?>
     </div>
-</div>
 <?php echo pagination_links(); ?>
 <?php else: ?>
     <div id="no-results">
@@ -72,4 +75,5 @@ $searchRecordTypes = get_search_record_types();
         ); ?></a>
     </div>
 <?php endif; ?>
+</div>
 <?php echo foot(); ?>

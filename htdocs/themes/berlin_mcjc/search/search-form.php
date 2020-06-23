@@ -1,12 +1,12 @@
 <?php
 $id = 'search-form';
-if ($options['expanded']) {
+if ($options['expanded'] ?? false) {
     $id = 'search-form-expanded';
     $options['form_attributes']['id'] = $id;
 }
 echo $this->form($id, $options['form_attributes']);
 ?>
-<?php if ($options['expanded']): ?>
+<?php if ($options['expanded'] ?? false): ?>
 <div class="field">
     <label for="query"><?php echo __('Search Term'); ?></label>
   <?php echo $this->formText('query', $filters['query'], [
@@ -34,7 +34,8 @@ echo $this->form($id, $options['form_attributes']);
                 'Narrow by Specific Fields'
             ); ?></div>
             <div class="inputs">
-              <?php // If the form has been submitted, retain the number of search // fields used and rebuild the form
+              <?php // If the form has been submitted, retain the number of search // fields used and rebuild the form // If the form has been submitted, retain the number of search // fields used and rebuild the form
+    // If the form has been submitted, retain the number of search // fields used and rebuild the form
     // If the form has been submitted, retain the number of search
     // fields used and rebuild the form
     ?>
@@ -48,6 +49,7 @@ echo $this->form($id, $options['form_attributes']);
                     <?php //etc
                   //etc
                   ?>
+                    //etc
                     //The POST looks like =>
                     // advanced[0] =>
                     //[field] = 'description'
