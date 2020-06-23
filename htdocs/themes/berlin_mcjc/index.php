@@ -43,7 +43,7 @@
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
           <a href="/topics" class="homepage-menu__item__button"><?php echo __(
-              "View all themes"
+              "Browse all topics"
           ); ?></a>
         </div>
       </div>

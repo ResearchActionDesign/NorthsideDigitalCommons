@@ -24,15 +24,22 @@ h6 {
 
 a,
 a:link,
-a:visited {
+summary {
   color: $green;
   transition: all 0.1s linear;
-  text-decoration: none;
+  cursor: pointer;
+  text-decoration: underline;
 
+  &:visited,
   &:hover,
   &:focus {
     color: $purple--light;
   }
+}
+summary,
+a.item-link,
+nav a {
+  text-decoration: none;
 }
 
 /* @end */
