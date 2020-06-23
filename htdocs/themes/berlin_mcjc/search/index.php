@@ -39,12 +39,12 @@ $searchRecordTypes = get_search_record_types();
                   <span class="item-type">
                     <?php echo $detailed_record_type; ?>
                   </span>
-                      <h2 class="item-title"><a class="item-link" href="<?php echo record_url(
-                          $record,
-                          'show'
-                      ); ?>"><?php echo $searchText['title']
-    ? $searchText['title']
-    : '[Unknown]'; ?></a>
+                      <h2 class="item-title"><?php echo mcjc_link_to_item(
+                          $searchText['title']
+                              ? $searchText['title']
+                              : '[Unknown]',
+                          $record
+                      ); ?>
                       </h2>
                 <?php if (
                     $description = metadata(
