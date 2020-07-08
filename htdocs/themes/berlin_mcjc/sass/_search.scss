@@ -1,42 +1,46 @@
-// Search bar
-#search-container {
-  input[type="text"] {
-    padding: 0.5em;
-    color: $grey--dark;
-    font: $base-font-size $body-font-family;
-    line-height: $base-font-size * 1.5;
+.search {
+  @include contentContainer;
+
+  // Search bar
+  #search-container {
+    input[type="text"] {
+      padding: 0.5em;
+      color: $grey--dark;
+      font: $base-font-size $body-font-family;
+      line-height: $base-font-size * 1.5;
+    }
   }
-}
 
-// Search Rows
-.search-results-body {
-  display: flex;
-  flex-direction: column;
-}
+  // Search Rows
+  .search-results-body {
+    display: flex;
+    flex-direction: column;
+  }
 
-.search-results-rows {
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-}
+  .search-results-rows {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+  }
 
-.results-row-info {
-  padding: 10px;
-  margin-left: 10px;
-}
+  .results-row-info {
+    padding: 10px;
+    margin-left: 10px;
+  }
 
-.search-title {
-  color: $letter-blue;
-  font-weight: bolder;
-  font-size: 30px;
-}
+  .search-title {
+    color: $letter-blue;
+    font-weight: bolder;
+    font-size: 30px;
+  }
 
-.results-row-info {
-  color: $letter-blue;
-}
+  .results-row-info {
+    color: $letter-blue;
+  }
 
-.search-item__title {
-  color: $letter-blue;
+  .search-item__title {
+    color: $letter-blue;
+  }
 }
 
 @media (max-width: 480px) {

@@ -10,14 +10,12 @@
 
 .header-background-container-content {
   @include contentContainer;
+  @include headers-text;
   .image-title {
     color: white;
-    line-height: 30px;
-    font-size: 4rem;
   }
   .image-text {
     color: white;
-    font-size: 2rem;
   }
 }
 
