@@ -5,18 +5,7 @@
     height: 300px;
     margin-bottom: 5px;
 
-    h1 {
-      font-size: 28px;
-      font-family: Montserrat;
-      line-height: 27px;
-      font-weight: bold;
-      color: #0b2243;
-    }
-
-    p {
-      width: 50%;
-      color: #0b2243;
-    }
+    @include headers-text;
   }
 
   .people-page-header {
@@ -28,9 +17,6 @@
   .item-description {
     font-size: 12px;
     text-align: left;
-  }
-
-  .pagination-nav {
   }
 
   @media (max-width: 1286px) {
