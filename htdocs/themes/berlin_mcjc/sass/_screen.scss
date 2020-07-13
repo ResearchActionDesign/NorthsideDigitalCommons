@@ -965,10 +965,6 @@ ul.title-list {
 .browse .collection.record,
 .browse .exhibit {
   clear: both;
-  border-bottom: 1px solid #eee;
-  float: left;
-  width: 100%;
-  @include padding-leader();
 
   .view-items-link {
     @include trailer(1.5);
@@ -1018,10 +1014,6 @@ ul.title-list {
     height: 100%;
     width: auto;
   }
-}
-
-.collection-meta {
-  @include columns(9);
 }
 
 .collection-description p:first-of-type,
