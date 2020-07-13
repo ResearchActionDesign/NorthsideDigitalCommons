@@ -9,7 +9,7 @@
 }
 
 .header-background-container-content {
-  @include contentContainer;
+  @include container;
   .image-title {
     color: white;
     line-height: 30px;

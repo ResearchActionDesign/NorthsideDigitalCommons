@@ -4,7 +4,7 @@
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "title pic" "bio pic";
     align-items: center;
-    @include contentContainer;
+    @include container;
     h1 {
       text-align: center;
       text-transform: capitalize;
@@ -39,7 +39,7 @@
     height: auto;
   }
   .oral-histories {
-    @include contentContainer;
+    @include container;
 
     .oral-history {
       display: grid;
@@ -125,7 +125,7 @@ div.explore-grid.related-items {
 }
 
 .community-content {
-  @include contentContainer;
+  @include container;
 }
 
 a.button.back {

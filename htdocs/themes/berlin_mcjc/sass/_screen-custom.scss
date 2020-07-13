@@ -874,3 +874,8 @@ details#item-metadata {
 }
 
 /* @end */
+
+/* @group ----- Content containers ----- */
+#primary {
+  @include container;
+}

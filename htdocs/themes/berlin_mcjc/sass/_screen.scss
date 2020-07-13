@@ -585,7 +585,6 @@ header {
 
 #content {
   overflow: hidden;
-  @include container;
   padding: 0 0;
   z-index: 0;
 }
