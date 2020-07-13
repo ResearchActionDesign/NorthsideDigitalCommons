@@ -1,25 +1,15 @@
 .add-story-image {
   background-image: url("../assets/images/Photo.png");
 }
-
-.contribution-content-wrapper {
-  @include contentContainer;
-}
 .descriptionParagraph {
   line-height: 30px;
 }
-input#Elements-50-0-text,
-textarea#Elements-41-0-text,
-textarea#Elements-1-0-text,
-input#contribution_email {
+input[type="text"],
+textarea {
   border-radius: 5px;
   width: 450px;
   height: 50px;
   padding: 10px;
-}
-textarea#Elements-41-0-text,
-textarea#Elements-1-0-text {
-  height: 150px;
 }
 div#contribution-type-form {
   .field {
@@ -28,15 +18,9 @@ div#contribution-type-form {
       font-weight: bold;
     }
 
-    margin: 20px;
-    margin-left: -10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-  }
-
-  fieldset#contribution-confirm-submit {
-    @include contentContainer;
   }
 
   .contribute-terms a {
@@ -51,5 +35,11 @@ div#contribution-type-form {
     padding: 15px;
     margin-top: 5%;
     margin-bottom: 5%;
+  }
+}
+@media screen and (max-width: 400px) {
+  input[type="text"],
+  textarea {
+    width: 300px;
   }
 }

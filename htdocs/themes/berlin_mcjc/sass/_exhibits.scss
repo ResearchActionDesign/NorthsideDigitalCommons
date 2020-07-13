@@ -1,5 +1,5 @@
 .exhibit-content {
-  @include contentContainer;
+  @include container;
 }
 .exhibit-header-container {
   display: flex;
@@ -121,7 +121,7 @@ div#exhibit-page-navigation {
   height: 500px;
 }
 .exhibits.show {
-  @include contentContainer;
+  @include container;
 }
 @media (max-width: 767px) {
   div#exhibit-blocks {
