@@ -21,8 +21,10 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
   protected $_hooks = array(
     'before_save_element_text',
     'before_save_item',
+    'admin_head',
     'initialize',
     'install',
+    'public_head',
     'upgrade'
   );
 
@@ -222,6 +224,25 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       }
     } catch (Exception $e) {
     }
+  }
+
+  /** Load additional JS in header. */
+  private function _head()
+  {
+    queue_js_file('speed.min', 'mediaelement-plugins/speed', array());
+    queue_css_file('speed.min', 'all', false, 'mediaelement-plugins/speed');
+    queue_js_file('skip-back.min', 'mediaelement-plugins/skip-back', array());
+    queue_css_file('skip-back.min', 'all', false, 'mediaelement-plugins/skip-back');
+    queue_js_file('jump-forward.min', 'mediaelement-plugins/jump-forward', array());
+    queue_css_file('jump-forward.min', 'all', false, 'mediaelement-plugins/jump-forward');
+  }
+
+  public function hookAdminHead() {
+    $this->_head();
+  }
+
+  public function hookPublicHead() {
+    $this->_head();
   }
 
   /**

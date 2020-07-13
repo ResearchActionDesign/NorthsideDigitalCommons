@@ -136,4 +136,15 @@
             <?php echo $view->formCheckbox('common[options][download]', null, array('checked' => $common['options']['download'])); ?>
         </div>
     </div>
+    <div class="field">
+        <div class="two columns alpha">
+          <?php echo $view->formLabel('common[options][custom_settings]', __('Custom mediaplayer settings')); ?>
+        </div>
+        <div class="inputs five columns omega">
+            <p class="explanation">
+              <?php echo __('Any javascript you add here will be passed through as an option to the mediaelementplayer() call'); ?>
+            </p>
+          <?php echo $view->formTextarea('common[options][custom_settings]', $common['options']['custom_settings'], array('rows' => 3, 'cols' => 50)); ?>
+        </div>
+    </div>
 </div>

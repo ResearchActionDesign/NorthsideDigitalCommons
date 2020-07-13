@@ -86,6 +86,9 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         if (version_compare($oldVersion, '2.7', '<')) {
             $settings['common']['options']['download'] = false;
         }
+      if (version_compare($oldVersion, '2.9', '<')) {
+        $settings['common']['options']['custom_settings'] = false;
+      }
         set_option('html5_media_settings', serialize($settings));
     }
 
@@ -156,6 +159,7 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         $common = $_POST['common'];
         $settings['common']['options']['preload'] = $common['options']['preload'];
         $settings['common']['options']['download'] = (bool) $common['options']['download'];
+        $settings['common']['options']['custom_settings'] = $common['options']['custom_settings'];
 
         set_option('html5_media_settings', serialize($settings));
     }
@@ -290,6 +294,11 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
             $download = '';
         }
 
+        $customSettings = '';
+        if ($options['custom_settings']) {
+          $customSettings = ',' . $options['custom_settings']; // TODO: sanitize
+        }
+
         return <<<HTML
 <div class="$class">
 <$type id="html5-media-$i" src="$filename"$mediaOptions>
@@ -298,7 +307,7 @@ $tracks
 $download
 </div>
 <script type="text/javascript">
-jQuery('#html5-media-$i').mediaelementplayer({classPrefix: 'mejs-'});
+jQuery('#html5-media-$i').mediaelementplayer({classPrefix: 'mejs-'$customSettings});
 </script>
 HTML;
     }

@@ -1,0 +1,17 @@
+.player-element {
+  .mejs-container {
+    background: none;
+  }
+  .mejs-controls {
+    flex-wrap: wrap;
+    height: auto;
+    width: auto;
+  }
+  .mejs-controls:not([style*="display: none"]) {
+    background: $green;
+  }
+
+  a.mejs-horizontal-volume-slider.mejs-mute {
+    height: auto;
+  }
+}

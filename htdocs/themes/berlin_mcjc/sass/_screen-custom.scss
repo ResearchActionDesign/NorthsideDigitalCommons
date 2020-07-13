@@ -867,14 +867,6 @@ details#item-metadata {
 
 /* @end */
 
-/* @group ----- Audio Player ----- */
-
-.mejs-container {
-  max-width: 100% !important;
-}
-
-/* @end */
-
 /* @group ----- Content containers ----- */
 #primary {
   @include container;
