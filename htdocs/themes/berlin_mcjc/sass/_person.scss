@@ -66,7 +66,6 @@
 
       .item-description {
         grid-area: info;
-        width: 100%;
         height: auto;
         margin: 20px;
       }
@@ -139,8 +138,11 @@ a.button.back {
 @media screen and (max-width: 768px) {
   .person.show .oral-histories .oral-history {
     display: inline-block;
-    h2 {
-      width: 300px;
+    width: 100%;
+    margin-bottom: 40px;
+
+    .item-description {
+      margin: 20px 0;
     }
   }
   .person.show .explore-grid.related-items .related-item.tile.related-item {
@@ -153,11 +155,5 @@ a.button.back {
     margin-top: 35px;
     margin-bottom: 0;
     padding: 0;
-  }
-}
-@media screen and (max-width: 400px) {
-  .player-element {
-    width: 70%;
-    height: 50%;
   }
 }

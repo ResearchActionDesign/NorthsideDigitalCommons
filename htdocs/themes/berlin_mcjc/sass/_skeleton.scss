@@ -12,9 +12,9 @@
 // ==================================================
 $base-width: 1250px;
 $narrow-screen: 975px;
-$tablet-width: 768px;
-$mobile-portrait-width: 300px;
+$tablet-width: 728px;
 $mobile-landscape-width: 420px;
+$mobile-portrait-width: 300px;
 
 $num-columns: 16;
 $margin: 10px;
@@ -32,7 +32,6 @@ $margin: 10px;
 @mixin container {
   position: relative;
   margin: 0 auto;
-  padding: 0 0;
   width: $base-width;
 
   &:after {
@@ -51,12 +50,12 @@ $margin: 10px;
     width: $tablet-width;
   }
 
-  @media only screen and (max-width: 767px) {
-    width: $mobile-portrait-width;
-  }
-
   @media only screen and (min-width: 480px) and (max-width: 767px) {
     width: $mobile-landscape-width;
+  }
+
+  @media only screen and (max-width: 479px) {
+    width: $mobile-portrait-width;
   }
 }
 
@@ -72,12 +71,12 @@ $margin: 10px;
     width: $tablet-width;
   }
 
-  @media only screen and (max-width: 787px) {
-    width: $mobile-portrait-width;
-  }
-
   @media only screen and (min-width: 480px) and (max-width: 787px) {
     width: $mobile-landscape-width;
+  }
+
+  @media only screen and (max-width: 479px) {
+    width: $mobile-portrait-width;
   }
 }
 
