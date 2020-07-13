@@ -17,7 +17,7 @@ echo head([
     'bodyid' => metadata('simple_pages_page', 'slug'),
 ]);
 ?>
-<div id="primary <?php echo $div_class; ?>">
+<div id="primary" class="<?php echo $div_class; ?>">
     <?php if (!$is_home_page): ?>
         <p id="simple-pages-breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
         <h1><?php echo metadata('simple_pages_page', 'title'); ?></h1>

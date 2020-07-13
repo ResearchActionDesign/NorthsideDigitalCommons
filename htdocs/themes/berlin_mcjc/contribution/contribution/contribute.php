@@ -11,7 +11,6 @@ $contributionPath = get_option('contribution_page_path');
 if (!$contributionPath) {
     $contributionPath = 'contribution';
 }
-queue_css_file('form');
 
 //load user profiles js and css if needed
 if (
@@ -30,10 +29,9 @@ echo head($head);
 ?>
 <script type="text/javascript">
 // <![CDATA[
-enableContributionAjaxForm( < ? php echo js_escape(
-  url($contributionPath.
-    '/type-form')
-); ? > );
+enableContributionAjaxForm(<?php echo js_escape(
+    url($contributionPath . '/type-form')
+); ?>);
 // ]]>
 </script>
 <div class="title">
