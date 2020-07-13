@@ -11,6 +11,7 @@ textarea {
   height: 50px;
   padding: 10px;
 }
+
 div#contribution-type-form {
   .field {
     label {
@@ -23,19 +24,19 @@ div#contribution-type-form {
     flex-direction: column;
   }
 
+  .explanation {
+    margin-bottom: 0;
+  }
+
   .contribute-terms a {
     text-decoration: underline;
   }
+}
 
-  input#form-submit {
-    background-color: darkgreen;
-    border: none;
-    border-radius: 3px;
-    color: white;
-    padding: 15px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-  }
+#form-submit.submit {
+  @include outline-button;
+
+  margin-top: 1.5em;
 }
 @media screen and (max-width: 400px) {
   input[type="text"],

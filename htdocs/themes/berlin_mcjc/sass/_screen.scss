@@ -770,7 +770,6 @@ ul.title-list {
 
 .browse .item {
   clear: both;
-  border-bottom: 1px solid #eee;
   float: left;
   width: 100%;
 }
@@ -966,10 +965,6 @@ ul.title-list {
 .browse .collection.record,
 .browse .exhibit {
   clear: both;
-  border-bottom: 1px solid #eee;
-  float: left;
-  width: 100%;
-  @include padding-leader();
 
   .view-items-link {
     @include trailer(1.5);
@@ -1019,10 +1014,6 @@ ul.title-list {
     height: 100%;
     width: auto;
   }
-}
-
-.collection-meta {
-  @include columns(9);
 }
 
 .collection-description p:first-of-type,
@@ -1142,20 +1133,6 @@ footer {
 
     li {
       display: inline;
-
-      &:after {
-        content: " \00B7";
-        margin: 0 10px 0 5px;
-      }
-
-      &:last-child {
-        margin: 0;
-      }
-
-      &:last-child:after {
-        content: "\00A0";
-        display: none;
-      }
     }
 
     a {

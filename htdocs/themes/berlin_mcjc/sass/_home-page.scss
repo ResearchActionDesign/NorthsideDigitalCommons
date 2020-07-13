@@ -33,6 +33,11 @@
 .homepage-menu-content {
   padding-left: 50px;
   justify-content: center;
+
+  h2 {
+    color: $letter-blue;
+    font-weight: bold;
+  }
 }
 .homepage-menu-content a {
   background-color: #58735a;

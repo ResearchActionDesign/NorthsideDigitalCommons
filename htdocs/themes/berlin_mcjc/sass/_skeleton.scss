@@ -11,7 +11,7 @@
 // #Variable Definitions
 // ==================================================
 $base-width: 1250px;
-$narrow-screen: 975px;
+$narrow-screen: 920px;
 $tablet-width: 728px;
 $mobile-landscape-width: 420px;
 $mobile-portrait-width: 300px;
@@ -31,7 +31,7 @@ $margin: 10px;
 
 @mixin container {
   position: relative;
-  margin: 0 auto;
+  margin: 1.5em auto;
   width: $base-width;
 
   &:after {
