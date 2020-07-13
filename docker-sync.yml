@@ -1,6 +1,6 @@
 version: "2"
 syncs:
-  htdocs-sync:
+  mcjc-htdocs-sync:
     src: "./htdocs"
     sync_excludes:
       [
