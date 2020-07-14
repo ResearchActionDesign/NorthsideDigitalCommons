@@ -355,17 +355,6 @@ header {
   h3 {
     margin-bottom: 0.5em;
   }
-
-  #itemfiles .item-images .item-file {
-    a {
-      display: block;
-      text-align: center;
-
-      .full {
-        margin: 1em 0 0;
-      }
-    }
-  }
 }
 
 #item-relations-display-item-relations {
@@ -436,45 +425,44 @@ header {
   }
 }
 
+@mixin button_link {
+  text-align: center;
+  color: $ivory;
+  background-color: $green;
+  border-radius: 3px;
+
+  display: inline-block;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  transition: all 0.1s linear;
+
+  &:hover,
+  &:focus {
+    background-color: $purple--light;
+    border-color: $purple--light;
+    color: $white;
+  }
+}
+
 @mixin button {
   display: inline-block;
   margin: 0 0.5em 0.5em 0;
   text-align: center;
 
   a {
-    background-color: $white;
-    border: solid 1px $teal;
-    display: inline-block;
-    padding: 0.5em 0.75em;
-    text-decoration: none;
-    transition: all 0.1s linear;
-
-    &:hover,
-    &:focus {
-      background-color: $purple--light;
-      border-color: $purple--light;
-      color: $white;
-    }
+    @include button_link;
   }
 }
 
 a.button {
   grid-area: button;
-  background-color: $green;
-  border: none;
-  border-radius: 3px;
-  color: white;
-  padding: 15px;
+  @include button_link;
+  display: inline-block;
+  margin: 0 0.5em 0.5em 0;
   text-align: center;
-  text-decoration: none;
 }
 
 .item-file {
-  &.audio-mpeg {
-    margin-bottom: 0.5em;
-    margin-top: 1em;
-  }
-
   &.application-pdf {
     @include button;
     max-width: 100%; // Needed to allow an iframe container to scale properly if it is inside here.

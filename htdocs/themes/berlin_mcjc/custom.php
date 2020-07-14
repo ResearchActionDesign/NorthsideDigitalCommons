@@ -80,19 +80,24 @@ function mcjc_random_featured_items($count = 5, $hasImage = null)
  */
 function mcjc_render_oral_history_players(
     $item,
-    $wrapperAttributes = ['class' => 'item-file']
+    $wrapperAttributes = ['class' => 'item-file'],
+    $options = []
 ) {
-    $files = $item->Files;
+    if (!isset($options['title'])) {
+        $options['title'] =
+            metadata($item, ['Dublin Core', 'Title']) .
+            ': ' .
+            oral_history_item_subtitle($item);
+    }
     $output = "";
-    foreach (
-        array_filter($files, function ($file) {
-            return substr($file->mime_type, 0, 5) === 'audio';
-        })
-        as $audiofile
-    ) {
+    $files = $item->Files;
+    $audioFiles = array_filter($files, function ($file) {
+        return substr($file->mime_type, 0, 5) === 'audio';
+    });
+    foreach ($audioFiles as $audiofile) {
         $output .= get_view()->mcjcFileMarkup(
             $audiofile,
-            [],
+            $options,
             $wrapperAttributes
         );
     }
@@ -126,7 +131,7 @@ function mcjc_files_for_item(
         $files = $item->Files;
     }
 
-    return mcjc_file_markup($files, $options, $wrapperAttributes);
+    return mcjc_file_markup($files, $options, $wrapperAttributes, $item);
 }
 
 /**
@@ -170,7 +175,8 @@ function mcjc_get_collection_files($collection)
 function mcjc_file_markup(
     $files,
     array $props = [],
-    $wrapperAttributes = ['class' => 'item-file']
+    $wrapperAttributes = ['class' => 'item-file'],
+    $item = null
 ) {
     if (!is_array($files)) {
         $files = [$files];
@@ -179,8 +185,18 @@ function mcjc_file_markup(
 
     $files = mcjc_sort_files($files);
 
+    // If this is a standard item, start with rendering the oral history player.
+    if ($item) {
+        $output .= mcjc_render_oral_history_players($item);
+    }
+
     // Create file output.
-    foreach ($files as $key => $file) {
+    foreach (
+        array_filter($files, function ($file) {
+            return substr($file->mime_type, 0, 5) !== 'audio';
+        })
+        as $key => $file
+    ) {
         // Don't create markup for PDFs unless this is an item show page, and
         // only create markup for the first file if this is Browse Collections.
         if (

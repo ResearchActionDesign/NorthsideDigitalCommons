@@ -138,6 +138,14 @@
     </div>
     <div class="field">
         <div class="two columns alpha">
+          <?php echo $view->formLabel('common[options][download_icon]', __('Use icon for download link')); ?>
+        </div>
+        <div class="inputs five columns omega">
+          <?php echo $view->formCheckbox('common[options][download_icon]', null, array('checked' => $common['options']['download_icon'])); ?>
+        </div>
+    </div>
+    <div class="field">
+        <div class="two columns alpha">
           <?php echo $view->formLabel('common[options][custom_settings]', __('Custom mediaplayer settings')); ?>
         </div>
         <div class="inputs five columns omega">

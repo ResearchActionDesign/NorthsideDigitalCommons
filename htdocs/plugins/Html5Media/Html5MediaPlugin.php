@@ -88,6 +88,7 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         }
       if (version_compare($oldVersion, '2.9', '<')) {
         $settings['common']['options']['custom_settings'] = false;
+        $settings['common']['options']['download_icon'] = false;
       }
         set_option('html5_media_settings', serialize($settings));
     }
@@ -159,6 +160,7 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         $common = $_POST['common'];
         $settings['common']['options']['preload'] = $common['options']['preload'];
         $settings['common']['options']['download'] = (bool) $common['options']['download'];
+        $settings['common']['options']['download_icon'] = (bool) $common['options']['download_icon'];
         $settings['common']['options']['custom_settings'] = $common['options']['custom_settings'];
 
         set_option('html5_media_settings', serialize($settings));
@@ -287,11 +289,21 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         }
 
         if ($options['download']) {
-            $download = '<p class="html5media-download"><a href="' . $filename . '" download>'
-                . __('Download File')
-                . '</a></p>';
+          $download = '<p class="html5media-download"><a href="' . $filename . '" download aria-label="'. __('Download File') .'">';
+          if ($options['download_icon']) {
+            $download .= '<i class="fa fa-download"></i>';
+          }
+          else {
+              $download .= __('Download File');
+          }
+          $download .= '</a></p>';
         } else {
             $download = '';
+        }
+
+        $title = '';
+        if (isset($options['title'])) {
+          $title = '<p class="html5media-title">' . $options['title'] . '</p>';
         }
 
         $customSettings = '';
@@ -304,6 +316,7 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
 <$type id="html5-media-$i" src="$filename"$mediaOptions>
 $tracks
 </$type>
+$title
 $download
 </div>
 <script type="text/javascript">

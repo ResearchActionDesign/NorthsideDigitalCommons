@@ -1,9 +1,11 @@
+// Resets
 .html5media-player,
 .html5media-player div,
 .html5media-player h1,
 .html5media-player a,
 .html5media-player img,
 .html5media-player span,
+.html5media-player p,
 .html5media-player button {
   margin: 0;
   padding: 0;
@@ -13,76 +15,75 @@
 
 .html5media-player {
   // Note -- set width/height to 344 x 104 also in Html5Media plugin settings.
-  .mejs-container {
+  .mejs-container,
+  .mejs-container .mejs-controls {
     background: $green;
     width: 344px;
     height: 104px;
-
-    .mejs-controls {
-      background: $green;
-      width: 344px;
-      height: 104px;
-    }
+    border-radius: 3px;
   }
 
   .mejs-controls .mejs-button {
     cursor: pointer;
     display: block;
-    text-indent: -9999px;
     position: absolute;
   }
 
+  // nb. all MEJS buttons are 20px x 20px.
+  // TODO: Replace native MEJS buttons with custom sprites.
   .mejs-controls {
     .mejs-play,
     .mejs-pause {
       top: 40px;
-      left: 8px;
+      left: 16px;
+    }
 
-      button {
-        width: 32px;
-        height: 32px;
+    .mejs-currenttime-container,
+    .mejs-duration-container {
+      height: 20px;
+      position: absolute;
+
+      span {
+        line-height: 20px;
+        margin: auto;
+        font-size: 12px;
       }
     }
 
     .mejs-currenttime-container {
-      left: 56px;
+      left: 50px;
       top: 40px;
-      height: 32px;
-      position: absolute;
+    }
 
-      span {
-        line-height: 32px;
-        margin: auto;
-      }
+    .mejs-duration-container {
+      top: 40px;
+      left: 199px;
     }
 
     .mejs-time-rail {
       left: 88px;
-      top: 51px;
+      top: 45px;
       width: 100px;
       height: 10px;
       position: absolute;
 
-      .mejs-time-slider {
+      .mejs-time-slider,
+      .mejs-time-slider span {
         border-radius: 10px;
       }
     }
 
     .mejs-volume-button {
-      right: 56px;
+      right: 62px;
       top: 40px;
-
-      button {
-        height: 32px;
-        width: 32px;
-      }
     }
 
     .mejs-horizontal-volume-slider {
       position: absolute;
-      right: 8px;
-      top: 51px;
+      right: 16px;
+      top: 45px;
       height: 10px;
+      width: 50px;
 
       .mejs-horizontal-volume-total {
         height: 10px;
@@ -91,34 +92,76 @@
       }
     }
 
-    .mejs-jump-forward-button {
-      left: 102px;
+    .mejs-jump-forward-button,
+    .mejs-skip-back-button,
+    .mejs-speed-button {
       top: 72px;
-      button {
-        width: 20px;
-        height: 20px;
-      }
+    }
+
+    .mejs-jump-forward-button {
+      left: 164px;
     }
 
     .mejs-skip-back-button {
-      top: 72px;
-      right: 102px;
-      button {
-        width: 20px;
-        height: 20px;
-      }
+      left: 92px;
     }
 
     .mejs-speed-button {
-      top: 72px;
-      left: 132px;
-      width: 80px;
+      left: 108px;
+      width: 60px;
       height: 20px;
 
       button {
-        width: 80px;
+        width: 60px;
         height: 20px;
       }
+
+      .mejs-speed-selected {
+        color: $purple--light;
+      }
     }
+  }
+
+  // TODO: Fix this css when title does not appear.
+  .html5media-download,
+  .html5media-title {
+    position: relative;
+    z-index: 5;
+    width: 344px;
+    color: white;
+  }
+
+  .html5media-download {
+    text-align: right;
+    padding-right: 16px;
+    padding-top: 8px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+
+    a {
+      color: white;
+    }
+  }
+
+  .html5media-title {
+    padding-left: 16px;
+    padding-top: 8px;
+    height: 32px;
+    margin-top: -104px; // Move to overlay with top of player container;
+    width: 328px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+// Fix for cutoff of audio player on oral history page.
+.oral-history .item-images .audio-mpeg {
+  margin-top: 64px;
+}
+
+@media screen and (max-width: 768px) {
+  .person .oral-history .audio-mpeg {
+    margin-top: 72px;
   }
 }
