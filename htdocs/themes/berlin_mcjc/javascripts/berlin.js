@@ -5,13 +5,15 @@ if (!Berlin) {
 (function ($) {
   Berlin.dropDown = function () {
     var dropdownMenu = $("#mobile-nav");
-    dropdownMenu.prepend('<a href="#" class="menu">Menu</a>');
     //Hide the rest of the menu
-    $("#mobile-nav .navigation").hide();
+    $("#mobile-nav .menu").show();
+    $("#mobile-nav > ul").hide();
+    $("#mobile-nav .search-form-container").hide();
 
     //function the will toggle the menu
     $(".menu").click(function () {
-      $("#mobile-nav .navigation").slideToggle();
+      $("#mobile-nav > ul").toggle();
+      $("#mobile-nav .search-form-container").toggle();
     });
   };
 

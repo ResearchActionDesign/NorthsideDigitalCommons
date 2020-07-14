@@ -70,9 +70,9 @@ if (
                 ); ?></div>
 
                 <div class="nav-search-wrapper">
-                    <div id="primary-nav" role="navigation">
+                    <nav id="primary-nav" role="navigation">
                         <?php echo public_nav_main(); ?>
-                    </div>    
+                    </nav>
 
                     <div id="search-container" role="search">
                       <?php echo $this->formButton(
@@ -89,16 +89,18 @@ if (
                             </div>
                         </div>
                 </div>
+
+                <nav id="mobile-nav" role="navigation">
+                  <button class="menu" aria-expanded="false" aria-label="<?php echo __(
+                      'Menu'
+                  ); ?>"><i class="fa fa-bars"></i></button>
+                  <?php echo public_nav_main(); ?>
+                    <div class="search-form-container">
+                    <?php echo search_form(); ?>
+                    </div>
+                </nav>
             </div>
         </header>
-
-
-
-         <div id="mobile-nav" role="navigation" aria-label="<?php echo __(
-             'Mobile Navigation'
-         ); ?>">
-             <?php echo public_nav_main(); ?>
-         </div>
 
         <?php echo theme_header_image(); ?>
 

@@ -56,7 +56,6 @@ header {
   font-family: $heading-font-family;
   font-size: 2.375 * $base-font-size;
   letter-spacing: 0.1em;
-  width: 60%;
 
   a,
   a:hover,
@@ -122,64 +121,6 @@ header {
     border-bottom: 0;
     margin-left: -1px;
     width: auto;
-  }
-}
-
-#mobile-nav {
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
-    display: block;
-    clear: both;
-    @include container;
-    zoom: 1;
-
-    ul {
-      background: #fafafa;
-      border-bottom: 1px solid #ccc;
-      width: 100%;
-      padding-left: 0;
-      margin: 0;
-    }
-
-    li {
-      text-align: left;
-      display: block;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    a {
-      text-decoration: none;
-      display: block;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-width: 1px 1px 0 1px;
-    }
-
-    a:hover {
-      background: #fff;
-    }
-
-    & > a:first-child {
-      background: #fafafa;
-      cursor: pointer;
-    }
-
-    li.current a {
-      background: #fff;
-      color: #ff8000;
-    }
-
-    li ul {
-      position: relative;
-    }
-
-    li ul a:before {
-      content: "-- ";
-    }
-
-    li ul ul a:before {
-      content: "---- ";
-    }
   }
 }
 

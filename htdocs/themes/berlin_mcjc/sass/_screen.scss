@@ -237,7 +237,10 @@ header {
   h2 {
     display: none;
   }
+}
 
+.search-form-container,
+#search-container {
   input[type="text"],
   button {
     border: 1px solid #ccc;
@@ -575,10 +578,6 @@ header {
     border-bottom: 1px solid #fff;
     background: none;
   }
-}
-
-#mobile-nav {
-  display: none;
 }
 
 /* @group ----- Global selectors ----- */
