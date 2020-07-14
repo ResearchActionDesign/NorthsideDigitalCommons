@@ -7,7 +7,7 @@
 /* @group ----- Generic ----- */
 
 body {
-  color: $grey--dark;
+  color: $black;
   font: $base-font-size $body-font-family;
   line-height: $base-font-size * 1.5;
 }
@@ -41,48 +41,6 @@ a.item-link,
 nav a,
 .filter-by-letter a {
   text-decoration: none;
-}
-
-/* @end */
-
-/* @group ----- Header ----- */
-
-header {
-  background-color: $ivory;
-}
-
-#site-title {
-  color: $purple--dark;
-  font-family: $heading-font-family;
-  font-size: 2.375 * $base-font-size;
-  letter-spacing: 0.1em;
-
-  a,
-  a:hover,
-  a:focus {
-    color: $purple--dark;
-  }
-}
-
-#search-container {
-  width: 35%;
-
-  button {
-    background-color: $teal;
-  }
-}
-
-.show-advanced.button {
-  border-bottom: 1px solid #ccc;
-  border-left: 0;
-  border-top: 1px solid #ccc;
-  width: 70px;
-
-  &:after {
-    background-color: transparent;
-    color: $green;
-    content: "Options";
-  }
 }
 
 /* @end */
@@ -548,27 +506,6 @@ a.button {
 
 /* @end */
 
-/* @group ----- Footer ----- */
-
-footer {
-  font-size: 12px;
-  background-color: $ivory;
-
-  .navigation li {
-    @media only screen and (min-width: 768px) and (max-width: 959px) {
-      float: none;
-    }
-  }
-
-  nav + p {
-    @media only screen and (min-width: 768px) and (max-width: 959px) {
-      text-align: left;
-    }
-  }
-}
-
-/* @end */
-
 // Search by letter used in mutiply pages
 
 .filter-by-letter {
@@ -577,7 +514,7 @@ footer {
   background-color: #eeeee8;
   padding-top: 0.5em;
   margin: 15px 0 15px 0;
-  overflow: scroll;
+  overflow-x: scroll;
 
   ul {
     display: flex;

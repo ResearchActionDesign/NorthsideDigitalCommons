@@ -14,6 +14,10 @@ div.collection-grid {
   flex-wrap: wrap;
   justify-content: center;
 
+  a.item {
+    text-decoration: none;
+  }
+
   .item {
     position: relative;
     overflow: hidden;
@@ -70,7 +74,8 @@ div.collection-grid {
         text-align: center;
       }
 
-      a {
+      h2,
+      .item-title {
         color: white;
         text-decoration: none;
         font-size: 20px;
@@ -92,14 +97,9 @@ div.collection-grid {
 
     .item-title {
       text-align: center;
-      background: #505050;
-
-      a {
-        text-decoration: none;
-        color: #fff;
-        position: relative;
-        top: -30px;
-      }
+      color: #fff;
+      position: relative;
+      top: -30px;
     }
   }
 }
@@ -107,15 +107,7 @@ div.collection-grid {
 div.peoples-item-container,
 div.collection-grid {
   .item-title {
-    text-align: center;
-    background: #505050;
-
-    a {
-      text-decoration: none;
-      color: #fff;
-      position: relative;
-      top: -34px;
-    }
+    top: -34px;
   }
 }
 
@@ -125,15 +117,7 @@ div.topics-grid,
 div.collection-grid {
   .grid-items {
     .item-title {
-      text-align: center;
-      background: #505050;
-
-      a {
-        text-decoration: none;
-        color: #fff;
-        position: relative;
-        top: -50px;
-      }
+      top: -50px;
     }
   }
 }

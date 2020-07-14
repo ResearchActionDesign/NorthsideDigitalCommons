@@ -1018,39 +1018,6 @@ ul.title-list {
 
 /* @end */
 
-/* @group ----- Footer ----- */
-
-footer {
-  clear: both;
-  @include container;
-  width: 100%;
-  overflow: hidden;
-  @include leader();
-  background-color: #eaeaea;
-
-  a {
-    text-decoration: none;
-  }
-
-  .navigation {
-    font-weight: bold;
-
-    li {
-      display: inline;
-    }
-
-    a {
-      white-space: nowrap;
-    }
-  }
-
-  nav + p {
-    text-align: right;
-  }
-}
-
-/* @end */
-
 /* @group ----- Other plugin styles ----- */
 
 #collection-tree {

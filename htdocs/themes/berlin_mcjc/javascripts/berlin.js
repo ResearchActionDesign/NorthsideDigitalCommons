@@ -4,7 +4,6 @@ if (!Berlin) {
 
 (function ($) {
   Berlin.dropDown = function () {
-    var dropdownMenu = $("#mobile-nav");
     //Hide the rest of the menu
     $("#mobile-nav .menu").show();
     $("#mobile-nav > ul").hide();
@@ -25,7 +24,6 @@ if (!Berlin) {
     var searchContainer = $(".search-form-container");
     if (searchToggle.length > 0) {
       searchToggle.on("click", () => {
-        console.log("click");
         searchContainer.css("display", "flex");
         searchToggle.hide();
         primaryNav.hide();
@@ -49,6 +47,7 @@ if (!Berlin) {
       $(this).attr("href", "/items/search?query=" + $("#query").val());
     });
   });
+
   //readmore/less related-items
   $().ready(function () {
     $(".oral-history .item-description").each(function (i, domItem) {

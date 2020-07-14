@@ -387,6 +387,29 @@ const ORAL_HISTORY_ITEM_TYPE = 4;
 const PERSON_ITEM_TYPE = 12;
 const IMAGE_ITEM_TYPE = 6;
 
+function mcjc_url_for_item($item = null, $action = 'show')
+{
+    if (!$item) {
+        $item = get_current_record('item');
+    }
+
+    $routesForItemType = [
+        ORAL_HISTORY_ITEM_TYPE => 'stories',
+        PERSON_ITEM_TYPE => 'people',
+        IMAGE_ITEM_TYPE => 'images',
+    ];
+
+    if (array_key_exists($item->item_type_id, $routesForItemType)) {
+        $permalink = metadata($item, ['Dublin Core', 'Permalink']);
+        return url(
+            ['permalink' => $permalink],
+            $routesForItemType[$item->item_type_id] . ucfirst($action)
+        );
+    } else {
+        return record_url($item, $action);
+    }
+}
+
 /**
  * Overrides link_to_item() to insert custom routes for people, stories and images.
  *
@@ -405,27 +428,10 @@ function mcjc_link_to_item(
     $props = ['class' => 'item-link'],
     $action = 'show'
 ) {
-    if (!$item) {
-        $item = get_current_record('item');
-    }
+    $url = mcjc_url_for_item($item, $action);
 
-    $routesForItemType = [
-        ORAL_HISTORY_ITEM_TYPE => 'stories',
-        PERSON_ITEM_TYPE => 'people',
-        IMAGE_ITEM_TYPE => 'images',
-    ];
-
-    if (array_key_exists($item->item_type_id, $routesForItemType)) {
-        $permalink = metadata($item, ['Dublin Core', 'Permalink']);
-        $url = url(
-            ['permalink' => $permalink],
-            $routesForItemType[$item->item_type_id] . ucfirst($action)
-        );
-        $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
-        return "<a href='{$url}'{$attr}>{$text}</a>";
-    }
-
-    return link_to_item($text, $props, $action, $item);
+    $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
+    return "<a href='{$url}'{$attr}>{$text}</a>";
 }
 
 function _mcjc_oral_history_metadata_paragraph($item)
