@@ -1,17 +1,124 @@
-.player-element {
+.html5media-player,
+.html5media-player div,
+.html5media-player h1,
+.html5media-player a,
+.html5media-player img,
+.html5media-player span,
+.html5media-player button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+.html5media-player {
+  // Note -- set width/height to 344 x 104 also in Html5Media plugin settings.
   .mejs-container {
-    background: none;
-  }
-  .mejs-controls {
-    flex-wrap: wrap;
-    height: auto;
-    width: auto;
-  }
-  .mejs-controls:not([style*="display: none"]) {
     background: $green;
+    width: 344px;
+    height: 104px;
+
+    .mejs-controls {
+      background: $green;
+      width: 344px;
+      height: 104px;
+    }
   }
 
-  a.mejs-horizontal-volume-slider.mejs-mute {
-    height: auto;
+  .mejs-controls .mejs-button {
+    cursor: pointer;
+    display: block;
+    text-indent: -9999px;
+    position: absolute;
+  }
+
+  .mejs-controls {
+    .mejs-play,
+    .mejs-pause {
+      top: 40px;
+      left: 8px;
+
+      button {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .mejs-currenttime-container {
+      left: 56px;
+      top: 40px;
+      height: 32px;
+      position: absolute;
+
+      span {
+        line-height: 32px;
+        margin: auto;
+      }
+    }
+
+    .mejs-time-rail {
+      left: 88px;
+      top: 51px;
+      width: 100px;
+      height: 10px;
+      position: absolute;
+
+      .mejs-time-slider {
+        border-radius: 10px;
+      }
+    }
+
+    .mejs-volume-button {
+      right: 56px;
+      top: 40px;
+
+      button {
+        height: 32px;
+        width: 32px;
+      }
+    }
+
+    .mejs-horizontal-volume-slider {
+      position: absolute;
+      right: 8px;
+      top: 51px;
+      height: 10px;
+
+      .mejs-horizontal-volume-total {
+        height: 10px;
+        top: 0;
+        border-radius: 10px;
+      }
+    }
+
+    .mejs-jump-forward-button {
+      left: 102px;
+      top: 72px;
+      button {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .mejs-skip-back-button {
+      top: 72px;
+      right: 102px;
+      button {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .mejs-speed-button {
+      top: 72px;
+      left: 132px;
+      width: 80px;
+      height: 20px;
+
+      button {
+        width: 80px;
+        height: 20px;
+      }
+    }
   }
 }
