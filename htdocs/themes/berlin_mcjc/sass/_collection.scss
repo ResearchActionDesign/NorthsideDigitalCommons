@@ -1,5 +1,7 @@
 .collections {
-  @include container;
+  #content > div {
+    @include container;
+  }
 
   .collection-top-header {
     h1 {
