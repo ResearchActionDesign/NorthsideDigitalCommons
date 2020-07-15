@@ -6,6 +6,7 @@
 @import "screen-custom";
 @import "home-page";
 @import "header";
+@import "footer";
 @import "header-background-container"; // hero image header for top-level pages.
 @import "search";
 @import "people";
@@ -21,6 +22,7 @@
 @import "collection";
 @import "exhibits";
 @import "pagination";
+@import "media-player";
 
 // Small screen styles.
 @media screen and (max-width: 768px) {

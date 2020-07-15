@@ -86,6 +86,10 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         if (version_compare($oldVersion, '2.7', '<')) {
             $settings['common']['options']['download'] = false;
         }
+      if (version_compare($oldVersion, '2.9', '<')) {
+        $settings['common']['options']['custom_settings'] = false;
+        $settings['common']['options']['download_icon'] = false;
+      }
         set_option('html5_media_settings', serialize($settings));
     }
 
@@ -156,6 +160,8 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         $common = $_POST['common'];
         $settings['common']['options']['preload'] = $common['options']['preload'];
         $settings['common']['options']['download'] = (bool) $common['options']['download'];
+        $settings['common']['options']['download_icon'] = (bool) $common['options']['download_icon'];
+        $settings['common']['options']['custom_settings'] = $common['options']['custom_settings'];
 
         set_option('html5_media_settings', serialize($settings));
     }
@@ -210,11 +216,14 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
             queue_js_string($l10nScript);
         }
 
-        queue_js_file('mediaelement-and-player.min', 'mediaelement');
-        queue_css_file('mediaelementplayer', 'all', false, 'mediaelement');
-        queue_css_file('html5media', 'all');
+        $pluginLoader = Zend_Registry::get('plugin_loader');
+        $html5media = $pluginLoader->getPlugin('Html5Media');
+        $version = $html5media->getIniVersion();
+        queue_js_file('mediaelement-and-player.min', 'mediaelement', array(), $version);
+        queue_css_file('mediaelementplayer-legacy.min', 'all', false, 'mediaelement', $version);
+        queue_css_file('html5media', 'all', null, 'css', $version);
         if (is_admin_theme()) {
-            queue_css_file('html5media-mejs-overrides', 'all');
+            queue_css_file('html5media-mejs-overrides', 'all', null, 'css', $version);
         }
     }
 
@@ -247,6 +256,9 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
             $posterUrl = $file->getWebPath('fullsize');
             $mediaOptions .= ' poster="' . html_escape($posterUrl) . '"';
         }
+        if ($type === 'video' && $file->mime_type === 'video/quicktime') {
+            $mediaOptions .= ' type="video/mp4"';
+        }
 
 
         $filename = html_escape($file->getWebPath('original'));
@@ -277,11 +289,26 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
         }
 
         if ($options['download']) {
-            $download = '<p class="html5media-download"><a href="' . $filename . '" download>'
-                . __('Download File')
-                . '</a></p>';
+          $download = '<p class="html5media-download"><a href="' . $filename . '" download aria-label="'. __('Download File') .'">';
+          if ($options['download_icon']) {
+            $download .= '<i class="fa fa-download"></i>';
+          }
+          else {
+              $download .= __('Download File');
+          }
+          $download .= '</a></p>';
         } else {
             $download = '';
+        }
+
+        $title = '';
+        if (isset($options['title'])) {
+          $title = '<p class="html5media-title">' . $options['title'] . '</p>';
+        }
+
+        $customSettings = '';
+        if ($options['custom_settings']) {
+          $customSettings = ',' . $options['custom_settings']; // TODO: sanitize
         }
 
         return <<<HTML
@@ -289,10 +316,11 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
 <$type id="html5-media-$i" src="$filename"$mediaOptions>
 $tracks
 </$type>
+$title
 $download
 </div>
 <script type="text/javascript">
-jQuery('#html5-media-$i').mediaelementplayer();
+jQuery('#html5-media-$i').mediaelementplayer({classPrefix: 'mejs-'$customSettings});
 </script>
 HTML;
     }

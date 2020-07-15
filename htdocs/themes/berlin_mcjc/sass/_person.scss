@@ -58,10 +58,6 @@
       .player-element {
         grid-area: sound;
         position: relative;
-
-        .mejs-container {
-          background-color: white;
-        }
       }
 
       .item-description {
@@ -72,7 +68,6 @@
 
       a.button.item-link {
         width: 60%;
-        margin-top: 20px;
       }
     }
   }

@@ -80,19 +80,24 @@ function mcjc_random_featured_items($count = 5, $hasImage = null)
  */
 function mcjc_render_oral_history_players(
     $item,
-    $wrapperAttributes = ['class' => 'item-file']
+    $wrapperAttributes = ['class' => 'item-file'],
+    $options = []
 ) {
-    $files = $item->Files;
+    if (!isset($options['title'])) {
+        $options['title'] =
+            metadata($item, ['Dublin Core', 'Title']) .
+            ': ' .
+            oral_history_item_subtitle($item);
+    }
     $output = "";
-    foreach (
-        array_filter($files, function ($file) {
-            return substr($file->mime_type, 0, 5) === 'audio';
-        })
-        as $audiofile
-    ) {
+    $files = $item->Files;
+    $audioFiles = array_filter($files, function ($file) {
+        return substr($file->mime_type, 0, 5) === 'audio';
+    });
+    foreach ($audioFiles as $audiofile) {
         $output .= get_view()->mcjcFileMarkup(
             $audiofile,
-            [],
+            $options,
             $wrapperAttributes
         );
     }
@@ -126,7 +131,7 @@ function mcjc_files_for_item(
         $files = $item->Files;
     }
 
-    return mcjc_file_markup($files, $options, $wrapperAttributes);
+    return mcjc_file_markup($files, $options, $wrapperAttributes, $item);
 }
 
 /**
@@ -170,7 +175,8 @@ function mcjc_get_collection_files($collection)
 function mcjc_file_markup(
     $files,
     array $props = [],
-    $wrapperAttributes = ['class' => 'item-file']
+    $wrapperAttributes = ['class' => 'item-file'],
+    $item = null
 ) {
     if (!is_array($files)) {
         $files = [$files];
@@ -179,8 +185,18 @@ function mcjc_file_markup(
 
     $files = mcjc_sort_files($files);
 
+    // If this is a standard item, start with rendering the oral history player.
+    if ($item) {
+        $output .= mcjc_render_oral_history_players($item);
+    }
+
     // Create file output.
-    foreach ($files as $key => $file) {
+    foreach (
+        array_filter($files, function ($file) {
+            return substr($file->mime_type, 0, 5) !== 'audio';
+        })
+        as $key => $file
+    ) {
         // Don't create markup for PDFs unless this is an item show page, and
         // only create markup for the first file if this is Browse Collections.
         if (
@@ -371,6 +387,29 @@ const ORAL_HISTORY_ITEM_TYPE = 4;
 const PERSON_ITEM_TYPE = 12;
 const IMAGE_ITEM_TYPE = 6;
 
+function mcjc_url_for_item($item = null, $action = 'show')
+{
+    if (!$item) {
+        $item = get_current_record('item');
+    }
+
+    $routesForItemType = [
+        ORAL_HISTORY_ITEM_TYPE => 'stories',
+        PERSON_ITEM_TYPE => 'people',
+        IMAGE_ITEM_TYPE => 'images',
+    ];
+
+    if (array_key_exists($item->item_type_id, $routesForItemType)) {
+        $permalink = metadata($item, ['Dublin Core', 'Permalink']);
+        return url(
+            ['permalink' => $permalink],
+            $routesForItemType[$item->item_type_id] . ucfirst($action)
+        );
+    } else {
+        return record_url($item, $action);
+    }
+}
+
 /**
  * Overrides link_to_item() to insert custom routes for people, stories and images.
  *
@@ -389,27 +428,10 @@ function mcjc_link_to_item(
     $props = ['class' => 'item-link'],
     $action = 'show'
 ) {
-    if (!$item) {
-        $item = get_current_record('item');
-    }
+    $url = mcjc_url_for_item($item, $action);
 
-    $routesForItemType = [
-        ORAL_HISTORY_ITEM_TYPE => 'stories',
-        PERSON_ITEM_TYPE => 'people',
-        IMAGE_ITEM_TYPE => 'images',
-    ];
-
-    if (array_key_exists($item->item_type_id, $routesForItemType)) {
-        $permalink = metadata($item, ['Dublin Core', 'Permalink']);
-        $url = url(
-            ['permalink' => $permalink],
-            $routesForItemType[$item->item_type_id] . ucfirst($action)
-        );
-        $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
-        return "<a href='{$url}'{$attr}>{$text}</a>";
-    }
-
-    return link_to_item($text, $props, $action, $item);
+    $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
+    return "<a href='{$url}'{$attr}>{$text}</a>";
 }
 
 function _mcjc_oral_history_metadata_paragraph($item)

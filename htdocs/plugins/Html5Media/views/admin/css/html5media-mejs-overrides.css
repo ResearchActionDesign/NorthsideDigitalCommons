@@ -11,10 +11,15 @@
     min-height: 0;
 }
 
-.mejs-overlay-button {
-	margin: -50px 0 0 -50px !important;
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.mejs-overlay-loading {
-	margin: -40px 0 0 -40px !important;
+.fa-download:before {
+    content: "\f019";
 }

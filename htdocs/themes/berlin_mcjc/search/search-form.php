@@ -1,10 +1,15 @@
 <?php
-$id = 'search-form';
+$name = 'search-form';
 if ($options['expanded'] ?? false) {
-    $id = 'search-form-expanded';
-    $options['form_attributes']['id'] = $id;
+    $name = 'search-form-expanded';
+    $options['form_attributes']['id'] = $name;
 }
-echo $this->form($id, $options['form_attributes']);
+if ($options['id'] ?? false) {
+    $name = $options['id'];
+    $options['form_attributes']['id'] = $name;
+}
+$options['form_attributes']['class'] = 'search-form';
+echo $this->form($name, $options['form_attributes']);
 
 // If the form has been submitted, retain the number of search
 // fields used and rebuild the form

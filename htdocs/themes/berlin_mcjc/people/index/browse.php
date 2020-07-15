@@ -61,7 +61,9 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
       $itemClasses .= ' has-description';
   }
   ?>
-  <div class="item record<?php echo $itemClasses; ?>">
+  <a href="<?php echo mcjc_url_for_item(
+      $item
+  ); ?>" class="item record<?php echo $itemClasses; ?>">
     <?php if ($hasImg): ?>
     <div class="item-img">
       <?php echo item_image('square_thumbnail', ['alt' => $itemTitle]); ?>
@@ -69,8 +71,9 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
     <?php endif; ?>
 
 
+
     <div class="item-meta">
-      <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
+      <h2><?php echo $itemTitle; ?></h2>
 
       <?php if ($description): ?>
       <div class="item-description">
@@ -85,9 +88,9 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 
     </div>
     <!-- end class="item-meta" -->
-    <div class="item-title"><?php echo mcjc_link_to_item($itemTitle); ?></div>
+    <div class="item-title"><?php echo $itemTitle; ?></div>
     <!-- end class="item entry" -->
-  </div>
+  </a>
 
   <?php endforeach; ?>
 </div>

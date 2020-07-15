@@ -7,10 +7,11 @@ $description = metadata(
     ['Dublin Core', 'Description'],
     ['snippet' => 250]
 );
+$url = mcjc_url_for_item($item);
 
 $hasFiles = ($isCollection ?? false) || metadata($item, 'has files');
 ?>
-<div class="item record related-item tile<?php
+<a href="<?php echo $url; ?>" class="item record related-item tile<?php
 echo $hasFiles ? " has-picture" : "";
 echo $description ? " has-description" : "";
 echo $class ? " {$class}" : "";
@@ -24,15 +25,12 @@ echo $class ? " {$class}" : "";
         ); ?>
       </div>
       <div class="item-meta">
-          <h2><?php echo mcjc_link_to_item($title, $item); ?></h2>
+          <h2><?php echo $title; ?></h2>
           <?php if ($description): ?>
             <div class="item-description">
               <?php echo $description; ?>
             </div>
         <?php endif; ?>
       </div>
-    <div class="item-title"><?php echo mcjc_link_to_item(
-        $title,
-        $item
-    ); ?></div>
-</div>
+    <div class="item-title"><?php echo $title; ?></div>
+</a>

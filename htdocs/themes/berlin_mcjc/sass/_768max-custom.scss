@@ -47,20 +47,6 @@ h2 {
 
 /* @end */
 
-/* @group ----- Footer ----- */
-
-footer {
-  nav {
-    overflow: auto;
-  }
-
-  nav + p {
-    text-align: left;
-  }
-}
-
-/* @end */
-
 /* @group ----- Items ----- */
 
 #item-images {
@@ -117,14 +103,6 @@ footer {
 
 .browse .item h2 {
   width: 100%;
-}
-
-.items.browse .item-file.application-pdf {
-  margin: 0 0.5em 0.5em 0;
-
-  a {
-    padding: 0.25em 0.5em;
-  }
 }
 
 /* @end */

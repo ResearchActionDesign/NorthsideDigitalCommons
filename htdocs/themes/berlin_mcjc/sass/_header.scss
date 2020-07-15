@@ -1,9 +1,6 @@
 .top-header {
-  background-color: $ivory;
-
-  h1 {
-    margin-top: 0;
-  }
+  background-color: $white;
+  padding: 20px;
 }
 
 .header-content-wrapper {
@@ -16,16 +13,34 @@
   display: flex;
 }
 
+#site-title {
+  color: $purple--dark;
+  font-family: $heading-font-family;
+  font-size: 2.375 * $base-font-size;
+  letter-spacing: 0.1em;
+
+  a,
+  a:hover,
+  a:focus {
+    color: $purple--dark;
+  }
+}
+
 #search-container {
   display: flex;
   position: relative;
   top: 10px;
   min-width: 45px;
   width: auto;
+}
+
+#search-container,
+.search-form-container {
   #search-toggle,
   #submit_search {
     background-color: transparent;
   }
+
   #search-toggle:after,
   #submit_search:after {
     color: $black;
@@ -37,7 +52,7 @@
   left: 4px;
 }
 
-#search-form {
+form.search-form {
   position: relative;
   width: 340px;
 
@@ -46,7 +61,7 @@
   }
 }
 
-#search-container input[type="text"] {
+.search-form-container input[type="text"] {
   border-radius: 0.3em;
 }
 
@@ -79,8 +94,74 @@
   }
 }
 
+#mobile-nav {
+  display: none;
+}
+
 @media only screen and (max-width: 959px) {
-  #search-container {
-    visibility: hidden;
+  .nav-search-wrapper {
+    display: none;
+  }
+
+  .header-content-wrapper {
+    display: block;
+    padding-right: 0;
+    text-align: center;
+
+    #site-title {
+      margin: auto;
+    }
+
+    #mobile-nav {
+      display: block;
+      text-align: right;
+
+      .search-form-container {
+        display: block;
+
+        form.search-form {
+          float: right;
+          margin: 1em 8px 1em 0;
+        }
+      }
+
+      button.menu {
+        position: absolute;
+        right: 1em;
+        top: 0.8em;
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        background: transparent;
+        color: $green;
+        display: none;
+
+        &:focus,
+        &:hover {
+          background: #fff;
+        }
+      }
+
+      li {
+        display: block;
+        margin-right: 8px;
+        float: none;
+
+        > ul {
+          display: none; // Submenus don't show on mobile nav.
+        }
+      }
+
+      a {
+        display: block;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  header {
+    padding: 3em 16px;
   }
 }

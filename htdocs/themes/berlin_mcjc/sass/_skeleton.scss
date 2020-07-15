@@ -50,12 +50,9 @@ $margin: 10px;
     width: $tablet-width;
   }
 
-  @media only screen and (min-width: 480px) and (max-width: 767px) {
-    width: $mobile-landscape-width;
-  }
-
-  @media only screen and (max-width: 479px) {
-    width: $mobile-portrait-width;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    padding: 16px;
   }
 }
 

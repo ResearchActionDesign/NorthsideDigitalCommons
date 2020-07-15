@@ -5,7 +5,7 @@ services:
     # Uncomment the next line if you need to build the docker image locally.
     # build: .docker/
     volumes:
-      - htdocs-sync:/var/www/html:nocopy
+      - mcjc-htdocs-sync:/var/www/html:nocopy
       - ./.docker:/etc/apache2/sites-available:cached
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
@@ -31,12 +31,8 @@ services:
     image: timstallmann/compass-omeka
     command: watch
     volumes:
-      - htdocs-sync:/usr/src/app:nocopy
+      - mcjc-htdocs-sync:/usr/src/app:nocopy
 
 volumes:
-  db-sync:
+  mcjc-htdocs-sync:
     external: true
-  htdocs-sync:
-    external: true
-#  omeka-htdocs-sync:
-#    external: true

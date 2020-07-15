@@ -1,5 +1,7 @@
 .people {
-  @include container;
+  #content > div {
+    @include container;
+  }
 
   .top-header {
     height: 300px;

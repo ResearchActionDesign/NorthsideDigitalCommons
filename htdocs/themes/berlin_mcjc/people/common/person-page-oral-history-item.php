@@ -1,13 +1,18 @@
 <div class="oral-history">
-  <h2><?php echo metadata($item, [
-      'Dublin Core',
-      'Title',
-  ]); ?>: <?php echo oral_history_item_subtitle($item); ?></h2>
+    <?php $title =
+        metadata($item, ['Dublin Core', 'Title']) .
+        ': ' .
+        oral_history_item_subtitle($item); ?>
+  <h2><?php echo $title; ?></h2>
 
   <!-- Item files -->
   <?php if (metadata($item, 'has files')): ?>
     <div class="player-element">
-      <?php echo mcjc_render_oral_history_players($item); ?>
+      <?php echo mcjc_render_oral_history_players(
+          $item,
+          ['class' => 'item-file'],
+          ['title' => $title]
+      ); ?>
     </div>
   <?php endif; ?>
 
