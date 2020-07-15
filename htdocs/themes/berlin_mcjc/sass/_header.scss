@@ -52,7 +52,7 @@
   left: 4px;
 }
 
-#search-form {
+form.search-form {
   position: relative;
   width: 340px;
 
@@ -119,7 +119,7 @@
       .search-form-container {
         display: block;
 
-        form#search-form {
+        form.search-form {
           float: right;
           margin: 1em 8px 1em 0;
         }

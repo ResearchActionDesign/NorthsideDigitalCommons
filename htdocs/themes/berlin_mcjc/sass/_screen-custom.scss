@@ -329,6 +329,7 @@ nav a,
   color: $ivory;
   background-color: $green;
   border-radius: 3px;
+  border: 0;
 
   display: inline-block;
   padding: 0.5em 0.75em;
@@ -353,6 +354,11 @@ nav a,
   }
 }
 
+button {
+  @include button;
+  @include button_link;
+}
+
 a.button {
   grid-area: button;
   @include button_link;
@@ -362,8 +368,11 @@ a.button {
 }
 
 .item-file {
+  margin: 0.5em 0;
+
   &.application-pdf {
     @include button;
+    margin: 0.5em 0; // Needed again here to reset margin from button.
     max-width: 100%; // Needed to allow an iframe container to scale properly if it is inside here.
 
     .iframe-container {
@@ -377,10 +386,6 @@ a.button {
       }
     }
   }
-}
-
-.items.browse .item-file.application-pdf {
-  margin: 0 0 0.5em 0.5em;
 }
 
 // Link out to SOHP for some items.

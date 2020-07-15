@@ -96,7 +96,7 @@ if (
                   ); ?>"><i class="fa fa-bars"></i></button>
                   <?php echo public_nav_main(); ?>
                     <div class="search-form-container">
-                    <?php echo search_form(); ?>
+                    <?php echo search_form(['id' => 'mobile-search-form']); ?>
                     </div>
                 </nav>
             </div>

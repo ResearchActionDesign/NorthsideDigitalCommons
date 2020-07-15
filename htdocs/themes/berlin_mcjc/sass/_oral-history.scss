@@ -17,17 +17,10 @@
     flex-wrap: wrap;
     width: 344px; // Align with audio player width.
     justify-content: space-between;
-
-    .item-file.application-pdf {
-      margin: 0.5em 0;
-    }
   }
 }
 #item-tags.element {
   margin: 20px;
-  .element-text {
-    text-decoration: underline;
-  }
 }
 
 .oral-image-title-container {
@@ -78,12 +71,12 @@
   }
   .oral-description-player-container {
     display: block;
-    #itemfiles.element .item-images {
+    #itemfiles .item-images {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
       flex-direction: column;
-      justify-content: normal;
+      align-content: center;
     }
   }
   .tags-container {

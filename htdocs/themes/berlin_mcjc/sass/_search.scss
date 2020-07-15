@@ -1,5 +1,7 @@
 .search {
-  @include container;
+  #content {
+    @include container;
+  }
 
   // Search bar
   #search-container,
@@ -9,6 +11,10 @@
       color: $grey--dark;
       font: $base-font-size $body-font-family;
       line-height: $base-font-size * 1.5;
+    }
+
+    button {
+      margin: 0;
     }
   }
 

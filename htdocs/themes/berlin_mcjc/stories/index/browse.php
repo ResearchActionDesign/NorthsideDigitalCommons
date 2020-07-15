@@ -8,6 +8,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'stories browse']);
 
 <?php foreach (loop('items') as $item): ?>
   <?php
+  $url = mcjc_url_for_item($item);
   $itemTitle = metadata('item', 'display_title');
   $itemClasses = "";
   if (metadata('item', 'has files')) {
@@ -17,8 +18,10 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'stories browse']);
       $itemClasses .= " has-description";
   }
   ?>
-    <div class="item record<?php echo $itemClasses; ?>">
-        <h2><?php echo mcjc_link_to_item($itemTitle, $item); ?></h2>
+<a href="<?php echo mcjc_url_for_item(
+    $item
+); ?>" class="item record<?php echo $itemClasses; ?>">
+        <h2><?php echo $itemTitle; ?></h2>
         <div class="item-meta">
           <?php if (metadata('item', 'has files')): ?>
               <div class="item-img">
@@ -45,8 +48,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'stories browse']);
               'item' => $item,
           ]); ?>
 
-        </div><!-- end class="item-meta" -->
-    </div><!-- end class="item entry" -->
+        </div>
+    </a>
 <?php endforeach; ?>
 
 <?php echo pagination_links(); ?>

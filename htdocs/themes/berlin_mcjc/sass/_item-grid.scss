@@ -28,24 +28,35 @@ div.collection-grid {
     height: 295px;
     margin: 15px 5px;
 
+    .item-title {
+      display: none;
+      padding: 1em;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      color: #fff;
+      width: 100%;
+    }
+
     &.has-description,
     .exhibit-gallery-item {
       position: relative;
       overflow: hidden;
       padding: 0;
-
-      &:not(.has-picture) {
-        .item-title {
-          display: none;
-        }
-      }
     }
 
     &.has-picture {
       padding: 0;
 
+      .item-title {
+        display: block;
+      }
+
       .item-meta {
-        top: 85%;
+        top: 81%;
         transition: 0.5s;
       }
 
@@ -70,16 +81,20 @@ div.collection-grid {
       height: 100%;
 
       h2 {
-        margin-top: 1.5em;
+        margin-top: 0;
+        position: relative;
+        top: 121.5px; // Centered within item-meta div.
         text-align: center;
-      }
-
-      h2,
-      .item-title {
         color: white;
         text-decoration: none;
         font-size: 20px;
       }
+    }
+
+    &.has-picture,
+    &.has-description .item-meta h2 {
+      margin-top: 1.5em;
+      top: 0;
     }
 
     .item-img {
@@ -93,31 +108,6 @@ div.collection-grid {
         display: block;
         height: auto;
       }
-    }
-
-    .item-title {
-      text-align: center;
-      color: #fff;
-      position: relative;
-      top: -30px;
-    }
-  }
-}
-
-div.peoples-item-container,
-div.collection-grid {
-  .item-title {
-    top: -34px;
-  }
-}
-
-div.people,
-div.explore-grid,
-div.topics-grid,
-div.collection-grid {
-  .grid-items {
-    .item-title {
-      top: -50px;
     }
   }
 }
@@ -190,18 +180,6 @@ div.collection-grid {
 
       img {
         margin-top: 0px !important;
-      }
-
-      .item-meta h2 {
-        margin-top: 1.5em;
-      }
-    }
-  }
-  div.explore-grid {
-    .grid-items,
-    div.collection-grid {
-      .item-title a {
-        top: -29px;
       }
     }
   }
