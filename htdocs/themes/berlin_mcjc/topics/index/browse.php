@@ -18,7 +18,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
   $sortLinks[__('Date Added')] = 'added';
   ?>
 
-  <div class=" filter_container">
+  <div class="filter_container">
     <div class="filter" id="grid__filter">
       <span class="grid__filter__title">Show:</span>
       <span class="grid__filter__option"><input class="checkbox" type="checkbox" data-filter="exhibit"><span
@@ -39,6 +39,17 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     <?php foreach (loop('topics') as $topic): ?>
     <?php
     $topicClass = strtolower($topic->topicType);
+
+    $itemClasses = '';
+    $hasImg = false;
+    $recordImage = record_image($topic, 'square_thumbnail', [
+        'alt' => $title,
+    ]);
+    $recordUrl = mcjc_url_for_item($topic);
+    if ($recordImage) {
+        $itemClasses = ' has-picture';
+        $hasImg = true;
+    }
     if ($topicClass == 'exhibit') {
         $title = 'Exhibit: ' . html_escape($topic->title);
         $titleLink = exhibit_builder_link_to_exhibit($topic, $title); // TODO: fix this path.
@@ -53,30 +64,30 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
             ['snippet' => 250]
         );
     }
+
+    if ($description) {
+        $itemClasses .= ' has-description';
+    }
     ?>
 
-    <div class="topic item ">
-      <div class=" item-img "><?php echo record_image(
-          $topic,
-          'square_thumbnail',
-          [
-              'alt' => $title,
-          ]
-      ); ?>
+    <a href="<?php echo $recordUrl; ?>" class="topic item tile <?php echo $topicClass; ?> <?php echo $itemClasses; ?>">
+        <?php if ($hasImg): ?>
+      <div class="item-img"><?php echo $recordImage; ?>
+          <?php endif; ?>
       </div>
 
-      <div class=" item-meta topics-card">
-        <h2><?php echo $titleLink; ?></h2>
+      <div class="item-meta topics-card">
+        <h2><?php echo $title; ?></h2>
 
         <div class="item-description">
           <?php echo $description; ?>
 
         </div>
       </div><!-- end class="item-meta" -->
-      <div class="item-title"><?php echo $titleLink; ?></div>
+      <div class="item-title"><?php echo $title; ?></div>
 
       <!-- end class="item entry" -->
-    </div>
+    </a>
 
     <?php endforeach; ?>
   </div>

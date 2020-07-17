@@ -39,28 +39,6 @@ span.filter-titles {
   top: -3px;
 }
 
-.topic.item {
-  overflow: hidden;
-  position: relative;
-  width: 600px;
-  height: 460px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-
-  .item-meta.topics-card {
-    top: 85%;
-    transition: 0.5s;
-  }
-
-  .item-meta.topics-card:hover {
-    top: 0;
-
-    ~ .item-title {
-      display: none;
-    }
-  }
-}
-
 @media (max-width: 768px) {
   .filter_container {
     display: flex;
@@ -94,18 +72,5 @@ span.filter-titles {
     .checkbox {
       zoom: 1.5;
     }
-  }
-}
-
-.topics-grid {
-  div.topics-grid .item:nth-child(even) {
-    margin-top: 0;
-  }
-
-  div.topics-grid .item:nth-child(1) {
-    height: 295px;
-  }
-  div.topics-grid .item .item-title a {
-    top: -28px;
   }
 }

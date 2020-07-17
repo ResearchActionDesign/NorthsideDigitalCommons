@@ -1,5 +1,7 @@
 .people {
-  #content > div {
+  #content > .primary,
+  #content > .oral-histories,
+  #content > .related-items {
     @include container;
   }
 

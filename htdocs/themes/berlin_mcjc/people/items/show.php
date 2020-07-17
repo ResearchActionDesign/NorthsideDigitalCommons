@@ -63,7 +63,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php if (count($in_the_community_items)): ?>
 <div class="browse in-the-community">
   <div class="community-content">
-    <h3><?php echo __('In the community'); ?></h3>
+    <h3><?php echo __('More to explore'); ?></h3>
     <div class='grid-items'>
             <?php foreach (
                 loop('in_the_community_items')

@@ -12,7 +12,8 @@ div.topics-grid,
 div.collection-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  margin: 0 -20px;
 
   a.item {
     text-decoration: none;
@@ -22,11 +23,11 @@ div.collection-grid {
     position: relative;
     overflow: hidden;
     min-width: 250px;
-    width: 32%;
     background: #eee;
     padding: 0;
+    width: 295px;
     height: 295px;
-    margin: 15px 5px;
+    margin: 10px;
 
     .item-title {
       background: $accent-color;
@@ -117,112 +118,13 @@ div.collection-grid {
   }
 }
 
-div.explore-grid,
-div.topics-grid,
-div.collection-grid {
-  .item {
-    width: 40%;
-  }
-  .item:nth-child(even) {
-    margin-top: 60px;
-  }
-}
-
-div.topics-grid,
-div.collection-grid {
-  .item:nth-child(1) {
-    height: 450px;
-  }
-}
-
-div.depicted div.grid-items div.item {
-  width: 32%;
-}
-
-@media (min-width: 768px) and (max-width: 1286px) {
-  div.explore-grid,
-  div.in-the-community,
-  div.topics-grid {
-    .item {
-      width: 49%;
-      background: #eee;
-      margin-top: 15px;
-      padding: 0;
-    }
-
-    .item.has-picture.has-description {
-      padding: 0;
-    }
-  }
-  div.explore-grid div.grid-items {
-    .item:nth-child(even) {
-      margin-top: 0px;
-    }
-  }
-
-  div.in-the-community .item {
-    max-width: 350px;
-  }
-}
-
-div.topics-grid,
-div.collection-grid {
-  .item:nth-child(1) {
-    height: 295px;
-  }
-}
-
-@media (max-width: 767px) {
+@media (max-width: 481px) {
   div.peoples-item-container,
   div.explore-grid,
-  div.in-the-community,
   div.topics-grid,
   div.collection-grid {
-    justify-content: center;
-
     .item {
       width: 100%;
-
-      img {
-        margin-top: 0px !important;
-      }
-    }
-  }
-
-  div.explore-grid div.grid-items,
-  div.collection-grid {
-    .item {
-      width: 40%;
-    }
-    .item:nth-child(even) {
-      margin-top: 0;
-    }
-  }
-
-  div.topics-grid,
-  div.collection-grid {
-    .item:nth-child(1) {
-      height: 295px;
-    }
-  }
-
-  @media (max-width: 481px) and (min-width: 320px) {
-    div.peoples-item-container,
-    div.explore-grid,
-    div.topics-grid,
-    div.collection-grid {
-      justify-content: center;
-
-      .item img {
-        margin-top: 0px !important;
-        height: 295px;
-      }
-    }
-  }
-  div.topics-grid,
-  div.collection-grid {
-    .item:nth-child(1) {
-      height: 295px;
     }
   }
 }
