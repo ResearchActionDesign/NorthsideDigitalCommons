@@ -1,6 +1,6 @@
 .explore-grid,
 .in-the-community,
-.oral-historys,
+.oral-histories,
 .back-container,
 .topics-content {
   @include container;
@@ -29,6 +29,8 @@ div.collection-grid {
     margin: 15px 5px;
 
     .item-title {
+      background: $accent-color;
+      opacity: 0.85;
       display: none;
       padding: 1em;
       white-space: nowrap;
@@ -56,7 +58,7 @@ div.collection-grid {
       }
 
       .item-meta {
-        top: 81%;
+        top: 100%;
         transition: 0.5s;
       }
 
@@ -92,21 +94,24 @@ div.collection-grid {
     }
 
     &.has-picture,
-    &.has-description .item-meta h2 {
-      margin-top: 1.5em;
-      top: 0;
+    &.has-description {
+      .item-meta h2 {
+        margin-top: 1.5em;
+        top: 0;
+      }
     }
 
     .item-img {
       position: absolute;
       width: 100%;
-      max-height: 100%;
+      height: 100%;
 
       img {
         width: 100%;
+        height: 100%;
+        object-fit: cover; // TODO: Verify that this doesn't look bad on IE or other browsers.
         position: relative;
         display: block;
-        height: auto;
       }
     }
   }

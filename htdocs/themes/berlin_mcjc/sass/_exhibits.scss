@@ -64,7 +64,7 @@ div#exhibit-page-navigation {
   justify-content: space-between;
   div#exhibit-nav-prev,
   div#exhibit-nav-next {
-    background-color: #eeeee8;
+    background-color: $white;
     padding: 15px;
     border: 10px;
     border-radius: 30px;
@@ -157,7 +157,7 @@ div#exhibit-page-navigation {
     justify-content: center;
     div#exhibit-nav-prev,
     div#exhibit-nav-next {
-      background-color: #eeeee8;
+      background-color: $white;
       padding: 15px;
       border: 10px;
       border-radius: 30px;

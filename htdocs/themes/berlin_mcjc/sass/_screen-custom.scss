@@ -326,7 +326,7 @@ nav a,
 
 @mixin button_link {
   text-align: center;
-  color: $ivory;
+  color: $white;
   background-color: $green;
   border-radius: 3px;
   border: 0;
@@ -516,7 +516,7 @@ a.button {
 .filter-by-letter {
   display: flex;
   flex-direction: column;
-  background-color: #eeeee8;
+  background-color: $white;
   padding-top: 0.5em;
   margin: 15px 0 15px 0;
   overflow-x: scroll;
