@@ -4,17 +4,22 @@
 .back-container,
 .topics-content {
   @include container;
+
+  div.peoples-item-container,
+  div.grid-items,
+  div.topics-grid,
+  div.collection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 -20px;
+  }
 }
 
 div.peoples-item-container,
 div.grid-items,
 div.topics-grid,
 div.collection-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 0 -20px;
-
   a.item {
     text-decoration: none;
   }
@@ -114,6 +119,27 @@ div.collection-grid {
         position: relative;
         display: block;
       }
+    }
+  }
+}
+
+// Masonry grid.
+.masonry-grid .grid-items {
+  margin: auto;
+
+  .item {
+    height: auto;
+    margin: 0;
+    margin-bottom: 20px;
+    display: block;
+
+    img {
+      width: 100%;
+      margin: 0;
+    }
+
+    .item-meta {
+      position: absolute;
     }
   }
 }

@@ -101,4 +101,22 @@ if (!Berlin) {
       }
     });
   });
+
+  $().ready(function () {
+    // Masonry grids.
+
+    var $grid = $(".masonry-grid .grid-items");
+
+    $grid.masonry({
+      itemSelector: ".item",
+      columnWidth: 295,
+      gutter: 20,
+      horizontalOrder: true,
+      fitWidth: true,
+    });
+
+    $grid.imagesLoaded().progress(function () {
+      $grid.masonry("layout");
+    });
+  });
 })(jQuery);
