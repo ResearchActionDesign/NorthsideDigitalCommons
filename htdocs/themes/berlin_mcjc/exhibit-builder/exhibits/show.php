@@ -14,15 +14,6 @@ echo head([
 
 <div id="exhibit-blocks">
   <?php exhibit_builder_render_exhibit_page(); ?>
-  <div class='Related-People-list'>
-    <ul>
-      <h3>Related people</h3>
-      <li>placeholder</li>
-      <li>placeholder2</li>
-      <li>placeholder3</li>
-      <li>placeholder4</li>
-    </ul>
-  </div>
 </div>
 
 <div id="exhibit-page-navigation">

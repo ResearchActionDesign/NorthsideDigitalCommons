@@ -82,7 +82,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
       <?php if ($tags): ?>
     <div id="item-tags" class="element">
       <span class="element-title"><?php echo __('Tags: '); ?></span>
-      <span class="element-text"><?php echo tag_string('item'); ?></span>
+      <span class="element-text"><?php echo $tags; ?></span>
     </div>
       <?php endif; ?>
     <div class="details">

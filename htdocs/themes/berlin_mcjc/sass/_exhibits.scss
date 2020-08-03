@@ -5,53 +5,20 @@
 }
 
 .exhibit-header-container {
-  display: flex;
-  flex-direction: row;
-}
-.exhibit-title-container {
-  width: 575px;
-  padding-right: 35px;
-  padding-top: 80px;
-}
-.exhibit-title h1 {
-  text-align: left;
-  columns: 0 !important;
-}
-.exhibit-img-wrapper {
-  width: 700px;
-  height: 700px;
-  background: #eee;
-  .exhibit-img-placeholder {
-    width: 100%;
+  img.exhibit-image {
+    max-width: 33vw;
     height: auto;
-    padding-top: 50%;
-    padding-left: 40%;
+    float: right;
   }
 }
-#exhibit-description-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-.placeholder-wrapper {
-  display: flex;
-  padding-top: 80px;
-  .PlaceholderParagraph {
-    width: 775px;
-    padding-right: 35px;
-  }
-  .Related-People-list {
-    ul {
-      list-style: none;
-      padding-left: 80px;
-    }
-  }
-}
+
 .exhibit-page {
   display: flex;
 }
 .exhibit-page-title {
   display: flex;
 }
+
 div#exhibit-blocks {
   display: grid;
   grid-template-areas:
@@ -70,37 +37,6 @@ div#exhibit-page-navigation {
     border-radius: 30px;
   }
 }
-#exhibit-pages {
-  width: 100%;
-  .exhibit-items {
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0px;
-      li {
-        position: relative;
-        overflow: hidden;
-        min-width: 300px;
-        width: 32%;
-        background: #eee;
-        padding: 0;
-        height: 295px;
-        margin: 5px;
-        display: flex;
-        flex-direction: column-reverse;
-        text-align: center;
-        a {
-          color: #fff;
-          background: #7b5c7e;
-          height: 30px;
-          transition: all 0.1s linear;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-}
 .layout-gallery .gallery.captions-center:not(.with-showcase) {
   display: flex;
   justify-content: center;
@@ -109,13 +45,7 @@ div#exhibit-page-navigation {
 .exhibits .exhibit-block {
   grid-area: item-text;
 }
-.Related-People-list {
-  grid-area: item-list;
-  width: 350px;
-  ul {
-    list-style: none;
-  }
-}
+
 .exhibit-block.layout-gallery {
   grid-area: grid-item;
 }
@@ -124,16 +54,16 @@ div#exhibit-page-navigation {
   height: 500px;
 }
 @media (max-width: 767px) {
+  .exhibit-title-container img.exhibit-image {
+    float: none;
+    max-width: 100%;
+  }
   div#exhibit-blocks {
     display: grid;
     grid-template-areas:
       "item-text item-text"
       "item-list item-list"
       "grid-item grid-item";
-  }
-  .exhibit-content {
-    display: flex;
-    flex-wrap: wrap;
   }
   .exhibit-header-container {
     display: block;
