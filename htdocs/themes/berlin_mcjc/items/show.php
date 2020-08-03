@@ -101,7 +101,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   </div>
 </div>
 <?php if (!empty($depicted_items)): ?>
-<div class="explore-grid depicted">
+<div class="explore-grid grid-container depicted">
   <h2><?php echo __('In this ') . $itemType; ?></h2>
   <div class="grid-items">
     <?php foreach (loop('depicted_items') as $relatedItem): ?>
@@ -116,7 +116,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 
 <?php endif; ?>
 <?php if (!empty($related_items) || !empty($collection)): ?>
-<div class="explore-grid related-items">
+<div class="explore-grid grid-container related-items">
   <h2><?php echo __('More to explore'); ?></h2>
   <div class="grid-items">
     <?php if (!empty($collection)): ?>

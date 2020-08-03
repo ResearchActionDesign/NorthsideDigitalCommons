@@ -10,7 +10,6 @@ $heading-font-family: "Montserrat", "Gill Sans MT", "Gill Sans", sans-serif;
 //* @end */
 
 //* @group ----- Colors ----- */
-
 $purple--dark: #412560;
 $purple--light: #806998;
 $teal: #00739b;
@@ -24,9 +23,10 @@ $accent-color: #7b5c7e;
 $green: #316034;
 $button-dark: $green;
 $letter-blue: #0b2243;
-
 //* @end */
 
+//* @group ----- Images ----- */
+$square-thumbnail-size: 200px;
 //* @group ----- Mixins ----- */
 
 @mixin outline-button() {

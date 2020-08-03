@@ -2,15 +2,4 @@
   #content > div {
     @include container;
   }
-
-  .header-description {
-    display: flex;
-  }
-}
-
-@media (max-width: 768px) {
-  .collections .header-description {
-    display: flex;
-    flex-direction: column;
-  }
 }

@@ -4,6 +4,7 @@
  */
 
 const ORAL_HISTORY_ITEM_TYPE = 4;
+const IMAGE_ITEM_TYPE = 6;
 const PERSON_ITEM_TYPE = 12;
 
 class People_ItemsController extends AbstractMCJCItemController

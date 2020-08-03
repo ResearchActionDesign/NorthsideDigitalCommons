@@ -41,7 +41,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   </ul>
 </div>
 
-<div class="peoples-item-container">
+<div class="grid-container">
+  <div class="grid-items">
   <?php foreach (loop('items') as $item): ?>
   <?php
   // TODO: Replace this with the related-item common file potentially.
@@ -93,6 +94,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   </a>
 
   <?php endforeach; ?>
+</div>
 </div>
 <div <?php echo pagination_links(); ?> <?php fire_plugin_hook(
      'public_items_browse',

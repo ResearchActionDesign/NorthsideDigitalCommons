@@ -35,7 +35,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     </div>
   </div>
   <?php if ($topics): ?>
-  <div class="grid topics-grid">
+  <div class="grid-container topics-grid">
+    <div class="grid-items">
     <?php foreach (loop('topics') as $topic): ?>
     <?php
     $topicClass = strtolower($topic->topicType);
@@ -90,6 +91,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     </a>
 
     <?php endforeach; ?>
+  </div>
   </div>
   <?php endif; ?>
 </div>

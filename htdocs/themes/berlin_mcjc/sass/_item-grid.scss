@@ -1,145 +1,138 @@
-.explore-grid,
-.in-the-community,
-.oral-histories,
-.back-container,
-.topics-content {
+.grid-container {
   @include container;
 
-  div.peoples-item-container,
-  div.grid-items,
-  div.topics-grid,
-  div.collection-grid {
+  .grid-items {
+    a.item {
+      text-decoration: none;
+    }
+
+    .item {
+      position: relative;
+      overflow: hidden;
+      min-width: 250px;
+      background: #eee;
+      padding: 0;
+      width: 295px;
+      height: 295px;
+      margin: 10px;
+
+      .item-title {
+        background: $accent-color;
+        opacity: 0.85;
+        display: none;
+        padding: 1em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        color: #fff;
+        width: 100%;
+      }
+
+      &.has-description,
+      .exhibit-gallery-item {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+      }
+
+      &.has-picture {
+        padding: 0;
+
+        .item-title {
+          display: block;
+        }
+
+        .item-meta {
+          top: 100%;
+          width: 100%;
+          transition: 0.5s;
+        }
+
+        &:hover {
+          .item-meta {
+            top: 0;
+          }
+
+          .item-title {
+            display: none;
+          }
+        }
+      }
+
+      .item-meta {
+        opacity: 0.85;
+        position: relative;
+        bottom: 0;
+        background: $accent-color;
+        color: #ffffff;
+        padding: 1em;
+        height: 100%;
+
+        h2 {
+          margin-top: 0;
+          position: relative;
+          top: 121.5px; // Centered within item-meta div.
+          text-align: center;
+          color: white;
+          text-decoration: none;
+          font-size: 20px;
+        }
+      }
+
+      &.has-picture,
+      &.has-description {
+        .item-meta h2 {
+          margin-top: 1.5em;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  &:not(.masonry-grid) .grid-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0 -20px;
-  }
-}
 
-div.peoples-item-container,
-div.grid-items,
-div.topics-grid,
-div.collection-grid {
-  a.item {
-    text-decoration: none;
-  }
+    .item {
+      .item-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
 
-  .item {
-    position: relative;
-    overflow: hidden;
-    min-width: 250px;
-    background: #eee;
-    padding: 0;
-    width: 295px;
-    height: 295px;
-    margin: 10px;
-
-    .item-title {
-      background: $accent-color;
-      opacity: 0.85;
-      display: none;
-      padding: 1em;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      position: absolute;
-      bottom: 0;
-      text-align: center;
-      color: #fff;
-      width: 100%;
-    }
-
-    &.has-description,
-    .exhibit-gallery-item {
-      position: relative;
-      overflow: hidden;
-      padding: 0;
-    }
-
-    &.has-picture {
-      padding: 0;
-
-      .item-title {
-        display: block;
-      }
-
-      .item-meta {
-        top: 100%;
-        transition: 0.5s;
-      }
-
-      &:hover {
-        .item-meta {
-          top: 0;
-        }
-
-        .item-title {
-          display: none;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; // TODO: Verify that this doesn't look bad on IE or other browsers.
+          position: relative;
+          display: block;
         }
       }
     }
+  }
 
-    .item-meta {
-      opacity: 0.85;
-      position: relative;
-      bottom: 0;
-      background: $accent-color;
-      color: #ffffff;
-      padding: 1em;
-      height: 100%;
+  // Masonry grid.
+  &.masonry-grid .grid-items {
+    margin: auto;
 
-      h2 {
-        margin-top: 0;
-        position: relative;
-        top: 121.5px; // Centered within item-meta div.
-        text-align: center;
-        color: white;
-        text-decoration: none;
-        font-size: 20px;
-      }
-    }
-
-    &.has-picture,
-    &.has-description {
-      .item-meta h2 {
-        margin-top: 1.5em;
-        top: 0;
-      }
-    }
-
-    .item-img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+    .item {
+      height: auto;
+      margin: 0;
+      margin-bottom: 20px;
+      display: block;
 
       img {
         width: 100%;
-        height: 100%;
-        object-fit: cover; // TODO: Verify that this doesn't look bad on IE or other browsers.
-        position: relative;
-        display: block;
+        margin: 0;
       }
-    }
-  }
-}
 
-// Masonry grid.
-.masonry-grid .grid-items {
-  margin: auto;
-
-  .item {
-    height: auto;
-    margin: 0;
-    margin-bottom: 20px;
-    display: block;
-
-    img {
-      width: 100%;
-      margin: 0;
-    }
-
-    .item-meta {
-      position: absolute;
+      .item-meta {
+        position: absolute;
+      }
     }
   }
 }
@@ -147,10 +140,7 @@ div.collection-grid {
 // TODO: Topics offset grid with natural image sizes.
 
 @media (max-width: 481px) {
-  div.peoples-item-container,
-  div.explore-grid,
-  div.topics-grid,
-  div.collection-grid {
+  .grid-container {
     .item {
       width: 100%;
     }
