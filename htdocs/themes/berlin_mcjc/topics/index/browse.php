@@ -35,7 +35,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     </div>
   </div>
   <?php if ($topics): ?>
-  <div class="topics-grid">
+  <div class="grid topics-grid">
     <?php foreach (loop('topics') as $topic): ?>
     <?php
     $topicClass = strtolower($topic->topicType);
