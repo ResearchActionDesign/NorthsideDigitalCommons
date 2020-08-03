@@ -9,20 +9,9 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
 <div class="collection-top-header">
   <h1><?php echo $collectionTitle; ?></h1>
   <div class="header-description">
-    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quod libero nulla quia autem? Sapiente
-      aliquid voluptatibus veritatis. Consequatur, voluptatem! Facilis, accusantium doloremque. Eaque, ipsum corporis?
-      Animi dolorem numquam ullam!</p>
-    <div class="collection-header-img">PLACEHOLDER</div>
-  </div>
-</div>
-
-<div class="collection-main-content">
-  <div class="collection-description">
     <?php echo metadata('collection', ['Dublin Core', 'Description']); ?>
   </div>
-  <div class=" related-items">Related-item PlaceHolder</div>
 </div>
-
 
 <div class="collection-grid">
 
