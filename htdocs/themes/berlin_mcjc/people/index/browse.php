@@ -10,10 +10,11 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 <div class="top-header">
 
   <h1><?php echo $pageTitle; ?></h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit diam a nulla tempus rhoncus. Aliquam erat
-    volutpat.
-  </p>
+  <?php if (
+      $link_text = get_theme_option('homepage_meet_our_neighbors_text')
+  ): ?>
+      <p><?php echo $link_text; ?></p>
+  <?php endif; ?>
 
 </div>
 <div class="filter-by-letter">
@@ -41,7 +42,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   </ul>
 </div>
 
-<div class="peoples-item-container">
+<div class="grid-container">
+  <div class="grid-items">
   <?php foreach (loop('items') as $item): ?>
   <?php
   // TODO: Replace this with the related-item common file potentially.
@@ -93,6 +95,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   </a>
 
   <?php endforeach; ?>
+</div>
 </div>
 <div <?php echo pagination_links(); ?> <?php fire_plugin_hook(
      'public_items_browse',

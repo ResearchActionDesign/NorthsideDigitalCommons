@@ -480,5 +480,38 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
         }
       }
     }
+
+    // Upgrade tags!
+    if ((double)$params['old_version'] < 2.18) {
+      require('util/TagUpdates.php');
+      $this->updateTags($AUG_2020_TAG_UPDATES);
+    }
+  }
+
+  protected function updateTags($tag_updates_array) {
+    $logger = Zend_Registry::get('bootstrap')->getResource('Logger');
+    foreach ($tag_updates_array as $item) {
+      $tagQuery = $this->_db->getTable('Tag')->getSelect()->where('tags.name = ?', [$item['oldTag'],])->assemble();
+      $tag = $this->_db->getTable('Tag')->fetchObject($tagQuery);
+
+      if (!$tag) {
+        if ($logger) {
+          $logger->log('Tag not found: ' . $item['oldTag'],Zend_Log::WARN);
+        }
+        continue;
+      }
+
+      switch($item['action']) {
+        case 'REMOVE':
+          $tag->delete();
+          break;
+        case 'REPLACE':
+          $tag->rename([$item['newTag'],]);
+          break;
+        case 'ADD':
+          $tag->rename([$item['oldTag'], $item['newTag']]);
+          break;
+      }
+    }
   }
 }

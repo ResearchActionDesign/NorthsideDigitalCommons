@@ -89,16 +89,34 @@ if (!Berlin) {
       var filter = $(this).attr("data-filter");
       if ($(this).is(":checked")) {
         if ($("#grid__filter input:checked").length === 1) {
-          $(".grid div.grid__item").hide();
+          $(".grid .item").hide();
         }
-        $(".grid div.grid__item." + filter).show();
+        $(".grid .item." + filter).show();
       } else {
         if (!$("#grid__filter input:checked").length) {
-          $(".grid div.grid__item").show();
+          $(".grid .item").show();
         } else {
-          $(".grid div.grid__item." + filter).hide();
+          $(".grid .item." + filter).hide();
         }
       }
+    });
+  });
+
+  $().ready(function () {
+    // Masonry grids.
+
+    var $grid = $(".masonry-grid .grid-items");
+
+    $grid.masonry({
+      itemSelector: ".item",
+      columnWidth: 295,
+      gutter: 20,
+      horizontalOrder: true,
+      fitWidth: true,
+    });
+
+    $grid.imagesLoaded().progress(function () {
+      $grid.masonry("layout");
     });
   });
 })(jQuery);

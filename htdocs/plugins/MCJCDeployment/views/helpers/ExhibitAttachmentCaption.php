@@ -19,9 +19,16 @@ class MCJCDeployment_View_Helper_ExhibitAttachmentCaption extends Zend_View_Help
             return '';
         }
 
-        $html = '<div class="exhibit-item-caption item-meta">'
+        $html = '<div class="exhibit-item-caption item-meta">';
+        if (isset($attachment['title'])) {
+          $html .= '<h3>' . $attachment['title'] . '</h3>';
+        }
+        $html .= '<div class="item-description">'
               . $attachment['caption']
-              . '</div>';
+              . '</div></div>';
+        if (isset($attachment['title'])) {
+          $html .= '<div class="item-title">' . $attachment['title'] . '</div>';
+        }
 
         return apply_filters('exhibit_attachment_caption', $html, array(
             'attachment' => $attachment

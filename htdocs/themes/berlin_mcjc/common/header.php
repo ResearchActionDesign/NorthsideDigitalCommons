@@ -53,9 +53,11 @@ if (
   ]); ?>
   <?php queue_js_file('vendor/respond'); ?>
   <?php queue_js_file('vendor/jquery-accessibleMegaMenu'); ?>
-  <?php queue_js_file('berlin'); ?>
+  <?php queue_js_file('masonry.min'); ?>
+  <?php queue_js_file('imagesLoaded.pkgd.min'); ?>
+    <?php queue_js_file('berlin'); ?>
   <?php queue_js_file('globals'); ?>
-  <?php echo head_js(); ?>
+    <?php echo head_js(); ?>
 </head>
  <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
     <a href="#content" id="skipnav"><?php echo __(

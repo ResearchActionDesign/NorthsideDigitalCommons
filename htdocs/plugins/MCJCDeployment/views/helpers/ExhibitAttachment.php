@@ -18,12 +18,11 @@ class MCJCDeployment_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
    * @param array $fileOptions Array of options for file_markup
    * @param array $linkProps Array of options for exhibit_builder_link_to_exhibit_item
    * @param boolean $forceImage Whether to display the attachment as an image
-   *  always Defaults to false.
+   *  always Defaults to true.
    * @return string
    */
-  public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = false)
+  public function exhibitAttachment($attachment, $fileOptions = array(), $linkProps = array(), $forceImage = true)
   {
-    $forceImage = false;
     $item = $attachment->getItem();
     $file = $attachment->getFile();
 
@@ -36,8 +35,7 @@ class MCJCDeployment_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
         $imageSize = isset($fileOptions['imageSize'])
           ? $fileOptions['imageSize']
           : 'square_thumbnail';
-        $image = file_image($imageSize, $fileOptions['imgAttributes'], $file);
-        $html = exhibit_builder_link_to_exhibit_item($image, $linkProps, $item);
+        $html = file_image($imageSize, $fileOptions['imgAttributes'], $file);
       } else {
         if (!isset($fileOptions['linkAttributes']['href'])) {
           $fileOptions['linkAttributes']['href'] = exhibit_builder_exhibit_item_uri($item);
@@ -46,6 +44,10 @@ class MCJCDeployment_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abst
       }
     } else if($item) {
       $html = exhibit_builder_link_to_exhibit_item(null, $linkProps, $item);
+    }
+
+    if ($item) {
+      $attachment['title'] = metadata($item, array('Dublin Core', 'Title'), array('no_escape' => true));
     }
 
     // Don't show a caption if we couldn't show the Item or File at all

@@ -8,6 +8,8 @@ based on Omeka version 2.5.1
 - Install docker-sync by running `gem install docker-sync`.
 - Run `make prepare-site`. This will copy each of the the example config files into a new file without the `.example` extension.
 - Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
+  - Command to dump database is: `mysqldump <DB_NAME> --user <DB_USER> --password > ~/db-dump-<DATE>.sql`
+  - Be sure to check `db.ini` that database prefix matches what it was on server where you exported DB dump!
 - Optional: Put a version of the files directory in `htdocs/files`
 - Run `make up`
 - To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)

@@ -32,7 +32,9 @@ $searchRecordTypes = get_search_record_types();
           ); ?>">
                   <div class="item-img">
                     <?php if ($recordImage = record_image($recordType)): ?>
+                    <a href="<?php echo mcjc_url_for_item($record); ?>">
                       <?php echo $recordImage; ?>
+                    </a>
                     <?php endif; ?>
                   </div>
                   <div class="item-info">

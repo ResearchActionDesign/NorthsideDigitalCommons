@@ -1,7 +1,6 @@
 </div><!-- end content -->
 
-<footer role="contentinfo" id="footer-content">
-
+<footer role="contentinfo">
     <div id="footer-content" class="center-div">
         <div id="footer-nav">
             <nav><?php echo public_nav_main()->setMaxDepth(0); ?></nav>
@@ -24,11 +23,9 @@
             <?php endif; ?>
      <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
 </footer>
-    </div>
       <div id="footer-omeka"><?php echo __(
           'Proudly powered by <a href="http://omeka.org">Omeka</a>.'
       ); ?></div>
-    </div>
         <!-- end footer-content -->
 
 

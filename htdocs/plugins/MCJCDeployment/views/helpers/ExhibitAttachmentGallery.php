@@ -19,14 +19,15 @@ class MCJCDeployment_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
     public function exhibitAttachmentGallery($attachments, $fileOptions = array(), $linkProps = array())
     {
         if (!isset($fileOptions['imageSize'])) {
-            $fileOptions['imageSize'] = 'square_thumbnail';
+            $fileOptions['imageSize'] = 'thumbnail';
         }
         
         $html = '';
         foreach  ($attachments as $attachment) {
-            $html .= '<div class="item has-description has-picture">';
-            $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, true);
-            $html .= '</div>';
+          $attachmentUrl = mcjc_url_for_item($attachment);
+          $html .= '<a class="item has-description has-picture" href="' . $attachmentUrl . '">';
+          $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, true);
+          $html .= '</a>';
         }
     
         return apply_filters('exhibit_attachment_gallery_markup', $html,
