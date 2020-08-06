@@ -38,10 +38,11 @@ enableContributionAjaxForm(<?php echo js_escape(
   <div class='header-background-container add-story-image'>
     <div class="header-background-container-content">
       <h1 class='image-title'> <?php echo $imageTitle; ?> </h1>
-      <p class="image-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, quo saepe non magnam
-        cum, molestiae
-        incidunt voluptatum, hic nisi dolor fuga? Mollitia magnam velit aliquid voluptatem saepe sit alias laboriosam.
-      </p>
+      <?php if (
+          $link_text = get_theme_option('homepage_tell_your_story_text')
+      ): ?>
+          <p class="image-text"><?php echo $link_text; ?></p>
+      <?php endif; ?>
     </div>
   </div>
 </div>

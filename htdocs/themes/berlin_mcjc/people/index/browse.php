@@ -10,10 +10,11 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 <div class="top-header">
 
   <h1><?php echo $pageTitle; ?></h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit diam a nulla tempus rhoncus. Aliquam erat
-    volutpat.
-  </p>
+  <?php if (
+      $link_text = get_theme_option('homepage_meet_our_neighbors_text')
+  ): ?>
+      <p><?php echo $link_text; ?></p>
+  <?php endif; ?>
 
 </div>
 <div class="filter-by-letter">

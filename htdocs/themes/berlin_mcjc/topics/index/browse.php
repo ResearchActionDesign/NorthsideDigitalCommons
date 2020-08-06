@@ -6,9 +6,9 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 <div class="header-background-container topics-image">
   <div class="header-background-container-content">
     <h1 class="image-title"><?php echo $pageTitle; ?></h1>
-    <p class="image-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, quo saepe non magnam
-      cum, molestiae
-      incidunt voluptatum, hic nisi dolor fuga? Mollitia magnam velit aliquid voluptatem saepe sit alias laboriosam.</p>
+    <?php if ($link_text = get_theme_option('homepage_explore_themes_text')): ?>
+        <p class="image-text"><?php echo $link_text; ?></p>
+    <?php endif; ?>
   </div>
 </div>
 

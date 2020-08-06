@@ -21,6 +21,7 @@ services:
     image: mysql:5.7
     volumes:
       - ./db:/docker-entrypoint-initdb.d:cached
+      - mcjc_omeka_mysql-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: "omeka"
       MYSQL_ROOT_PASSWORD: "root"
@@ -36,3 +37,5 @@ services:
 volumes:
   mcjc-htdocs-sync:
     external: true
+  mcjc_omeka_mysql-data:
+    driver: local
