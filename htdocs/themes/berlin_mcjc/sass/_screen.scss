@@ -4,10 +4,6 @@
   @include box-sizing(border-box);
 }
 
-* + * {
-  margin-top: $base-line-height;
-}
-
 body {
   color: $black;
   background-color: $grey--medium;
@@ -34,6 +30,8 @@ textarea {
 }
 
 input[type="checkbox"] {
+  transform: scale(2);
+  margin-right: 0.5em;
   display: inline-block;
 
   & + label {

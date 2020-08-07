@@ -19,7 +19,7 @@ if (!isset($description)) {
     );
 }
 if (!isset($image)) {
-    $baseImageWidth = '200px'; // Set to Derivative Images width.
+    $baseImageWidth = '300px'; // Set to Derivative Images width.
 
     $image_attrs = ['width' => $baseImageWidth, 'alt' => ''];
     if (!$masonry) {

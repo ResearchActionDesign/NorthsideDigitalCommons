@@ -29,7 +29,6 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
 
 <?php
 endif; ?>
-<?php echo pagination_links(); ?>
 
 <div class="grid-container">
     <div class="grid-items">

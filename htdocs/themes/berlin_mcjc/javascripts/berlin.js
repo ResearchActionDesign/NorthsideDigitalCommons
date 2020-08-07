@@ -89,16 +89,17 @@ if (!Berlin) {
       var filter = $(this).attr("data-filter");
       if ($(this).is(":checked")) {
         if ($("#grid__filter input:checked").length === 1) {
-          $(".grid .item").hide();
+          $(".grid-items .item").hide();
         }
-        $(".grid .item." + filter).show();
+        $(".grid-items .item." + filter).show();
       } else {
         if (!$("#grid__filter input:checked").length) {
-          $(".grid .item").show();
+          $(".grid-items .item").show();
         } else {
-          $(".grid .item." + filter).hide();
+          $(".grid-items .item." + filter).hide();
         }
       }
+      $(".masonry-grid .grid-items").masonry("layout");
     });
   });
 
@@ -109,7 +110,7 @@ if (!Berlin) {
 
     $grid.masonry({
       itemSelector: ".item",
-      columnWidth: 295,
+      columnWidth: 300, // Coordinate this with $square-thumbnail-size in base.scss and with the Derivative images width setting.
       gutter: 20,
       horizontalOrder: true,
       fitWidth: true,

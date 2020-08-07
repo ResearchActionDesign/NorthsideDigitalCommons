@@ -2,7 +2,6 @@
 /**
  * Note -- This file renders oral history & image items. "Person" items are rendered by people/items/show.php.
  */
-
 queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
 $itemType = metadata('item', ['Dublin Core', 'Type']);
