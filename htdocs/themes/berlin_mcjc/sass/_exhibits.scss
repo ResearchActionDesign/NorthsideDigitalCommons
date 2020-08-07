@@ -48,7 +48,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $tablet-width) {
   .exhibit-title-container img.exhibit-image {
     float: none;
     max-width: 100%;

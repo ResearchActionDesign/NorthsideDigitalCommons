@@ -1,46 +1,57 @@
 .add-story-image {
   background-image: url("../assets/images/Photo.png");
 }
-.descriptionParagraph {
-  line-height: 30px;
-}
-input[type="text"],
-textarea {
-  border-radius: 5px;
-  width: 450px;
-  height: 50px;
-  padding: 10px;
-}
 
-div#contribution-type-form {
-  .field {
-    label {
-      text-transform: uppercase;
-      font-weight: bold;
+.contribution-content-wrapper {
+  background-color: white;
+  padding: 1em;
+
+  div#contribution-type-form {
+    .field {
+      margin-top: 1.5em;
+
+      input[type="text"],
+      textarea {
+        border-radius: 5px;
+        width: 50vw;
+        height: 2.5em;
+        padding: 0.5em;
+      }
+
+      textarea {
+        height: 10em;
+      }
+
+      label {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
     }
 
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    .explanation {
+      margin-bottom: 0;
+    }
+
+    .contribute-terms a {
+      text-decoration: underline;
+    }
   }
 
-  .explanation {
-    margin-bottom: 0;
-  }
-
-  .contribute-terms a {
-    text-decoration: underline;
+  #form-submit.submit {
+    @include outline-button;
+    margin-top: 1.5em;
   }
 }
 
-#form-submit.submit {
-  @include outline-button;
-
-  margin-top: 1.5em;
-}
-@media screen and (max-width: 400px) {
-  input[type="text"],
-  textarea {
-    width: 300px;
+@media screen and (max-width: $mobile-landscape-width) {
+  .contribution-content-wrapper div#contribution-type-form .field {
+    input[type="text"],
+    textarea {
+      width: 80vw;
+    }
   }
 }

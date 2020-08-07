@@ -5,23 +5,6 @@
  */
 
 /* @group ----- Generic ----- */
-
-body {
-  color: $black;
-  font: $base-font-size $body-font-family;
-  line-height: $base-font-size * 1.5;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: $purple--dark;
-  font-family: $heading-font-family;
-}
-
 a,
 a:link,
 summary {
@@ -50,7 +33,7 @@ nav a,
 #primary-nav {
   display: block;
 
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
+  @media only screen and (min-width: $tablet-width) and (max-width: $narrow-screen) {
     display: none;
   }
 
@@ -85,7 +68,6 @@ nav a,
 /* @end */
 
 /* @group ----- Items ----- */
-
 #item-images {
   float: left;
   margin-right: 2em;
@@ -265,7 +247,6 @@ a.button {
 /* @end */
 
 /* @group ----- Items/Search ----- */
-
 #advanced-search-form {
   label,
   .label {

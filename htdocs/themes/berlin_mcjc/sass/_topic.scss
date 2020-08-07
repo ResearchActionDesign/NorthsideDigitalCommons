@@ -6,26 +6,24 @@
 .filter_container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px;
   background-color: $white;
 
   #grid__filter {
     display: flex;
-    align-items: center;
   }
 
   .grid__filter__title {
-    padding: 15px;
+    margin-right: 1em;
     font-weight: bold;
   }
 
   .grid__filter__option {
-    margin-right: 20px;
+    margin-right: 1em;
 
     .checkbox {
-      zoom: 2;
-      margin-right: 10px;
+      transform: scale(2);
+      margin-right: 0.5em;
     }
   }
 }
@@ -36,10 +34,9 @@
 
 span.filter-titles {
   position: relative;
-  top: -3px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $tablet-width) {
   .filter_container {
     display: flex;
     flex-direction: column;
@@ -50,14 +47,11 @@ span.filter-titles {
     }
     .grid__filter__title {
       padding: 0;
-    }
-    .checkbox {
-      zoom: 1.5;
     }
   }
 }
 
-@media (max-width: 481px) and (min-width: 320px) {
+@media (max-width: $mobile-landscape-width) {
   .filter_container {
     display: flex;
     flex-direction: column;
@@ -68,9 +62,6 @@ span.filter-titles {
     }
     .grid__filter__title {
       padding: 0;
-    }
-    .checkbox {
-      zoom: 1.5;
     }
   }
 }

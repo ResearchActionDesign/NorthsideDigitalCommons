@@ -17,7 +17,7 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
   <?php if (metadata('collection', 'total_items') > 0): ?>
     <div class="grid-items">
   <?php foreach (loop('items') as $item): ?>
-  <?php echo common('related-item', [
+  <?php echo common('grid-item', [
       'item' => $item,
       'class' => 'collection',
       'masonry' => true,

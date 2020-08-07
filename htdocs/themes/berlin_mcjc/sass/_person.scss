@@ -45,10 +45,7 @@
 
       h2 {
         grid-area: head;
-        font-size: 24px;
         font-weight: bold;
-        color: $black;
-        line-height: 1.2;
       }
 
       .player-element {
@@ -102,7 +99,7 @@ a.button.back {
   padding-left: 40px;
   padding-right: 40px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $tablet-width) {
   .person.show .oral-histories .oral-history {
     display: inline-block;
     width: 100%;

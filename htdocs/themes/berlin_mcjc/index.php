@@ -11,9 +11,6 @@
     <?php endif; ?>
 </div>
 <div id="primary">
-  <?php if ($homepageText = get_theme_option('Homepage Text')): ?>
-    <div id="homepage-text"><?php echo $homepageText; ?></div>
-  <?php endif; ?>
     <div id="homepage-menu">
       <div class="homepage-menu__item">
         <div class='homepage-menu-image'>

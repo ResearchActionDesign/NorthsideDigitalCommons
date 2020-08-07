@@ -29,9 +29,14 @@
 .about-content-wrapper {
   display: flex;
   flex-direction: row;
+
+  .simple-pages-text-wrapper {
+    background: white;
+    padding: 0.5em;
+  }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $tablet-width) {
   .about-content-wrapper {
     flex-direction: column;
   }

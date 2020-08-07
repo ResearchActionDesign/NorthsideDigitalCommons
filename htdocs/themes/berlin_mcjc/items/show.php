@@ -2,7 +2,6 @@
 /**
  * Note -- This file renders oral history & image items. "Person" items are rendered by people/items/show.php.
  */
-
 queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
 $itemType = metadata('item', ['Dublin Core', 'Type']);
@@ -105,7 +104,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <h2><?php echo __('In this ') . $itemType; ?></h2>
   <div class="grid-items">
     <?php foreach (loop('depicted_items') as $relatedItem): ?>
-    <?php echo common('related-item', [
+    <?php echo common('grid-item', [
         'item' => $relatedItem,
         'class' => 'depicted',
     ]); ?>
@@ -116,14 +115,14 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 
 <?php endif; ?>
 <?php if (!empty($related_items) || !empty($collection)): ?>
-<div class="explore-grid grid-container related-items">
+<div class="explore-grid grid-container masonry-grid related-items">
   <h2><?php echo __('More to explore'); ?></h2>
   <div class="grid-items">
     <?php if (!empty($collection)): ?>
     <?php
     $collectionTitle =
         __('Collection') . ': ' . metadata($collection, 'display_title');
-    echo common('related-item', [
+    echo common('grid-item', [
         'item' => $collection,
         'class' => 'related-item',
         'title' => $collectionTitle,
@@ -132,9 +131,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     ?>
     <?php endif; ?>
     <?php foreach (loop('related_items') as $relatedItem): ?>
-    <?php echo common('related-item', [
+    <?php echo common('grid-item', [
         'item' => $relatedItem,
         'class' => 'related-item',
+        'masonry' => true,
     ]); ?>
     <?php endforeach; ?>
   </div>

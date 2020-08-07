@@ -1,0 +1,87 @@
+html {
+  color: $black;
+  font: $base-font-size $body-font-family;
+  line-height: $base-line-height;
+}
+
+p {
+  margin: 0;
+  margin-bottom: $base-line-height;
+  font-size: 1em;
+  line-height: $base-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $letter-blue;
+  font-family: $heading-font-family;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+h1,
+h2,
+.h1,
+.h2 {
+  font-weight: normal;
+}
+
+// Sizes computed via https://www.modularscale.com/?20&px&1.1005506885
+// Line-height & margin via https://drewish.com/tools/vertical-rhythm/
+h1,
+.h1 {
+  font-size: 1.777em;
+  text-transform: uppercase;
+  word-break: break-word;
+}
+
+h2,
+.h2 {
+  font-size: 1.615em;
+}
+
+h3,
+.h3 {
+  font-size: 1.467em;
+}
+
+h4,
+.h4 {
+  font-size: 1.333em;
+}
+
+h5,
+.h5 {
+  font-size: 1.211em;
+}
+
+h6,
+.h6 {
+  font-size: 1.101em;
+}
+
+h1 a,
+h2 a,
+h3 a {
+  text-decoration: none;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+strong,
+b {
+  font-weight: bold;
+}

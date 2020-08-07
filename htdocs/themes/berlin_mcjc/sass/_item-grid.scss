@@ -9,12 +9,9 @@
     .item {
       position: relative;
       overflow: hidden;
-      min-width: 250px;
-      background: #eee;
+      background: $grey--dark;
       padding: 0;
-      width: 295px;
-      height: 295px;
-      margin: 10px;
+      width: $square-thumbnail-size;
 
       .item-title {
         background: $accent-color;
@@ -29,6 +26,10 @@
         text-align: center;
         color: #fff;
         width: 100%;
+      }
+
+      .item-description {
+        font-size: 0.826em;
       }
 
       &.has-description,
@@ -74,18 +75,20 @@
         h2 {
           margin-top: 0;
           position: relative;
-          top: 121.5px; // Centered within item-meta div.
+          top: calc(
+            (#{$square-thumbnail-size} - 80px) / 2
+          ); // Centered within item-meta div.
           text-align: center;
           color: white;
           text-decoration: none;
-          font-size: 20px;
+          font-size: 1em;
+          line-height: 1em;
         }
       }
 
       &.has-picture,
       &.has-description {
         .item-meta h2 {
-          margin-top: 1.5em;
           top: 0;
         }
       }
@@ -93,12 +96,15 @@
   }
 
   &:not(.masonry-grid) .grid-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
     margin: 0 -20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, $square-thumbnail-size);
+    justify-content: center;
 
     .item {
+      height: $square-thumbnail-size;
+
       .item-img {
         position: absolute;
         width: 100%;
@@ -137,9 +143,7 @@
   }
 }
 
-// TODO: Topics offset grid with natural image sizes.
-
-@media (max-width: 481px) {
+@media (max-width: $mobile-landscape-width) {
   .grid-container {
     .item {
       width: 100%;

@@ -12,7 +12,7 @@
 // ==================================================
 $base-width: 1250px;
 $narrow-screen: 920px;
-$tablet-width: 728px;
+$tablet-width: 768px;
 $mobile-landscape-width: 420px;
 $mobile-portrait-width: 300px;
 
@@ -60,7 +60,7 @@ $margin: 10px;
   margin-left: auto;
   margin-right: auto;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: $tablet-width) {
     margin: 0;
   }
 }
