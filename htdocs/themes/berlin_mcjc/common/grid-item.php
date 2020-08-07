@@ -24,6 +24,7 @@ if (!isset($image)) {
     $image_attrs = ['width' => $baseImageWidth, 'alt' => ''];
     if (!$masonry) {
         $image_attrs['height'] = $baseImageWidth;
+        $image_attrs['loading'] = 'lazy';
     }
     $image = record_image(
         $item,
