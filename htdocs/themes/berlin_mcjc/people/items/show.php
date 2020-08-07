@@ -52,7 +52,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <div class="browse grid-container related-items">
     <div class='grid-items'>
     <?php foreach (loop('related_items') as $relatedItem): ?>
-      <?php echo common('related-item', [
+      <?php echo common('grid-item', [
           'item' => $relatedItem,
       ]); ?>
       <?php endforeach; ?>
@@ -73,7 +73,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
                   'Dublin Core',
                   'Title',
               ]); ?>
-              <?php echo common('related-item', [
+              <?php echo common('grid-item', [
                   'masonry' => true,
                   'item' => $inTheCommunityItem,
                   'class' => 'in-the-community',

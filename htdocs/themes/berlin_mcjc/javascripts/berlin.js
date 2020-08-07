@@ -113,6 +113,7 @@ if (!Berlin) {
       gutter: 20,
       horizontalOrder: true,
       fitWidth: true,
+      initLayout: false,
     });
 
     $grid.imagesLoaded().progress(function () {

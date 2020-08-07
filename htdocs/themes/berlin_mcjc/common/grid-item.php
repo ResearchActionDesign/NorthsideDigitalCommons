@@ -2,11 +2,34 @@
 const ORAL_HISTORY_ITEM_TYPE = 4;
 const IMAGE_ITEM_TYPE = 6;
 
+if (!isset($masonry)) {
+    $masonry = false;
+}
 if (!isset($title)) {
     $title = metadata($item, 'display_title');
 }
-if (!isset($masonry)) {
-    $masonry = false;
+if (!isset($url)) {
+    $url = mcjc_url_for_item($item);
+}
+if (!isset($description)) {
+    $description = metadata(
+        $item,
+        ['Dublin Core', 'Description'],
+        ['snippet' => 250]
+    );
+}
+if (!isset($image)) {
+    $baseImageWidth = '200px'; // Set to Derivative Images width.
+
+    $image_attrs = ['width' => $baseImageWidth, 'alt' => ''];
+    if (!$masonry) {
+        $image_attrs['height'] = $baseImageWidth;
+    }
+    $image = record_image(
+        $item,
+        $masonry ? 'thumbnail' : 'square_thumbnail',
+        $image_attrs
+    );
 }
 
 $icon = '';
@@ -24,30 +47,17 @@ switch ($item->item_type_id) {
 if ($icon) {
     $title = $icon . '&nbsp;' . $title;
 }
-
-$description = metadata(
-    $item,
-    ['Dublin Core', 'Description'],
-    ['snippet' => 250]
-);
-
-$url = mcjc_url_for_item($item);
-
-$hasFiles = ($isCollection ?? false) || metadata($item, 'has files');
 ?>
 <a href="<?php echo $url; ?>" class="item record related-item tile<?php
-echo $hasFiles ? " has-picture" : "";
+echo $image ? " has-picture" : "";
 echo $description ? " has-description" : "";
-echo $class ? " {$class}" : "";
+echo $class ?? false ? " {$class}" : "";
 ?>">
+    <?php if ($image): ?>
       <div class="item-img">
-        <?php echo item_image(
-            $masonry ? 'thumbnail' : 'square_thumbnail',
-            ['alt' => ''],
-            0,
-            $item
-        ); ?>
+        <?php echo $image; ?>
       </div>
+    <?php endif; ?>
       <div class="item-meta">
           <h2><?php echo $title; ?></h2>
           <?php if ($description): ?>
