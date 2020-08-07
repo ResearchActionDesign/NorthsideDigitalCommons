@@ -137,9 +137,7 @@
   }
 }
 
-// TODO: Topics offset grid with natural image sizes.
-
-@media (max-width: 481px) {
+@media (max-width: $mobile-landscape-width) {
   .grid-container {
     .item {
       width: 100%;

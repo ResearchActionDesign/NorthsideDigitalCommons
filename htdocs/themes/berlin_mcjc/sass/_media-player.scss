@@ -182,7 +182,7 @@
   margin-top: 64px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $tablet-width) {
   .person .oral-history .audio-mpeg {
     margin-top: 72px;
   }

@@ -5,11 +5,16 @@
     @include container;
   }
 
-  .top-header {
-    height: 300px;
-    margin-bottom: 5px;
+  .header-background-container {
+    height: auto;
 
-    @include headers-text;
+    .header-background-container-content {
+      color: $black;
+
+      h1 {
+        color: $black;
+      }
+    }
   }
 
   .people-page-header {
@@ -22,7 +27,7 @@
     text-align: left;
   }
 
-  @media (max-width: 1286px) {
+  @media (max-width: $base-width) {
     .people {
       .top-header {
         h1 {
@@ -46,7 +51,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: $tablet-width) {
   .people {
     .top-header {
       h1 {
@@ -66,7 +71,7 @@
   }
 }
 
-@media (max-width: 481px) and (min-width: 320px) {
+@media only screen and (max-width: $mobile-landscape-width) {
   .top-header {
     h1 {
       text-align: center;

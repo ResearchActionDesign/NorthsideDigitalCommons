@@ -11,15 +11,14 @@
 .header-background-container-content {
   @include container;
   @include headers-text;
-  .image-title {
-    color: white;
-  }
-  .image-text {
+  color: white;
+
+  h1 {
     color: white;
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: $tablet-width) {
   .header-background-container {
     height: 400px;
   }
@@ -36,7 +35,7 @@
   }
 }
 
-@media (max-width: 481px) and (min-width: 320px) {
+@media only screen and (max-width: $mobile-landscape-width) {
   .header-background-container-content {
     .image-title {
       font-size: 25px;

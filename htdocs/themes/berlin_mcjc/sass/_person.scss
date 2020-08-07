@@ -102,7 +102,7 @@ a.button.back {
   padding-left: 40px;
   padding-right: 40px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $tablet-width) {
   .person.show .oral-histories .oral-history {
     display: inline-block;
     width: 100%;

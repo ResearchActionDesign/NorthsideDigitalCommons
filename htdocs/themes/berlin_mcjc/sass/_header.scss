@@ -103,7 +103,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 959px) {
+@media only screen and (max-width: $narrow-screen) {
   header {
     .nav-search-wrapper {
       display: none;
@@ -167,7 +167,7 @@ header {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: $tablet-width) {
   header {
     padding: 3em 16px;
   }

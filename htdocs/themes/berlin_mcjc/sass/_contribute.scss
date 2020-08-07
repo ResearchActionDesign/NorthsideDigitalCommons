@@ -38,7 +38,7 @@ div#contribution-type-form {
 
   margin-top: 1.5em;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: $mobile-landscape-width) {
   input[type="text"],
   textarea {
     width: 300px;

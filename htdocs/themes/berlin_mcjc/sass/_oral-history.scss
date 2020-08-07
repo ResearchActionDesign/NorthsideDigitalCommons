@@ -60,7 +60,7 @@
   width: auto;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $tablet-width) {
   .oral-image-title-container {
     display: flex;
     flex-wrap: wrap;

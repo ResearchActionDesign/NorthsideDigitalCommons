@@ -5,43 +5,45 @@
   grid-template-areas: "title nav search";
   padding: 50px;
 }
-/* styles for homepage bottom menu */
+
+#homepage-text {
+  text-align: center;
+}
 
 /*menu container */
 #homepage-menu {
   display: flex;
   flex-direction: column;
   margin: auto auto;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .homepage-menu__item {
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
   background: white;
-  width: 820px;
-}
-.homepage-menu-image {
-  width: 250px;
-  img {
-    width: auto;
-    height: 100%;
+  width: 60vw;
+  .homepage-menu-image {
+    overflow: hidden;
+    flex-basis: 33%;
+    img {
+      height: 100%;
+    }
   }
-}
-.homepage-menu-content {
-  padding-left: 50px;
-  justify-content: center;
 
-  h2 {
-    color: $letter-blue;
-    font-weight: bold;
+  .homepage-menu-content {
+    h2 {
+      color: $letter-blue;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+    padding-left: 1rem;
+    flex-basis: 66%;
   }
 }
 
 /*homepage video*/
-
 .video-container {
   width: 100%;
   margin: 0 auto;
@@ -53,10 +55,13 @@
   display: block;
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: $narrow-screen) {
+  #homepage-menu {
+    padding: 0 0.5em;
+  }
+
   .homepage-menu__item {
     flex-direction: column;
-    width: 325px;
     text-align: center;
     padding: 1.35em;
     border-radius: 0.3em;
@@ -66,11 +71,5 @@
   }
   .homepage-menu-content {
     padding: 0;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  #homepage-menu {
-    padding: 0 0.5em;
   }
 }

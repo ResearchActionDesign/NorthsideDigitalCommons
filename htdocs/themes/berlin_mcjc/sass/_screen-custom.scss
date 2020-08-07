@@ -50,7 +50,7 @@ nav a,
 #primary-nav {
   display: block;
 
-  @media only screen and (min-width: 768px) and (max-width: 959px) {
+  @media only screen and (min-width: $tablet-width) and (max-width: $narrow-screen) {
     display: none;
   }
 
