@@ -1,13 +1,12 @@
 header {
   .top-header {
     background-color: $white;
-    padding: 20px;
+    padding: 1.25em;
   }
 
   .header-content-wrapper {
     display: flex;
     justify-content: space-between;
-    padding-right: 65px;
   }
 
   .nav-search-wrapper {
@@ -17,7 +16,7 @@ header {
   #site-title {
     color: $purple--dark;
     font-family: $heading-font-family;
-    font-size: 2.375 * $base-font-size;
+    font-size: 2em;
     font-weight: bold;
     letter-spacing: 0.1em;
 
@@ -46,17 +45,18 @@ header {
     #search-toggle:after,
     #submit_search:after {
       color: $black;
-      font-size: 21px;
+      font-size: 1.3em;
     }
   }
 
   #search-container.with-advanced .button {
+    right: 30px;
     left: 4px;
   }
 
   form.search-form {
     position: relative;
-    width: 340px;
+    width: 21.25em;
 
     .show-advanced.button:after {
       color: $black;
@@ -64,7 +64,7 @@ header {
   }
 
   .search-form-container input[type="text"] {
-    border-radius: 0.3em;
+    border-radius: 4px;
   }
 
   .search-close {
@@ -72,11 +72,10 @@ header {
     margin-right: 15px;
     position: relative;
     top: 4px;
-    font-size: 20px;
+    font-size: 1.25em;
   }
 
   .search-form-container {
-    display: flex;
     display: none;
 
     .show-advanced.button {
@@ -86,6 +85,7 @@ header {
 
   #primary-nav {
     width: auto;
+    margin: 0;
 
     .nav-menu {
       display: flex;
@@ -95,6 +95,16 @@ header {
     .nav-item {
       white-space: nowrap;
       font-weight: 700;
+
+      a {
+        border: 1px solid transparent;
+
+        &:hover,
+        &:active {
+          background: $white;
+          color: $purple--light;
+        }
+      }
     }
   }
 
@@ -127,7 +137,7 @@ header {
 
           form.search-form {
             float: right;
-            margin: 1em 8px 1em 0;
+            margin: 1em 0.5em 1em 0;
           }
         }
 
@@ -137,7 +147,7 @@ header {
           top: 0.8em;
           padding: 8px;
           border: none;
-          border-radius: 5px;
+          border-radius: 4px;
           font-size: 1em;
           background: transparent;
           color: $green;
@@ -169,6 +179,6 @@ header {
 
 @media only screen and (max-width: $tablet-width) {
   header {
-    padding: 3em 16px;
+    padding: 3em 1em;
   }
 }
