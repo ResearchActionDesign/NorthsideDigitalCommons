@@ -301,7 +301,7 @@ button {
   background-color: $white;
   padding-top: 0.5em;
   margin: 15px 0 15px 0;
-  overflow-x: scroll;
+  overflow-x: auto;
 
   ul {
     display: flex;
@@ -334,4 +334,10 @@ button {
 /* @group ----- Content containers ----- */
 #primary {
   @include container;
+}
+
+#content {
+  > div + div {
+    margin-top: 96px;
+  }
 }

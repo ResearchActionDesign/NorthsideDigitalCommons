@@ -47,6 +47,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
       <?php foreach (loop('items') as $item): ?>
         <?php echo common('grid-item', [
             'item' => $item,
+            'headingLevel' => 'h2',
         ]); ?>
       <?php endforeach; ?>
     </div>

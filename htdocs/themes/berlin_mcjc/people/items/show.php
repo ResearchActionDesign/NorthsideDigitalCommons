@@ -49,11 +49,13 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php endif; ?>
 
 <?php if (count($related_items)): ?>
-  <div class="browse grid-container related-items">
+  <div class="browse masonry-grid grid-container related-items">
+      <h2><?php echo $itemTitle; ?> also appears in...</h2>
     <div class='grid-items'>
     <?php foreach (loop('related_items') as $relatedItem): ?>
       <?php echo common('grid-item', [
           'item' => $relatedItem,
+          'masonry' => true,
       ]); ?>
       <?php endforeach; ?>
     </div>
@@ -62,8 +64,8 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 
 <?php if (count($in_the_community_items)): ?>
 <div class="browse in-the-community">
-  <div class="community-content masonry-grid grid-container">
-    <h3><?php echo __('More to explore'); ?></h3>
+  <div class="community-content grid-container">
+    <h2><?php echo __('More to explore'); ?></h2>
     <div class='grid-items'>
             <?php foreach (
                 loop('in_the_community_items')
@@ -74,7 +76,6 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
                   'Title',
               ]); ?>
               <?php echo common('grid-item', [
-                  'masonry' => true,
                   'item' => $inTheCommunityItem,
                   'class' => 'in-the-community',
                   'title' => "{$inTheCommunityItem->inTheCommunity}: {$loopItemTitle}",
