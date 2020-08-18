@@ -1,14 +1,18 @@
 html {
   color: $black;
-  font: $base-font-size $body-font-family;
-  line-height: $base-line-height;
+  font: 1em $body-font-family;
+  line-height: 1.4em;
 }
 
 p {
   margin: 0;
-  margin-bottom: $base-line-height;
-  font-size: 1em;
-  line-height: $base-line-height;
+  margin-bottom: 0.75em;
+  font-size: 1.125em;
+  line-height: 1.4em;
+}
+
+p:empty {
+  display: none;
 }
 
 h1,
@@ -30,44 +34,44 @@ h6,
 }
 
 h1,
-h2,
-.h1,
-.h2 {
-  font-weight: normal;
-}
-
-// Sizes computed via https://www.modularscale.com/?20&px&1.1005506885
-// Line-height & margin via https://drewish.com/tools/vertical-rhythm/
-h1,
 .h1 {
-  font-size: 1.777em;
-  text-transform: uppercase;
-  word-break: break-word;
+  font-size: 3em;
+  line-height: 1.4em;
 }
 
 h2,
 .h2 {
-  font-size: 1.615em;
+  font-size: 2em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
 }
 
 h3,
 .h3 {
-  font-size: 1.467em;
+  font-size: 1.5em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
 }
 
 h4,
 .h4 {
   font-size: 1.333em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
 }
 
 h5,
 .h5 {
   font-size: 1.211em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
 }
 
 h6,
 .h6 {
-  font-size: 1.101em;
+  font-size: 1.125em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
 }
 
 h1 a,
@@ -84,4 +88,28 @@ i {
 strong,
 b {
   font-weight: bold;
+}
+
+a,
+a:link,
+a:visited,
+summary {
+  color: $green;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: $purple--light;
+  }
+}
+
+a.button {
+  grid-area: button;
+  @include button_link;
+  display: inline-block;
+  margin: 0 0.5em 0.5em 0;
+  text-align: center;
 }

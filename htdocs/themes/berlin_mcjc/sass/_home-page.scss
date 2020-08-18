@@ -22,8 +22,8 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 30px;
-  background: white;
-  width: 60vw;
+  background: $white;
+  width: 720px;
   .homepage-menu-image {
     overflow: hidden;
     flex-basis: 33%;
@@ -38,7 +38,7 @@
       font-weight: bold;
       margin: 0.5rem 0;
     }
-    padding-left: 1rem;
+    padding: 0 1rem;
     flex-basis: 66%;
   }
 }
@@ -56,15 +56,16 @@
 }
 
 @media only screen and (max-width: $narrow-screen) {
-  #homepage-menu {
-    padding: 0 0.5em;
-  }
-
   .homepage-menu__item {
+    width: 100%;
     flex-direction: column;
     text-align: center;
     padding: 1.35em;
     border-radius: 0.3em;
+
+    .button {
+      width: 100%;
+    }
   }
   .homepage-menu-image {
     margin: 0 auto;

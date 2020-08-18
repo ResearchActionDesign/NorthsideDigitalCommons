@@ -83,17 +83,6 @@ th {
 }
 
 /* -- Links -- */
-a:link,
-a:visited {
-  color: #369;
-}
-
-a:hover,
-a:active,
-a:focus {
-  color: #ff8000;
-}
-
 img a {
   border: none;
 }
@@ -104,94 +93,6 @@ header {
   @include container;
   padding: 3em 0;
   position: relative;
-}
-
-#header-image {
-  @include container;
-
-  img {
-    width: 100%;
-    height: auto;
-    vertical-align: bottom;
-    border: solid #ccc;
-    border-width: 1px 1px 0 1px;
-  }
-}
-
-#site-title {
-  float: left;
-  width: 50%;
-  font-weight: normal;
-  font-family: "Gill Sans MT", "Gill Sans", sans-serif;
-  color: #015581;
-  font-size: 3 * $base-font-size;
-  line-height: 2 * $base-line-height;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  position: relative;
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-#site-title a {
-  text-decoration: none;
-}
-
-#search-container {
-  float: right;
-  width: 45%;
-  position: relative;
-  @include adjust-font-size-to(14px);
-
-  h2 {
-    display: none;
-  }
-}
-
-.search-form-container,
-#search-container {
-  input[type="text"],
-  button {
-    border: 1px solid #ccc;
-    background: #fafafa;
-    @include appearance(none);
-    border-radius: 0;
-    height: 30px;
-  }
-
-  input[type="text"] {
-    padding: 3px;
-    width: 100%;
-    behavior: url("../javascripts/boxsizing.htc");
-    @include box-sizing(border-box);
-  }
-
-  button {
-    background: #369;
-    color: white;
-    position: absolute;
-    border: 0;
-    right: 0;
-    top: 0;
-    width: 30px;
-    text-indent: -9999px;
-
-    &:after {
-      font-family: "FontAwesome";
-      content: "\f002";
-      text-indent: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      width: 30px;
-    }
-  }
 }
 
 .show-advanced.button {
@@ -340,10 +241,6 @@ header {
     float: left;
     position: relative;
     overflow: visible;
-
-    &:first-child > a {
-      // border-left: 1px solid #ccc;
-    }
   }
 
   /* first descendant link within a top level navigation item */

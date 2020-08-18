@@ -86,7 +86,7 @@ if (
                           ]
                       ); ?>
                         <div class="search-form-container">
-                            <div class="search-close" aria-label="Hide search bar"><i class="fa fa-times" aria-hidden="true"></i></div>
+                            <button id="search-close" aria-label="Hide search bar">Close search bar</button>
                                 <?php echo search_form(); ?>
                             </div>
                         </div>

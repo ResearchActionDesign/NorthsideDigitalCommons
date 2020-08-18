@@ -1,6 +1,6 @@
 //* @group ----- Typography ----- */
-$base-font-size: 20px;
-$base-line-height: 30px;
+$base-font-size: 16px;
+$base-line-height: 22.4px;
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap");
 $body-font-family: "Lato", Verdana, Arial, sans-serif;
@@ -15,7 +15,7 @@ $black: #0b2243;
 $grey--dark: #414042;
 $grey--medium: #dedae2;
 $grey--light: #f4f3f5;
-$white: #fff;
+$white: #f9f9f9;
 $accent-color: #7b5c7e;
 $green: #316034;
 $button-dark: $green;

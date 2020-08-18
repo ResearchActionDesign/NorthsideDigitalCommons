@@ -8,7 +8,7 @@
     flex-direction: column;
     margin-left: 2em;
     li {
-      background: white;
+      background: $white;
       padding: 1em 2em;
       margin: 1em 1em;
       width: 300px;
@@ -31,7 +31,7 @@
   flex-direction: row;
 
   .simple-pages-text-wrapper {
-    background: white;
+    background: $white;
     padding: 0.5em;
   }
 }

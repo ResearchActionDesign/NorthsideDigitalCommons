@@ -32,6 +32,12 @@ if (!isset($image)) {
         $image_attrs
     );
 }
+if (
+    !isset($headingLevel) ||
+    array_search($headingLevel, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']) === false
+) {
+    $headingLevel = 'h3';
+}
 
 $icon = '';
 switch ($item->item_type_id) {
@@ -60,7 +66,7 @@ echo $class ?? false ? " {$class}" : "";
       </div>
     <?php endif; ?>
       <div class="item-meta">
-          <h2><?php echo $title; ?></h2>
+          <<?php echo $headingLevel; ?>><?php echo $title; ?></<?php echo $headingLevel; ?>>
           <?php if ($description): ?>
             <div class="item-description">
               <?php echo $description; ?>
