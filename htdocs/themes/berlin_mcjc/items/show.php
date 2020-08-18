@@ -5,6 +5,11 @@
 queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
 $itemType = metadata('item', ['Dublin Core', 'Type']);
+$itemTypeDict = [
+    'Still Image' => 'Image',
+    'Oral History' => 'Story',
+];
+
 $itemTypeClass = str_replace(' ', '-', strtolower($itemType));
 $backButtonText = __('Back to all people');
 $itemClasses = '';
@@ -101,7 +106,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 </div>
 <?php if (!empty($depicted_items)): ?>
 <div class="explore-grid grid-container depicted">
-  <h2><?php echo __('In this ') . $itemType; ?></h2>
+  <h2><?php echo __('In this ') .
+      (array_key_exists($itemType, $itemTypeDict)
+          ? $itemTypeDict[$itemType]
+          : $itemType); ?></h2>
   <div class="grid-items">
     <?php foreach (loop('depicted_items') as $relatedItem): ?>
     <?php echo common('grid-item', [
@@ -115,7 +123,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 
 <?php endif; ?>
 <?php if (!empty($related_items) || !empty($collection)): ?>
-<div class="explore-grid grid-container masonry-grid related-items">
+<div class="explore-grid masonry-grid grid-container related-items">
   <h2><?php echo __('More to explore'); ?></h2>
   <div class="grid-items">
     <?php if (!empty($collection)): ?>

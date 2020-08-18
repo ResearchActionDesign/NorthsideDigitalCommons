@@ -34,23 +34,7 @@
   justify-content: center;
 }
 
-.items {
-  .grid-items {
-    justify-content: flex-start;
-    // margin-right: 40px;
-    margin: 0 auto;
-    width: 95%;
-  }
-  div.explore-grid .grid-items .item-title a {
-    top: -34px;
-  }
-}
-
 @media only screen and (max-width: $tablet-width) {
-  .item.record.related-item.tile.has-picture.depicted {
-    width: 100%;
-    height: 350px;
-  }
   .still-image {
     .tags-container {
       width: 100%;

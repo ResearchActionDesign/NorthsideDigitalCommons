@@ -10,6 +10,11 @@
       position: relative;
       overflow: hidden;
       background: $grey--dark;
+
+      &.has-picture {
+        background: white;
+      }
+
       padding: 0;
       width: $square-thumbnail-size;
 
