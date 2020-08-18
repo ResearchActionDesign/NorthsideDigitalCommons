@@ -19,7 +19,7 @@ if (!Berlin) {
   //handle search bar open/close
   $().ready(function () {
     var searchToggle = $("#search-toggle");
-    var closeSearch = $(".search-close");
+    var closeSearch = $("#search-close");
     var primaryNav = $("#primary-nav");
     var searchContainer = $(".search-form-container");
     if (searchToggle.length > 0) {

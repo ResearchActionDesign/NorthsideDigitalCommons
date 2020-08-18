@@ -33,8 +33,6 @@ h6,
   margin-bottom: 0;
 }
 
-// Sizes computed via https://www.modularscale.com/?20&px&1.1005506885
-// Line-height & margin via https://drewish.com/tools/vertical-rhythm/
 h1,
 .h1 {
   font-size: 3em;
@@ -85,4 +83,28 @@ i {
 strong,
 b {
   font-weight: bold;
+}
+
+a,
+a:link,
+a:visited,
+summary {
+  color: $green;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: $purple--light;
+  }
+}
+
+a.button {
+  grid-area: button;
+  @include button_link;
+  display: inline-block;
+  margin: 0 0.5em 0.5em 0;
+  text-align: center;
 }
