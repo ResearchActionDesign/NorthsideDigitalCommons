@@ -55,7 +55,7 @@
           ): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
-          <a href="/add-your-story" class="homepage-menu__item__button button"><?php echo __(
+          <a href="/add-a-story" class="homepage-menu__item__button button"><?php echo __(
               "Add a story"
           ); ?></a>
        </div>
