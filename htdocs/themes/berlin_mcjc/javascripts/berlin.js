@@ -115,6 +115,7 @@ if (!Berlin) {
       horizontalOrder: true,
       fitWidth: true,
       initLayout: false,
+      isAnimated: false,
     });
 
     $grid.imagesLoaded().progress(function () {

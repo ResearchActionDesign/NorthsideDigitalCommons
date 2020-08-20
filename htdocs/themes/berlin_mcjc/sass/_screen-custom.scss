@@ -126,6 +126,7 @@ nav a,
   padding: 0.5em 0.75em;
   text-decoration: none;
   transition: all 0.1s linear;
+  font-size: 1.25em;
 
   &:hover,
   &:focus {
@@ -145,7 +146,8 @@ nav a,
   }
 }
 
-button {
+button,
+input[type="submit"] {
   @include button;
   @include button_link;
 }
@@ -339,5 +341,9 @@ button {
 #content {
   > div + div {
     margin-top: 96px;
+  }
+
+  > div.title + div {
+    margin-top: 48px;
   }
 }

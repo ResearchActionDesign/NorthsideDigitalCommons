@@ -5,8 +5,9 @@
 .contribution-content-wrapper {
   background-color: $white;
   padding: 1em;
+  border-radius: 4px;
 
-  div#contribution-type-form {
+  form {
     .field {
       margin-top: 1.5em;
 
@@ -39,11 +40,35 @@
     .contribute-terms a {
       text-decoration: underline;
     }
-  }
 
-  #form-submit.submit {
-    @include outline-button;
-    margin-top: 1.5em;
+    fieldset + fieldset {
+      margin-top: 1.5em;
+    }
+
+    #form-submit.submit {
+      margin-top: 1.5em;
+    }
+
+    #contribution-confirm-submit {
+      .inputs {
+        display: flex;
+        align-items: center;
+        margin-top: 0.75em;
+
+        label {
+          margin: 0;
+        }
+      }
+
+      p.contribute-terms {
+        margin-bottom: 0;
+        margin-top: 0.75em;
+
+        + .inputs {
+          margin-top: 0;
+        }
+      }
+    }
   }
 }
 

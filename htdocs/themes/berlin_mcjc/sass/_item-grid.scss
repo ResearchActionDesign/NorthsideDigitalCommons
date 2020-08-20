@@ -11,10 +11,6 @@
       overflow: hidden;
       background: $grey--dark;
 
-      &.has-picture {
-        background: white;
-      }
-
       padding: 0;
       width: $square-thumbnail-size;
 
@@ -148,6 +144,10 @@
       margin: 0;
       margin-bottom: 20px;
       display: block;
+
+      &.has-picture {
+        background: white;
+      }
 
       img {
         width: 100%;
