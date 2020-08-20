@@ -46,15 +46,12 @@ $square-thumbnail-size: 300px;
 }
 
 @mixin headers-text {
-  h1 {
-    font-size: 30px;
-    font-family: Montserrat;
-    line-height: 27px;
-    font-weight: bold;
-  }
+  text-shadow: 0px 3px 6px #000;
 
   p {
     width: 50%;
+    font-weight: bold;
+    font-size: 1.25em;
   }
 }
 

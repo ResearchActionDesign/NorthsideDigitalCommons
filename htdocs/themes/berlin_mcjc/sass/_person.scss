@@ -67,15 +67,6 @@
   }
 }
 
-div.explore-grid.related-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  h2 {
-    inline-size: -webkit-fill-available;
-  }
-}
-
 #content > .in-the-community {
   background-color: $white;
   width: 100%;
@@ -107,16 +98,5 @@ a.button.back {
     .item-description {
       margin: 20px 0;
     }
-  }
-  .person.show .explore-grid.related-items .related-item.tile.related-item {
-    margin: 20px auto;
-  }
-  .explore-grid .item .item-img img {
-    height: 400px;
-  }
-  .explore-grid.in-the-community h3 {
-    margin-top: 35px;
-    margin-bottom: 0;
-    padding: 0;
   }
 }
