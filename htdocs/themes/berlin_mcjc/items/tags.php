@@ -32,7 +32,7 @@ $validLetters = array_keys($tagsByLetter);
         [],
         'peopleDefault'
     ); ?>">All</a></li>
-    <?php foreach (array_merge(['123'], range('A', 'Z')) as $letter): ?>
+    <?php foreach (array_merge(['Digits'], range('A', 'Z')) as $letter): ?>
     <?php if (in_array($letter, $validLetters)): ?>
     <li>
       <a href="#<?php echo $letter; ?>"><?php echo $letter; ?></a>

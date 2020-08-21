@@ -313,7 +313,7 @@ function mcjc_sort_tags_by_first_letter($tags = null)
     foreach ($tags as $tag) {
         $firstLetter = ucfirst($tag->name)[0];
         if (!ctype_alpha($firstLetter)) {
-            $firstLetter = '123';
+            $firstLetter = 'Digits';
         }
         if (!isset($output[$firstLetter])) {
             $output[$firstLetter] = [];

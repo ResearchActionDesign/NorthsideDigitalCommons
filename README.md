@@ -35,8 +35,8 @@ and then `docker push timstallmann/apache-omeka:latest`.
 To use a locally built customized apache image, comment out the `image` line under the `web` service in `docker-compose.yml` and
 uncomment the `build` line.
 
-To rebuild the Compass image, run `docker build ./htdocs -f .docker/Compass.Dockerfile -t timstallmann/compass-omeka:latest` and
-then `docker push timstallmann/compass-omeka:latest`.
+To rebuild the Sass image, run `docker build ./htdocs -f .docker/DartSass.Dockerfile -t timstallmann/dart-sass-omeka:latest` and
+then `docker push timstallmann/dart-sass-omeka:latest`.
 
 ## Required plug-ins
 

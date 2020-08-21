@@ -17,6 +17,10 @@ jobs:
           name: Yarn install
           command: yarn install --production=false
 
+      - run: # Install sass
+          name: Sass Install
+          command: yarn install -g sass
+
       - save_cache:
           key: ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
           paths:
@@ -26,25 +30,9 @@ jobs:
           name: Prettier
           command: yarn run prettier:check-ci
 
-      - restore_cache:
-          keys:
-            - ndc-ruby-{{ checksum "~/repo/htdocs/themes/berlin_mcjc/Gemfile.lock" }}
-            - ndc-ruby-
-
-      - run: # Install Ruby dependencies
-          name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
-          working_directory: ~/repo/htdocs/themes/berlin_mcjc
-
-      # Store bundle cache for Ruby dependencies
-      - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "~/repo/htdocs/themes/berlin_mcjc/Gemfile.lock" }}
-          paths:
-            - ~/repo/htdocs/themes/berlin_mcjc/vendor/bundle
-
       - run:
           name: Compile SASS
-          command: bundle exec compass compile
+          command: sass sass:css --style=compressed --no-source-map
           working_directory: ~/repo/htdocs/themes/berlin_mcjc
 
       - persist_to_workspace:

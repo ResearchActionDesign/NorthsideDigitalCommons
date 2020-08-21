@@ -28,9 +28,8 @@ services:
     ports:
       - "33308:3306"
 
-  compass:
-    image: timstallmann/compass-omeka
-    command: watch
+  sass:
+    image: timstallmann/dart-sass-omeka
     volumes:
       - mcjc-htdocs-sync:/usr/src/app:nocopy
 
