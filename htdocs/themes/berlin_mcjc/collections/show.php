@@ -24,6 +24,7 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
   ]); ?>
     <?php endforeach; ?>
     </div>
+  <?php echo pagination_links(); ?>
   <?php else: ?>
   <p><?php echo __(
       'There are currently no items within this collection.'

@@ -118,6 +118,10 @@ if (!Berlin) {
       isAnimated: false,
     });
 
+    $grid.on("load", function () {
+      $grid.masonry("layout");
+    });
+
     $(".masonry-grid .item-img img").on("load", function () {
       $grid.masonry("layout");
     });

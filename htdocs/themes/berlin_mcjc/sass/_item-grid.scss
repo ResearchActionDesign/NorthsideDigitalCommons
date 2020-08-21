@@ -81,7 +81,6 @@
         h5,
         h6 {
           margin-top: 0;
-          position: relative;
           top: calc(
             (#{$square-thumbnail-size} - 80px) / 2
           ); // Centered within item-meta div.
@@ -151,6 +150,7 @@
 
       img {
         width: 100%;
+        height: auto;
         margin: 0;
       }
 

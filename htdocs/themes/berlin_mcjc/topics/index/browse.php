@@ -21,12 +21,12 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
   <div class="filter_container">
     <div class="filter" id="grid__filter">
       <span class="grid__filter__title">Show:</span>
-      <span class="grid__filter__option"><input class="checkbox" type="checkbox" data-filter="exhibit"><span
-          class="filter-titles">Exhibits</span></input></span>
-      <span class="grid__filter__option"><input class="checkbox" type="checkbox" data-filter="collection"><span
-          class="filter-titles">Collections</span></input></span>
-      <span class="grid__filter__option"><input class="checkbox" type="checkbox" data-filter="theme"><span
-          class="filter-titles">Themes</span></input></span>
+      <span class="grid__filter__option"><label
+                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="exhibit" id="grid-filter-exhibit">Exhibits</input></label></span>
+      <span class="grid__filter__option"><label
+                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="collection" id="grid-filter-collection">Collections</input></label></span>
+      <span class="grid__filter__option"><label
+                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="theme" id="grid-filter-theme">Themes</input></label></span>
     </div>
     <div id="sort-links">
       <span class="sort-label"><?php echo __(
