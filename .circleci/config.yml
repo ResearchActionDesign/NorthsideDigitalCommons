@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: Compile SASS
-          command: yarn run sass sass:css --style=compressed --no-source-map
+          command: sass sass:css --style=compressed --no-source-map
           working_directory: ~/repo/htdocs/themes/berlin_mcjc
 
       - persist_to_workspace:
