@@ -104,6 +104,14 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     return $html;
   }
 
+  /**
+   * Needed to ensure that this view helper is called instead of parent fileMarkup() method.
+   *
+   * @param $file
+   * @param array $props
+   * @param array $wrapperAttributes
+   * @return string
+   */
   public function mcjcFileMarkup($file, array $props=array(), $wrapperAttributes = array()) {
     return $this->fileMarkup($file, $props, $wrapperAttributes);
   }

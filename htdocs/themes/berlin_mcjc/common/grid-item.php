@@ -31,7 +31,7 @@ if (!isset($image)) {
         $image_attrs['height'] = $baseImageWidth;
         $image_attrs['loading'] = 'lazy';
     }
-    $image = record_image(
+    $image = mcjc_record_image(
         $item,
         $masonry ? 'thumbnail' : 'square_thumbnail',
         $image_attrs

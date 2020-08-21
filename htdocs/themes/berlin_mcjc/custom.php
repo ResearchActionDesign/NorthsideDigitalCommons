@@ -49,7 +49,6 @@ function oral_history_item_subtitle($item = false)
 /**
  * Get HTML for random featured items. Customized for MCJC Berlin Theme.
  *
- * @package Omeka\Function\View\Item
  * @uses get_random_featured_items()
  * @param int $count Maximum number of items to show.
  * @param boolean $withImage Whether or not the featured items must have
@@ -163,8 +162,7 @@ function mcjc_get_collection_files($collection)
 /**
  * Get HTML for a set of files. Customized for MCJC Berlin Theme.
  *
- * @package Omeka\Function\View\File
- * @uses Omeka_View_Helper_FileMarkup::fileMarkup()
+ * @uses MCJCDeployment_View_Helper_McjcFileMarkup::mcjcFileMarkup()
  * @param File $files A file record or an array of File records to display.
  * @param array $props Properties to customize display for different file types.
  * @param array $wrapperAttributes Attributes HTML attributes for the div that
@@ -535,4 +533,28 @@ function mcjc_element_metadata_paragraph($item)
 
     // TODO for other item types if needed.
     return '';
+}
+
+/**
+ * Get an image tag for a record.
+ *
+ * @throws InvalidArgumentException If an invalid record is passed.
+ * @uses MCJCDeployment_View_Helper_McjcImageTag::mcjcImageTag()
+ * @param Omeka_Record_AbstractRecord|string $record
+ * @param string $imageType Image size: thumbnail, square thumbnail, fullsize
+ * @param array $props HTML attributes for the img tag
+ * @return string
+ */
+function mcjc_record_image($record, $imageType = null, $props = [])
+{
+    if (is_string($record)) {
+        $record = get_current_record($record);
+    }
+
+    if (!($record instanceof Omeka_Record_AbstractRecord)) {
+        throw new InvalidArgumentException(
+            'An Omeka record must be passed to record_image.'
+        );
+    }
+    return get_view()->mcjcImageTag($record, $props, $imageType);
 }
