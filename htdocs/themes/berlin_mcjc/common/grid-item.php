@@ -21,7 +21,12 @@ if (!isset($description)) {
 if (!isset($image)) {
     $baseImageWidth = '300px'; // Set to Derivative Images width.
 
-    $image_attrs = ['width' => $baseImageWidth, 'alt' => ''];
+    $image_attrs = [
+        'width' => $baseImageWidth,
+        'alt' => '',
+        'loading' => 'lazy',
+        'height' => $baseImageWidth,
+    ];
     if (!$masonry) {
         $image_attrs['height'] = $baseImageWidth;
         $image_attrs['loading'] = 'lazy';

@@ -114,11 +114,11 @@ if (!Berlin) {
       gutter: 20,
       horizontalOrder: true,
       fitWidth: true,
-      initLayout: false,
+      initLayout: true,
       isAnimated: false,
     });
 
-    $grid.imagesLoaded().progress(function () {
+    $(".masonry-grid .item-img img").on("load", function () {
       $grid.masonry("layout");
     });
   });
