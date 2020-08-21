@@ -19,7 +19,7 @@ jobs:
 
       - run: # Install sass
           name: Sass Install
-          command: yarn install -g sass
+          command: yarn global add sass
 
       - save_cache:
           key: ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: Compile SASS
-          command: sass sass:css --style=compressed --no-source-map
+          command: yarn run sass sass:css --style=compressed --no-source-map
           working_directory: ~/repo/htdocs/themes/berlin_mcjc
 
       - persist_to_workspace:
