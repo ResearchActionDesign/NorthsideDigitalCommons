@@ -71,7 +71,5 @@
   <?php endif; ?>
 
   </div>
-</div>
-<!-- end primary -->
 
 <?php echo foot(); ?>

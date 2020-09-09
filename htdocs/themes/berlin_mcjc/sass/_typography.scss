@@ -4,12 +4,16 @@ html {
   line-height: 1.4em;
 }
 
+@mixin bodyText {
+  font-size: 1.125em;
+  line-height: 1.4em;
+}
+
 p,
 label {
   margin: 0;
   margin-bottom: 0.75em;
-  font-size: 1.125em;
-  line-height: 1.4em;
+  @include bodyText;
 }
 
 p:empty {
