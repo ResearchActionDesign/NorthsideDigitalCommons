@@ -1,4 +1,10 @@
 /*footer*/
+div.add_your_expertise {
+  @include container;
+  background-color: $white;
+  padding: 1em;
+  @include bodyText;
+}
 
 footer {
   background: $white;

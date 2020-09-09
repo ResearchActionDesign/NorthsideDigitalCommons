@@ -15,8 +15,8 @@
   button {
     position: absolute;
     border: 0;
-    right: 0;
-    top: 0;
+    right: -4px;
+    top: -4px;
     width: 1.875em;
     text-indent: -9999px;
     background-color: transparent;
@@ -65,10 +65,6 @@ header {
     justify-content: space-between;
   }
 
-  .nav-search-wrapper {
-    display: flex;
-  }
-
   #site-title {
     color: $purple--dark;
     font-family: $heading-font-family;
@@ -87,7 +83,6 @@ header {
   }
 
   #search-container {
-    display: flex;
     position: relative;
     top: 10px;
     min-width: 45px;
@@ -100,8 +95,10 @@ header {
   }
 
   form.search-form {
+    float: right;
     position: relative;
     width: 21.25em;
+    margin-bottom: 1em;
 
     .show-advanced.button:after {
       color: $black;
@@ -113,8 +110,6 @@ header {
   }
 
   .search-form-container {
-    display: none;
-
     .show-advanced.button {
       border-bottom: none;
     }

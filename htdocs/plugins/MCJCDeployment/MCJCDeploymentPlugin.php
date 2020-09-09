@@ -25,6 +25,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     'initialize',
     'install',
     'public_head',
+    'search_sql',
     'upgrade'
   );
 
@@ -165,6 +166,61 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       $index++;
     }
     $elementTextItem->text = $permalink;
+  }
+
+  public function hookSearchSql($args) {
+    $params = $args['params'];
+
+    // TODO: Make this user-editable.
+    $search_replacements_base = [
+      'St. Paul' => [
+        'St. Paul',
+        'St. Pauls',
+        'St. Paul\'s',
+        'Saint Paul',
+        'Saint Pauls',
+        'Saint Paul\'s',
+        'St Paul',
+        'St Pauls',
+        'St Paul\'s',
+      ],
+        'St. Joseph' => [
+          'St. Joseph',
+          'St. Josephs',
+          'St. Joseph\'s',
+          'Saint Joseph',
+          'Saint Josephs',
+          'Saint Joseph\'s',
+          'St Joseph',
+          'St Josephs',
+          'St Joseph\'s',
+        ],
+      ];
+
+      $search_replacements = [];
+
+      // Map base dict (more user-friendly format) to machine-usable format.
+      foreach ($search_replacements_base as $canonical_phrase => $phrases) {
+        array_map(
+        function($phrase) use ($canonical_phrase, &$search_replacements) { $search_replacements[mb_strtolower($phrase)] = $canonical_phrase; },
+        $phrases
+      );
+      }
+
+      $querystr = mb_strtolower($args['params']['query'] ?? false);
+      if ($querystr && array_key_exists($querystr, $search_replacements)) {
+        $querystr = $search_replacements[$querystr];
+        $args['param']['query'] = $querystr;
+        $args['select']->reset(Zend_Db_Select::WHERE);
+        $args['select']->distinct();
+
+        // Substitute in new querystring in full-text search.
+        $args['select']->where('MATCH (`search_texts`.`text`) AGAINST (?)', $querystr);
+
+        // Also specify that the exact phrase must appear in search (otherwise MATCH __ LIKE will
+        // ignore shorter phrases like St.
+        $args['select']->where('`search_texts`.`text` LIKE ?', '%' . $querystr . '%');
+      }
   }
 
   // Populate permalink for new items, and set Item Type.

@@ -11,8 +11,8 @@
     <?php endif; ?>
 </div>
 <div id="primary">
-    <div id="homepage-menu">
-      <div class="homepage-menu__item">
+    <ul id="homepage-menu">
+      <li class="homepage-menu__item">
         <div class='homepage-menu-image'>
          <img src="/themes/berlin_mcjc/assets/images/buttons/meet_our_neighbors.png" alt="" loading="lazy">
         </div>
@@ -27,8 +27,8 @@
               "View all people"
           ); ?></a>
         </div>
-      </div>
-      <div class="homepage-menu__item">
+      </li>
+      <li class="homepage-menu__item">
         <div class="homepage-menu-image">
           <img src="/themes/berlin_mcjc/assets/images/buttons/explore_themes.png" alt="" loading="lazy">
         </div>
@@ -43,8 +43,8 @@
               "Browse all topics"
           ); ?></a>
         </div>
-      </div>
-      <div class="homepage-menu__item">
+      </li>
+      <li class="homepage-menu__item">
         <div class="homepage-menu-image">
          <img src="/themes/berlin_mcjc/assets/images/buttons/add_your_story.png" alt="" loading="lazy">
         </div>
@@ -59,8 +59,8 @@
               "Add a story"
           ); ?></a>
        </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   <?php if ($map_html = get_theme_option('homepage_map')): ?>
   <div id="homepage-map">
     <h2><?php echo __("The Northside Neighborhoods"); ?></h2>
@@ -71,7 +71,5 @@
   <?php endif; ?>
 
   </div>
-</div>
-<!-- end primary -->
 
 <?php echo foot(); ?>
