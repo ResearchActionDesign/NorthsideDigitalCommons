@@ -3,7 +3,8 @@ div.add_your_expertise {
   @include container;
   background-color: $white;
   padding: 1em;
-  @include bodyText;
+  font-size: 1.125em;
+  line-height: 1.4em;
 }
 
 footer {

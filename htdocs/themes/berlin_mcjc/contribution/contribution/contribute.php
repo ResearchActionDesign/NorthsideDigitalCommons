@@ -50,10 +50,7 @@ enableContributionAjaxForm(<?php echo js_escape(
   <?php echo flash(); ?>
   <div class='contribution-content-wrapper'>
     <div class='descriptionParagraph'>
-      <p>Description or instructions on how to add your own story, things people might want to add or
-        consider, etc. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, quis autem.
-        Enim debitis sapiente cupiditate deleniti omnis dolorem cumque officiis temporibus voluptatibus a
-        explicabo ut inventore, rerum sint sit nam! </p>
+        <?php echo get_theme_option('contribution_intro'); ?>
     </div>
 
     <?php if (!($user = current_user()) && !get_option('contribution_open')): ?>
