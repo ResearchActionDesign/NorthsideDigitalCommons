@@ -27,10 +27,8 @@
         1 and
         str-index($item, "#") !=
         1;
-    }
-    @elseif type-of($item) == 'color' {
-    }
-    @elseif $item != null {
+    } @else if type-of($item) == "color" {
+    } @else if $item != null {
       $prefixed: true;
     }
   }

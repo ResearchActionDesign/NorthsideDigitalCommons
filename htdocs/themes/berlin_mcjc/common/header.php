@@ -71,24 +71,14 @@ if (
                 ); ?></div>
 
                 <div class="nav-search-wrapper">
+                    <div id="search-container" role="search">
+                        <div class="search-form-container">
+                          <?php echo search_form(); ?>
+                        </div>
+                    </div>
                     <nav id="primary-nav" role="navigation">
                         <?php echo public_nav_main(); ?>
                     </nav>
-
-                    <div id="search-container" role="search">
-                      <?php echo $this->formButton(
-                          'search-toggle',
-                          $options['search_toggle'] ?? '',
-                          [
-                              'type' => 'button',
-                              'aria-label' => 'Show search bar',
-                          ]
-                      ); ?>
-                        <div class="search-form-container">
-                            <button id="search-close" aria-label="Hide search bar">Close search bar</button>
-                                <?php echo search_form(); ?>
-                            </div>
-                        </div>
                 </div>
 
                 <nav id="mobile-nav" role="navigation">
