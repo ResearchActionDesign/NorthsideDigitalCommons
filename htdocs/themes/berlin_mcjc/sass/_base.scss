@@ -55,4 +55,10 @@ $square-thumbnail-size: 300px;
   }
 }
 
+@mixin white-background-text {
+  border-radius: 4px;
+  padding: 1em;
+  background-color: $white;
+}
+
 //* @end */

@@ -14,7 +14,7 @@ class People_IndexController extends Omeka_Controller_AbstractActionController
   {
     parent::init();
     $this->_helper->db->setDefaultModelName('Item');
-    $this->_browseRecordsPerPage = 21; // TODO: Add an AJAX controller for infinite scroll.
+    $this->_browseRecordsPerPage = 24; // TODO: Add an AJAX controller for infinite scroll.
   }
 
   public function browseAction()

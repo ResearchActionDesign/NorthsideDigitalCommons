@@ -40,12 +40,11 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     <?php foreach (loop('topics') as $topic): ?>
     <?php
     $topicClass = strtolower($topic->topicType);
+    $title = "{$topic->topicType}: " . html_escape($topic->title);
 
     if ($topicClass == 'exhibit') {
-        $title = 'Exhibit: ' . html_escape($topic->title);
         $description = metadata($topic, 'description', ['no_escape' => true]);
     } else {
-        $title = "{$topic->topicType}: " . metadata($topic, 'display_title');
         $description = metadata(
             $topic,
             ['Dublin Core', 'Description'],

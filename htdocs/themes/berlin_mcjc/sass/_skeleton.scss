@@ -33,6 +33,7 @@ $margin: 10px;
   position: relative;
   margin: 1.5em auto;
   width: $base-width;
+  border-radius: 4px;
 
   &:after {
     content: "\0020";
@@ -51,6 +52,7 @@ $margin: 10px;
   }
 
   @media only screen and (max-width: $tablet-width) {
+    border-radius: 0;
     width: 100%;
     padding: 16px;
   }

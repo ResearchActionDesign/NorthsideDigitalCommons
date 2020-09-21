@@ -17,7 +17,7 @@ abstract class AbstractMCJCIndexController extends Omeka_Controller_AbstractActi
   public function init()
   {
     $this->_helper->db->setDefaultModelName('Item');
-    $this->_browseRecordsPerPage = 10;
+    $this->_browseRecordsPerPage = 24;
   }
 
   public function browseAction()
