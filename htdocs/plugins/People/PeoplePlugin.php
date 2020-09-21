@@ -26,7 +26,7 @@ class PeoplePlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     $router->addRoute('peopleShow',
-      new Zend_Controller_Router_Route('people/show/:permalink',
+      new Zend_Controller_Router_Route('people/:permalink',
         array(
           'module'     => 'people',
           'controller' => 'items',

@@ -380,58 +380,6 @@ function mcjc_tags_list(
     return $html;
 }
 
-// TODO: Pull these dynamically and store in plugin variables as part of install process.
-const ORAL_HISTORY_ITEM_TYPE = 4;
-const PERSON_ITEM_TYPE = 12;
-const IMAGE_ITEM_TYPE = 6;
-
-function mcjc_url_for_item($item = null, $action = 'show')
-{
-    if (!$item) {
-        $item = get_current_record('item');
-    }
-
-    $routesForItemType = [
-        ORAL_HISTORY_ITEM_TYPE => 'stories',
-        PERSON_ITEM_TYPE => 'people',
-        IMAGE_ITEM_TYPE => 'images',
-    ];
-
-    if (array_key_exists($item->item_type_id, $routesForItemType)) {
-        $permalink = metadata($item, ['Dublin Core', 'Permalink']);
-        return url(
-            ['permalink' => $permalink],
-            $routesForItemType[$item->item_type_id] . ucfirst($action)
-        );
-    } else {
-        return record_url($item, $action);
-    }
-}
-
-/**
- * Overrides link_to_item() to insert custom routes for people, stories and images.
- *
- * @uses link_to_item()
- * @param string $text HTML for the text of the link.
- * @param Item $item Used for dependency injection testing or to use this function
- * @param array $props Properties for the <a> tag.
- * @param string $action The page to link to (this will be the 'show' page almost always
- * within the public theme).
- * outside the context of a loop.
- * @return string HTML
- */
-function mcjc_link_to_item(
-    $text = null,
-    $item = null,
-    $props = ['class' => 'item-link'],
-    $action = 'show'
-) {
-    $url = mcjc_url_for_item($item, $action);
-
-    $attr = !empty($props) ? ' ' . tag_attributes($props) : '';
-    return "<a href='{$url}'{$attr}>{$text}</a>";
-}
-
 function _mcjc_oral_history_metadata_paragraph($item)
 {
     $metadata = [

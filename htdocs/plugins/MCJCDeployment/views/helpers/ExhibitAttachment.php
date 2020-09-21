@@ -7,7 +7,7 @@
  * except forces $forceImage=false regardless of how the function was called, to override ExhibitBuilder handling
  * of audio attachments.
  *
- * @package MCJCDeployment\View\Helper
+ * @package Omeka\Plugins\McjcDeployment\views\helpers
  */
 class MCJCDeployment_View_Helper_ExhibitAttachment extends Zend_View_Helper_Abstract {
   

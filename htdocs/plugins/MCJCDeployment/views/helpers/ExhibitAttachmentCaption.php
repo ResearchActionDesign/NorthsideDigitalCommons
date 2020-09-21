@@ -3,7 +3,7 @@
 /**
  * MCJC CUstomization of Exhibit attachment caption view helper.
  *
- * @package MCJCDeployment\View\Helper
+ * @package Omeka\Plugins\McjcDeployment\views\helpers
  */
 class MCJCDeployment_View_Helper_ExhibitAttachmentCaption extends Zend_View_Helper_Abstract
 {

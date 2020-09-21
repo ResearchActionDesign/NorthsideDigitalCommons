@@ -9,7 +9,7 @@ if (!isset($title)) {
     $title = metadata($item, 'display_title');
 }
 if (!isset($url)) {
-    $url = mcjc_url_for_item($item);
+    $url = record_url($item);
 }
 if (!isset($description)) {
     $description = metadata(

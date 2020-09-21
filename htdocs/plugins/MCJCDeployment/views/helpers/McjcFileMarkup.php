@@ -12,7 +12,7 @@
  * sure that it responds to all the correct MIME types by modifying other
  * properties in this class.
  *
- * @package MCJCDeployment\View\Helper
+ * @package Omeka\Plugins\McjcDeployment\views\helpers
  *
  */
 class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMarkup
@@ -97,7 +97,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
       if ($options['show'] === TRUE) {
         $html = $this->_linkToFile($file, $options, $html);
       } else {
-        $html = mcjc_link_to_item($html, $options['item'], array('class' => $imgClasses[$imageSize]), 'show');
+        $html = link_to_item($html, $options['item'], array('class' => $imgClasses[$imageSize]), 'show');
       }
     }
 

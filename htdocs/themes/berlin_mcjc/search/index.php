@@ -78,9 +78,7 @@ $searchRecordTypes = get_search_record_types();
                             ['loading' => 'lazy']
                         )
                     ): ?>
-                    <a href="<?php echo mcjc_url_for_item(
-                        $searchText['record']
-                    ); ?>">
+                    <a href="<?php echo record_url($searchText['record']); ?>">
                       <?php echo $recordImage; ?>
                     </a>
                     <?php endif; ?>
@@ -89,7 +87,7 @@ $searchRecordTypes = get_search_record_types();
                   <span class="item-type">
                     <?php echo $searchText['display_type']; ?>
                   </span>
-                      <h2 class="item-title"><?php echo mcjc_link_to_item(
+                      <h2 class="item-title"><?php echo link_to_item(
                           $searchText['title']
                               ? $searchText['title']
                               : '[Unknown]',

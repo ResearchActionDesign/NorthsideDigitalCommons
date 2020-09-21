@@ -3,7 +3,7 @@
 /**
  * Exhibit gallery view helper. Customized for MCJC
  *
- * @package MCJCDeployment\View\Helper
+ * @package Omeka\Plugins\McjcDeployment\views\helpers
  */
 class MCJCDeployment_View_Helper_ExhibitAttachmentGallery extends Zend_View_Helper_Abstract
 {
@@ -24,7 +24,7 @@ class MCJCDeployment_View_Helper_ExhibitAttachmentGallery extends Zend_View_Help
         
         $html = '';
         foreach  ($attachments as $attachment) {
-          $attachmentUrl = mcjc_url_for_item($attachment);
+          $attachmentUrl = record_url($attachment);
           $html .= '<a class="item has-description has-picture" href="' . $attachmentUrl . '">';
           $html .= $this->view->exhibitAttachment($attachment, $fileOptions, $linkProps, true);
           $html .= '</a>';
