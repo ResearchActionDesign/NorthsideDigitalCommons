@@ -259,43 +259,7 @@ input[type="submit"] {
 
 /* @end */
 
-/* @group ----- Search Results ----- */
-.search {
-  h1 {
-    margin-bottom: 1.5em;
-  }
-}
-
-#search-results {
-  .table-header--1 {
-    width: 45%;
-  }
-
-  h2 {
-    font-size: 24px;
-    line-height: 36px;
-  }
-}
-
-#item-filters ul li ul,
-#search-filters > ul li ul {
-  padding-left: 0.25em;
-}
-
-#search-results {
-  td {
-    padding: 1em 0;
-  }
-
-  td:first-child,
-  td:nth-child(2) {
-    padding-right: 1.5em;
-  }
-}
-
-/* @end */
-
-// Search by letter used in mutiply pages
+// Search by letter used in multiple pages
 
 .filter-by-letter {
   display: flex;

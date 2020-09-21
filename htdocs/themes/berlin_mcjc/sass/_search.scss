@@ -18,6 +18,25 @@
     }
   }
 
+  // Search form on search page
+  .search-results--form {
+    margin-bottom: 48px;
+
+    form {
+      display: flex;
+      .search-options {
+        margin-right: 2em;
+        .field {
+          margin-bottom: 0.75em;
+        }
+      }
+
+      button#submit_search {
+        height: 2.5em;
+      }
+    }
+  }
+
   // Search Rows
   .search-results-body {
     display: flex;
