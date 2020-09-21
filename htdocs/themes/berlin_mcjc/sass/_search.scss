@@ -1,5 +1,6 @@
 .search {
-  #content {
+  .search-results--header,
+  .search-results--body {
     @include container;
   }
 
@@ -57,9 +58,13 @@
       font-weight: bold;
     }
 
-    .item-img img {
-      width: $square-thumbnail-size;
-      height: $square-thumbnail-size;
+    .item-img {
+      min-width: $square-thumbnail-size;
+
+      img {
+        width: $square-thumbnail-size;
+        height: $square-thumbnail-size;
+      }
     }
 
     .item-info {

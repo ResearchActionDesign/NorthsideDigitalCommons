@@ -12,45 +12,93 @@ $searchRecordTypes = get_search_record_types();
         </div>
     </div>
     <?php if ($total_results): ?>
-    <div class="search-results-body">
-      <?php $filter = new Zend_Filter_Word_CamelCaseToDash(); ?>
+      <?php
+      $filter = new Zend_Filter_Word_CamelCaseToDash();
+      array_walk($search_texts, function (&$searchText) {
+          $record = get_record_by_id(
+              $searchText['record_type'],
+              $searchText['record_id']
+          );
+          $searchText['record'] = $record;
+          $searchText['display_type'] = $searchText['record_type'];
+          if ($searchText['record_type'] === 'Item') {
+              $searchText['display_type'] = metadata($record, [
+                  'Dublin Core',
+                  'Type',
+              ]);
+          }
+      });
+
+      $validFilterTypes = array_unique(
+          array_map(function ($s) use ($filter) {
+              return strtolower(
+                  $filter->filter(str_replace(' ', '-', $s['display_type']))
+              );
+          }, $search_texts)
+      );
+      sort($validFilterTypes);
+
+      $filterTypesDisplay = [
+          'oral-history' => 'Oral Histories',
+          'person' => 'People',
+          'document' => 'Documents',
+          'still-image' => 'Still Images',
+          'collection' => 'Collections',
+      ];
+      ?>
+    <div class="filter_container">
+        <div class="filter" id="grid__filter">
+            <span class="grid__filter__title">Show:</span>
+            <?php foreach ($validFilterTypes as $filterType): ?>
+            <span class="grid__filter__option"><label
+                        class="filter-titles">
+                    <input class="checkbox" type="checkbox" data-filter="<?php echo $filterType; ?>" id="grid-filter-<?php echo $filterType; ?>">
+                  <?php echo $filterTypesDisplay[$filterType] ?? $filterType; ?>
+                    </input>
+                </label></span>
+           <?php endforeach; ?>
+          </div>
+    </div>
+    <div class="search-results--body">
       <?php foreach (loop('search_texts') as $searchText): ?>
-        <?php $record = get_record_by_id(
+        <?php set_current_record(
             $searchText['record_type'],
-            $searchText['record_id']
+            $searchText['record']
         ); ?>
-        <?php
-        $recordType = $searchText['record_type'];
-        $detailed_record_type =
-            $recordType === 'Item'
-                ? metadata($record, ['Dublin Core', 'Type'])
-                : $recordType;
-        ?>
-        <?php set_current_record($recordType, $record); ?>
-          <div class="search-result <?php echo strtolower(
-              $filter->filter($recordType)
+          <div class="search-result item <?php echo strtolower(
+              $filter->filter(
+                  str_replace(' ', '-', $searchText['display_type'])
+              )
           ); ?>">
                   <div class="item-img">
-                    <?php if ($recordImage = record_image($recordType)): ?>
-                    <a href="<?php echo mcjc_url_for_item($record); ?>">
+                    <?php if (
+                        $recordImage = record_image(
+                            $searchText['record_type'],
+                            null,
+                            ['loading' => 'lazy']
+                        )
+                    ): ?>
+                    <a href="<?php echo mcjc_url_for_item(
+                        $searchText['record']
+                    ); ?>">
                       <?php echo $recordImage; ?>
                     </a>
                     <?php endif; ?>
                   </div>
                   <div class="item-info">
                   <span class="item-type">
-                    <?php echo $detailed_record_type; ?>
+                    <?php echo $searchText['display_type']; ?>
                   </span>
                       <h2 class="item-title"><?php echo mcjc_link_to_item(
                           $searchText['title']
                               ? $searchText['title']
                               : '[Unknown]',
-                          $record
+                          $searchText['record']
                       ); ?>
                       </h2>
                 <?php if (
                     $description = metadata(
-                        $record,
+                        $searchText['record'],
                         ['Dublin Core', 'Description'],
                         ['snippet' => 250]
                     )

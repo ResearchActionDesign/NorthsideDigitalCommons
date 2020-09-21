@@ -28,20 +28,6 @@ if (!empty($_GET['advanced'])) {
       'title' => __('Search'),
   ]); ?>
 </div>
-<div class="field">
-    <label for="item-type"><?php echo __('Item Type'); ?></label>
-    <select
-            id="item-type"
-            name="item-type"
-    >
-        <?php foreach ($item_type_options as $item_type): ?>
-            <option<?php if (
-                ($_GET['item-type'] ?? '') ===
-                $item_type
-            ): ?> selected<?php endif; ?>><?php echo $item_type; ?></option>
-        <?php endforeach; ?>
-    </select>
-</div>
 </div>
 <?php else: ?>
 <?php echo $this->formText('query', $filters['query'], [

@@ -169,8 +169,6 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
   }
 
   public function hookSearchSql($args) {
-    $params = $args['params'];
-
     // TODO: Make this user-editable.
     $search_replacements_base = [
       'St. Paul' => [
@@ -210,7 +208,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       $querystr = mb_strtolower($args['params']['query'] ?? false);
       if ($querystr && array_key_exists($querystr, $search_replacements)) {
         $querystr = $search_replacements[$querystr];
-        $args['param']['query'] = $querystr;
+        $args['params']['query'] = $querystr;
         $args['select']->reset(Zend_Db_Select::WHERE);
         $args['select']->distinct();
 
