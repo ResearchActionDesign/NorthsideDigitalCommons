@@ -361,7 +361,7 @@ function mcjc_tags_list(
     foreach ($tags as $index => $tag) {
         $html .= '<span class="tags__tag">';
         // TODO -- should be url(array('tag' => $tag['name']), 'tagShow') once that controller has been created.
-        $html .= '<a href="/tags/' . utf8_htmlspecialchars($tag['name']) . '">';
+        $html .= '<a href="/tags/' . rawurlencode($tag['name']) . '">';
         if (
             $tagNumber &&
             $tagNumberOrder == 'before' &&
