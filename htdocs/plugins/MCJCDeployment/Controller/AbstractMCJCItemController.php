@@ -98,7 +98,11 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     }
 
     $select = $itemsTable->getSelect();
-    $itemsTable->filterByItemType($select, $this->getItemTypes());
+
+    if ($this->getItemTypes()) {
+      $itemsTable->filterByItemType($select, $this->getItemTypes());
+    }
+
     $itemsTable->filterByPublic($select, True); // Only return public records.
     $select->where("`items`.`id` = ?", $matchingNames[0]->record_id);
     $records = $itemsTable->fetchObjects($select);
@@ -205,7 +209,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
    */
   public function showAction()
   {
-    // Load person record based on name parameter.
+    // Load record based on name parameter.
     $singularName = $this->view->singularize($this->_helper->db->getDefaultModelName());
     $this->_getRecordForShow();
     if (!$this->_item) {

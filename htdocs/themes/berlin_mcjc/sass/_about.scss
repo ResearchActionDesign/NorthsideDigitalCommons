@@ -27,8 +27,7 @@
   flex-direction: row;
 
   .simple-pages-text-wrapper {
-    background: $white;
-    padding: 0.5em;
+    @include white-background-text;
   }
 }
 

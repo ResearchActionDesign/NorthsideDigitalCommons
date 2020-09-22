@@ -12,6 +12,6 @@ class Stories_IndexController extends AbstractMCJCIndexController
 {
   protected function getItemTypeId()
   {
-    return 4;
+    return [4, 18, 19];
   }
 }

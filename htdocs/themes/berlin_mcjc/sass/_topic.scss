@@ -6,11 +6,13 @@
 .filter_container {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 32px;
   background-color: $white;
 
   #grid__filter {
     display: flex;
+    align-self: center;
+    align-items: center;
   }
 
   .grid__filter__title {
@@ -28,7 +30,15 @@
 }
 
 #sort-links {
-  padding-right: 15px;
+  ul#sort-links-list {
+    padding: 0;
+    display: inline-block;
+    @include no-bullets;
+    li {
+      display: inline-block;
+      padding: 0 1em;
+    }
+  }
 }
 
 span.filter-titles {

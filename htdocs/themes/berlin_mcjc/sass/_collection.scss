@@ -3,3 +3,7 @@
     @include container;
   }
 }
+
+.header-description {
+  @include white-background-text;
+}

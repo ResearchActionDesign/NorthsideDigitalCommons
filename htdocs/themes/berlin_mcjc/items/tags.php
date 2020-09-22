@@ -17,7 +17,7 @@ echo flash();
   <p><?php echo $pageDescription; ?></p>
 </div>
 <?php
-sort($tags, SORT_STRING | SORT_FLAG_CASE);
+usort($tags, 'strnatcasecmp');
 $tagsByLetter = mcjc_sort_tags_by_first_letter($tags);
 $validLetters = array_keys($tagsByLetter);
 ?>

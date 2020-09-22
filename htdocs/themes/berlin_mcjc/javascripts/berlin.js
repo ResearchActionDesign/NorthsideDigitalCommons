@@ -89,14 +89,14 @@ if (!Berlin) {
       var filter = $(this).attr("data-filter");
       if ($(this).is(":checked")) {
         if ($("#grid__filter input:checked").length === 1) {
-          $(".grid-items .item").hide();
+          $(".item").hide();
         }
-        $(".grid-items .item." + filter).show();
+        $(".item." + filter).show();
       } else {
         if (!$("#grid__filter input:checked").length) {
-          $(".grid-items .item").show();
+          $(".item").show();
         } else {
-          $(".grid-items .item." + filter).hide();
+          $(".item." + filter).hide();
         }
       }
       $(".masonry-grid .grid-items").masonry("layout");

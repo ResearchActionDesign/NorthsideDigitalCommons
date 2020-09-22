@@ -49,7 +49,7 @@ class Topics_IndexController extends AbstractMCJCIndexController
     $this->getRequest()->setParamSources(array('_GET'));
 
     $params = $this->getAllParams();
-    $recordsPerPage = 10;
+    $recordsPerPage = 24;
     $currentPage = $this->getParam('page', 1);
 
     // Get collections.
@@ -74,7 +74,38 @@ class Topics_IndexController extends AbstractMCJCIndexController
     }
     $totalRecords += $this->_helper->db->count($params);
 
-    // TODO: get topics
+    // TODO: get themes
+
+    $topicsRecords = array_merge($collectionRecords, $exhibitRecords);
+
+    // Assign titles.
+    array_walk($topicsRecords, function(&$item) {
+      if (!isset($item->title)) {
+        $item->title = metadata($item, 'display_title');
+      }
+    });
+
+    $sortFunction = false;
+    $reverseSort = ($params['sort_dir'] ?? '') === 'd';
+    switch ($params['sort_field'] ?? '') {
+      case 'added':
+        $sortFunction = function($a, $b) use ($reverseSort) {
+          if ($a['added'] == $b['added']) {
+            return 0;
+          }
+          return (strtotime($a['added']) < strtotime($b['added']) ? -1 : 1) * ($reverseSort ? -1 : 1);
+        };
+        break;
+      case 'Dublin Core,Title':
+        $sortFunction = function($a, $b) use ($reverseSort) {
+          return strnatcasecmp($a->title, $b->title)* ($reverseSort ? -1 : 1);
+        };
+        break;
+    }
+
+    if ($sortFunction) {
+      usort($topicsRecords, $sortFunction);
+    }
 
     // Add pagination data to the registry. Used by pagination_links().
     if ($recordsPerPage) {
@@ -86,10 +117,7 @@ class Topics_IndexController extends AbstractMCJCIndexController
     }
 
     $this->view->assign(array(
-      'topics' => array_merge(
-        $collectionRecords,
-        $exhibitRecords
-      ),
+      'topics' => $topicsRecords,
       'total_results' => $totalRecords));
   }
 

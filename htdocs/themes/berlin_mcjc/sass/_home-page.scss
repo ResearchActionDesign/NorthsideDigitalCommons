@@ -25,8 +25,10 @@
   flex-direction: row;
   margin-bottom: 30px;
   background: $white;
+  border-radius: 4px;
   width: 100%;
   .homepage-menu-image {
+    border-radius: 4px 0 4px 0;
     overflow: hidden;
     img {
       height: 100%;
@@ -63,16 +65,19 @@
     flex-direction: column;
     text-align: center;
     padding: 1.35em;
-    border-radius: 0.3em;
+    border-radius: 4px;
 
     .button {
       width: 100%;
     }
-  }
-  .homepage-menu-image {
-    margin: 0 auto;
-  }
-  .homepage-menu-content {
-    padding: 0;
+
+    .homepage-menu-image {
+      margin: 0 auto;
+      border-radius: 4px;
+    }
+
+    .homepage-menu-content {
+      padding: 0;
+    }
   }
 }

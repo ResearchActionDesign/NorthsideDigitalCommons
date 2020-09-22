@@ -41,6 +41,10 @@ footer {
     li {
       margin: 0.5em 0;
 
+      &:first-of-type {
+        margin-top: 0;
+      }
+
       a {
         font-weight: bold;
       }

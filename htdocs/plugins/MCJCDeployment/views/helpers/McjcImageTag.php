@@ -12,7 +12,7 @@
  * sure that it responds to all the correct MIME types by modifying other
  * properties in this class.
  *
- * @package MCJCDeployment\View\Helper
+ * @package Omeka\Plugins\McjcDeployment\views\helpers
  *
  */
 class MCJCDeployment_View_Helper_McjcImageTag extends Omeka_View_Helper_FileMarkup

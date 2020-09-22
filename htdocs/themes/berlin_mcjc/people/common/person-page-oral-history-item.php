@@ -30,7 +30,7 @@
     </div>
   <?php endif; ?>
 
-  <?php echo mcjc_link_to_item(__('View oral history details'), $item, [
+  <?php echo link_to_item(__('View oral history details'), $item, [
       'class' => 'button item-link',
   ]); ?>
 </div>
