@@ -362,11 +362,19 @@ function mcjc_tags_list(
         $html .= '<span class="tags__tag">';
         // TODO -- should be url(array('tag' => $tag['name']), 'tagShow') once that controller has been created.
         $html .= '<a href="/tags/' . utf8_htmlspecialchars($tag['name']) . '">';
-        if ($tagNumber && $tagNumberOrder == 'before') {
+        if (
+            $tagNumber &&
+            $tagNumberOrder == 'before' &&
+            isset($tag['tagCount'])
+        ) {
             $html .= ' <span class="count">' . $tag['tagCount'] . '</span> ';
         }
         $html .= html_escape($tag['name']);
-        if ($tagNumber && $tagNumberOrder == 'after') {
+        if (
+            $tagNumber &&
+            $tagNumberOrder == 'after' &&
+            isset($tag['tagCount'])
+        ) {
             $html .= ' <span class="count">' . $tag['tagCount'] . '</span> ';
         }
         $html .= '</a>';
@@ -505,4 +513,23 @@ function mcjc_record_image($record, $imageType = null, $props = [])
         );
     }
     return get_view()->mcjcImageTag($record, $props, $imageType);
+}
+
+/**
+ * Return tags similar to a query string.
+ *
+ * @param string $query Text to search for in tags table.
+ * @return array Array of matching tag names.
+ */
+function mcjc_get_matching_tags($query)
+{
+    $db = get_db();
+    $bind = ['%' . $query . '%'];
+
+    $sql = "
+            SELECT tags.name
+            FROM {$db->Tag} tags
+            WHERE tags.name LIKE ?
+        ";
+    return $db->fetchAll($sql, $bind) ?? [];
 }

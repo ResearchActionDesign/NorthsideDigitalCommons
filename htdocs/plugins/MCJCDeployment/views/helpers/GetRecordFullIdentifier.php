@@ -1,6 +1,6 @@
 <?php
 /**
- * Clean Url Get Record Full Identifier
+ * MCJC Deployment Get Record Full Identifier
  *
  * @todo Use a route name?
  * @see Omeka\View\Helper\RecordUrl.php

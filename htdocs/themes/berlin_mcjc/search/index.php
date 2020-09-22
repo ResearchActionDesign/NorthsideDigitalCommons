@@ -3,6 +3,12 @@ $query = $_GET['query'] ?? '';
 $pageTitle = trim(__('%s results for "%s"', $total_results, $query));
 echo head(['title' => $pageTitle, 'bodyclass' => 'search']);
 $searchRecordTypes = get_search_record_types();
+
+// Get tag results
+$searchTagResults = mcjc_get_matching_tags($query);
+usort($searchTagResults, function ($a, $b) {
+    return strnatcasecmp($a['name'], $b['name']);
+});
 ?>
 <div id="search-results">
     <div class="search-results--header">
@@ -59,8 +65,16 @@ $searchRecordTypes = get_search_record_types();
            <?php endforeach; ?>
           </div>
     </div>
+    <?php endif; ?>
     <div class="search-results--body">
-      <?php foreach (loop('search_texts') as $searchText): ?>
+      <?php if (count($searchTagResults)): ?>
+      <div class="search-results--tags">
+          <p>Your search also matched the following tags:</p>
+          <?php echo mcjc_tags_list($searchTagResults); ?>
+      </div>
+      <?php endif; ?>
+      <?php if ($total_results): ?>
+        <?php foreach (loop('search_texts') as $searchText): ?>
         <?php set_current_record(
             $searchText['record_type'],
             $searchText['record']
@@ -108,10 +122,8 @@ $searchRecordTypes = get_search_record_types();
           </div>
           </div>
       <?php endforeach; ?>
-    </div>
 <?php echo pagination_links(); ?>
 <?php else: ?>
-    <div id="no-results">
         <p><?php echo __(
             'No results were found. Please check your spelling or try searching for a different term'
         ); ?></p>
@@ -121,7 +133,7 @@ $searchRecordTypes = get_search_record_types();
         <a href="/topics" class="homepage-menu__item__button"><?php echo __(
             "Browse all topics"
         ); ?></a>
-    </div>
 <?php endif; ?>
+</div>
 </div>
 <?php echo foot(); ?>

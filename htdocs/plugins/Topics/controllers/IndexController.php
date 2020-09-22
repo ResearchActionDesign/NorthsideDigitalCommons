@@ -98,10 +98,7 @@ class Topics_IndexController extends AbstractMCJCIndexController
         break;
       case 'Dublin Core,Title':
         $sortFunction = function($a, $b) use ($reverseSort) {
-          if ($a->title === $b->title) {
-            return 0;
-          }
-          return ($a->title < $b->title ? -1 : 1) * ($reverseSort ? -1 : 1);
+          return strnatcasecmp($a->title, $b->title)* ($reverseSort ? -1 : 1);
         };
         break;
     }
