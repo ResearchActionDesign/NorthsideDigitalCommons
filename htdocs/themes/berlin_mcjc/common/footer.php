@@ -1,7 +1,7 @@
 <?php
 /* end content div from header.php */
 ?>
-</div>
+</article>
 <footer role="contentinfo">
     <div id="footer-content" class="center-div">
         <div id="footer-nav">

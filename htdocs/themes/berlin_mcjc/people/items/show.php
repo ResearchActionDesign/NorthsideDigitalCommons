@@ -18,6 +18,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     $bio = metadata('item', ['Dublin Core', 'Description']);
 }
 ?>
+<?php echo common('breadcrumbs', [
+    'trail' => ['People' => '/people', $itemTitle => false],
+]); ?>
+
 <div class="primary person<?php echo $itemClasses; ?>">
 
     <div class="item-content">
@@ -40,6 +44,11 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <?php endif; ?>
   </div>
 </div> <!-- End of Primary. -->
+
+<?php fire_plugin_hook('public_items_show', [
+    'view' => $this,
+    'item' => $item,
+]); ?>
 
 <?php if (count($oral_history_items)): ?>
 <div class="oral-histories">

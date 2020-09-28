@@ -10,6 +10,9 @@ usort($searchTagResults, function ($a, $b) {
     return strnatcasecmp($a['name'], $b['name']);
 });
 ?>
+<?php echo common('breadcrumbs', [
+    'trail' => ['Search'],
+]); ?>
 <div id="search-results">
     <div class="search-results--header">
         <h1 class="search-results--title"><?php echo $pageTitle; ?></h1>
@@ -34,7 +37,6 @@ usort($searchTagResults, function ($a, $b) {
               ]);
           }
       });
-
       $validFilterTypes = array_unique(
           array_map(function ($s) use ($filter) {
               return strtolower(
@@ -42,8 +44,8 @@ usort($searchTagResults, function ($a, $b) {
               );
           }, $search_texts)
       );
-      sort($validFilterTypes);
 
+      sort($validFilterTypes);
       $filterTypesDisplay = [
           'oral-history' => 'Oral Histories',
           'person' => 'People',

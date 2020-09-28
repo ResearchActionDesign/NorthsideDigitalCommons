@@ -3,6 +3,9 @@
 $pageTitle = __('Browse Items');
 echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
 ?>
+<?php echo common('breadcrumbs', [
+    'trail' => ['Tags'],
+]); ?>
 
 <h1><?php echo $tag_name; ?></h1>
 
