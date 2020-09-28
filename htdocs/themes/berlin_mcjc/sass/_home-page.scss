@@ -27,16 +27,24 @@
   background: $white;
   border-radius: 4px;
   width: 100%;
+
   .homepage-menu-image {
+    flex-grow: 0;
+    flex-shrink: 0;
     border-radius: 4px 0 4px 0;
     overflow: hidden;
     img {
       height: 100%;
+      width: auto;
     }
   }
 
   .homepage-menu-content {
-    align-self: center;
+    width: 100%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
     h2 {
       color: $letter-blue;

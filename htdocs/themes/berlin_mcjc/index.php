@@ -21,7 +21,7 @@
     <ul id="homepage-menu">
       <li class="homepage-menu__item">
         <div class='homepage-menu-image'>
-         <img src="/themes/berlin_mcjc/assets/images/buttons/meet_our_neighbors.png" alt="" loading="lazy">
+         <img src="/themes/berlin_mcjc/assets/images/buttons/meet_our_neighbors.png" alt="">
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __('Meet our neighbors'); ?></h2>
@@ -37,7 +37,7 @@
       </li>
       <li class="homepage-menu__item">
         <div class="homepage-menu-image">
-          <img src="/themes/berlin_mcjc/assets/images/buttons/explore_themes.png" alt="" loading="lazy">
+          <img src="/themes/berlin_mcjc/assets/images/buttons/explore_themes.png" alt="">
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __("Explore our history"); ?></h2>
@@ -53,7 +53,7 @@
       </li>
       <li class="homepage-menu__item">
         <div class="homepage-menu-image">
-         <img src="/themes/berlin_mcjc/assets/images/buttons/add_your_story.png" alt="" loading="lazy">
+         <img src="/themes/berlin_mcjc/assets/images/buttons/add_your_story.png" alt="">
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __("Join the conversation"); ?></h2>
