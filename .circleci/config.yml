@@ -55,14 +55,14 @@ jobs:
           name: Enable SSH authentication for remote server
           command: |
             mkdir -p ~/.ssh
-            echo "archives.jacksoncenter.info ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+            echo "fromtherockwall.org ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A jacksor6@archives.jacksoncenter.info 'cd ~/www/archives-new && git pull origin develop'
+          command: ssh -A fromther@fromtherockwall.org 'cd ~/www && git pull origin develop'
 
       - run:
           name: Copy over compiled css files to dev server
-          command: scp -rC *.css jacksor6@archives.jacksoncenter.info:~/www/archives-new/htdocs/themes/berlin_mcjc/css
+          command: scp -rC *.css fromther@fromtherockwall.org:~/www/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
 
   deploy_prod:
@@ -80,14 +80,14 @@ jobs:
           name: Enable SSH authentication for remote server
           command: |
             mkdir -p ~/.ssh
-            echo "archives.jacksoncenter.info ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+            echo "fromtherockwall.org ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A jacksor6@archives.jacksoncenter.info 'cd ~/www/archives.jacksoncenter.info && git pull origin master'
+          command: ssh -A fromther@fromtherockwall.org 'cd ~/www && git pull origin develop'
 
       - run:
           name: Copy over compiled css files to dev server
-          command: scp -rC *.css jacksor6@archives.jacksoncenter.info:~/www/archives.jacksoncenter.info/htdocs/themes/berlin_mcjc/css
+          command: scp -rC *.css fromther@fromtherockwall.org:~/www/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
 
 # TODO: Add test steps
