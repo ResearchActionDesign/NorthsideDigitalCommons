@@ -5,7 +5,7 @@
 
 class Documents_ItemsController extends AbstractMCJCItemController
 {
-  protected function getItemTypes() {
+  protected function getItemTypeId() {
     return false;
   }
 

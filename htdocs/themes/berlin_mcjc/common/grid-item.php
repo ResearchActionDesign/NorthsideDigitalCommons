@@ -1,5 +1,7 @@
 <?php
 const ORAL_HISTORY_ITEM_TYPE = 4;
+const ORAL_HISTORY_CLIP_ITEM_TYPE = 18;
+const PROJECT_INTERVIEW_ITEM_TYPE = 19;
 const IMAGE_ITEM_TYPE = 6;
 
 if (!isset($masonry)) {
@@ -47,6 +49,8 @@ if (
 $icon = '';
 switch ($item->item_type_id) {
     case ORAL_HISTORY_ITEM_TYPE:
+    case ORAL_HISTORY_CLIP_ITEM_TYPE:
+    case PROJECT_INTERVIEW_ITEM_TYPE:
         $icon = '<i class="fa fa-microphone" aria-label="Oral History"></i>';
         break;
     case IMAGE_ITEM_TYPE:

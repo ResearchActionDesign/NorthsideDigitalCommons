@@ -20,7 +20,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 ?>
 <div class="primary person<?php echo $itemClasses; ?>">
 
-  <h1 class='person title'><?php echo metadata('item', 'display_title'); ?></h1>
+  <h1 class='person title'><?php echo $itemTitle; ?></h1>
 
   <!-- Item files -->
   <?php if ($picture): ?>
@@ -43,6 +43,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>
     <?php echo common('person-page-oral-history-item', [
         'item' => $oralHistoryItem,
+        'person' => $itemTitle,
     ]); ?>
   <?php endforeach; ?>
 </div>

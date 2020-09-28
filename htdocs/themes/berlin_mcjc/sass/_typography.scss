@@ -130,7 +130,8 @@ blockquote {
   }
 }
 
-blockquote + cite {
+blockquote + cite,
+p.citation {
   display: block;
   margin-top: 1em;
   font-style: unset;

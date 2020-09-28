@@ -11,6 +11,10 @@
     padding: 20px;
   }
 }
+#itemfiles div + div {
+  margin-top: 0.5em;
+}
+
 #itemfiles.element {
   .item-images {
     display: flex;

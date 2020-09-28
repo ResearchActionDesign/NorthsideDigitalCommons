@@ -5,7 +5,7 @@
 
 class Images_ItemsController extends AbstractMCJCItemController
 {
-  protected function getItemTypes() {
-    return array('Still Image', 'Photograph');
+  protected function getItemTypeId() {
+    return 6;
   }
 }

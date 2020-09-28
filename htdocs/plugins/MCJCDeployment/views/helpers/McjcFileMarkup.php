@@ -73,9 +73,9 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     } elseif (strpos($file->mime_type, 'pdf') !== FALSE) {
       // If this is a PDF, add link text instead of an image.
       if (stripos(html_escape($file->original_filename), 'tape') !== FALSE) {
-        $html .= 'View Tape Log';
+        $html .= 'View Summary';
       } elseif (stripos(html_escape($file->original_filename), 'transcript') !== FALSE) {
-        $html .= 'View Transcript';
+        $html .= 'View Full Text';
       } elseif (stripos(html_escape($file->original_filename), 'abstract') !== FALSE) {
         $html .= 'View Abstract';
       } elseif (stripos(html_escape($file->original_filename), 'fieldnotes') !== FALSE) {
