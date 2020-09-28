@@ -41,6 +41,11 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   </div>
 </div> <!-- End of Primary. -->
 
+<?php fire_plugin_hook('public_items_show', [
+    'view' => $this,
+    'item' => $item,
+]); ?>
+
 <?php if (count($oral_history_items)): ?>
 <div class="oral-histories">
   <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>

@@ -83,4 +83,8 @@ echo $class ?? false ? " {$class}" : "";
         <?php endif; ?>
       </div>
     <div class="item-title" aria-hidden="true"><?php echo $title; ?></div>
+    <?php fire_plugin_hook('public_items_browse_each', [
+        'view' => $this,
+        'item' => $item,
+    ]); ?>
 </a>

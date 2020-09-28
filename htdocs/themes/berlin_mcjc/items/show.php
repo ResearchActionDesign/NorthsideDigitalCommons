@@ -102,6 +102,11 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     </div>
   </div>
 
+<?php fire_plugin_hook('public_items_show', [
+    'view' => $this,
+    'item' => $item,
+]); ?>
+
 <?php echo common('respond-bar'); ?>
 
 <?php if (!empty($depicted_items)): ?>
