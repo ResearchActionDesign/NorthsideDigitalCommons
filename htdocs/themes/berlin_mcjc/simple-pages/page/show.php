@@ -19,7 +19,7 @@ echo head([
 ?>
 <div id="primary" class="<?php echo $div_class; ?>">
     <?php if (!$is_home_page): ?>
-        <p id="simple-pages-breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
+        <p id="simple-pages-breadcrumbs" class="breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
         <h1><?php echo metadata('simple_pages_page', 'title'); ?></h1>
     <?php endif; ?>
     <div class="about-content-wrapper">

@@ -3,6 +3,9 @@ $pageTitle = __('Stories');
 
 echo head(['title' => $pageTitle, 'bodyclass' => 'stories browse']);
 ?>
+<?php echo common('breadcrumbs', [
+    'trail' => ['Stories'],
+]); ?>
 
 <h1><?php echo $pageTitle; ?></h1>
 

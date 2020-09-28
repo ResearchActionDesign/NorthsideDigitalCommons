@@ -7,10 +7,24 @@
     align-items: center;
     @include container;
 
+    .item-type {
+      text-transform: uppercase;
+    }
+
+    .item-type,
+    .subtitle {
+      display: block;
+      text-align: center;
+      margin: 0 0.5rem;
+    }
+    .description {
+      margin-top: 36px;
+    }
+
     h1 {
       text-align: center;
       color: $black;
-      margin-bottom: 36px;
+      margin: 0 0.5rem;
     }
 
     .item-content {

@@ -2,6 +2,9 @@
 $pageTitle = __('Our Community. Our Stories.');
 echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 ?>
+<?php echo common('breadcrumbs', [
+    'trail' => ['Topics'],
+]); ?>
 
 <div class="header-background-container topics-image">
   <div class="header-background-container-content">
@@ -41,7 +44,6 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     <?php
     $topicClass = strtolower($topic->topicType);
     $title = "{$topic->topicType}: " . html_escape($topic->title);
-
     if ($topicClass == 'exhibit') {
         $description = metadata($topic, 'description', ['no_escape' => true]);
     } else {

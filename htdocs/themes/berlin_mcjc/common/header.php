@@ -64,5 +64,5 @@ if (
 
  <?php echo common('header-nav', ['bodyid' => $bodyid]); ?>
 
-<div id="content" role="main" tabindex="-1">
+<article id="content" role="main">
 <?php fire_plugin_hook('public_content_top', ['view' => $this]); ?>

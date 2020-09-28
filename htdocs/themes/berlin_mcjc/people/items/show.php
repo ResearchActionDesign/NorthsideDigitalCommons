@@ -18,6 +18,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     $bio = metadata('item', ['Dublin Core', 'Description']);
 }
 ?>
+<?php echo common('breadcrumbs', [
+    'trail' => ['People' => '/people', $itemTitle => false],
+]); ?>
+
 <div class="primary person<?php echo $itemClasses; ?>">
 
     <div class="item-content">
