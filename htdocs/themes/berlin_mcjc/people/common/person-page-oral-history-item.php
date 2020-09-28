@@ -30,7 +30,12 @@
     </div>
   <?php endif; ?>
 
-  <?php echo link_to_item(__('View oral history details'), $item, [
-      'class' => 'button item-link',
-  ]); ?>
+  <?php echo link_to_item(
+      __('View oral history details'),
+      [
+          'class' => 'button item-link',
+      ],
+      'show',
+      $item
+  ); ?>
 </div>
