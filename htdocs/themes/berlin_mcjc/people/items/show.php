@@ -49,6 +49,8 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 </div>
 <?php endif; ?>
 
+<?php echo common('respond-bar'); ?>
+
 <?php if (count($related_items)): ?>
   <div class="browse masonry-grid grid-container related-items">
       <h2><?php echo $itemTitle; ?> also appears in...</h2>

@@ -104,6 +104,8 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     </div>
   </div>
 </div>
+<?php echo common('respond-bar'); ?>
+
 <?php if (!empty($depicted_items)): ?>
 <div class="explore-grid grid-container depicted">
   <h2><?php echo __('In this ') .

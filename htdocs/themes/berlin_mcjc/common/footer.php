@@ -1,10 +1,3 @@
-
-<?php if ($expertiseText = get_theme_option('add_your_expertise_text')): ?>
-<div class="add_your_expertise">
-    <?php echo $expertiseText; ?>
-</div>
-<?php endif; ?>
-
 <?php
 /* end content div from header.php */
 ?>

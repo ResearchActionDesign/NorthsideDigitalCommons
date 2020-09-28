@@ -311,3 +311,7 @@ input[type="submit"] {
     margin-top: 48px;
   }
 }
+
+.back-container {
+  @include container;
+}
