@@ -1,4 +1,11 @@
 <?php echo head(['bodyid' => 'home']); ?>
+<div class="homepage-title">
+    <h1>From the Rock Wall
+        <span class="subtitle">Living Histories of Black Chapel Hill/Carrboro</span>
+    </h1>
+    <blockquote>Without the past, you have no future.</blockquote>
+    <cite>Mrs. Marian Cheek Jackson</cite>
+</div>
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">

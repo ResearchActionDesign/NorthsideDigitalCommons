@@ -145,6 +145,51 @@ header {
   }
 }
 
+#mobile-nav {
+  text-align: right;
+
+  .search-form-container {
+    display: block;
+
+    form.search-form {
+      float: right;
+      margin: 1em 0.5em 1em 0;
+    }
+  }
+
+  button.menu {
+    position: absolute;
+    right: 1em;
+    top: 0.8em;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    background: transparent;
+    color: $green;
+    display: none;
+
+    &:focus,
+    &:hover {
+      background: #fff;
+    }
+  }
+
+  li {
+    display: block;
+    margin-right: 8px;
+    float: none;
+
+    > ul {
+      display: none; // Submenus don't show on mobile nav.
+    }
+  }
+
+  a {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: $narrow-screen) {
   header {
     .nav-search-wrapper {
@@ -162,48 +207,6 @@ header {
 
       #mobile-nav {
         display: block;
-        text-align: right;
-
-        .search-form-container {
-          display: block;
-
-          form.search-form {
-            float: right;
-            margin: 1em 0.5em 1em 0;
-          }
-        }
-
-        button.menu {
-          position: absolute;
-          right: 1em;
-          top: 0.8em;
-          padding: 8px;
-          border: none;
-          border-radius: 4px;
-          font-size: 1em;
-          background: transparent;
-          color: $green;
-          display: none;
-
-          &:focus,
-          &:hover {
-            background: #fff;
-          }
-        }
-
-        li {
-          display: block;
-          margin-right: 8px;
-          float: none;
-
-          > ul {
-            display: none; // Submenus don't show on mobile nav.
-          }
-        }
-
-        a {
-          display: block;
-        }
       }
     }
   }

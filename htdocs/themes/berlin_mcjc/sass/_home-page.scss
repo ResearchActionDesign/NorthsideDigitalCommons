@@ -59,6 +59,33 @@
   display: block;
 }
 
+.homepage-title {
+  text-align: center;
+  h1 {
+    color: $purple--dark;
+    .subtitle {
+      display: block;
+      font-size: 0.5em; // Relative to parent h1 element
+      line-height: 1em;
+    }
+  }
+}
+
+// Hide most header items on homepage, but show mobile-nav.
+#home header {
+  #site-title {
+    display: none;
+  }
+
+  .nav-search-wrapper {
+    display: none;
+  }
+
+  #mobile-nav {
+    display: block;
+  }
+}
+
 @media only screen and (max-width: $narrow-screen) {
   .homepage-menu__item {
     width: 100%;
