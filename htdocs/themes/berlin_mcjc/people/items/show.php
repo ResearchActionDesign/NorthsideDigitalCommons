@@ -20,22 +20,25 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 ?>
 <div class="primary person<?php echo $itemClasses; ?>">
 
-  <h1 class='person title'><?php echo metadata('item', 'display_title'); ?></h1>
+    <div class="item-content">
+  <h1 class='person title'><?php echo $itemTitle; ?></h1>
+
+  <?php if ($bio): ?>
+      <p class="description">
+        <?php echo $bio; ?>
+      </p>
+  <?php endif; ?>
+    </div>
 
   <!-- Item files -->
+  <div class="item-sidebar">
   <?php if ($picture): ?>
     <div id="picture" class="element">
       <div class="item-images"><?php echo $picture; ?>
       </div>
     </div>
   <?php endif; ?>
-
-  <?php if ($bio): ?>
-  <div class="bio">
-    <?php echo $bio; ?>
   </div>
-  <?php endif; ?>
-
 </div> <!-- End of Primary. -->
 
 <?php if (count($oral_history_items)): ?>
@@ -43,10 +46,13 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>
     <?php echo common('person-page-oral-history-item', [
         'item' => $oralHistoryItem,
+        'person' => $itemTitle,
     ]); ?>
   <?php endforeach; ?>
 </div>
 <?php endif; ?>
+
+<?php echo common('respond-bar'); ?>
 
 <?php if (count($related_items)): ?>
   <div class="browse masonry-grid grid-container related-items">

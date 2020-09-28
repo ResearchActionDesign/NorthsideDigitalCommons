@@ -1,82 +1,29 @@
-.primary.oral-history {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  .item-type h1 {
-    text-transform: capitalize;
+.items.show .primary.oral-history {
+  .item-type {
+    text-transform: uppercase;
   }
-  .details {
-    background: $white;
-    padding: 20px;
+  .item-type,
+  .subtitle {
+    display: block;
+    text-align: center;
+    margin: 0 0.5rem;
+  }
+  .description {
+    margin-top: 36px;
+  }
+  h1 {
+    margin: 0 0.5rem;
   }
 }
+#itemfiles div + div {
+  margin-top: 0.5em;
+}
+
 #itemfiles.element {
   .item-images {
     display: flex;
     flex-wrap: wrap;
     width: 344px; // Align with audio player width.
     justify-content: space-between;
-  }
-}
-
-.oral-image-title-container {
-  display: flex;
-  width: 100%;
-  .title-block {
-    text-align: center;
-    width: 50%;
-    padding-top: 40px;
-    h1 {
-      text-transform: none;
-    }
-  }
-  .element {
-    width: 50%;
-    margin: 1.5em;
-  }
-}
-.oral-description-player-container {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  .description {
-    flex-basis: 344px;
-    padding: 20px;
-    margin: 20px;
-    flex-grow: 1;
-  }
-
-  div#itemfiles {
-    margin: 20px;
-    padding: 20px;
-    flex-basis: 384px;
-  }
-}
-.tags-container {
-  padding: 15px;
-  width: auto;
-}
-
-@media screen and (max-width: $tablet-width) {
-  .oral-image-title-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .oral-description-player-container {
-    display: block;
-    #itemfiles .item-images {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      flex-direction: column;
-      align-content: center;
-    }
-  }
-  .tags-container {
-    width: 100%;
   }
 }

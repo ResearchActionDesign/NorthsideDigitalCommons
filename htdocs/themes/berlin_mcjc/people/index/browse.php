@@ -10,10 +10,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
     <div class="header-background-container">
         <div class="header-background-container-content">
             <h1 class="image-title"><?php echo $pageTitle; ?></h1>
-  <?php if (
-      $link_text = get_theme_option('homepage_meet_our_neighbors_text')
-  ): ?>
-      <p class="image-text"><?php echo $link_text; ?></p>
+  <?php if ($header_text = get_theme_option('people_page_text')): ?>
+      <p class="image-text"><?php echo $header_text; ?></p>
   <?php endif; ?>
         </div>
     </div>

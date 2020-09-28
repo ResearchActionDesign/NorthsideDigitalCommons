@@ -1,0 +1,107 @@
+.items.show,
+.person.show {
+  .primary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "content pic";
+    align-items: center;
+    @include container;
+
+    h1 {
+      text-align: center;
+      color: $black;
+      margin-bottom: 36px;
+    }
+
+    .item-content {
+      grid-area: content;
+    }
+
+    .item-sidebar {
+      grid-area: pic;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: auto;
+
+      .item-images {
+        img {
+          width: 100%;
+          padding: 20px;
+        }
+      }
+    }
+  }
+
+  .tags-container {
+    @include container;
+    margin-top: 48px !important;
+  }
+}
+
+@media screen and (max-width: $tablet-width) {
+  .items.show,
+  .person.show {
+    .primary {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+#item-images {
+  float: left;
+  margin-right: 2em;
+
+  > div {
+    margin-bottom: 2em;
+  }
+}
+
+#item-description {
+  margin-bottom: 2em;
+}
+
+.item-pagination {
+  padding-top: 24px;
+
+  a {
+    font-size: 1.2em;
+    text-transform: uppercase;
+  }
+}
+
+.items.show {
+  h3 {
+    margin-bottom: 0.5em;
+  }
+}
+
+.item-file {
+  margin: 0.5em 0;
+
+  &.application-pdf {
+    @include button;
+    margin: 0.5em 0; // Needed again here to reset margin from button.
+    max-width: 100%; // Needed to allow an iframe container to scale properly if it is inside here.
+
+    .iframe-container {
+      width: 960px;
+      height: 640px;
+      max-width: 100%;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+// Link out to SOHP for some items.
+.item-metadata {
+  &.sohp {
+    @include button;
+  }
+}

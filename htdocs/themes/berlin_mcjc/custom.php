@@ -83,22 +83,28 @@ function mcjc_render_oral_history_players(
     $options = []
 ) {
     if (!isset($options['title'])) {
-        $options['title'] =
-            metadata($item, ['Dublin Core', 'Title']) .
-            ': ' .
-            oral_history_item_subtitle($item);
+        $options['title'] = metadata($item, ['Dublin Core', 'Title']);
     }
+    $limit = $options['limit'] ?? false;
     $output = "";
     $files = $item->Files;
     $audioFiles = array_filter($files, function ($file) {
         return substr($file->mime_type, 0, 5) === 'audio';
     });
+    $count = 1;
     foreach ($audioFiles as $audiofile) {
-        $output .= get_view()->mcjcFileMarkup(
-            $audiofile,
-            $options,
-            $wrapperAttributes
-        );
+        $output .=
+            '<div class="player-element">' .
+            get_view()->mcjcFileMarkup(
+                $audiofile,
+                $options,
+                $wrapperAttributes
+            ) .
+            '</div>';
+        $count++;
+        if ($limit && $count > $limit) {
+            break;
+        }
     }
     return $output;
 }

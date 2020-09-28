@@ -115,3 +115,27 @@ a.button {
   margin: 0 0.5em 0.5em 0;
   text-align: center;
 }
+
+blockquote {
+  margin: 0 3em;
+  font: 2em $body-font-family;
+  font-style: italic;
+
+  &::before {
+    content: "\201C";
+  }
+
+  &::after {
+    content: "\201D";
+  }
+}
+
+blockquote + cite,
+p.citation {
+  display: block;
+  margin-top: 1em;
+  font-style: unset;
+  &::before {
+    content: "\2014 ";
+  }
+}

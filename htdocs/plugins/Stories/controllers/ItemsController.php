@@ -5,8 +5,8 @@
 
 class Stories_ItemsController extends AbstractMCJCItemController
 {
-  protected function getItemTypes() {
-    // TODO: Check if this needs to be expanded.
-    return 'Oral History';
+  protected function getItemTypeId()
+  {
+    return [4, 18, 19];
   }
 }

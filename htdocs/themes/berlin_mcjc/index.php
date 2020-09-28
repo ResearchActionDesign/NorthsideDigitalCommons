@@ -1,4 +1,11 @@
 <?php echo head(['bodyid' => 'home']); ?>
+<div class="homepage-title">
+    <h1>From the Rock Wall
+        <span class="subtitle">Living Histories of Black Chapel Hill/Carrboro</span>
+    </h1>
+    <blockquote>Without the past, you have no future.</blockquote>
+    <cite>Mrs. Marian Cheek Jackson</cite>
+</div>
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
@@ -14,7 +21,7 @@
     <ul id="homepage-menu">
       <li class="homepage-menu__item">
         <div class='homepage-menu-image'>
-         <img src="/themes/berlin_mcjc/assets/images/buttons/meet_our_neighbors.png" alt="" loading="lazy">
+         <img src="/themes/berlin_mcjc/assets/images/buttons/meet_our_neighbors.png" alt="">
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __('Meet our neighbors'); ?></h2>
@@ -30,7 +37,7 @@
       </li>
       <li class="homepage-menu__item">
         <div class="homepage-menu-image">
-          <img src="/themes/berlin_mcjc/assets/images/buttons/explore_themes.png" alt="" loading="lazy">
+          <img src="/themes/berlin_mcjc/assets/images/buttons/explore_themes.png" alt="">
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __("Explore our history"); ?></h2>
@@ -46,7 +53,7 @@
       </li>
       <li class="homepage-menu__item">
         <div class="homepage-menu-image">
-         <img src="/themes/berlin_mcjc/assets/images/buttons/add_your_story.png" alt="" loading="lazy">
+         <img src="/themes/berlin_mcjc/assets/images/buttons/add_your_story.png" alt="">
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __("Join the conversation"); ?></h2>
@@ -55,8 +62,8 @@
           ): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
-          <a href="/add-a-story" class="homepage-menu__item__button button"><?php echo __(
-              "Add a story"
+          <a href="/respond" class="homepage-menu__item__button button"><?php echo __(
+              "Respond"
           ); ?></a>
        </div>
       </li>

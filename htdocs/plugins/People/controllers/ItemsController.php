@@ -9,9 +9,9 @@ const PERSON_ITEM_TYPE = 12;
 
 class People_ItemsController extends AbstractMCJCItemController
 {
-  protected function getItemTypes()
+  protected function getItemTypeId()
   {
-    return 'Person';
+    return 12;
   }
 
   /**

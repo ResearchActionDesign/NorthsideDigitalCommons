@@ -6,8 +6,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 <div class="header-background-container topics-image">
   <div class="header-background-container-content">
     <h1 class="image-title"><?php echo $pageTitle; ?></h1>
-    <?php if ($link_text = get_theme_option('homepage_explore_themes_text')): ?>
-        <p class="image-text"><?php echo $link_text; ?></p>
+    <?php if ($header_text = get_theme_option('topics_page_text')): ?>
+        <div class="image-text"><?php echo $header_text; ?></div>
     <?php endif; ?>
   </div>
 </div>

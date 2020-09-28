@@ -16,6 +16,13 @@
   h1 {
     color: white;
   }
+
+  blockquote,
+  p {
+    margin: 0 96px;
+    margin-top: inherit;
+    margin-bottom: inherit;
+  }
 }
 
 @media only screen and (max-width: $tablet-width) {

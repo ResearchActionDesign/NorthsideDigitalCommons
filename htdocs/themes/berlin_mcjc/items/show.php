@@ -29,8 +29,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     'bodyclass' => "items show {$itemTypeClass}",
 ]); ?>
 <div class="primary <?php echo "{$itemTypeClass} {$itemClasses}"; ?>">
- <div class="oral-image-title-container">
-        <div class="title-block">
+        <div class="item-content">
             <span class="item-type"><?php echo $itemType; ?></span>
             <h1><?php echo $itemTitle; ?></h1>
             <?php if ($itemType === 'Oral History'): ?>
@@ -38,33 +37,30 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
             <?php echo oral_history_item_subtitle(); ?>
             </span>
             <?php endif; ?>
+            <?php if ($description): ?>
+              <p class="description">
+                <?php echo $description; ?>
+              </p>
+          <?php endif; ?>
         </div>
+        <div class="item-sidebar">
         <?php if ($picture): ?>
         <div id="picture" class="element">
-            <div class="item-images"><?php echo $picture; ?>
-            </div>
-            </div>
-</div>
-  <?php endif; ?>
-  
-<div class='oral-description-player-container'>
-    <?php if ($description): ?>
-    <div class="description">
-        <?php echo $description; ?>
-    </div>
-    <?php endif; ?>
-    <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
-    <div class="item-metadata sohp">
-        <a target="_blank" href="<?php echo html_escape(
-            $sohp_url
-        ); ?>">View Details at Southern Oral History Program
-        website</a>
-    </div>
-    <?php elseif (
-        $itemType !== 'Photograph' &&
-        $itemType !== 'Still Image' &&
-        metadata('item', 'has files')
-    ): ?>
+            <div class="item-images"><?php echo $picture; ?></div>
+        </div>
+        <?php endif; ?>
+  <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
+      <div class="item-metadata sohp element">
+          <a target="_blank" href="<?php echo html_escape(
+              $sohp_url
+          ); ?>">View Details at Southern Oral History Program
+              website</a>
+      </div>
+  <?php elseif (
+      $itemType !== 'Photograph' &&
+      $itemType !== 'Still Image' &&
+      metadata('item', 'has files')
+  ): ?>
     <div id="itemfiles" class="element">
         <div class="item-images"><?php echo mcjc_files_for_item('item', [
             'imageSize' => 'fullsize',
@@ -73,8 +69,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         ]); ?>
         </div>
     </div>
-  </div>
-  <?php endif; ?>
+<?php endif; ?>
+</div>
+</div>
+
   <?php
   $tags = tag_string('item');
   $metadata_paragraph = mcjc_element_metadata_paragraph($item);
@@ -84,26 +82,28 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   ?>
   <div class="tags-container">
       <?php if ($tags): ?>
-    <div id="item-tags" class="element">
+    <p id="item-tags" class="element">
       <span class="element-title"><?php echo __('Tags: '); ?></span>
       <span class="element-text"><?php echo $tags; ?></span>
-    </div>
+    </p>
       <?php endif; ?>
     <div class="details">
         <?php if ($metadata_paragraph): ?>
-      <div id="item-detail" class="element">
+      <p id="item-detail" class="element">
         <span class="element-text"><?php echo $metadata_paragraph; ?></span>
-      </div>
+      </p>
         <?php endif; ?>
         <?php if ($citation): ?>
-      <div id="item-citation" class="element">
+      <p id="item-citation" class="element">
         <span class="element-title"><?php echo __('Citation: '); ?></span>
         <span class="element-text"><?php echo $citation; ?></span>
-      </div>
+      </p>
         <?php endif; ?>
     </div>
   </div>
-</div>
+
+<?php echo common('respond-bar'); ?>
+
 <?php if (!empty($depicted_items)): ?>
 <div class="explore-grid grid-container depicted">
   <h2><?php echo __('In this ') .

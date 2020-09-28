@@ -1,19 +1,21 @@
+<?php
+$title = metadata($item, ['Dublin Core', 'Title']);
+
+// Workaround to situationsw here interview title matches person name
+if ($title === $person) {
+    $title = oral_history_item_subtitle($item);
+}
+?>
 <div class="oral-history">
-    <?php $title =
-        metadata($item, ['Dublin Core', 'Title']) .
-        ': ' .
-        oral_history_item_subtitle($item); ?>
   <h2><?php echo $title; ?></h2>
 
   <!-- Item files -->
   <?php if (metadata($item, 'has files')): ?>
-    <div class="player-element">
       <?php echo mcjc_render_oral_history_players(
           $item,
           ['class' => 'item-file'],
-          ['title' => $title]
+          ['title' => $title, 'limit' => 1]
       ); ?>
-    </div>
   <?php endif; ?>
 
   <div class='item-description'>

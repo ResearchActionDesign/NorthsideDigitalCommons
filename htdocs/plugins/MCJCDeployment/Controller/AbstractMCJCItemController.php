@@ -71,7 +71,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
   }
 
   // Return string or array representing item type(s) to be returned by this controller.
-  abstract protected function getItemTypes();
+  abstract protected function getItemTypeId();
   protected $_item;
 
   /**
@@ -97,15 +97,13 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
       throw new Omeka_Controller_Exception_404;
     }
 
-    $select = $itemsTable->getSelect();
-
-    if ($this->getItemTypes()) {
-      $itemsTable->filterByItemType($select, $this->getItemTypes());
+    $params = [];
+    if ($this->getItemTypeId()) {
+      $params['type'] = $this->getItemTypeId();
     }
-
-    $itemsTable->filterByPublic($select, True); // Only return public records.
-    $select->where("`items`.`id` = ?", $matchingNames[0]->record_id);
-    $records = $itemsTable->fetchObjects($select);
+    $recordSelect = $itemsTable->getSelectForFindBy($params);
+    $recordSelect->where("`items`.`id` = ?", $matchingNames[0]->record_id);
+    $records = $itemsTable->fetchObjects($recordSelect);
 
     if (count($records)) {
       $this->_item = $records[0];

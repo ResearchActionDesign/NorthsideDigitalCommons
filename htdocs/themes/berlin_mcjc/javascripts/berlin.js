@@ -50,7 +50,10 @@ if (!Berlin) {
 
   //readmore/less related-items
   $().ready(function () {
-    $(".oral-history .item-description").each(function (i, domItem) {
+    $(".person.show .oral-history .item-description").each(function (
+      i,
+      domItem
+    ) {
       var textItem = $(domItem);
       var textToHide = textItem.text().slice(280);
       var visibleText = textItem.text().slice(1, 280);

@@ -1,39 +1,4 @@
 .person.show {
-  .primary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "title pic" "bio pic";
-    align-items: center;
-    @include container;
-    h1 {
-      text-align: center;
-      text-transform: capitalize;
-      color: $black;
-      margin: 0;
-      align-self: flex-end;
-    }
-    .person.title {
-      grid-area: title;
-    }
-
-    .bio {
-      grid-area: bio;
-    }
-
-    #picture {
-      grid-area: pic;
-      float: right;
-      width: 100%;
-      height: auto;
-
-      .item-images {
-        img {
-          width: 100%;
-          padding: 20px;
-        }
-      }
-    }
-  }
   .oral-histories {
     @include container;
 

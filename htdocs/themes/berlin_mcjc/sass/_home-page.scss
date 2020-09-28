@@ -27,16 +27,24 @@
   background: $white;
   border-radius: 4px;
   width: 100%;
+
   .homepage-menu-image {
+    flex-grow: 0;
+    flex-shrink: 0;
     border-radius: 4px 0 4px 0;
     overflow: hidden;
     img {
       height: 100%;
+      width: auto;
     }
   }
 
   .homepage-menu-content {
-    align-self: center;
+    width: 100%;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
     h2 {
       color: $letter-blue;
@@ -57,6 +65,33 @@
   max-width: $base-width;
   margin: 0 auto;
   display: block;
+}
+
+.homepage-title {
+  text-align: center;
+  h1 {
+    color: $purple--dark;
+    .subtitle {
+      display: block;
+      font-size: 0.5em; // Relative to parent h1 element
+      line-height: 1em;
+    }
+  }
+}
+
+// Hide most header items on homepage, but show mobile-nav.
+#home header {
+  #site-title {
+    display: none;
+  }
+
+  .nav-search-wrapper {
+    display: none;
+  }
+
+  #mobile-nav {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: $narrow-screen) {

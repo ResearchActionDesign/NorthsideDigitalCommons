@@ -12,13 +12,15 @@
 @import "home-page";
 @import "header";
 @import "footer";
+@import "respond-bar";
 @import "header-background-container"; // hero image header for top-level pages.
 @import "search";
 @import "people";
 @import "about";
 @import "item-grid";
+
+@import "item";
 @import "person";
-@import "image-page";
 @import "oral-history";
 @import "topic";
 @import "contribute";

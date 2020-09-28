@@ -1,11 +1,12 @@
 <?php
 /**
- * @package Images
+ * @package Topics
  */
 
-class Images_ItemsController extends AbstractMCJCItemController
+// TODO.
+class Topics_ItemsController extends AbstractMCJCItemController
 {
-  protected function getItemTypes() {
-    return array('Still Image', 'Photograph');
+  protected function getItemTypeId() {
+    return false;
   }
 }
