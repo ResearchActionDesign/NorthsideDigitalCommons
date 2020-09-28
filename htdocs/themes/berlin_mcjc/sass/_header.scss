@@ -147,6 +147,15 @@ header {
 
 #mobile-nav {
   text-align: right;
+  position: absolute;
+  right: 1em;
+  top: 0.8em;
+
+  ul.navigation {
+    background: $white;
+    padding: 8px;
+    border-radius: 4px;
+  }
 
   .search-form-container {
     display: block;
@@ -158,9 +167,6 @@ header {
   }
 
   button.menu {
-    position: absolute;
-    right: 1em;
-    top: 0.8em;
     padding: 8px;
     border: none;
     border-radius: 4px;
@@ -171,7 +177,7 @@ header {
 
     &:focus,
     &:hover {
-      background: #fff;
+      background: $white;
     }
   }
 
