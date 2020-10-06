@@ -47,34 +47,6 @@ function oral_history_item_subtitle($item = false)
 }
 
 /**
- * Get HTML for random featured items. Customized for MCJC Berlin Theme.
- *
- * @uses get_random_featured_items()
- * @param int $count Maximum number of items to show.
- * @param boolean $withImage Whether or not the featured items must have
- * images associated. If null, as default, all featured items can appear,
- * whether or not they have files. If true, only items with files will appear,
- * and if false, only items without files will appear.
- * @return string
- */
-function mcjc_random_featured_items($count = 5, $hasImage = null)
-{
-    $items = get_random_featured_items($count, $hasImage);
-    if ($items) {
-        $html = '';
-        foreach ($items as $item) {
-            $html .= get_view()->partial('items/featured-item.php', [
-                'item' => $item,
-            ]);
-            release_object($item);
-        }
-    } else {
-        $html = '<p>' . __('No featured items are available.') . '</p>';
-    }
-    return $html;
-}
-
-/**
  * Render audio player for an oral history item.
  */
 function mcjc_render_oral_history_players(
@@ -538,4 +510,21 @@ function mcjc_get_matching_tags($query)
             WHERE tags.name LIKE ?
         ";
     return $db->fetchAll($sql, $bind) ?? [];
+}
+
+/**
+ * Get random 'Have you heard' item from those set up in theme options.
+ */
+function mcjc_get_have_you_heard()
+{
+    $randomItem = rand(1, 5);
+    $count = 0;
+    $haveYouHeard = get_theme_option("have_you_heard_$randomItem");
+    while (!$haveYouHeard && $count < 5) {
+        $randomItem = $randomItem != 5 ? $randomItem + 1 : 0;
+        $haveYouHeard = trim(get_theme_option("have_you_heard_$randomItem"));
+        $count++;
+    }
+
+    return $haveYouHeard;
 }

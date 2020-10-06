@@ -206,7 +206,8 @@ input[type="submit"] {
 /* @end */
 
 /* @group ----- Content containers ----- */
-#primary {
+#primary,
+aside {
   @include container;
 }
 
