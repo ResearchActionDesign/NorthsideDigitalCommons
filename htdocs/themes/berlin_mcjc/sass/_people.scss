@@ -3,10 +3,10 @@
   #content > .oral-histories,
   #content > .related-items {
     @include container;
-    margin-top: 96px;
   }
-  #content > .oral-histories {
-    margin-top: 48px;
+
+  #content > .related-items {
+    margin-top: 96px;
   }
 
   .header-background-container {

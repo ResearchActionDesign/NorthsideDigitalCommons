@@ -18,6 +18,15 @@
     <?php endif; ?>
 </div>
 <div id="primary">
+
+  <?php if ($have_you_heard = mcjc_get_have_you_heard()): ?>
+      <div class="have-you-heard">
+          <p class="have-you-heard__content">
+            <?php echo $have_you_heard; ?>
+          </p>
+      </div>
+  <?php endif; ?>
+
     <ul id="homepage-menu">
       <li class="homepage-menu__item">
         <div class='homepage-menu-image'>
@@ -68,15 +77,5 @@
        </div>
       </li>
     </ul>
-  <?php if ($map_html = get_theme_option('homepage_map')): ?>
-  <div id="homepage-map">
-    <h2><?php echo __("The Northside Neighborhoods"); ?></h2>
-    <div id="homepage-map__map">
-    <?php echo $map_html; ?>
-    </div>
   </div>
-  <?php endif; ?>
-
-  </div>
-
 <?php echo foot(); ?>

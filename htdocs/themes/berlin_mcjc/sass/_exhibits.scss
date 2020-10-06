@@ -48,6 +48,16 @@
   }
 }
 
+.exhibit-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
+  grid-gap: 1rem;
+
+  .exhibit-gallery-item {
+    margin-top: 96px; // to account for audio player positioning.
+  }
+}
+
 @media (max-width: $tablet-width) {
   .exhibit-title-container img.exhibit-image {
     float: none;

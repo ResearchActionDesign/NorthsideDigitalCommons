@@ -3,15 +3,22 @@
     display: flex;
     flex-direction: column;
     margin-left: 2em;
+    background: $white;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    padding: 0.5rem;
+
     li {
-      background: $white;
-      padding: 1em 2em;
-      margin: 1em 1em;
-      width: 300px;
-      text-align: center;
+      width: 100%;
+
       a {
-        font-weight: 700;
+        width: 100%;
+        @include button_link;
       }
+    }
+
+    li + li {
+      margin-top: 0.5rem;
     }
   }
 }
@@ -19,6 +26,11 @@
 .about-content-wrapper {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+
+  h1 {
+    margin-top: 0;
+  }
 
   .simple-pages-text-wrapper {
     @include white-background-text;
@@ -44,10 +56,6 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-      }
-      li {
-        width: 180px;
-        margin: 0.5em;
       }
     }
   }

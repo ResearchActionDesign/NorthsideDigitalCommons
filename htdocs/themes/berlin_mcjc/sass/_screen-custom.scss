@@ -206,7 +206,8 @@ input[type="submit"] {
 /* @end */
 
 /* @group ----- Content containers ----- */
-#primary {
+#primary,
+aside {
   @include container;
 }
 
@@ -224,7 +225,7 @@ input[type="submit"] {
   @include container;
 }
 
-div.breadcrumbs {
+.breadcrumbs {
   @include container;
 }
 

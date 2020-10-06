@@ -59,8 +59,9 @@ footer {
 
 #footer-omeka {
   background-color: $black;
-  height: 2.5rem;
-  line-height: 2.5rem;
+  min-height: 2.5rem;
+  line-height: 1rem;
+  padding: 0.5rem;
   color: white;
   font-size: 0.75em;
   text-align: center;

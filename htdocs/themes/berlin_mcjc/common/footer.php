@@ -23,6 +23,7 @@
             ): ?>
                 <div id="footer-copyright"><?php echo $copyright; ?></div>
             <?php endif; ?>
+        </div>
      <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
 </footer>
       <div id="footer-omeka"><?php echo __(

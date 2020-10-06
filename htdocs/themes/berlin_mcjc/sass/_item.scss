@@ -1,5 +1,6 @@
 .items.show,
-.person.show {
+.person.show,
+.collections.show {
   .primary {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -17,9 +18,6 @@
       text-align: center;
       margin: 0 0.5rem;
     }
-    .description {
-      margin-top: 36px;
-    }
 
     h1 {
       text-align: center;
@@ -29,6 +27,10 @@
 
     .item-content {
       grid-area: content;
+
+      .description {
+        margin-top: 12px;
+      }
     }
 
     .item-sidebar {
@@ -56,10 +58,19 @@
 
 @media screen and (max-width: $tablet-width) {
   .items.show,
-  .person.show {
+  .person.show,
+  .collections.show {
     .primary {
       display: flex;
       flex-direction: column;
+
+      .item-sidebar {
+        order: 0;
+      }
+
+      .item-content {
+        order: 1;
+      }
     }
   }
 }

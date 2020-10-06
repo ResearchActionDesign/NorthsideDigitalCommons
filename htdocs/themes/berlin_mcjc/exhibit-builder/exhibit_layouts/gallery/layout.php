@@ -3,31 +3,30 @@ $showcasePosition = isset($options['showcase-position'])
     ? html_escape($options['showcase-position'])
     : 'none';
 $showcaseFile = $showcasePosition !== 'none' && !empty($attachments);
-$galleryPosition = isset($options['gallery-position'])
-    ? html_escape($options['gallery-position'])
-    : 'left';
-$galleryFileSize = isset($options['gallery-file-size'])
-    ? html_escape($options['gallery-file-size'])
-    : null;
-$captionPosition = isset($options['captions-position'])
-    ? html_escape($options['captions-position'])
-    : 'center';
 ?>
 <?php if ($showcaseFile): ?>
-<div class="gallery-showcase <?php echo $showcasePosition; ?> with-<?php echo $galleryPosition; ?> captions-<?php echo $captionPosition; ?>">
+<div class="gallery-showcase">
     <?php
     $attachment = array_shift($attachments);
     echo $this->exhibitAttachment($attachment, ['imageSize' => 'fullsize']);
     ?>
 </div>
+<?php else: ?>
+  <?php echo $text; ?>
 <?php endif; ?>
-<div class='grid-container masonry-grid'>
-    <div class="gallery grid-items <?php if ($showcaseFile || !empty($text)) {
-        echo "with-showcase $galleryPosition";
-    } ?> captions-<?php echo $captionPosition; ?>">
-        <?php echo $this->exhibitAttachmentGallery($attachments, [
-            'imageSize item' => $galleryFileSize,
-        ]); ?>
+
+<div class='exhibit-gallery'>
+      <?php foreach ($attachments as $attachment): ?>
+      <div class="exhibit-gallery-item">
+        <?php $item = $attachment->getItem(); ?>
+        <?php if (metadata($item, 'has files')): ?>
+          <?php echo mcjc_render_oral_history_players(
+              $item,
+              ['class' => 'item-file'],
+              ['limit' => 1]
+          ); ?>
+        <?php echo get_view()->exhibitAttachmentCaption($attachment); ?>
+        <?php endif; ?>
+      </div>
+    <?php endforeach; ?>
 </div>
-</div>
-<?php echo $text; ?>

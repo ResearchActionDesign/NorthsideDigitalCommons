@@ -6,11 +6,29 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
     'bodyclass' => 'collections show',
 ]); ?>
 
-<div class="collection-top-header">
-  <h1><?php echo $collectionTitle; ?></h1>
-  <div class="header-description">
+
+<?php echo common('breadcrumbs', [
+    'trail' => [
+        'Topics' => '/topics',
+        $collectionTitle,
+    ],
+]); ?>
+
+<div class="primary">
+    <div class="item-content">
+    <span class="item-type">Album</span>
+    <h1><?php echo $collectionTitle; ?></h1>
+  <p class="description">
     <?php echo metadata('collection', ['Dublin Core', 'Description']); ?>
-  </div>
+  </p>
+    </div>
+      <?php if ($picture = record_image('collection')): ?>
+    <div class="item-sidebar">
+    <div id="picture" class="element">
+              <div class="item-images"><?php echo $picture; ?></div>
+          </div>
+    </div>
+      <?php endif; ?>
 </div>
 
 <div class="grid-container masonry-grid collection-grid">
@@ -37,5 +55,10 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
     'view' => $this,
     'collection' => $collection,
 ]); ?>
+
+
+<div class="back-container">
+    <a class="button back" href="/topics">Back to all Topics</a>
+</div>
 
 <?php echo foot(); ?>

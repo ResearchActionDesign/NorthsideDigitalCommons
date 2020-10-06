@@ -1,5 +1,5 @@
 <?php
-$pageTree = exhibit_builder_page_tree();
+$pageList = get_view()->exhibitPageList($exhibit);
 $firstPage = $exhibit->getFirstTopPage();
 $firstPageUri = exhibit_builder_exhibit_uri($exhibit, $firstPage);
 ?>
@@ -45,11 +45,17 @@ $firstPageUri = exhibit_builder_exhibit_uri($exhibit, $firstPage);
 </div>
 
 
-<?php if ($pageTree): ?>
-<nav id="exhibit-pages">
+<?php if ($pageList): ?>
+<div class="explore-grid grid-container exhibit-pages">
     <h2>In this Exhibit</h2>
-    <div class='exhibit-items'><?php echo $pageTree; ?> </div>
-</nav>
+    <div class="grid-items">
+        <?php foreach ($pageList as $page): ?>
+          <?php echo common('exhibit-grid-item', [
+              'item' => $page,
+              'class' => 'exhibit-page',
+          ]); ?>
+          <?php endforeach; ?>
+    </div>
 </div>
 <?php endif; ?>
 

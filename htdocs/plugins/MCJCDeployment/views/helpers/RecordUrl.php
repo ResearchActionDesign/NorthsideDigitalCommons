@@ -25,10 +25,6 @@ class McjcDeployment_View_Helper_RecordUrl extends Omeka_View_Helper_RecordUrl
    */
   public function recordUrl($record, $action = null, $getAbsoluteUrl = false, $queryParams = array())
   {
-    if (is_admin_theme()) {
-      return parent::recordUrl($record, $action, $getAbsoluteUrl, $queryParams);
-    }
-
     // Get the current record from the view if passed as a string.
     if (is_string($record)) {
       $record = $this->view->getCurrentRecord($record);
