@@ -4,6 +4,8 @@ const ORAL_HISTORY_CLIP_ITEM_TYPE = 18;
 const PROJECT_INTERVIEW_ITEM_TYPE = 19;
 const IMAGE_ITEM_TYPE = 6;
 
+set_current_record('item', $item);
+
 if (!isset($masonry)) {
     $masonry = false;
 }
@@ -83,8 +85,11 @@ echo $class ?? false ? " {$class}" : "";
         <?php endif; ?>
       </div>
     <div class="item-title" aria-hidden="true"><?php echo $title; ?></div>
+
+    <?php if (($item->topicType ?? 'Item') === 'Item'): ?>
     <?php fire_plugin_hook('public_items_browse_each', [
         'view' => $this,
         'item' => $item,
     ]); ?>
+    <?php endif; ?>
 </a>
