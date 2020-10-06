@@ -7,19 +7,6 @@ echo head([
     'bodyclass' => 'exhibits show',
 ]); ?>
 
-<nav class="exhibit-page-navigation">
-  <?php if ($prevLink = exhibit_builder_link_to_previous_page()): ?>
-      <div class="exhibit-nav-prev">
-        <?php echo $prevLink; ?>
-      </div>
-  <?php endif; ?>
-  <?php if ($nextLink = exhibit_builder_link_to_next_page()): ?>
-      <div class="exhibit-nav-next">
-        <?php echo $nextLink; ?>
-      </div>
-  <?php endif; ?>
-</nav>
-
 <h1 class='exhibit-page-title'><span class="exhibit-page"><?php echo metadata(
     'exhibit_page',
     'title'
