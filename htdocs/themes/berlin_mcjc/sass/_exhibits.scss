@@ -27,8 +27,10 @@
     }
 
     .exhibit-nav-parent {
+      @include button_link-secondary;
       clear: both;
       display: block;
+      width: 33%;
     }
   }
 
@@ -89,6 +91,9 @@
     .exhibit-nav-next,
     .exhibit-nav-prev {
       display: block;
+    }
+    .exhibit-nav-parent {
+      width: auto;
     }
   }
 }

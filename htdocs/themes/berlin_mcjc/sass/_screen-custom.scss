@@ -74,6 +74,18 @@ nav a,
   }
 }
 
+@mixin button_link-secondary {
+  @include button_link;
+  color: $green;
+  background-color: $white;
+  &:hover,
+  &:focus {
+    background-color: $green;
+    border-color: $green;
+    color: $white;
+  }
+}
+
 @mixin button {
   display: inline-block;
   margin: 0 0.5em 0.5em 0;
