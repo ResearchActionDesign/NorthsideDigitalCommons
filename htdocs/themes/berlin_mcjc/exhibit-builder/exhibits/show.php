@@ -5,7 +5,29 @@ echo head([
         ' &middot; ' .
         metadata('exhibit', 'title'),
     'bodyclass' => 'exhibits show',
-]); ?>
+]);
+
+$breadcrumbs = [
+    'Topics' => '/topics',
+    $exhibit->title => exhibit_builder_exhibit_uri($exhibit),
+];
+
+if ($exhibit_page->parent_id) {
+    $parentPage = $exhibitPage->getParent();
+    $breadcrumbs[$parentPage->title] = exhibit_builder_exhibit_uri(
+        $exhibit,
+        $parentPage
+    );
+}
+
+$backLinkText = array_key_last($breadcrumbs);
+$backLinkUrl = $breadcrumbs[$backLinkText];
+$backLinkText = "Back to " . $backLinkText;
+
+$breadcrumbs[] = $exhibit_page->title;
+?>
+
+<?php echo common('breadcrumbs', ['trail' => $breadcrumbs]); ?>
 
 <h1 class='exhibit-page-title'><span class="exhibit-page"><?php echo metadata(
     'exhibit_page',
@@ -17,26 +39,22 @@ echo head([
 </div>
 
 <nav class="exhibit-page-navigation">
-  <?php if ($prevLink = exhibit_builder_link_to_previous_page()): ?>
-    <div class="exhibit-nav-prev">
+  <?php if (
+      $prevLink = exhibit_builder_link_to_previous_page(null, [
+          'class' => 'exhibit-nav-prev button',
+      ])
+  ): ?>
       <?php echo $prevLink; ?>
-    </div>
   <?php endif; ?>
-  <?php if ($nextLink = exhibit_builder_link_to_next_page()): ?>
-    <div class="exhibit-nav-next">
+  <?php if (
+      $nextLink = exhibit_builder_link_to_next_page(null, [
+          'class' => 'exhibit-nav-next button',
+      ])
+  ): ?>
       <?php echo $nextLink; ?>
-    </div>
   <?php endif; ?>
-    <?php if (
-        $parentLink = exhibit_builder_link_to_parent_page(null, [
-            'class' => 'exhibit-nav-parent button',
-        ])
-    ): ?>
-     <?php echo $parentLink; ?>
-    <?php else: ?>
-      <?php echo exhibit_builder_link_to_exhibit(null, null, [
-          'class' => 'exhibit-nav-parent button',
-      ]); ?>
+    <?php if ($backLinkUrl): ?>
+    <a class="exhibit-nav-parent" href="<?php echo $backLinkUrl; ?>"><?php echo $backLinkText; ?></a>
     <?php endif; ?>
 </nav>
 <?php echo foot(); ?>

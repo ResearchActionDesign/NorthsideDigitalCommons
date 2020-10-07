@@ -12,6 +12,7 @@ if ($title === $person) {
   <!-- Item files -->
   <?php if (metadata($item, 'has files')): ?>
       <?php echo mcjc_render_oral_history_players(
+          null,
           $item,
           ['class' => 'item-file'],
           ['title' => $title, 'limit' => 1]
