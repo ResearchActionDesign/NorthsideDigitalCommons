@@ -86,7 +86,7 @@ echo $class ?? false ? " {$class}" : "";
       </div>
     <div class="item-title" aria-hidden="true"><?php echo $title; ?></div>
 
-    <?php if (($item->topicType ?? 'Item') === 'Item'): ?>
+    <?php if (($item->topicType ?? 'Item') === 'Item' && !$isCollection): ?>
     <?php fire_plugin_hook('public_items_browse_each', [
         'view' => $this,
         'item' => $item,

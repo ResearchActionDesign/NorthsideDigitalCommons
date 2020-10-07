@@ -17,16 +17,19 @@ $showcaseFile = $showcasePosition !== 'none' && !empty($attachments);
 
 <div class='exhibit-gallery'>
       <?php foreach ($attachments as $attachment): ?>
+    <?php
+    $item = $attachment->getItem();
+    $file = $attachment->getFile();
+    ?>
+      <?php if ($item['public']): ?>
       <div class="exhibit-gallery-item">
-        <?php $item = $attachment->getItem(); ?>
-        <?php if (metadata($item, 'has files')): ?>
-          <?php echo mcjc_render_oral_history_players(
-              $item,
-              ['class' => 'item-file'],
-              ['limit' => 1]
-          ); ?>
-        <?php echo get_view()->exhibitAttachmentCaption($attachment); ?>
-        <?php endif; ?>
+        <?php
+        if ($file) {
+            echo mcjc_file_markup($file, $item);
+        }
+        echo get_view()->exhibitAttachmentCaption($attachment);
+        ?>
       </div>
+    <?php endif; ?>
     <?php endforeach; ?>
 </div>

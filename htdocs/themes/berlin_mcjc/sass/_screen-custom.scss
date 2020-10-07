@@ -219,6 +219,10 @@ aside {
   > div.title + div {
     margin-top: 48px;
   }
+
+  > div.breadcrumbs + div {
+    margin-top: 24px;
+  }
 }
 
 .back-container {

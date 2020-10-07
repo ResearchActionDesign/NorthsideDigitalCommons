@@ -50,16 +50,19 @@ function oral_history_item_subtitle($item = false)
  * Render audio player for an oral history item.
  */
 function mcjc_render_oral_history_players(
-    $item,
+    $files = null,
+    $item = null,
     $wrapperAttributes = ['class' => 'item-file'],
     $options = []
 ) {
-    if (!isset($options['title'])) {
+    if (!$files) {
+        $files = $item->Files;
+    }
+    if (!isset($options['title']) && $item) {
         $options['title'] = metadata($item, ['Dublin Core', 'Title']);
     }
     $limit = $options['limit'] ?? false;
     $output = "";
-    $files = $item->Files;
     $audioFiles = array_filter($files, function ($file) {
         return substr($file->mime_type, 0, 5) === 'audio';
     });
@@ -108,7 +111,7 @@ function mcjc_files_for_item(
         $files = $item->Files;
     }
 
-    return mcjc_file_markup($files, $options, $wrapperAttributes, $item);
+    return mcjc_file_markup($files, $item, $options, $wrapperAttributes);
 }
 
 /**
@@ -150,9 +153,9 @@ function mcjc_get_collection_files($collection)
  */
 function mcjc_file_markup(
     $files,
+    $item = null,
     array $props = [],
-    $wrapperAttributes = ['class' => 'item-file'],
-    $item = null
+    $wrapperAttributes = ['class' => 'item-file']
 ) {
     if (!is_array($files)) {
         $files = [$files];
@@ -162,9 +165,12 @@ function mcjc_file_markup(
     $files = mcjc_sort_files($files);
 
     // If this is a standard item, start with rendering the oral history player.
-    if ($item) {
-        $output .= mcjc_render_oral_history_players($item);
-    }
+    $output .= mcjc_render_oral_history_players(
+        array_filter($files, function ($file) {
+            return substr($file->mime_type, 0, 5) === 'audio';
+        }),
+        $item
+    );
 
     // Create file output.
     foreach (

@@ -2,59 +2,64 @@
   #content {
     @include container;
   }
-}
 
-.exhibit-header-container {
-  img.exhibit-image {
-    max-width: 33vw;
-    height: auto;
-    float: right;
-  }
-}
-
-.exhibit-page {
-  display: flex;
-}
-.exhibit-page-title {
-  display: flex;
-}
-
-.exhibit-page-navigation {
-  .exhibit-nav-prev,
-  .exhibit-nav-next {
-    display: inline-block;
-    background-color: $white;
-    padding: 15px;
-    border: 10px;
-    border-radius: 30px;
-    width: auto;
-  }
-  .exhibit-nav-next {
-    float: right;
-  }
-  .exhibit-nav-parent {
-    clear: both;
-    display: block;
-  }
-}
-.layout-gallery .masonry-grid-items {
-  a.download-file {
-    display: block;
-    width: 200px;
-    margin-bottom: 20px;
-    * {
-      width: 200px;
+  .exhibit-header-container {
+    img.exhibit-image {
+      max-width: 33vw;
+      height: auto;
+      float: right;
     }
   }
-}
 
-.exhibit-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
-  grid-gap: 1rem;
+  .exhibit-page {
+    display: flex;
+  }
 
-  .exhibit-gallery-item {
-    margin-top: 96px; // to account for audio player positioning.
+  .exhibit-page-title {
+    display: flex;
+  }
+
+  .exhibit-page-navigation {
+    margin-top: 96px;
+
+    .exhibit-nav-next {
+      float: right;
+    }
+
+    .exhibit-nav-parent {
+      clear: both;
+      display: block;
+    }
+  }
+
+  #exhibit-blocks {
+    div.exhibit-block + div.exhibit-block {
+      margin-top: 96px;
+    }
+
+    .layout-gallery {
+      .gallery-showcase div.item-title {
+        display: none; // Hide duplicate title that's craeated somewhere in Exhibit Builder functions.
+      }
+
+      .exhibit-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(344px, 1fr));
+        grid-gap: 1rem;
+
+        .exhibit-gallery-item {
+          text-align: center;
+
+          .player-element {
+            margin-top: 96px; // to account for audio player positioning.
+          }
+
+          .player-element + div {
+            text-align: left;
+          }
+        }
+      }
+    }
   }
 }
 

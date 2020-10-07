@@ -4,10 +4,20 @@ $firstPage = $exhibit->getFirstTopPage();
 $firstPageUri = exhibit_builder_exhibit_uri($exhibit, $firstPage);
 ?>
 
-<?php echo head([
+<?php
+echo head([
     'title' => metadata('exhibit', 'title'),
     'bodyclass' => 'exhibits summary',
-]); ?>
+]);
+
+$breadcrumbs = [
+    'Topics' => '/topics',
+    $exhibit->title,
+];
+
+echo common('breadcrumbs', ['trail' => $breadcrumbs]);
+?>
+
 <div class=exhibit-content>
 <div class='exhibit-header-container'>
 <div class='exhibit-title-container'>
