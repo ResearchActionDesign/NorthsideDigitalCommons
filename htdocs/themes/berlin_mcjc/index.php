@@ -66,9 +66,7 @@
         </div>
         <div class="homepage-menu-content">
           <h2><?php echo __("Join the conversation"); ?></h2>
-          <?php if (
-              $link_text = get_theme_option('homepage_tell_your_story_text')
-          ): ?>
+          <?php if ($link_text = get_theme_option('homepage_respond_text')): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
           <a href="/respond" class="homepage-menu__item__button button"><?php echo __(
