@@ -15,7 +15,7 @@ class DocumentsPlugin extends Omeka_Plugin_AbstractPlugin
   {
     $router = $args['router'];
 
-    $router->addRoute('imagesBrowse',
+    $router->addRoute('documentsBrowse',
       new Zend_Controller_Router_Route('documents',
         array(
           'module'     => 'documents',
@@ -25,7 +25,7 @@ class DocumentsPlugin extends Omeka_Plugin_AbstractPlugin
       )
     );
 
-    $router->addRoute('imagesShow',
+    $router->addRoute('documentsShow',
       new Zend_Controller_Router_Route('documents/:permalink',
         array(
           'module'     => 'documents',

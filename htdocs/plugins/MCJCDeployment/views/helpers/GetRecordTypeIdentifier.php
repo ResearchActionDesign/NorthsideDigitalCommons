@@ -15,7 +15,7 @@ class McjcDeployment_View_Helper_GetRecordTypeIdentifier extends Zend_View_Helpe
 
     // Prepare the record if passed as an array.
     if (is_array($record)) {
-      if (empty($record['type']) ||  empty($record['id'])) {
+      if (empty($record['type']) || empty($record['id'])) {
         throw new Omeka_View_Exception(__('Invalid record passed as array while getting record URL.'));
       }
       $typeId = (integer)$record['item_type_id'];
