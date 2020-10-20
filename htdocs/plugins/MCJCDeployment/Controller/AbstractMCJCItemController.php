@@ -15,7 +15,7 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
   protected $_subjectRelations = [];
   protected $_objectRelations = [];
   protected $_secondDegreeRelations = [];
-  protected $_depictedItems = []; // Items depicted by this items.
+  protected $depictedItems = []; // Items depicted by this items.
 
   /**
    * Helper function to filter an array of Items for unique items, by ID.
@@ -155,9 +155,9 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     $this->_secondDegreeRelations = array_filter($this->_secondDegreeRelations, $isPublic);
   }
 
-  protected function _getDepictedItems() {
+  protected function getDepictedItems() {
     if (!count($this->_subjectRelations)) return;
-    $this->_depictedItems = array_map(
+    $this->depictedItems = array_map(
       function($relation) {
         return $relation['item'];
       },
@@ -215,12 +215,12 @@ abstract class AbstractMCJCItemController extends Omeka_Controller_AbstractActio
     }
 
     $this->_getRelations();
-    $this->_getDepictedItems();
+    $this->getDepictedItems();
 
     $this->view->assign(array(
       $singularName => $this->_item,
       'related_items' => $this->_getRelatedItems(),
-      'depicted_items' => $this->_depictedItems,
+      'depicted_items' => array_filter($this->depictedItems, function($i) { return $i->id != $this->_item->id; }),
       'collection' => isset($this->_item->collection_id) ? $this->getCollectionById($this->_item->collection_id) : false,
     ));
   }

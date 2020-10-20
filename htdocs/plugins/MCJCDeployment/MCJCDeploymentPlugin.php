@@ -540,7 +540,18 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       require('util/TagUpdates.php');
       $this->updateTags($AUG_2020_TAG_UPDATES);
     }
-  }
+
+    // Create item type for 'themes'
+    if ((double)$params['old_version'] < 2.19) {
+      if (!$this->_db->getTable('ItemType')->findByName('Theme')) {
+        $theme = new ItemType();
+        $theme->name = 'Theme';
+        $theme->description = 'Themes are entry points into different topics in the site. For a theme to work properly, the item description should
+        be an HTML write-up of the theme, like a finding guide / intro. The tags for the theme define which content items will be displayed on the theme page.';
+        $theme->save();
+      }
+    }
+    }
 
   protected function updateTags($tag_updates_array) {
     $logger = Zend_Registry::get('bootstrap')->getResource('Logger');

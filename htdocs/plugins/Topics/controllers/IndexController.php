@@ -11,12 +11,10 @@
 class Topics_IndexController extends AbstractMCJCIndexController
 {
   public function init() {
-
   }
 
-  // Unneeded.
   public function getItemTypeId() {
-    return null;
+    return null; // Unused
   }
 
   protected function applySort() {
@@ -74,9 +72,19 @@ class Topics_IndexController extends AbstractMCJCIndexController
     }
     $totalRecords += $this->_helper->db->count($params);
 
-    // TODO: get themes
+    $this->_helper->db->setDefaultModelName('Item');
+    $this->applySort();
+    $params['type'] = 20; // THEME item type
+    $themeRecords = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);
+    if ($themeRecords) {
+      array_walk($themeRecords, function(&$item) { $item->topicType = 'Theme'; });
+    } else {
+      $themeRecords = [];
+    }
+    $totalRecords += $this->_helper->db->count($params);
 
-    $topicsRecords = array_merge($collectionRecords, $exhibitRecords);
+
+    $topicsRecords = array_merge($collectionRecords, $exhibitRecords, $themeRecords);
 
     // Assign titles.
     array_walk($topicsRecords, function(&$item) {
