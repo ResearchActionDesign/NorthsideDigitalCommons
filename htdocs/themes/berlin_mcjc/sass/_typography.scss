@@ -134,6 +134,7 @@ blockquote + cite,
 p.citation {
   display: block;
   margin-top: 1em;
+  padding-left: 3em;
   font-style: unset;
   &::before {
     content: "\2014 ";

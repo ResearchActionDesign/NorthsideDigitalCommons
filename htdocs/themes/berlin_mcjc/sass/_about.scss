@@ -1,4 +1,11 @@
 .page.simple-page {
+  .simple-pages-text-wrapper {
+    img {
+      max-width: 100%;
+      margin: auto;
+    }
+  }
+
   .simple-pages-submenu {
     display: flex;
     flex-direction: column;

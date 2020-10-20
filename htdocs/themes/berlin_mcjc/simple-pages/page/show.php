@@ -4,12 +4,8 @@ if ($is_home_page):
     $bodyclass .= ' simple-page-home';
 endif;
 
-$is_about_page = mcjc_is_about_page($simple_pages_page);
-$div_class = "";
-if ($is_about_page) {
-    $submenu = mcjc_get_submenu();
-    $div_class = "page-about";
-}
+$submenu = mcjc_get_submenu();
+$div_class = "page-about";
 
 echo head([
     'title' => metadata('simple_pages_page', 'title'),
@@ -31,9 +27,7 @@ echo head([
             echo $this->shortcodes($text);
             ?>
         </div>
-        <?php if ($is_about_page): ?>
         <div class="simple-pages-submenu" id="secondary simple-pages-submenu"><?php echo $submenu; ?></div>
-        <?php endif; ?>
     </div>
 </div>
 

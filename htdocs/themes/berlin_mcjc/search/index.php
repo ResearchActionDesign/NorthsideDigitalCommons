@@ -35,6 +35,9 @@ usort($searchTagResults, function ($a, $b) {
                   'Dublin Core',
                   'Type',
               ]);
+              if (!$searchText['display_type']) {
+                  $searchText['display_type'] = $record->Type->name;
+              }
           }
       });
       $validFilterTypes = array_unique(
@@ -44,7 +47,6 @@ usort($searchTagResults, function ($a, $b) {
               );
           }, $search_texts)
       );
-
       sort($validFilterTypes);
       $filterTypesDisplay = [
           'oral-history' => 'Oral Histories',
@@ -52,6 +54,7 @@ usort($searchTagResults, function ($a, $b) {
           'document' => 'Documents',
           'still-image' => 'Still Images',
           'collection' => 'Collections',
+          'theme' => 'Themes',
       ];
       ?>
     <div class="filter_container">
