@@ -20,7 +20,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
 
   protected $_hooks = array(
     'before_save_element_text',
-    'before_save_item',
+    'after_save_item',
     'admin_head',
     'initialize',
     'install',
@@ -168,6 +168,53 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     $elementTextItem->text = $permalink;
   }
 
+  /**
+   * Step through database and add permalink for any items which
+   * are missing one.
+   */
+  protected function fillEmptyPermalinks() {
+    // Populate permalink field for all elements where it doesn't exist.
+    $existingPermalinks = [];
+    $permalinkElementId = $this->getPermalinkElementId();
+
+    // First pull person items. This ensures that if oral histories share the name of the person
+    // the person item gets permalink with person name.
+    $personSelect = $this->_db->getTable('Item')->getSelect()
+      ->where('item_type_id = 12')
+      ->joinLeft(['element_texts' => $this->_db->ElementText], "element_texts.record_id = items.id and element_texts.element_id = $permalinkElementId", [])
+      ->where('element_texts.text is null')
+      ->assemble();
+    $items = $this->_db->query($personSelect)->fetchAll();
+
+    // Then pull remainder.
+    $remainderSelect = $this->_db->getTable('Item')->getSelect()
+      ->where('item_type_id <> 12')
+      ->joinLeft(['element_texts' => $this->_db->ElementText], "element_texts.record_id = items.id and element_texts.element_id = $permalinkElementId", [])
+      ->where('element_texts.text is null')
+      ->assemble();
+    $items = array_merge($items, $this->_db->query($remainderSelect)->fetchAll());
+
+    foreach ($items as $item) {
+      $item = get_record_by_id('Item', $item['id']);
+      if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
+        $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
+        $permalink = $permalinkBase;
+        $index = 2;
+        while (array_search($permalink, $existingPermalinks)) {
+          $permalink = "{$permalinkBase}-{$index}";
+          $index++;
+        }
+        $existingPermalinks[] = $permalink;
+        $elementText = new ElementText();
+        $elementText->record_id = $item['id'];
+        $elementText->element_id = $permalinkElementId;
+        $elementText->setText($permalink);
+        $elementText->record_type = 'Item';
+        $elementText->save();
+      }
+    }
+  }
+
   public function hookSearchSql($args) {
     // TODO: Make this user-editable.
     $search_replacements_base = [
@@ -222,7 +269,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
   }
 
   // Populate permalink for new items, and set Item Type.
-  public function hookBeforeSaveItem($args)
+  public function hookAfterSaveItem($args)
   {
     $item = &$args['record'];
 
@@ -425,11 +472,11 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       $vocabularyId = $vocabulary->id;
       // Add our own terms to module.
       $relationProperties = array_merge(MCJCDeploymentPlugin::$familyRelations, array(
-        array(
-          'local_part' => 'friendOf',
-          'label' => 'friend of',
-          'description' => ''
-        ))
+          array(
+            'local_part' => 'friendOf',
+            'label' => 'friend of',
+            'description' => ''
+          ))
       );
 
       foreach ($relationProperties as $formalProperty) {
@@ -501,37 +548,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       }
 
       if ($permalinkElementId) {
-        // Populate permalink field for all elements where it doesn't exist.
-        $existingPermalinks = [];
-
-        // First pull person items. This ensures that if oral histories share the name of the person
-        // the person item gets permalink with person name.
-        $personSelect = $this->_db->getTable('Item')->getSelect()->where('item_type_id = 12')->assemble();
-        $items = $this->_db->query($personSelect)->fetchAll();
-
-        // Then pull remainder.
-        $remainderSelect = $this->_db->getTable('Item')->getSelect()->where('item_type_id <> 12')->assemble();
-        $items = array_merge($items, $this->_db->query($remainderSelect)->fetchAll());
-
-        foreach ($items as $item) {
-          $item = get_record_by_id('Item', $item['id']);
-          if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
-            $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
-            $permalink = $permalinkBase;
-            $index = 2;
-            while (array_search($permalink, $existingPermalinks)) {
-              $permalink = "{$permalinkBase}-{$index}";
-              $index++;
-            }
-            $existingPermalinks[] = $permalink;
-            $elementText = new ElementText();
-            $elementText->record_id = $item['id'];
-            $elementText->element_id = $permalinkElementId;
-            $elementText->setText($permalink);
-            $elementText->record_type = 'Item';
-            $elementText->save();
-          }
-        }
+        $this->fillEmptyPermalinks();
       }
     }
 
@@ -539,6 +556,21 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     if ((double)$params['old_version'] < 2.18) {
       require('util/TagUpdates.php');
       $this->updateTags($AUG_2020_TAG_UPDATES);
+    }
+
+    // Create item type for 'themes'
+    if ((double)$params['old_version'] < 2.19) {
+      if (!$this->_db->getTable('ItemType')->findByName('Theme')) {
+        $theme = new ItemType();
+        $theme->name = 'Theme';
+        $theme->description = 'Themes are entry points into different topics in the site. For a theme to work properly, the item description should
+        be an HTML write-up of the theme, like a finding guide / intro. The tags for the theme define which content items will be displayed on the theme page.';
+        $theme->save();
+      }
+    }
+
+    if ((double)$params['old_version'] < 2.20) {
+      $this->fillEmptyPermalinks();
     }
   }
 

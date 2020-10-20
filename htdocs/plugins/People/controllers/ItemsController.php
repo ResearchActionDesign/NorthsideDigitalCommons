@@ -28,13 +28,18 @@ class People_ItemsController extends AbstractMCJCItemController
       }
     });
 
-    return $this->filterForUniqueId(array_map(
+    $oralHistories = $this->filterForUniqueId(array_map(
       function($relation) { return $relation['item']; },
       array_filter(
         $this->_objectRelations,
         function($relation) { return $relation['relation_text'] === 'depicts' && array_key_exists('item', $relation) && $relation['item']['item_type_id'] === ORAL_HISTORY_ITEM_TYPE; }
         )
     ));
+
+    // Show most recent items first.
+    array_walk($oralHistories, function ($i) { $i->date = metadata($i, ['Dublin Core', 'Date']); });
+    usort($oralHistories, function ($a, $b) { return $b->date <=> $a->date; });
+    return $oralHistories;
   }
 
   /**

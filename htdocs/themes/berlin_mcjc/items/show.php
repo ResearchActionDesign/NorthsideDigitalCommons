@@ -20,7 +20,7 @@ $itemTypeParentDict = [
     'Document' => ['Documents' => '/documents'],
 ];
 $itemTypePlural =
-    array_key_first($itemTypeParentDict[$itemType]) ?? 'Documents';
+    array_key_first($itemTypeParentDict[$itemType] ?? []) ?? 'Documents';
 
 $itemTypeClass = str_replace(' ', '-', strtolower($itemType));
 $backButtonText = __('Back to all ') . strtolower($itemTypePlural);
@@ -152,7 +152,6 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     ]); ?>
     <?php endforeach; ?>
   </div>
-</div>
 </div>
 
 <?php endif; ?>

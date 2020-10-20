@@ -76,6 +76,8 @@ class McjcDeployment_View_Helper_GetRecordTypeIdentifier extends Zend_View_Helpe
           return 'Oral History Clip';
         case 19:
           return 'Project Interviews';
+        case 20:
+          return 'Theme';
       }
 
       // Otherwise, pull from DB
