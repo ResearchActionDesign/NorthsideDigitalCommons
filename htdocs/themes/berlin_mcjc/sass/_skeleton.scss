@@ -10,7 +10,8 @@
 
 // #Variable Definitions
 // ==================================================
-$base-width: 1250px;
+$large-screen: 1250px;
+$base-width: 1076px;
 $narrow-screen: 920px;
 $tablet-width: 768px;
 $mobile-landscape-width: 420px;
@@ -55,6 +56,10 @@ $margin: 10px;
     border-radius: 0;
     width: 100%;
     padding: 16px;
+  }
+
+  @media only screen and (min-width: $large-screen) {
+    width: $large-screen - 32px;
   }
 }
 

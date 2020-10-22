@@ -1,7 +1,7 @@
 .search-form-container,
 #search-container {
   input[type="text"] {
-    border: 1px solid #ccc;
+    border: 1px solid $grey--medium;
     background: $white;
     @include appearance(none);
     border-radius: 0;
@@ -128,8 +128,12 @@ header {
       white-space: nowrap;
       font-weight: 700;
 
+      &.active a {
+        color: $white;
+      }
       a {
         border: 1px solid transparent;
+        color: $purple--dark;
 
         &:hover,
         &:active {
