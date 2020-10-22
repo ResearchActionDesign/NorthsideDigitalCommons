@@ -9,10 +9,10 @@
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
-        <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/assets/images/homepage_video.jpg" muted>
-            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig--vp9.webm" type='video/webm;codecs="vp9, vorbis"'>
-            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.webm" type='video/webm;codecs="vp8, vorbis"'>
-            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.mp4" type='video/mp4"'>
+        <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/assets/images/homepage_video.jpg" muted playsinline>
+            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig--vp9.webm" type="video/webm;codecs=vp9, vorbis">
+            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.webm" type="video/webm;codecs=vp8, vorbis">
+            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.mp4" type="video/mp4">
         </video>
     </div>
     <?php endif; ?>

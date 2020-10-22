@@ -111,22 +111,24 @@ if (!Berlin) {
 
     var $grid = $(".masonry-grid .grid-items");
 
-    $grid.masonry({
-      itemSelector: ".item",
-      columnWidth: 300, // Coordinate this with $square-thumbnail-size in base.scss and with the Derivative images width setting.
-      gutter: 20,
-      horizontalOrder: true,
-      fitWidth: true,
-      initLayout: true,
-      isAnimated: false,
-    });
+    if ($grid) {
+      $grid.masonry({
+        itemSelector: ".item",
+        columnWidth: 300, // Coordinate this with $square-thumbnail-size in base.scss and with the Derivative images width setting.
+        gutter: 20,
+        horizontalOrder: true,
+        fitWidth: true,
+        initLayout: true,
+        isAnimated: false,
+      });
 
-    $grid.on("load", function () {
-      $grid.masonry("layout");
-    });
+      $grid.on("load", function () {
+        $grid.masonry("layout");
+      });
 
-    $(".masonry-grid .item-img img").on("load", function () {
-      $grid.masonry("layout");
-    });
+      $(".masonry-grid .item-img img").on("load", function () {
+        $grid.masonry("layout");
+      });
+    }
   });
 })(jQuery);

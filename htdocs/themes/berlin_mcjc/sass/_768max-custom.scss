@@ -33,12 +33,12 @@ h2 {
   }
 }
 .featured-wrapper--collection {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid $grey--medium;
   margin-bottom: 1.5em;
 }
 
 .featured-wrapper {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid $grey--medium;
 }
 
 .featured-item__background-image {
