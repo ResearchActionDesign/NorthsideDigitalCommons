@@ -23,21 +23,48 @@ usort($searchTagResults, function ($a, $b) {
     <?php if ($total_results): ?>
       <?php
       $filter = new Zend_Filter_Word_CamelCaseToDash();
-      array_walk($search_texts, function (&$searchText) {
+      array_walk($search_texts, function (&$searchText) use ($query) {
           $record = get_record_by_id(
               $searchText['record_type'],
               $searchText['record_id']
           );
           $searchText['record'] = $record;
           $searchText['display_type'] = $searchText['record_type'];
-          if ($searchText['record_type'] === 'Item') {
-              $searchText['display_type'] = metadata($record, [
-                  'Dublin Core',
-                  'Type',
-              ]);
-              if (!$searchText['display_type']) {
-                  $searchText['display_type'] = $record->Type->name;
-              }
+          switch ($searchText['display_type']) {
+              case 'Item':
+                  $searchText['display_type'] = metadata($record, [
+                      'Dublin Core',
+                      'Type',
+                  ]);
+                  $searchText['description'] = metadata(
+                      $searchText['record'],
+                      ['Dublin Core', 'Description'],
+                      ['snippet' => 250]
+                  );
+                  if (!$searchText['display_type']) {
+                      $searchText['display_type'] = $record->Type->name;
+                  }
+                  break;
+              case 'SimplePagesPage':
+                  $searchText['display_type'] = 'Page';
+                  $start = mb_stripos($searchText['record']['text'], $query);
+                  if ($start) {
+                      $searchText['description'] = snippet(
+                          $searchText['record']['text'],
+                          max($start - 25, 0),
+                          $start + 225
+                      );
+                  }
+                  $searchText['description'] = snippet(
+                      $searchText['record']['text'],
+                      0,
+                      250
+                  );
+                  break;
+              case 'ExhibitPage':
+              case 'Exhibit':
+                  $searchText['display_type'] = 'Exhibit';
+                  break;
           }
       });
       $validFilterTypes = array_unique(
@@ -55,6 +82,8 @@ usort($searchTagResults, function ($a, $b) {
           'still-image' => 'Still Images',
           'collection' => 'Collections',
           'theme' => 'Themes',
+          'page' => 'Pages',
+          'exhibit' => 'Exhibits',
       ];
       ?>
     <div class="filter_container">
@@ -106,22 +135,17 @@ usort($searchTagResults, function ($a, $b) {
                   <span class="item-type">
                     <?php echo $searchText['display_type']; ?>
                   </span>
-                      <h2 class="item-title"><?php echo link_to_item(
+                      <h2 class="item-title"><?php echo link_to(
+                          $searchText['record'],
+                          'show',
                           $searchText['title']
                               ? $searchText['title']
-                              : '[Unknown]',
-                          $searchText['record']
+                              : '[Unknown]'
                       ); ?>
                       </h2>
-                <?php if (
-                    $description = metadata(
-                        $searchText['record'],
-                        ['Dublin Core', 'Description'],
-                        ['snippet' => 250]
-                    )
-                ): ?>
+                <?php if ($searchText['description'] ?? false): ?>
                     <span class="item-description">
-                      <?php echo $description; ?>
+                      <?php echo $searchText['description']; ?>
                     </span>
                 <?php endif; ?>
           </div>
