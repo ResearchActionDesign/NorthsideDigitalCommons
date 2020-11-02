@@ -3,8 +3,6 @@
     <h1>From the Rock Wall
         <span class="subtitle">Living Histories of Black Chapel Hill/Carrboro</span>
     </h1>
-    <blockquote>Without the past, you have no future.</blockquote>
-    <cite>Mrs. Marian Cheek Jackson</cite>
 </div>
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
@@ -18,12 +16,15 @@
     <?php endif; ?>
 </div>
 <div id="primary">
-
+    <div class="homepage-epigraph">
+    <blockquote>Without the past, you have no future.</blockquote>
+    <cite>Mrs. Marian Cheek Jackson</cite>
+    </div>
   <?php if ($have_you_heard = mcjc_get_have_you_heard()): ?>
-      <div class="have-you-heard">
-          <p class="have-you-heard__content">
+      <div class="have-you-heard__container">
+          <div class="have-you-heard">
             <?php echo $have_you_heard; ?>
-          </p>
+          </div>
       </div>
   <?php endif; ?>
 

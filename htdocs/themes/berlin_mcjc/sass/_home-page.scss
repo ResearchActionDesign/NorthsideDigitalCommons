@@ -1,108 +1,177 @@
-.home_page_header_container {
-  display: grid;
-  grid-template-columns: 30% 45% 25%;
-  justify-content: center;
-  grid-template-areas: "title nav search";
-  padding: 50px;
-}
-
-#homepage-text {
-  text-align: center;
-}
-
-/*menu container */
-#homepage-menu {
-  @include no-bullets;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  margin: auto auto;
-  justify-content: center;
-  align-items: center;
-}
-.homepage-menu__item {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
-  background: $white;
-  border-radius: 4px;
-  width: 100%;
-
-  .homepage-menu-image {
-    flex-grow: 0;
-    flex-shrink: 0;
-    border-radius: 4px 0 0 4px;
-    overflow: hidden;
-    img {
-      height: 100%;
-      width: auto;
-    }
+#home {
+  .home_page_header_container {
+    display: grid;
+    grid-template-columns: 30% 45% 25%;
+    justify-content: center;
+    grid-template-areas: "title nav search";
+    padding: 50px;
   }
 
-  .homepage-menu-content {
-    width: 100%;
-    align-self: stretch;
+  #homepage-text {
+    text-align: center;
+  }
+
+  /*menu container */
+  #homepage-menu {
+    @include no-bullets;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-
-    h2 {
-      color: $letter-blue;
-      font-weight: bold;
-      margin: 0.5rem 0;
-    }
-    padding: 0 1rem;
+    margin: auto auto;
+    justify-content: center;
+    align-items: center;
   }
-}
 
-#content div.have-you-heard {
-  margin-top: 48px;
-  margin-bottom: 48px;
-
-  @include container;
-  .have-you-heard__content {
+  .homepage-menu__item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 48px;
     background: $white;
     border-radius: 4px;
-    padding: 1rem;
-  }
-}
+    width: 100%;
 
-/*homepage video*/
-.video-container {
-  width: 100%;
-  margin: 0 auto;
-}
+    .homepage-menu-image {
+      flex-grow: 0;
+      flex-shrink: 0;
+      border-radius: 4px 0 0 4px;
+      overflow: hidden;
 
-#homepage-video video {
-  max-width: $base-width;
-  margin: 0 auto;
-  display: block;
-}
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
 
-.homepage-title {
-  text-align: center;
-  h1 {
-    color: $purple--dark;
-    .subtitle {
-      display: block;
-      font-size: 0.5em; // Relative to parent h1 element
-      line-height: 1em;
+    .homepage-menu-content {
+      width: 100%;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      h2 {
+        color: $letter-blue;
+        font-weight: bold;
+        margin: 0.5rem 0;
+      }
+
+      padding: 0 1rem;
     }
   }
-}
 
-// Hide most header items on homepage, but show mobile-nav.
-#home header {
-  #site-title {
-    display: none;
+  #primary {
+    margin-top: 0;
   }
 
-  .nav-search-wrapper {
-    display: none;
+  #content div.have-you-heard__container {
+    margin-top: 48px;
+    margin-bottom: 48px;
+
+    .have-you-heard {
+      display: flex;
+      flex-direction: row;
+      background: $purple--dark;
+      color: white;
+      border-radius: 4px;
+      padding: 1rem;
+
+      .have-you-heard__image {
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 150px;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .have-you-heard__content {
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .have-you-heard__prompt {
+          font-size: 2em;
+          font-style: italic;
+          margin-bottom: 0.33em;
+        }
+
+        .have-you-heard__action {
+          margin-top: 1em;
+
+          a {
+            @include button_link-secondary;
+          }
+        }
+      }
+    }
   }
 
-  #mobile-nav {
+  /*homepage video*/
+  .video-container {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 48px;
+  }
+
+  #homepage-video video {
+    max-width: $base-width;
+    margin: 0 auto;
     display: block;
+  }
+
+  .homepage-title,
+  .homepage-epigraph {
+    text-align: center;
+
+    h1 {
+      color: $purple--dark;
+      margin-top: 48px;
+      margin-bottom: 24px;
+
+      .subtitle {
+        display: block;
+        font-size: 0.5em; // Relative to parent h1 element
+        line-height: 1em;
+      }
+    }
+
+    blockquote + cite {
+      margin-top: 0;
+    }
+  }
+
+  .homepage-epigraph {
+    margin-top: 48px;
+    text-shadow: 0px 3px 6px #fff;
+  }
+
+  // Hide most header items on homepage, but show mobile-nav.
+  header {
+    padding: 0;
+
+    .header-content-wrapper {
+      display: block;
+    }
+
+    #site-title {
+      display: none;
+    }
+
+    .nav-search-wrapper {
+      display: none;
+    }
+
+    #mobile-nav {
+      display: block;
+      margin-top: -48px;
+
+      button.menu {
+        font-size: 1.5em;
+      }
+    }
   }
 }
 
@@ -128,7 +197,7 @@
     }
   }
 
-  div.have-you-heard .have-you-heard__content {
+  div.have-you-heard__container .have-you-heard {
     padding: 1.35em;
   }
 }
