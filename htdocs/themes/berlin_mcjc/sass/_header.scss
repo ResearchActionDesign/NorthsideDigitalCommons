@@ -124,12 +124,23 @@ header {
       flex-wrap: nowrap;
     }
 
+    li,
     .nav-item {
       white-space: nowrap;
       font-weight: 700;
 
-      &.active a {
-        color: $white;
+      // Sub menu
+      ul li {
+        display: none;
+      }
+
+      &.active {
+        a {
+          color: $white;
+        }
+        ul li {
+          display: block;
+        }
       }
       a {
         border: 1px solid transparent;
