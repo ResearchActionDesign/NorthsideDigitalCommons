@@ -365,7 +365,6 @@ function _mcjc_oral_history_metadata_paragraph($item)
         ]),
         'date' => metadata($item, ['Item Type Metadata', 'Interview Date']),
         'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
-        'rights' => metadata($item, ['Dublin Core', 'Rights']),
     ];
 
     if ($metadata['date']) {
@@ -393,7 +392,6 @@ function _mcjc_oral_history_metadata_paragraph($item)
         $metadata['publisher']
             ? "Published by {$metadata['publisher']}."
             : false,
-        $metadata['rights'] ? $metadata['rights'] : false,
     ];
 
     return implode(" ", array_filter($sentences));
@@ -406,7 +404,6 @@ function _mcjc_image_metadata_paragraph($item)
         'creator' => metadata($item, ['Dublin Core', 'Creator']),
         'date' => metadata($item, ['Dublin Core', 'Date']),
         'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
-        'rights' => metadata($item, ['Dublin Core', 'Rights']),
     ];
 
     if ($metadata['date']) {
@@ -434,7 +431,6 @@ function _mcjc_image_metadata_paragraph($item)
         $metadata['publisher']
             ? "Published by {$metadata['publisher']}."
             : false,
-        $metadata['rights'] ? $metadata['rights'] : false,
     ];
 
     return implode(" ", array_filter($sentences));
