@@ -4,7 +4,7 @@
  */
 queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
-$itemTypeRaw = metadata('item', ['Dublin Core', 'Type']);
+$itemTypeRaw = metadata('item', ['Dublin Core', 'Type']) ?? 'Document';
 $itemTypeDict = [
     'Still Image' => 'Image',
     'Oral History' => 'Story',
@@ -24,7 +24,8 @@ $itemTypePlural =
 
 $itemTypeClass = str_replace(' ', '-', strtolower($itemType));
 $backButtonText = __('Back to all ') . strtolower($itemTypePlural);
-$backLink = array_values($itemTypeParentDict[$itemType])[0] ?? "/documents";
+$backLink =
+    array_values($itemTypeParentDict[$itemType] ?? [])[0] ?? "/documents";
 $breadcrumbTrail = array_merge(
     $itemTypeParentDict[$itemType] ?? ['Documents' => '/documents'],
     [$itemTitle]
@@ -108,6 +109,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <?php
   $tags = tag_string('item');
   $metadata_paragraph = mcjc_element_metadata_paragraph($item);
+  $rights = metadata($item, ['Dublin Core', 'Rights']);
   $citation = metadata('item', 'citation', [
       'no_escape' => true,
   ]);
@@ -131,6 +133,11 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         <span class="element-text"><?php echo $citation; ?></span>
       </p>
         <?php endif; ?>
+      <?php if ($rights): ?>
+          <p id="item-rights" class="element"><strong><span class="element-title"><?php echo __(
+              'Rights: '
+          ); ?></span><span class="element-text"><?php echo $rights; ?></span></strong></p>
+      <?php endif; ?>
     </div>
   </div>
 

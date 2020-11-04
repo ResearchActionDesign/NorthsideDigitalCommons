@@ -353,7 +353,7 @@ class ArchiveRepertoryPlugin extends Omeka_Plugin_AbstractPlugin
         // May be needed in some installations.
         $storageName = ltrim($storageName, './');
 
-        if (strlen($storageName) > 190) {
+        if (strlen($storageName) > 4096) {
             $msg = __(
                 'Cannot move file "%s" inside archive directory: filename too long.',
                 pathinfo($file->original_filename, PATHINFO_BASENAME)
