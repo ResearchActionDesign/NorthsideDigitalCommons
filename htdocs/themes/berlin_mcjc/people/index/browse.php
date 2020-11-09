@@ -11,7 +11,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 <?php echo common('breadcrumbs', [
     'trail' => ['People'],
 ]); ?>
-    <div class="header-background-container">
+    <div class="header-background-container people-image">
         <div class="header-background-container-content">
             <h1 class="image-title"><?php echo $pageTitle; ?></h1>
   <?php if ($header_text = get_theme_option('people_page_text')): ?>

@@ -75,7 +75,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
       if (stripos(html_escape($file->original_filename), 'tape') !== FALSE) {
         $html .= 'View Summary';
       } elseif (stripos(html_escape($file->original_filename), 'transcript') !== FALSE) {
-        $html .= 'View Full Text';
+        $html .= 'View Text';
       } elseif (stripos(html_escape($file->original_filename), 'abstract') !== FALSE) {
         $html .= 'View Abstract';
       } elseif (stripos(html_escape($file->original_filename), 'fieldnotes') !== FALSE) {

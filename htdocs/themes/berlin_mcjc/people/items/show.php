@@ -10,7 +10,7 @@ $bio = false;
 $picture = false;
 if (metadata('item', 'has files')) {
     $itemClasses = " has-picture";
-    $picture = item_image('fullsize', ['alt' => $itemTitle]);
+    $picture = mcjc_item_image('fullsize', ['alt' => $itemTitle]);
 }
 if (metadata('item', ['Dublin Core', 'Description'])) {
     $itemClasses .= " has-bio";

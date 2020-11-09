@@ -111,9 +111,40 @@ function mcjc_files_for_item(
         $files = $item->Files;
     }
 
+    // If first file is an image, skip it since it will already have been displayed by item_image.
+    if (count($files) && substr($files[0]->mime_type, 0, 5) === 'image') {
+        array_shift($files);
+    }
+
     return mcjc_file_markup($files, $item, $options, $wrapperAttributes);
 }
 
+/**
+ * Get a customized item image tag, using Lity to display image.
+ *
+ * @package Omeka\Function\View\Item
+ * @uses Omeka_View_Helper_FileMarkup::image_tag()
+ * @param string $imageType Image size: thumbnail, square thumbnail, fullsize
+ * @param array $props HTML attributes for the img tag
+ * @param int $index Which file within the item to use, by order. Default
+ *  is the first file.
+ * @param Item|null Check for this specific item record (current item if null).
+ */
+function mcjc_item_image(
+    $imageType = null,
+    $props = [],
+    $index = 0,
+    $item = null
+) {
+    if (!$item) {
+        $item = get_current_record('item');
+    }
+    $imageFile = $item->getFile($index);
+    $fileMarkup = new Omeka_View_Helper_FileMarkup();
+    $imageTag = $fileMarkup->image_tag($imageFile, $props, $imageType);
+    $originalHref = $imageFile->getWebPath('original');
+    return '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
+}
 /**
  * Get all files for this Collection.
  *

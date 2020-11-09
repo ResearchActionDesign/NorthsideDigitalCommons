@@ -63,7 +63,7 @@ if (
 <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
 <?php fire_plugin_hook('public_body', ['view' => $this]); ?>
 
- <?php echo common('header-nav', ['bodyid' => $bodyid]); ?>
+ <?php echo common('header-nav', ['bodyid' => $bodyid ?? '']); ?>
 
 <article id="content" role="main">
 <?php fire_plugin_hook('public_content_top', ['view' => $this]); ?>

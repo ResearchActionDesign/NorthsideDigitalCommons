@@ -17,7 +17,7 @@ $description = false;
 $picture = false;
 if (metadata('item', 'has files')) {
     $itemClasses = ' has-picture';
-    $picture = item_image('fullsize', ['alt' => $itemTitle]);
+    $picture = mcjc_item_image('fullsize', ['alt' => $itemTitle]);
 }
 if (metadata('item', ['Dublin Core', 'Description'])) {
     $itemClasses .= ' has-description';
@@ -48,7 +48,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         <div class="item-images"><?php echo $picture; ?></div>
       </div>
     <?php endif; ?>
-    <?php if ($itemType !== 'Image' && metadata('item', 'has files')): ?>
+    <?php if (metadata('item', 'has files')): ?>
       <div id="itemfiles" class="element">
         <div class="item-images"><?php echo mcjc_files_for_item('item', [
             'imageSize' => 'fullsize',

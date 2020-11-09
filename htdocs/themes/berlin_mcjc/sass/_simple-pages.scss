@@ -9,6 +9,14 @@
       max-width: 100%;
       margin: 0 auto;
       display: block;
+
+      .small {
+        width: 50%;
+      }
+
+      .inline {
+        margin: 0;
+      }
     }
   }
 
@@ -61,6 +69,10 @@
   .page.simple-page {
     .simple-pages-text-wrapper {
       order: 2;
+
+      img.small {
+        width: auto;
+      }
     }
     .simple-pages-submenu {
       display: flex;

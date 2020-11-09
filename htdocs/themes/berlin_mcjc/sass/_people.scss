@@ -1,4 +1,9 @@
 .people {
+  .people-image {
+    background-image: url(../assets/images/peopleImage.png);
+    margin-bottom: 45px;
+  }
+
   #content > .primary,
   #content > .oral-histories,
   #content > .related-items {
@@ -7,19 +12,6 @@
 
   #content > .related-items {
     margin-top: 96px;
-  }
-
-  .header-background-container {
-    height: auto;
-
-    .header-background-container-content {
-      color: $black;
-      text-shadow: 0px 3px 6px $white;
-
-      h1 {
-        color: $black;
-      }
-    }
   }
 
   .people-page-header {
