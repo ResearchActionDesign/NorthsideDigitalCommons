@@ -1,4 +1,3 @@
-<?php queue_css_file('lity', 'all', false, 'lity'); ?>
 <?php $itemTitle = metadata('item', 'display_title'); ?>
 <?php echo head([
     'title' => $itemTitle,
@@ -109,5 +108,4 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
       'peopleDefault'
   ); ?>"><?php echo $backButtonText; ?></a>
 </div>
-<?php echo js_tag('lity', 'lity'); ?>
 <?php echo foot(); ?>

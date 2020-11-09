@@ -2,7 +2,6 @@
 /**
  * Note -- This file renders oral history & image items. "Person" items are rendered by people/items/show.php.
  */
-queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
 $itemTypeRaw = metadata('item', ['Dublin Core', 'Type']) ?? 'Document';
 $itemTypeDict = [
@@ -192,5 +191,4 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <a class="button back" href="<?php echo $backLink; ?>"><?php echo $backButtonText; ?></a>
 </div>
 
-<?php echo js_tag('lity', 'lity'); ?>
 <?php echo foot(); ?>

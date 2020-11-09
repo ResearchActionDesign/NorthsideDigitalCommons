@@ -54,7 +54,7 @@ if (
   <?php queue_js_file('vendor/respond'); ?>
   <?php queue_js_file('vendor/jquery-accessibleMegaMenu'); ?>
   <?php queue_js_file('masonry.min'); ?>
-    <?php queue_js_file('berlin'); ?>
+  <?php queue_js_file('berlin'); ?>
   <?php queue_js_file('globals'); ?>
   <?php queue_js_file('lity.min'); ?>
     <?php echo head_js(); ?>

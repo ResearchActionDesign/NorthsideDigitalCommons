@@ -1,8 +1,6 @@
 <?php
 
 // Render theme pages specifically.
-
-queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
 $itemType = 'Theme';
 
@@ -96,5 +94,4 @@ $citation = metadata('item', 'citation', [
   <a class="button back" href="<?php echo $backLink; ?>"><?php echo $backButtonText; ?></a>
 </div>
 
-<?php echo js_tag('lity', 'lity'); ?>
 <?php echo foot(); ?>
