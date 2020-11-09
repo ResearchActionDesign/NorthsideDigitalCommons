@@ -20,6 +20,8 @@ class Topics_ItemsController extends AbstractMCJCItemController
     if (!$this->_item) return;
     $tags = array_map(function ($t) { return $t->name; }, $this->_item->Tags);
 
+    if (!count($tags)) return;
+
     $pluralName = $this->view->pluralize($this->_helper->db->getDefaultModelName());
     $recordsPerPage = parent::_getBrowseRecordsPerPage($pluralName);
     $currentPage = $this->getParam('page', 1);

@@ -23,7 +23,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 
   <div class="filter_container">
     <div class="filter" id="grid__filter">
-      <span class="grid__filter__title">Show:</span>
+      <span class="grid__filter__title">I want to see:</span>
       <span class="grid__filter__option"><label
                   class="filter-titles"><input class="checkbox" type="checkbox" data-filter="exhibit" id="grid-filter-exhibit">Exhibits</input></label></span>
       <span class="grid__filter__option"><label

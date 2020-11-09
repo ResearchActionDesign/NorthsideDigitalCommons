@@ -1,4 +1,9 @@
 .page.simple-page {
+  h1 {
+    margin-bottom: 0;
+    padding: 0 1rem;
+  }
+
   .simple-pages-text-wrapper {
     img {
       max-width: 100%;
@@ -10,7 +15,6 @@
   .simple-pages-submenu {
     display: flex;
     flex-direction: column;
-    margin-left: 2em;
     background: $white;
     border-radius: 4px;
     margin-bottom: 24px;
@@ -28,6 +32,10 @@
     li + li {
       margin-top: 0.5rem;
     }
+  }
+
+  .simple-pages-text-wrapper + .simple-pages-submenu {
+    margin-left: 2em;
   }
 }
 

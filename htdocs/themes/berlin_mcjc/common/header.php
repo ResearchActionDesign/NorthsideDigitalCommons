@@ -56,6 +56,7 @@ if (
   <?php queue_js_file('masonry.min'); ?>
     <?php queue_js_file('berlin'); ?>
   <?php queue_js_file('globals'); ?>
+  <?php queue_js_file('lity.min'); ?>
     <?php echo head_js(); ?>
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>

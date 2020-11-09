@@ -1,5 +1,6 @@
 div.respond-bar {
   @include container;
+  margin-top: 96px;
   background-color: $white;
   padding: 1em;
   font-size: 1.125em;
