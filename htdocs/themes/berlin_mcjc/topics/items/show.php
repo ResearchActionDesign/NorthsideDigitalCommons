@@ -1,7 +1,7 @@
 <?php
-/**
- * Note -- This file renders oral history & image items. "Person" items are rendered by people/items/show.php.
- */
+
+// Render theme pages specifically.
+
 queue_css_file('lity', 'all', false, 'lity');
 $itemTitle = metadata('item', 'display_title');
 $itemType = 'Theme';

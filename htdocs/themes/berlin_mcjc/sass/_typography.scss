@@ -117,8 +117,8 @@ a.button {
 }
 
 blockquote {
-  margin: 0 3em;
-  font: 2em $body-font-family;
+  margin: 0 10%;
+  font: 1.5em $body-font-family;
   font-style: italic;
 
   &::before {
@@ -134,7 +134,7 @@ blockquote + cite,
 p.citation {
   display: block;
   margin-top: 1em;
-  padding-left: 3em;
+  padding-left: 40%;
   font-style: unset;
   &::before {
     content: "\2014 ";

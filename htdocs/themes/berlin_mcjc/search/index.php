@@ -88,7 +88,7 @@ usort($searchTagResults, function ($a, $b) {
       ?>
     <div class="filter_container">
         <div class="filter" id="grid__filter">
-            <span class="grid__filter__title">Show:</span>
+            <span class="grid__filter__title">I want to see:</span>
             <?php foreach ($validFilterTypes as $filterType): ?>
             <span class="grid__filter__option"><label
                         class="filter-titles">
