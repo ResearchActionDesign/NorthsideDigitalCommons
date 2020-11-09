@@ -140,3 +140,9 @@ p.citation {
     content: "\2014 ";
   }
 }
+
+@media only screen and (max-width: $tablet-width) {
+  p.citation {
+    padding-left: 20%;
+  }
+}

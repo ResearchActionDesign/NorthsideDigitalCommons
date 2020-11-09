@@ -153,13 +153,14 @@ usort($searchTagResults, function ($a, $b) {
       <?php endforeach; ?>
 <?php echo pagination_links(); ?>
 <?php else: ?>
-        <p><?php echo __(
-            'No results were found. Please check your spelling or try searching for a different term'
-        ); ?></p>
-        <a href="/people" class="homepage-menu__item__button"><?php echo __(
+        <p><?php echo get_theme_option('search_no_results_text') ??
+            __(
+                'No results were found. Please check your spelling or try searching for a different term'
+            ); ?></p>
+        <a href="/people" class="button"><?php echo __(
             "Browse all people"
         ); ?></a>
-        <a href="/topics" class="homepage-menu__item__button"><?php echo __(
+        <a href="/topics" class="button"><?php echo __(
             "Browse all topics"
         ); ?></a>
 <?php endif; ?>

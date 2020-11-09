@@ -42,10 +42,11 @@
   }
 }
 
-@media only screen and (max-width: $mobile-landscape-width) {
+@media only screen and (max-width: $tablet-width) {
   .header-background-container-content {
-    .image-title {
-      font-size: 25px;
+    blockquote,
+    p {
+      margin: 0 10%;
     }
 
     .image-text {
