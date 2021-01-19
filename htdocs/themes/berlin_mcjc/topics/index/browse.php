@@ -22,15 +22,15 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
   ?>
 
   <div class="filter_container">
-    <div class="filter" id="grid__filter">
-      <span class="grid__filter__title">I want to see:</span>
-      <span class="grid__filter__option"><label
-                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="exhibit" id="grid-filter-exhibit">Exhibits</input></label></span>
-      <span class="grid__filter__option"><label
-                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="collection" id="grid-filter-collection">Collections</input></label></span>
-      <span class="grid__filter__option"><label
-                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="theme" id="grid-filter-theme">Themes</input></label></span>
-    </div>
+<!--    <div class="filter" id="grid__filter">-->
+<!--      <span class="grid__filter__title">I want to see:</span>-->
+<!--      <span class="grid__filter__option"><label-->
+<!--                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="exhibit" id="grid-filter-exhibit">Exhibits</input></label></span>-->
+<!--      <span class="grid__filter__option"><label-->
+<!--                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="collection" id="grid-filter-collection">Collections</input></label></span>-->
+<!--      <span class="grid__filter__option"><label-->
+<!--                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="theme" id="grid-filter-theme">Themes</input></label></span>-->
+<!--    </div>-->
     <div id="sort-links">
       <span class="sort-label"><?php echo __(
           'Sort by: '
@@ -42,8 +42,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     <div class="grid-items">
     <?php foreach (loop('topics') as $topic): ?>
     <?php
-    $topicClass = strtolower($topic->topicType);
-    $title = "{$topic->topicType}: " . html_escape($topic->title);
+    $topicClass = strtolower($topic->topicType); //    $title = "{$topic->topicType}: " . html_escape($topic->title);
+    $title = $topic->title;
     if ($topicClass == 'exhibit') {
         $description = metadata($topic, 'description', ['no_escape' => true]);
     } else {
