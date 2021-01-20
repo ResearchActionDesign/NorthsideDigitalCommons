@@ -4,6 +4,17 @@
   .grid-items {
     a.item {
       text-decoration: none;
+
+      &:hover {
+        .item-meta {
+          background: $purple--dark;
+          transition: all 0.1s linear;
+        }
+
+        h2 {
+          text-decoration: underline;
+        }
+      }
     }
 
     .item {

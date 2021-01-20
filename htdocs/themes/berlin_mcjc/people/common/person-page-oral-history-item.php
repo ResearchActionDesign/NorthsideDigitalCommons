@@ -34,7 +34,7 @@ if ($title === $person) {
   <?php endif; ?>
 
   <?php echo link_to_item(
-      __('View oral history details'),
+      __('Find out more'),
       [
           'class' => 'button item-link',
       ],

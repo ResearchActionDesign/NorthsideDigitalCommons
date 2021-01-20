@@ -40,9 +40,9 @@
           ): ?>
           <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
-          <a href="/people" class="homepage-menu__item__button button"><?php echo __(
-              "View all people"
-          ); ?></a>
+          <a href="/people" class="homepage-menu__item__button button"><?php echo get_theme_option(
+              'homepage_meet_our_neighbors_link_text'
+          ) ?? "View all people"; ?></a>
         </div>
       </li>
       <li class="homepage-menu__item">
@@ -56,9 +56,9 @@
           ): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
-          <a href="/topics" class="homepage-menu__item__button button"><?php echo __(
-              "Browse all topics"
-          ); ?></a>
+          <a href="/topics" class="homepage-menu__item__button button"><?php echo get_theme_option(
+              'homepage_explore_themes_link_text'
+          ) ?? "Browse all topics"; ?></a>
         </div>
       </li>
       <li class="homepage-menu__item">
@@ -70,9 +70,9 @@
           <?php if ($link_text = get_theme_option('homepage_respond_text')): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
-          <a href="/respond" class="homepage-menu__item__button button"><?php echo __(
-              "Respond"
-          ); ?></a>
+          <a href="/respond" class="homepage-menu__item__button button"><?php echo get_theme_option(
+              'homepage_respond_link_text'
+          ) ?? "Respond"; ?></a>
        </div>
       </li>
     </ul>
