@@ -56,32 +56,44 @@ if (!Berlin) {
     ) {
       var textItem = $(domItem);
       var textToHide = textItem.text().slice(280);
-      var visibleText = textItem.text().slice(1, 280);
+      var ellipsis = "<span class='ellipsis'>...</span>";
+      var visibleText = textItem.text().slice(1, 280) + ellipsis;
+      var showReadMore = true;
+
+      console.log("hello", textItem);
 
       textItem
         .html(
           visibleText +
-            ("<div class='hidden'>" +
+            ("<span class='hidden'>" +
               textToHide +
-              '<a id="read-less" title="Read Less" style="display: block; cursor: pointer;">Read Less&hellip;</a>')
+              '<a class="read-less" title="Read Less" style="display: block; cursor: pointer;">Read Less&hellip;</a></span>')
         )
         .append(
-          '<a id="read-more" title="Read More" style="display: block; cursor: pointer;">Read More&hellip;</a>'
+          '<a class="read-more" title="Read More" style="display: block; cursor: pointer;">Read More&hellip;</a>'
         );
 
+      const readMore = $(".read-more");
+      const readLess = $(".read-less");
+      const ellipsisSpan = $(".ellipsis");
+      console.log(readMore);
+
       textItem.click(function () {
-        $(this).find(".hidden").toggle();
-        $(this).find("a:last").hide();
+        if (showReadMore === true) {
+          $(this).find(".hidden").hide();
+          readMore.show();
+          readLess.hide();
+          ellipsisSpan.show();
+          showReadMore = false;
+        } else {
+          $(this).find(".hidden").show();
+          readLess.show();
+          readMore.hide();
+          ellipsisSpan.hide();
+          showReadMore = true;
+        }
       });
       $(".item-description .hidden").hide();
-      $("#read-more").click(function () {
-        $(this).hide();
-        $("#read-less").show();
-      });
-      $("#read-less").click(function () {
-        $(this).hide();
-        $("#read-more").show();
-      });
     });
   });
 

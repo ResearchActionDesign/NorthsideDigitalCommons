@@ -68,7 +68,7 @@ header {
   #site-title {
     color: $purple--dark;
     font-family: $heading-font-family;
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 1.4em;
     font-weight: bold;
 
@@ -218,7 +218,7 @@ header {
     }
 
     .header-content-wrapper {
-      display: block;
+      display: flex;
       padding-right: 0;
       text-align: center;
 
@@ -230,11 +230,5 @@ header {
         display: block;
       }
     }
-  }
-}
-
-@media only screen and (max-width: $tablet-width) {
-  header {
-    padding: 3em 1em;
   }
 }

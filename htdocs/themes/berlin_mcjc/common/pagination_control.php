@@ -9,7 +9,8 @@ if ($this->pageCount > 1):
           <a rel="prev"
              href="<?php echo html_escape(
                  $this->url([], null, $getParams)
-             ); ?>"><?php echo __('Previous Page'); ?></a>
+             ); ?>"><?php echo __('<i class="fa fa-arrow-left" aria-hidden="true"></i>
+             '); ?>Previous Page</a>
         </div>
       <?php endif; ?>
       <ul class="pagination">
@@ -47,7 +48,8 @@ if ($this->pageCount > 1):
           <a rel="next"
              href="<?php echo html_escape(
                  $this->url([], null, $getParams)
-             ); ?>"><?php echo __('Next Page'); ?></a>
+             ); ?>">Next Page <?php echo __('<i class="fa fa-arrow-right" aria-hidden="true"></i>
+             '); ?></a>
         </div>
       <?php endif; ?>
   </nav>
