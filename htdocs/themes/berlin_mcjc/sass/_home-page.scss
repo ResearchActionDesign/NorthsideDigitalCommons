@@ -147,32 +147,6 @@
     margin-top: 48px;
     text-shadow: 0px 3px 6px #fff;
   }
-
-  // Hide most header items on homepage, but show mobile-nav.
-  header {
-    padding: 0;
-
-    .header-content-wrapper {
-      display: block;
-    }
-
-    #site-title {
-      display: none;
-    }
-
-    .nav-search-wrapper {
-      display: none;
-    }
-
-    #mobile-nav {
-      display: block;
-      margin-top: -48px;
-
-      button.menu {
-        font-size: 1.5em;
-      }
-    }
-  }
 }
 
 @media only screen and (max-width: $narrow-screen) {

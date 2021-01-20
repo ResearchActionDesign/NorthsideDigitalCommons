@@ -1,68 +1,7 @@
-.search-form-container,
-#search-container {
-  input[type="text"] {
-    border: 1px solid $grey--medium;
-    background: $white;
-    @include appearance(none);
-    border-radius: 0;
-    height: 30px;
-    padding: 3px;
-    width: 100%;
-    behavior: url("../javascripts/boxsizing.htc");
-    @include box-sizing(border-box);
-  }
-
-  button {
-    position: absolute;
-    border: 0;
-    right: -4px;
-    top: -4px;
-    width: 1.875em;
-    text-indent: -9999px;
-    background-color: transparent;
-
-    &:after {
-      color: $black;
-      font-size: 1.3em;
-      font-family: "FontAwesome";
-      text-indent: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 1.5em;
-      line-height: 1.5em;
-      text-align: center;
-      width: 1.5em;
-    }
-
-    &:hover:after {
-      color: $purple--light;
-    }
-
-    &#search-close {
-      position: relative;
-    }
-  }
-
-  button#search-toggle:after,
-  button#submit_search:after {
-    content: "\f002"; // fa-search
-  }
-
-  button#search-close:after {
-    content: "\f00d"; // fa-close
-  }
-}
-
 header {
   .top-header {
     background-color: $white;
     padding: 1.25em;
-  }
-
-  .header-content-wrapper {
-    display: flex;
-    justify-content: space-between;
   }
 
   #site-title {
@@ -71,6 +10,11 @@ header {
     font-size: 2em;
     line-height: 1.4em;
     font-weight: bold;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
 
     a,
     a:hover,
@@ -78,163 +22,119 @@ header {
     a:active,
     a:focus {
       color: $purple--dark;
-      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
     }
   }
 
-  #search-container {
-    position: relative;
-    top: 10px;
-    min-width: 45px;
-    width: auto;
-  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
-  #search-container.with-advanced .button {
-    right: 30px;
-    left: 4px;
-  }
-
-  form.search-form {
-    float: right;
-    position: relative;
-    width: 21.25em;
-    margin-bottom: 1em;
-
-    .show-advanced.button:after {
-      color: $black;
-    }
-  }
-
-  .search-form-container input[type="text"] {
-    border-radius: 4px;
-  }
-
-  .search-form-container {
-    .show-advanced.button {
-      border-bottom: none;
-    }
-  }
-
-  #primary-nav {
-    width: auto;
-    margin: 0;
-
-    .nav-menu {
+    ul.navigation {
       display: flex;
-      flex-wrap: nowrap;
-    }
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
 
-    li,
-    .nav-item {
-      white-space: nowrap;
-      font-weight: 700;
+      li {
+        margin: 0.5em 1em;
+        font-weight: bold;
 
-      // Sub menu
-      ul li {
-        display: none;
-      }
-
-      &.active {
         a {
-          color: $white;
+          text-decoration: none;
         }
-        ul li {
-          display: block;
+
+        a:hover,
+        a:focus {
+          text-decoration: underline;
+        }
+
+        &.active a {
+          color: $purple--dark;
         }
       }
-      a {
-        border: 1px solid transparent;
-        color: $purple--dark;
+    }
 
-        &:hover,
-        &:active {
+    button {
+      background-color: transparent;
+      color: $green;
+      margin: 0;
+      padding: 0;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: $purple--light;
+      }
+    }
+
+    #search-toggle {
+      display: none; // Show via JS.
+    }
+
+    #search-form-container {
+      flex-basis: 75%;
+      position: relative;
+
+      #search-close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: $black;
+      }
+
+      form {
+        position: relative;
+        margin-top: 1.5rem;
+
+        input[type="text"] {
+          border: 1px solid $grey--medium;
           background: $white;
-          color: $purple--light;
+          @include appearance(none);
+          border-radius: 0;
+          height: 30px;
+          padding: 3px;
+          width: 100%;
+          @include box-sizing(border-box);
+        }
+
+        button {
+          position: absolute;
+          border: 0;
+          right: -4px;
+          top: -4px;
+          width: 1.875em;
+          text-indent: -9999px;
+          background-color: transparent;
+
+          &:after {
+            color: $green;
+            font-size: 1.3em;
+            font-family: "FontAwesome";
+            text-indent: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1.5em;
+            line-height: 1.5em;
+            text-align: center;
+            width: 1.5em;
+          }
+
+          &:hover:after {
+            color: $purple--dark;
+          }
         }
       }
-    }
-  }
 
-  #mobile-nav {
-    display: none;
-  }
-}
-
-#mobile-nav {
-  text-align: right;
-  position: absolute;
-  right: 1em;
-  top: 0.8em;
-
-  ul.navigation {
-    background: $white;
-    padding: 8px;
-    border-radius: 4px;
-  }
-
-  .search-form-container {
-    display: block;
-
-    form.search-form {
-      float: right;
-      margin: 1em 0.5em 1em 0;
-    }
-  }
-
-  button.menu {
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    background: transparent;
-    color: $green;
-    display: none;
-
-    &:focus,
-    &:hover {
-      background: $white;
-    }
-  }
-
-  li {
-    display: block;
-    margin-right: 8px;
-    float: none;
-
-    > ul {
-      display: none; // Submenus don't show on mobile nav.
-    }
-  }
-
-  a {
-    display: block;
-  }
-}
-
-@media only screen and (max-width: $narrow-screen) {
-  header {
-    .nav-search-wrapper {
-      display: none;
-    }
-
-    .header-content-wrapper {
-      display: block;
-      padding-right: 0;
-      text-align: center;
-
-      #site-title {
-        margin: auto;
-      }
-
-      #mobile-nav {
-        display: block;
+      button#submit_search:after {
+        content: "\f002"; // fa-search
       }
     }
-  }
-}
-
-@media only screen and (max-width: $tablet-width) {
-  header {
-    padding: 3em 1em;
   }
 }

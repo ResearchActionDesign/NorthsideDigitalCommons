@@ -1,41 +1,30 @@
-if (!Berlin) {
-  var Berlin = {};
+if (!FromTheRockWall) {
+  var FromTheRockWall = {};
 }
 
 (function ($) {
-  Berlin.dropDown = function () {
-    //Hide the rest of the menu
-    $("#mobile-nav .menu").show();
-    $("#mobile-nav > ul").hide();
-    $("#mobile-nav .search-form-container").hide();
+  //handle search bar open/close
+  FromTheRockWall.searchToggle = function () {
+    var searchToggle = $("#search-toggle");
+    var searchFormContainer = $("#search-form-container");
+    var navBar = $("header nav ul.navigation");
+    searchToggle.show();
+    searchToggle.click(function () {
+      $(this).hide();
+      $(this).attr("aria-expanded", true);
+      navBar.hide();
+      searchFormContainer.show();
+      $("#query").focus();
+    });
+    searchFormContainer.hide();
 
-    //function the will toggle the menu
-    $(".menu").click(function () {
-      $("#mobile-nav > ul").toggle();
-      $("#mobile-nav .search-form-container").toggle();
+    $("#search-close").click(function () {
+      searchFormContainer.hide();
+      searchToggle.show();
+      $(this).attr("aria-expanded", false);
+      navBar.show();
     });
   };
-
-  //handle search bar open/close
-  $().ready(function () {
-    var searchToggle = $("#search-toggle");
-    var closeSearch = $("#search-close");
-    var primaryNav = $("#primary-nav");
-    var searchContainer = $(".search-form-container");
-    if (searchToggle.length > 0) {
-      searchToggle.on("click", () => {
-        searchContainer.css("display", "flex");
-        searchToggle.hide();
-        primaryNav.hide();
-      });
-
-      closeSearch.on("click", () => {
-        searchContainer.hide();
-        searchToggle.show();
-        primaryNav.show();
-      });
-    }
-  });
 
   $().ready(function () {
     $(".download-file").attr("target", "_blank");
@@ -86,7 +75,7 @@ if (!Berlin) {
   });
 
   // Filtering on topics & items page.
-  $().ready(function () {
+  FromTheRockWall.filters = function () {
     if (!$("#grid__filter").length) return;
     $("#grid__filter input:checkbox").change(function () {
       var filter = $(this).attr("data-filter");
@@ -104,9 +93,9 @@ if (!Berlin) {
       }
       $(".masonry-grid .grid-items").masonry("layout");
     });
-  });
+  };
 
-  $().ready(function () {
+  FromTheRockWall.grids = function () {
     // Masonry grids.
 
     var $grid = $(".masonry-grid .grid-items");
@@ -130,5 +119,5 @@ if (!Berlin) {
         $grid.masonry("layout");
       });
     }
-  });
+  };
 })(jQuery);

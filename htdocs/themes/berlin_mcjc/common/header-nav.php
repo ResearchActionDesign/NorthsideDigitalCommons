@@ -3,28 +3,16 @@
     <div class="header-content-wrapper">
       <?php if ($bodyid !== 'home'): ?>
       <div id="site-title"><?php echo link_to_home_page(theme_logo()); ?></div>
-
-      <div class="nav-search-wrapper">
-        <div id="search-container" role="search">
-          <div class="search-form-container">
-            <?php echo search_form(); ?>
-          </div>
-        </div>
-        <nav id="primary-nav" role="navigation">
-          <?php echo public_nav_main(); ?>
-        </nav>
-      </div>
       <?php endif; ?>
 
-      <nav id="mobile-nav" role="navigation">
-        <button class="menu" aria-expanded="false" aria-label="<?php echo __(
-            'Menu'
-        ); ?>"><i class="fa fa-bars"></i></button>
-        <?php echo public_nav_main(); ?>
-        <div class="search-form-container">
-          <?php echo search_form(['id' => 'mobile-search-form']); ?>
-        </div>
-      </nav>
+        <nav>
+          <?php echo public_nav_main()->setMaxDepth(0); ?>
+            <button id="search-toggle" aria-controls="search-form-container" aria-expanded="false"><i class="fa fa-search"></i><span class="sr-only">Search</span></button>
+            <div id="search-form-container">
+              <button id="search-close"><i class="fa fa-close"></i><span class="sr-only">Close</span></button>
+            <?php echo search_form(); ?>
+            </div>
+        </nav>
     </div>
   </header>
 
