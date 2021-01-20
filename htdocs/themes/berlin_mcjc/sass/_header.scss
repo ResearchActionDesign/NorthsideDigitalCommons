@@ -60,6 +60,12 @@ header {
       }
     }
 
+    #search-toggle {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
     button {
       background-color: transparent;
       color: $green;
@@ -73,24 +79,21 @@ header {
       }
     }
 
-    #search-toggle {
-      display: none; // Show via JS.
-    }
-
     #search-form-container {
       flex-basis: 75%;
       position: relative;
+      display: none;
+      margin-top: 1rem;
 
       #search-close {
         position: absolute;
-        right: 0;
+        right: -2rem;
         top: 0;
         color: $black;
       }
 
       form {
         position: relative;
-        margin-top: 1.5rem;
 
         input[type="text"] {
           border: 1px solid $grey--medium;

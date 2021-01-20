@@ -8,15 +8,17 @@ if (!FromTheRockWall) {
     var searchToggle = $("#search-toggle");
     var searchFormContainer = $("#search-form-container");
     var navBar = $("header nav ul.navigation");
-    searchToggle.show();
-    searchToggle.click(function () {
+    searchToggle.attr("aria-expanded", false);
+    searchToggle.attr("aria-controls", "search-form-container");
+
+    searchToggle.click(function (e) {
+      e.preventDefault();
       $(this).hide();
       $(this).attr("aria-expanded", true);
       navBar.hide();
       searchFormContainer.show();
       $("#query").focus();
     });
-    searchFormContainer.hide();
 
     $("#search-close").click(function () {
       searchFormContainer.hide();

@@ -7,7 +7,7 @@
 
         <nav>
           <?php echo public_nav_main()->setMaxDepth(0); ?>
-            <button id="search-toggle" aria-controls="search-form-container" aria-expanded="false"><i class="fa fa-search"></i><span class="sr-only">Search</span></button>
+            <a id="search-toggle" href="/search"><i class="fa fa-search"></i><span class="sr-only">Search</span></a>
             <div id="search-form-container">
               <button id="search-close"><i class="fa fa-close"></i><span class="sr-only">Close</span></button>
             <?php echo search_form(); ?>
