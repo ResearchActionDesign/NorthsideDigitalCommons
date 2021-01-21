@@ -95,7 +95,7 @@ class Topics_IndexController extends AbstractMCJCIndexController
 
     $sortFunction = false;
     $reverseSort = ($params['sort_dir'] ?? '') === 'd';
-    switch ($params['sort_field'] ?? '') {
+    switch ($params['sort_field'] ?? 'Dublin Core,Title') {
       case 'added':
         $sortFunction = function($a, $b) use ($reverseSort) {
           if ($a['added'] == $b['added']) {

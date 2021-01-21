@@ -11,14 +11,3 @@ input[type="checkbox"] {
   transform: scale(1.5);
 }
 /* @end */
-
-/* @group ----- Global selectors ----- */
-
-#search-container {
-  clear: both;
-  width: 100%;
-  @include leader();
-  @include trailer(0);
-}
-
-/* @end */

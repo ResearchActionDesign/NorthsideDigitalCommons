@@ -14,45 +14,6 @@ nav a,
 
 /* @end */
 
-/* @group ----- Navigation ----- */
-#primary-nav {
-  display: block;
-
-  @media only screen and (min-width: $tablet-width) and (max-width: $narrow-screen) {
-    display: none;
-  }
-
-  .nav-item > a.open {
-    background-color: $white;
-  }
-
-  .active a,
-  a:hover,
-  a:focus {
-    color: $purple--light;
-  }
-
-  li.active a,
-  .nav-item.active a.open {
-    background-color: $purple--light;
-    color: $white;
-  }
-
-  // Caret character for links with submenu items.
-  [aria-haspopup="true"]::after {
-    content: "\f0d7";
-    font-size: 1.1em;
-  }
-
-  .sub-nav.open {
-    border-bottom: 0;
-    margin-left: -1px;
-    width: auto;
-  }
-}
-
-/* @end */
-
 @mixin button_link {
   text-align: center;
   color: $white;
@@ -103,7 +64,6 @@ input[type="submit"] {
 }
 
 /* @group ----- Items/Browse ----- */
-
 .browse {
   .record,
   .collection.record,

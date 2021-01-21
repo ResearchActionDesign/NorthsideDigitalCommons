@@ -34,10 +34,9 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        Omeka.showAdvancedForm();
-        Omeka.skipNav();
-        Omeka.megaMenu();
-        Berlin.dropDown();
+        FromTheRockWall.filters();
+        FromTheRockWall.grids();
+        FromTheRockWall.searchToggle();
     });
 </script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
