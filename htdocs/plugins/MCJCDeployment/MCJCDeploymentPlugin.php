@@ -325,6 +325,7 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
       }
     } catch (Exception $e) {
     }
+    add_shortcode('typeform', [$this, 'typeform']);
   }
 
   /** Load additional JS in header. */
@@ -599,5 +600,24 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
           break;
       }
     }
+  }
+
+  /**
+   * Render a typeform div.
+   *
+   * @param $args
+   * @param $view
+   * @return string
+   */
+  public function typeform($args, $view)
+  {
+    $url = $args['url'];
+    if (!$url) {
+      return '';
+    }
+    return <<<EOL
+        <div class="typeform-widget" data-url="{$url}" style="width: 100%; height: 500px;"></div>
+        <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+  EOL;
   }
 }

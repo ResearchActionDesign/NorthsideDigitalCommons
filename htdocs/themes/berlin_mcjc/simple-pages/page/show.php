@@ -37,5 +37,4 @@ $text = metadata('simple_pages_page', 'text', [
     </div>
 </div>
 
-
 <?php echo foot(); ?>
