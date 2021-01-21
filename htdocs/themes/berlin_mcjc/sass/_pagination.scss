@@ -6,9 +6,11 @@
 
 .pagination-nav {
   display: flex;
+  background: $white;
   flex-direction: row;
   justify-content: space-between;
-  margin: 1.5em;
+  margin: 0, 0, 0, 0;
+  padding: 15px;
 
   ul.pagination {
     margin: 0;
@@ -24,5 +26,9 @@
     li {
       list-style-type: none;
     }
+  }
+
+  .pagination .page-inputactive {
+    font-weight: 700;
   }
 }

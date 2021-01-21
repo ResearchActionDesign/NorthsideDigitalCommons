@@ -164,6 +164,14 @@
       }
     }
   }
+  .mejs-controls {
+    z-index: auto !important;
+  }
+
+  .mejs-speed-selector-list-item,
+  .mejs__speed-selector-list-item {
+    margin: 0px 0px 4px !important;
+  }
 
   .html5media-title {
     padding-left: 16px;
