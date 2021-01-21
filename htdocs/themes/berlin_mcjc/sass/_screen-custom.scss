@@ -57,7 +57,11 @@ nav a,
   }
 }
 
-button,
+button {
+  border: 0;
+}
+
+button.button,
 input[type="submit"] {
   @include button;
   @include button_link;

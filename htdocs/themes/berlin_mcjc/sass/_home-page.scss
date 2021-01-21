@@ -64,46 +64,27 @@
   }
 
   #content div.have-you-heard__container {
-    margin-top: 48px;
-    margin-bottom: 48px;
+    visibility: hidden;
 
-    .have-you-heard {
-      display: flex;
-      flex-direction: row;
+    &.slick-slider {
+      visibility: visible;
+      margin-top: 48px;
+      margin-bottom: 48px;
+
       background: $purple--dark;
       color: white;
       border-radius: 4px;
       padding: 1rem;
 
-      .have-you-heard__image {
-        flex-grow: 0;
-        flex-shrink: 0;
-        height: 150px;
-
-        img {
-          width: auto;
-          height: 100%;
-        }
-      }
-
-      .have-you-heard__content {
-        align-self: stretch;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-
-        .have-you-heard__prompt {
+      .slide {
+        p:first-child {
           font-size: 2em;
           font-style: italic;
           margin-bottom: 0.33em;
         }
 
-        .have-you-heard__action {
-          margin-top: 1em;
-
-          a {
-            @include button_link-secondary;
-          }
+        a {
+          @include button_link-secondary;
         }
       }
     }

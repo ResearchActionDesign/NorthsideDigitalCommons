@@ -1,5 +1,6 @@
 @import "lib/compass";
 @import "lib/lity";
+@import "lib/slick";
 
 @import "normalize";
 @import "base";
@@ -31,6 +32,7 @@
 @import "exhibits";
 @import "pagination";
 @import "media-player";
+@import "share-buttons";
 
 // Small screen styles.
 @media screen and (max-width: 768px) {

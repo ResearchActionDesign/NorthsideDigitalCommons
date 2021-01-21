@@ -3,6 +3,10 @@ if (!FromTheRockWall) {
 }
 
 (function ($) {
+  FromTheRockWall.didYouKnow = function () {
+    $("div.have-you-heard__container").slick();
+  };
+
   //handle search bar open/close
   FromTheRockWall.searchToggle = function () {
     var searchToggle = $("#search-toggle");

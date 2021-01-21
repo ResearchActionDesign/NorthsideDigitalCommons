@@ -78,6 +78,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
                 <?php echo $description; ?>
               </p>
           <?php endif; ?>
+          <?php echo common('share_icons', [
+              'url' => absolute_url(current_url()),
+              'title' => $itemTitle,
+          ]); ?>
         </div>
         <div class="item-sidebar">
         <?php if ($picture): ?>

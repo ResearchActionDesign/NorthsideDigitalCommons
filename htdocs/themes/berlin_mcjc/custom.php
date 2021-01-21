@@ -527,17 +527,20 @@ function mcjc_get_matching_tags($query)
 }
 
 /**
- * Get random 'Have you heard' item from those set up in theme options.
+ * Get random 'Have you heard' items from those set up in theme options.
  */
 function mcjc_get_have_you_heard()
 {
-    $randomItem = rand(1, 5);
-    $count = 0;
-    $haveYouHeard = get_theme_option("have_you_heard_$randomItem");
-    while (!$haveYouHeard && $count < 5) {
-        $randomItem = $randomItem != 5 ? $randomItem + 1 : 0;
-        $haveYouHeard = trim(get_theme_option("have_you_heard_$randomItem"));
-        $count++;
+    $itemIndex = rand(1, 5);
+    $count = 5;
+    $haveYouHeard = [];
+    while ($count > 0) {
+        $item = trim(get_theme_option("have_you_heard_$itemIndex"));
+        if ($item) {
+            $haveYouHeard[] = $item;
+        }
+        $itemIndex = $itemIndex != 5 ? $itemIndex + 1 : 1;
+        $count--;
     }
 
     return $haveYouHeard;

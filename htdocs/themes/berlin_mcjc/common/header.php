@@ -1,12 +1,3 @@
-<?php
-
-if (
-    $title == "Search Items" and
-    @$_REQUEST['query'] and
-    empty(@$_REQUEST['search'])
-) {
-    $_REQUEST['search'] = $_REQUEST['query'];
-} ?>
 <!DOCTYPE html>
 <html class="<?php echo get_theme_option(
     'Style Sheet'
@@ -48,14 +39,15 @@ if (
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/assets/images/icons/ms-icon-144x144.png">
   <?php echo head_css(); ?>
     <!-- JavaScripts -->
-  <?php queue_js_file('vendor/selectivizr', 'javascripts', [
-      'conditional' => '(gte IE 6)&(lte IE 8)',
-  ]); ?>
-  <?php queue_js_file('vendor/respond'); ?>
   <?php queue_js_file('masonry.min'); ?>
   <?php queue_js_file('frw'); ?>
-  <?php queue_js_file('lity.min'); ?>
-    <?php echo head_js(); ?>
+  <?php
+  queue_js_file('lity.min', 'javascripts', ['defer' => true]);
+  if (stripos($bodyclass, 'show') !== false) {
+      queue_js_file('sharer.min', 'javascripts', ['defer' => true]);
+  }
+  echo head_js();
+  ?>
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
 <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>

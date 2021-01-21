@@ -22,9 +22,11 @@
     </div>
   <?php if ($have_you_heard = mcjc_get_have_you_heard()): ?>
       <div class="have-you-heard__container">
-          <div class="have-you-heard">
-            <?php echo $have_you_heard; ?>
+          <?php foreach ($have_you_heard as $item): ?>
+          <div>
+            <?php echo $item; ?>
           </div>
+          <?php endforeach; ?>
       </div>
   <?php endif; ?>
 
@@ -77,4 +79,8 @@
       </li>
     </ul>
   </div>
-<?php echo foot(); ?>
+<script type="text/javascript">
+    window.$ = window.jQuery;
+</script>
+<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/slick.min.js" defer></script>
+<?php echo foot(['bodyid' => 'home']); ?>
