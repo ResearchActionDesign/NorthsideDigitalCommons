@@ -39,6 +39,7 @@
         FromTheRockWall.searchToggle();
     });
 </script>
+<script async defer src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript>
 

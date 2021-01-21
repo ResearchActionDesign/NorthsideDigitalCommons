@@ -31,6 +31,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         <?php echo $bio; ?>
       </p>
   <?php endif; ?>
+      <?php echo common('share_icons', [
+          'url' => absolute_url(current_url()),
+          'title' => $itemTitle,
+      ]); ?>
     </div>
 
   <!-- Item files -->
