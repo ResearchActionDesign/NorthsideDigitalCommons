@@ -1,4 +1,8 @@
 .person.show {
+  .item--missing-picture {
+    margin-top: 4em;
+    opacity: 75%;
+  }
   .oral-histories {
     @include container;
 
