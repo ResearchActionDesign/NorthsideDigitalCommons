@@ -31,15 +31,14 @@
       ); ?></div>
         <!-- end footer-content -->
 
-
-<script type="text/javascript">
+<script type="text/javascript" defer>
     jQuery(document).ready(function(){
         FromTheRockWall.filters();
         FromTheRockWall.grids();
         FromTheRockWall.searchToggle();
+        FromTheRockWall.didYouKnow();
     });
 </script>
-<script async defer src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript>
 
