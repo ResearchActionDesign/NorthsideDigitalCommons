@@ -8,7 +8,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
 ]); ?>
 
 <h1><?php echo $tag_name; ?></h1>
-
+<div class="background-container">
 <div class="grid-container">
   <div class="grid-items">
     <?php foreach (loop('items') as $item): ?>
@@ -23,5 +23,5 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
     'items' => $items,
     'view' => $this,
 ]); ?>
-
+</div>
 <?php echo foot(); ?>

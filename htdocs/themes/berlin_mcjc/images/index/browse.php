@@ -7,6 +7,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'images browse']);
     'trail' => ['Images'],
 ]); ?>
 <h1><?php echo $pageTitle; ?></h1>
+<div class="background-container">
 <div class="grid-container">
     <div class="grid-items">
       <?php foreach (loop('items') as $item): ?>
@@ -21,5 +22,5 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'images browse']);
     'items' => $items,
     'view' => $this,
 ]); ?>
-
+</div>
 <?php echo foot(); ?>

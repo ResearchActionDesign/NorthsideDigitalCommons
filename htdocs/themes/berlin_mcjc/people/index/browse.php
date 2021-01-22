@@ -19,7 +19,6 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
   <?php endif; ?>
         </div>
     </div>
-
 <div class="filter-by-letter">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
   <ul>
@@ -44,6 +43,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
         <?php endforeach; ?>
   </ul>
 </div>
+<div class="background-container">
+
 <div class="grid-container">
     <div class="grid-items">
       <?php foreach (loop('items') as $item): ?>
@@ -61,4 +62,6 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
          'items' => $items,
          'view' => $this,
      ]
- ); ?> <?php echo foot(); ?>
+ ); ?>
+</div>
+<?php echo foot(); ?>

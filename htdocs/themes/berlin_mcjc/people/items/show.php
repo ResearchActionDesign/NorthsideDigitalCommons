@@ -67,6 +67,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <?php endforeach; ?>
 </div>
 <?php endif; ?>
+<div class="background-container">
 
 <?php echo common('respond-bar'); ?>
 
@@ -115,5 +116,6 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
       [],
       'peopleDefault'
   ); ?>"><?php echo $backButtonText; ?></a>
+</div>
 </div>
 <?php echo foot(); ?>

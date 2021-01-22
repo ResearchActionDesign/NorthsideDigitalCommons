@@ -30,7 +30,7 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
     </div>
       <?php endif; ?>
 </div>
-
+<div class="background-container">
 <div class="grid-container masonry-grid collection-grid">
   <?php if (metadata('collection', 'total_items') > 0): ?>
     <div class="grid-items">
@@ -59,6 +59,7 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
 
 <div class="back-container">
     <a class="button back" href="/topics">Back to all Topics</a>
+</div>
 </div>
 
 <?php echo foot(); ?>

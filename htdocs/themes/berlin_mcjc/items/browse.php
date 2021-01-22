@@ -8,6 +8,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
      '(%s total)',
      $total_results
  ); ?></h1>
+<div class="background-container">
 
 <nav class="items-nav navigation secondary-nav">
   <?php echo public_nav_items(); ?>
@@ -44,5 +45,5 @@ endif; ?>
     'items' => $items,
     'view' => $this,
 ]); ?>
-
+</div>
 <?php echo foot(); ?>

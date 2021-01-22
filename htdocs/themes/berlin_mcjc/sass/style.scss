@@ -1,25 +1,22 @@
 @import "lib/compass";
 @import "lib/lity";
 @import "lib/slick";
+@import "lib/font-awesome";
 
 @import "normalize";
 @import "base";
-@import "skeleton";
+
 @import "screen";
-@import "screen-custom";
 @import "typography";
-@import "font-awesome";
 
 // Custom styles.
+@import "components";
 @import "home-page";
 @import "header";
 @import "footer";
-@import "respond-bar";
-@import "header-background-container"; // hero image header for top-level pages.
 @import "search";
 @import "people";
 @import "simple-pages";
-@import "item-grid";
 
 @import "item";
 @import "person";
@@ -31,8 +28,6 @@
 @import "collection";
 @import "exhibits";
 @import "pagination";
-@import "media-player";
-@import "share-buttons";
 
 // Small screen styles.
 @media screen and (max-width: 768px) {

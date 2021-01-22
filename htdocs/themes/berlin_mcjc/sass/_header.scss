@@ -1,4 +1,54 @@
+.page-header-background-container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 1.5em 0;
+  background-position: top;
+}
+
+@media (max-width: 688px) {
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
+  }
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+  }
+}
+
+@media (min-width: 689px) and (max-width: 992px) {
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
+  }
+
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1312px) {
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
+  }
+
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+  }
+}
+
+@media (min-width: 1312px) {
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
+  }
+
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final.webp");
+  }
+}
+
 header {
+  text-shadow: 0 0 12px #fff;
+  @include container;
+  position: relative;
+
   .top-header {
     background-color: $white;
     padding: 1.25em;
@@ -43,27 +93,31 @@ header {
 
       li {
         margin: 0.5em 1em;
-        font-weight: bold;
-
-        a {
-          text-decoration: none;
-        }
-
-        a:hover,
-        a:focus {
-          text-decoration: underline;
-        }
-
         &.active a {
           color: $purple--dark;
         }
       }
     }
 
+    ul.navigation li a,
+    a#search-toggle {
+      font-weight: bold;
+      text-decoration: none;
+
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+        color: $purple--dark;
+      }
+    }
+
     #search-toggle {
       display: flex;
       align-items: center;
-      text-decoration: none;
+
+      i {
+        margin-left: 0.5rem;
+      }
     }
 
     button {
@@ -75,7 +129,7 @@ header {
       &:hover,
       &:focus {
         background-color: transparent;
-        color: $purple--light;
+        color: $purple--dark;
       }
     }
 

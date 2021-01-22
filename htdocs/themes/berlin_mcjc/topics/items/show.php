@@ -73,6 +73,7 @@ $citation = metadata('item', 'citation', [
     'view' => $this,
     'item' => $item,
 ]); ?>
+<div class="background-container">
 
 <?php if (!empty($depicted_items)): ?>
   <div class="explore-grid masonry-grid grid-container depicted">
@@ -92,6 +93,7 @@ $citation = metadata('item', 'citation', [
 <?php endif; ?>
 <div class="back-container">
   <a class="button back" href="<?php echo $backLink; ?>"><?php echo $backButtonText; ?></a>
+</div>
 </div>
 
 <?php echo foot(); ?>

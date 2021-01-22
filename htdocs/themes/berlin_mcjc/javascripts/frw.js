@@ -4,7 +4,10 @@ if (!FromTheRockWall) {
 
 (function ($) {
   FromTheRockWall.didYouKnow = function () {
-    $("div.have-you-heard__container").slick();
+    $("div.have-you-heard__container").slick({
+      centerMode: true,
+      variableWidth: true,
+    });
   };
 
   //handle search bar open/close
