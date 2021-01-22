@@ -30,13 +30,11 @@ body {
 
 @media (min-width: 689px) and (max-width: 992px) {
   .background-container {
-    .background-container {
-      background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
-    }
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
+  }
 
-    .webp .background-container {
-      background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
-    }
+  .webp .background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
   }
 }
 
