@@ -39,7 +39,8 @@
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/assets/images/icons/ms-icon-144x144.png">
   <?php echo head_css(); ?>
     <!-- JavaScripts -->
-  <?php queue_js_file('masonry.min'); ?>
+  <?php queue_js_file('modernizr-webp'); ?>
+    <?php queue_js_file('masonry.min'); ?>
   <?php queue_js_file('frw'); ?>
   <?php
   queue_js_file('lity.min', 'javascripts', ['defer' => true]);
@@ -50,10 +51,11 @@
   ?>
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
+<div class="page-header-background-container">
 <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
 <?php fire_plugin_hook('public_body', ['view' => $this]); ?>
 
  <?php echo common('header-nav', ['bodyid' => $bodyid ?? '']); ?>
-
+</div>
 <article id="content" role="main">
 <?php fire_plugin_hook('public_content_top', ['view' => $this]); ?>

@@ -20,6 +20,7 @@ usort($searchTagResults, function ($a, $b) {
           <?php echo search_form(['expanded' => true]); ?>
         </div>
     </div>
+    <div class="background-container">
     <?php if ($total_results): ?>
       <?php
       $filter = new Zend_Filter_Word_CamelCaseToDash();
@@ -164,6 +165,7 @@ usort($searchTagResults, function ($a, $b) {
             "Browse all topics"
         ); ?></a>
 <?php endif; ?>
+</div>
 </div>
 </div>
 <?php echo foot(); ?>

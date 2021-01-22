@@ -21,6 +21,8 @@ usort($tags, 'strnatcasecmp');
 $tagsByLetter = mcjc_sort_tags_by_first_letter($tags);
 $validLetters = array_keys($tagsByLetter);
 ?>
+<div class="background-container">
+
 
 <?php
     /* This chunk of code similar to people/index/browse.php, potentially abstract into a function */
@@ -61,5 +63,6 @@ $validLetters = array_keys($tagsByLetter);
 ); ?></p>
 
 <?php endif; ?>
+</div>
 
 <?php echo foot(); ?>

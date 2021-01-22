@@ -21,16 +21,8 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
   $sortLinks[__('Date Added')] = 'added';
   ?>
 
-  <div class="filter_container">
-<!--    <div class="filter" id="grid__filter">-->
-<!--      <span class="grid__filter__title">I want to see:</span>-->
-<!--      <span class="grid__filter__option"><label-->
-<!--                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="exhibit" id="grid-filter-exhibit">Exhibits</input></label></span>-->
-<!--      <span class="grid__filter__option"><label-->
-<!--                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="collection" id="grid-filter-collection">Collections</input></label></span>-->
-<!--      <span class="grid__filter__option"><label-->
-<!--                  class="filter-titles"><input class="checkbox" type="checkbox" data-filter="theme" id="grid-filter-theme">Themes</input></label></span>-->
-<!--    </div>-->
+    <div class="background-container">
+    <div class="filter_container">
     <div id="sort-links">
       <span class="sort-label"><?php echo __(
           'Sort by: '
@@ -67,5 +59,5 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
   <?php endif; ?>
 </div>
 <?php echo pagination_links(); ?>
-
+</div>
 <?php echo foot(); ?>

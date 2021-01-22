@@ -15,6 +15,7 @@
     </div>
     <?php endif; ?>
 </div>
+<div class="background-container">
 <div id="primary">
     <div class="homepage-epigraph">
     <blockquote>Without the past, you have no future.</blockquote>
@@ -79,6 +80,7 @@
       </li>
     </ul>
   </div>
+</div>
 <script type="text/javascript">
     window.$ = window.jQuery;
 </script>

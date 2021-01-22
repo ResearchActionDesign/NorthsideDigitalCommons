@@ -143,6 +143,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
       <?php endif; ?>
     </div>
   </div>
+<div class="background-container">
 
 <?php fire_plugin_hook('public_items_show', [
     'view' => $this,
@@ -193,6 +194,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php endif; ?>
 <div class="back-container">
   <a class="button back" href="<?php echo $backLink; ?>"><?php echo $backButtonText; ?></a>
+</div>
 </div>
 
 <?php echo foot(); ?>
