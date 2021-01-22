@@ -6,7 +6,7 @@ if (!FromTheRockWall) {
   FromTheRockWall.didYouKnow = function () {
     $("div.have-you-heard__container").slick({
       centerMode: true,
-      slidesToShow: 3,
+      slidesToShow: 1,
     });
   };
 
