@@ -21,15 +21,6 @@
     <blockquote>Without the past, you have no future.</blockquote>
     <cite>Mrs. Marian Cheek Jackson</cite>
     </div>
-  <?php if ($have_you_heard = mcjc_get_have_you_heard()): ?>
-      <div class="have-you-heard__container">
-          <?php foreach ($have_you_heard as $item): ?>
-          <div>
-            <?php echo $item; ?>
-          </div>
-          <?php endforeach; ?>
-      </div>
-  <?php endif; ?>
 
     <ul id="homepage-menu">
       <li class="homepage-menu__item">
@@ -79,6 +70,15 @@
        </div>
       </li>
     </ul>
+      <?php if ($have_you_heard = mcjc_get_have_you_heard()): ?>
+          <div class="have-you-heard__container">
+            <?php foreach ($have_you_heard as $item): ?>
+                <div>
+                  <?php echo $item; ?>
+                </div>
+            <?php endforeach; ?>
+          </div>
+      <?php endif; ?>
   </div>
 </div>
 <script type="text/javascript">
