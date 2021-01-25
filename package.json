@@ -14,5 +14,9 @@
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
     "prettier:check-ci": "prettier --check . --ignore-path=.prettierignore-circleci"
+  },
+  "dependencies": {
+    "purgecss": "^4.0.0",
+    "sass": "^1.32.5"
   }
 }

@@ -17,10 +17,6 @@ jobs:
           name: Yarn install
           command: yarn install --production=false
 
-      - run: # Install sass
-          name: Sass Install
-          command: yarn global add sass
-
       - save_cache:
           key: ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
           paths:
@@ -32,8 +28,13 @@ jobs:
 
       - run:
           name: Compile SASS
-          command: $(yarn global bin)/sass sass:css --style=compressed --no-source-map
+          command: yarn run sass sass:css --style=compressed --no-source-map
           working_directory: ~/repo/htdocs/themes/berlin_mcjc
+
+      - run:
+          name: Purge SASS
+          command: yarn run purgecss -c purgecss.config.js
+          working_directory: ~/repo/
 
       - persist_to_workspace:
           root: ~/repo
