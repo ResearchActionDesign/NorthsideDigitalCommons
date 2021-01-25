@@ -11,14 +11,13 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
 <?php echo common('breadcrumbs', [
     'trail' => ['People'],
 ]); ?>
-    <div class="header-background-container people-image">
-        <div class="header-background-container-content">
-            <h1 class="image-title"><?php echo $pageTitle; ?></h1>
-  <?php if ($header_text = get_theme_option('people_page_text')): ?>
-      <p class="image-text"><?php echo $header_text; ?></p>
-  <?php endif; ?>
-        </div>
-    </div>
+
+<?php echo common('hero-image-header', [
+    'title' => $pageTitle,
+    'headerText' => get_theme_option('people_page_text'),
+    'className' => 'people',
+]); ?>
+
 <div class="filter-by-letter">
   <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
   <ul>

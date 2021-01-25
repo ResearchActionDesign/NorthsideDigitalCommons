@@ -9,9 +9,11 @@ if ($simple_pages_page->getChildren()) {
     $submenu = mcjc_get_submenu();
 }
 $div_class = "page-about";
+$pageTitle = metadata('simple_pages_page', 'title');
+$pageClass = preg_replace('/\W+/', '-', strtolower(strip_tags($pageTitle)));
 
 echo head([
-    'title' => metadata('simple_pages_page', 'title'),
+    'title' => $pageTitle,
     'bodyclass' => $bodyclass,
     'bodyid' => metadata('simple_pages_page', 'slug'),
 ]);
@@ -20,11 +22,14 @@ $text = metadata('simple_pages_page', 'text', [
     'no_escape' => true,
 ]);
 ?>
+<p id="simple-pages-breadcrumbs" class="breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
+
+<?php echo common('hero-image-header', [
+    'title' => $pageTitle,
+    // 'headerText' => get_theme_option('search_page_text'),
+    'className' => $pageClass,
+]); ?>
 <div id="primary" class="<?php echo $div_class; ?>">
-    <?php if (!$is_home_page): ?>
-        <p id="simple-pages-breadcrumbs" class="breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
-    <?php endif; ?>
-    <h1><?php echo metadata('simple_pages_page', 'title'); ?></h1>
     <div class="about-content-wrapper">
         <?php if ($text): ?>
         <div class="simple-pages-text-wrapper">

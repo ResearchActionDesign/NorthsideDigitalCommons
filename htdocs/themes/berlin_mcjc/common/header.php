@@ -20,6 +20,10 @@
     <?php echo auto_discovery_link_tags(); ?>
 
     <?php fire_plugin_hook('public_head', ['view' => $this]); ?>
+    <?php
+/* Include modernizr script first so classes are applied before CSS loaded */
+?>
+    <script src="/themes/berlin_mcjc/javascripts/modernizr-webp.js"></script>
     <!-- Stylesheets -->
     <?php queue_css_file(['iconfonts', 'style']); ?>
 	<link rel="apple-touch-icon" sizes="57x57" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-57x57.png">
@@ -39,7 +43,6 @@
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/assets/images/icons/ms-icon-144x144.png">
   <?php echo head_css(); ?>
     <!-- JavaScripts -->
-  <?php queue_js_file('modernizr-webp'); ?>
     <?php queue_js_file('masonry.min'); ?>
   <?php queue_js_file('frw'); ?>
   <?php

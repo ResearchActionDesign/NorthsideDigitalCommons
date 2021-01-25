@@ -1,17 +1,16 @@
 .people {
-  .people-image {
-    background-image: url(../assets/images/peopleImage.png);
-    margin-bottom: 45px;
-  }
-
-  #content > .primary,
-  #content > .oral-histories,
-  #content > .related-items {
+  .primary,
+  .oral-histories,
+  .related-items {
     @include container;
   }
 
-  #content > .related-items {
+  .related-items {
     margin-top: 96px;
+  }
+
+  .community-content {
+    margin-top: 48px;
   }
 
   .people-page-header {

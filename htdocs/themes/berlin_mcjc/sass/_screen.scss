@@ -15,46 +15,43 @@ body {
   background-size: 100%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  padding-bottom: 96px;
+  padding-bottom: 48px;
   background-position: bottom;
 }
 
 @media (max-width: 688px) {
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
-  }
   .webp .background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+  }
+  .background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
   }
 }
 
 @media (min-width: 689px) and (max-width: 992px) {
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
-  }
-
   .webp .background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+  }
+  .background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
   }
 }
 
 @media (min-width: 993px) and (max-width: 1312px) {
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
-  }
-
   .webp .background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+  }
+  .background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
   }
 }
 
 @media (min-width: 1312px) {
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
-  }
-
   .webp .background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final.webp");
+  }
+  .background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
   }
 }
 
@@ -226,6 +223,7 @@ input[type="submit"] {
 #admin-bar ul {
   display: inline-block;
 }
+
 /* @end */
 
 /* @group ----- Other plugin styles ----- */
@@ -246,7 +244,7 @@ aside {
   @include container;
 }
 
-#content {
+article {
   > div + div {
     margin-top: 96px;
   }
@@ -262,6 +260,8 @@ aside {
 
 .back-container {
   @include container;
+  margin-bottom: 48px;
+  margin-top: 48px;
 }
 
 .breadcrumbs {

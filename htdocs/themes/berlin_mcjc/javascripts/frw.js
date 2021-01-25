@@ -4,10 +4,13 @@ if (!FromTheRockWall) {
 
 (function ($) {
   FromTheRockWall.didYouKnow = function () {
-    $("div.have-you-heard__container").slick({
-      centerMode: true,
-      slidesToShow: 1,
-    });
+    let haveYouHeard = $("div.have-you-heard__container");
+    if (haveYouHeard && haveYouHeard.slick) {
+      haveYouHeard.slick({
+        centerMode: true,
+        slidesToShow: 1,
+      });
+    }
   };
 
   //handle search bar open/close
@@ -138,6 +141,31 @@ if (!FromTheRockWall) {
 
       $(".masonry-grid .item-img img").on("load", function () {
         $grid.masonry("layout");
+      });
+    }
+  };
+
+  FromTheRockWall.audioGreeting = function () {
+    let audioGreetingElement = document.getElementById(
+      "audio-greeting-element"
+    );
+    let audioGreetingButton = document.getElementById("audio-greeting-button");
+    if (audioGreetingElement && audioGreetingButton) {
+      async function playAudio() {
+        try {
+          await audioGreetingElement.play();
+          audioGreetingButton.classList.add("playing");
+        } catch (e) {
+          audioGreetingButton.classList.remove("playing");
+        }
+      }
+      audioGreetingButton.addEventListener("click", function () {
+        if (audioGreetingElement.paused) {
+          playAudio();
+        } else {
+          audioGreetingElement.pause();
+          audioGreetingButton.classList.remove("playing");
+        }
       });
     }
   };

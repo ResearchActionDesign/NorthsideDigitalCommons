@@ -37,6 +37,7 @@
         FromTheRockWall.grids();
         FromTheRockWall.searchToggle();
         FromTheRockWall.didYouKnow();
+        FromTheRockWall.audioGreeting();
     });
 </script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>

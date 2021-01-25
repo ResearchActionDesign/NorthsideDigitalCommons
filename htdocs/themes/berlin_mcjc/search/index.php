@@ -13,6 +13,12 @@ usort($searchTagResults, function ($a, $b) {
 <?php echo common('breadcrumbs', [
     'trail' => ['Search'],
 ]); ?>
+
+<?php echo common('hero-image-header', [
+    'title' => 'Search', // 'headerText' => get_theme_option('search_page_text'),
+    'className' => 'search',
+]); ?>
+
 <div id="search-results">
     <div class="search-results--header">
         <h1 class="search-results--title"><?php echo $pageTitle; ?></h1>
