@@ -55,6 +55,16 @@
   }
 }
 
+.items.show {
+  .grid-container.depicted {
+    margin-top: 96px;
+  }
+
+  .grid-container.related-items {
+    margin-top: 48px;
+  }
+}
+
 @media screen and (max-width: $tablet-width) {
   .items.show,
   .person.show,

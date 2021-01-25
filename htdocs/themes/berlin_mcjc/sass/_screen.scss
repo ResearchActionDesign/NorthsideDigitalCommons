@@ -15,7 +15,7 @@ body {
   background-size: 100%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  padding-bottom: 96px;
+  padding-bottom: 48px;
   background-position: bottom;
 }
 
@@ -226,6 +226,7 @@ input[type="submit"] {
 #admin-bar ul {
   display: inline-block;
 }
+
 /* @end */
 
 /* @group ----- Other plugin styles ----- */
@@ -262,6 +263,8 @@ article {
 
 .back-container {
   @include container;
+  margin-bottom: 48px;
+  margin-top: 48px;
 }
 
 .breadcrumbs {

@@ -32,6 +32,7 @@ if (!empty($_GET['advanced'])) {
 <?php else: ?>
 <?php echo $this->formText('query', $filters['query'], [
     'title' => __('Search'),
+    'placeholder' => 'Enter a search term',
 ]); ?>
 <?php endif; ?>
 <?php echo $this->formButton('submit_search', $options['submit_value'], [
