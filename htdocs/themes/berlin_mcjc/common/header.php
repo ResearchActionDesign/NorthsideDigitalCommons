@@ -55,10 +55,12 @@
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
 <div class="page-header-background-container">
+    <div class="page-header-container">
 <a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
 <?php fire_plugin_hook('public_body', ['view' => $this]); ?>
 
  <?php echo common('header-nav', ['bodyid' => $bodyid ?? '']); ?>
+    </div>
 </div>
 <article id="content" role="main">
 <?php fire_plugin_hook('public_content_top', ['view' => $this]); ?>

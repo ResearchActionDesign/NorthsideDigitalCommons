@@ -1,8 +1,14 @@
+@use "sass:color";
+
 .page-header-background-container {
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 1.5em 0;
   background-position: 0 -800px;
+}
+
+.page-header-container {
+  padding: 1.5em 0;
+  background-color: color.change($white, $alpha: 0.5);
 }
 
 @media (max-width: 688px) {
