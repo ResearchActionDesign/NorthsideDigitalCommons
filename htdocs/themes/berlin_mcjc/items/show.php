@@ -77,6 +77,12 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
               <p class="description">
                 <?php echo $description; ?>
               </p>
+            <?php elseif (
+                $missing_caption = get_theme_option('missing_caption_text')
+            ): ?>
+            <p class="description">
+                <?php echo $missing_caption; ?>
+            </p>
           <?php endif; ?>
           <?php echo common('share_icons', [
               'url' => absolute_url(current_url()),

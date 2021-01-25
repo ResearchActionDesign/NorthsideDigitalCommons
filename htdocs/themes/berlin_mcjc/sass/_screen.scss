@@ -181,6 +181,7 @@ nav a,
 
 button {
   border: 0;
+  background: $white;
 }
 
 button.button,
@@ -222,6 +223,10 @@ input[type="submit"] {
 
 #admin-bar ul {
   display: inline-block;
+}
+
+#admin-bar {
+  margin-top: -1.5em;
 }
 
 /* @end */

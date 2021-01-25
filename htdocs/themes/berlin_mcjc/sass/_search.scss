@@ -2,6 +2,11 @@
   .search-results--header,
   .search-results--body {
     @include container;
+    margin-top: 0;
+  }
+
+  .filter_container {
+    margin-top: 24px;
   }
 
   // Search bar
