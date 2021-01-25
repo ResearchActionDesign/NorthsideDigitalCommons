@@ -1,4 +1,4 @@
-.header-background-container {
+.hero-image {
   width: 100%;
   height: 425px;
   display: flex;
@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
 }
 
-.header-background-container-content {
+.hero-image-content {
   @include container;
   @include headers-text;
   color: white;
@@ -25,11 +25,23 @@
   }
 }
 
+#audio-greeting-button {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  position: absolute;
+  right: 4em;
+  &.playing {
+    border: 4px solid $purple--light;
+    box-shadow: 0px 0px 10px $white;
+  }
+}
+
 @media only screen and (max-width: $tablet-width) {
-  .header-background-container {
+  .hero-image {
     height: 400px;
   }
-  .header-background-container-content {
+  .hero-image-content {
     width: 100%;
     padding: 30px;
     margin-left: 0;
@@ -43,7 +55,7 @@
 }
 
 @media only screen and (max-width: $tablet-width) {
-  .header-background-container-content {
+  .hero-image-content {
     blockquote,
     p {
       margin: 0 10%;

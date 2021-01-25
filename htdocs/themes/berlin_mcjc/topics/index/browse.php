@@ -6,14 +6,12 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
     'trail' => ['Topics'],
 ]); ?>
 
-<div class="header-background-container topics-image">
-  <div class="header-background-container-content">
-    <h1 class="image-title"><?php echo $pageTitle; ?></h1>
-    <?php if ($header_text = get_theme_option('topics_page_text')): ?>
-        <div class="image-text"><?php echo $header_text; ?></div>
-    <?php endif; ?>
-  </div>
-</div>
+<?php echo common('hero-image-header', [
+    'title' => $pageTitle,
+    'headerText' => get_theme_option('topics_page_text'),
+
+    'className' => 'topics',
+]); ?>
 
 <div class="topics-content">
   <?php

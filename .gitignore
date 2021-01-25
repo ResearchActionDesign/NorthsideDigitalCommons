@@ -49,6 +49,7 @@ db/
 
 # Compiled SASS
 htdocs/themes/berlin_mcjc/css/*.css
+*.css.map
 
 # Node_modules
 node_modules/
