@@ -37,5 +37,6 @@ if (!empty($_GET['advanced'])) {
 <?php echo $this->formButton('submit_search', $options['submit_value'], [
     'type' => 'submit',
     'content' => $options['expanded'] ?? false ? 'Search Again' : 'Search',
+    'class' => 'button',
 ]); ?>
 </form>

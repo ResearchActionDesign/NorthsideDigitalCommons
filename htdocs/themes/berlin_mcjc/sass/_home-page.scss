@@ -93,8 +93,7 @@
   /*homepage video*/
   .video-container {
     width: 100%;
-    margin: 0 auto;
-    margin-top: 48px;
+    margin: 48px auto;
   }
 
   #homepage-video video {
@@ -125,7 +124,8 @@
   }
 
   .homepage-epigraph {
-    margin-top: 48px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     text-shadow: 0px 3px 6px #fff;
   }
 }

@@ -6,6 +6,28 @@
   justify-content: center;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-top: 24px;
+  margin-bottom: 45px;
+
+  &.topics-image {
+    background-image: url(../assets/images/topicImage.png);
+  }
+
+  &.people-image {
+    background-image: url(../assets/images/peopleImage.png);
+  }
+
+  &.search-image {
+    background-image: url(../assets/images/peopleImage.png); // @todo add image for search page
+  }
+
+  &.respond-image {
+    background-image: url(../assets/images/peopleImage.png); // @todo add image for respond page
+  }
+
+  &.welcome-image {
+    background-image: url(../assets/images/peopleImage.png); // @todo add image for welcome page
+  }
 }
 
 .hero-image-content {
@@ -23,6 +45,10 @@
     margin-top: inherit;
     margin-bottom: inherit;
   }
+}
+
+div.audio-greeting {
+  margin-top: 0 !important;
 }
 
 #audio-greeting-button {
