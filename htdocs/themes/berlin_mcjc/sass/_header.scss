@@ -1,46 +1,46 @@
 .page-header-background-container {
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 0 0 1.5em 0;
-  background-position: top;
+  padding: 1.5em 0;
+  background-position: 0 -800px;
 }
 
 @media (max-width: 688px) {
-  .page-header-background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
-  }
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+  }
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
+    background-position: 0 0;
   }
 }
 
 @media (min-width: 689px) and (max-width: 992px) {
-  .page-header-background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
-  }
-
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+  }
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
+    background-position: 0 -80px;
   }
 }
 
 @media (min-width: 993px) and (max-width: 1312px) {
-  .page-header-background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
-  }
-
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+  }
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
+    background-position: 0 -125px;
   }
 }
 
 @media (min-width: 1312px) {
-  .page-header-background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
-  }
-
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final.webp");
+  }
+  .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
   }
 }
 

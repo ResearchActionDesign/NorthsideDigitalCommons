@@ -8,26 +8,46 @@
   background-repeat: no-repeat;
   margin-top: 24px;
   margin-bottom: 45px;
+}
 
-  &.topics-image {
-    background-image: url(../assets/images/topicImage.png);
-  }
+.webp .hero-image.topics-image {
+  background-image: url(../assets/images/topicImage.webp);
+}
 
-  &.people-image {
-    background-image: url(../assets/images/peopleImage.png);
-  }
+.hero-image.topics-image {
+  background-image: url(../assets/images/topicImage.jpg);
+}
 
-  &.search-image {
-    background-image: url(../assets/images/peopleImage.png); // @todo add image for search page
-  }
+.webp .hero-image.people-image {
+  background-image: url(../assets/images/peopleImage.webp);
+}
 
-  &.respond-image {
-    background-image: url(../assets/images/peopleImage.png); // @todo add image for respond page
-  }
+.hero-image.people-image {
+  background-image: url(../assets/images/peopleImage.jpg);
+}
 
-  &.welcome-image {
-    background-image: url(../assets/images/peopleImage.png); // @todo add image for welcome page
-  }
+.webp .hero-image.search-image {
+  background-image: url(../assets/images/peopleImage.webp); // @todo add image for search page
+}
+
+.hero-image.search-image {
+  background-image: url(../assets/images/peopleImage.jpg); // @todo add image for search page
+}
+
+.webp .hero-image.respond-image {
+  background-image: url(../assets/images/peopleImage.webp); // @todo add image for respond page
+}
+
+.hero-image.respond-image {
+  background-image: url(../assets/images/peopleImage.jpg); // @todo add image for respond page
+}
+
+.webp .hero-image.welcome-image {
+  background-image: url(../assets/images/peopleImage.webp); // @todo add image for welcome page
+}
+
+.hero-image.welcome-image {
+  background-image: url(../assets/images/peopleImage.jpg); // @todo add image for welcome page
 }
 
 .hero-image-content {

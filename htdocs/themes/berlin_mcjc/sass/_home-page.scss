@@ -131,28 +131,30 @@
 }
 
 @media only screen and (max-width: $narrow-screen) {
-  .homepage-menu__item {
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-    padding: 1.35em;
-    border-radius: 4px;
-
-    .button {
+  #home {
+    .homepage-menu__item {
       width: 100%;
-    }
-
-    .homepage-menu-image {
-      margin: 0 auto;
+      flex-direction: column;
+      text-align: center;
+      padding: 1.35em;
       border-radius: 4px;
+
+      .button {
+        width: 100%;
+      }
+
+      .homepage-menu-image {
+        margin: 0 auto;
+        border-radius: 4px;
+      }
+
+      .homepage-menu-content {
+        padding: 0;
+      }
     }
 
-    .homepage-menu-content {
-      padding: 0;
+    div.have-you-heard__container .have-you-heard {
+      padding: 1.35em;
     }
-  }
-
-  div.have-you-heard__container .have-you-heard {
-    padding: 1.35em;
   }
 }
