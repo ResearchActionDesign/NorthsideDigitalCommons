@@ -16,7 +16,6 @@
     "prettier:check-ci": "prettier --check . --ignore-path=.prettierignore-circleci"
   },
   "dependencies": {
-    "purgecss": "^4.0.0",
-    "sass": "^1.32.5"
+    "purgecss": "^4.0.0"
   }
 }
