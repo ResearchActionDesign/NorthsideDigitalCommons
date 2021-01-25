@@ -9,7 +9,6 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 <?php echo common('hero-image-header', [
     'title' => $pageTitle,
     'headerText' => get_theme_option('topics_page_text'),
-
     'className' => 'topics',
 ]); ?>
 
@@ -18,15 +17,15 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
   $sortLinks[__('Title')] = 'Dublin Core,Title';
   $sortLinks[__('Date Added')] = 'added';
   ?>
-
-    <div class="background-container">
     <div class="filter_container">
-    <div id="sort-links">
+        <div id="sort-links">
       <span class="sort-label"><?php echo __(
           'Sort by: '
       ); ?></span><?php echo browse_sort_links($sortLinks); ?>
+        </div>
     </div>
-  </div>
+
+    <div class="background-container">
   <?php if ($topics): ?>
   <div class="grid-container topics-grid masonry-grid">
     <div class="grid-items">

@@ -21,18 +21,17 @@ switch ($className) {
         break;
 }
 ?>
-
-<?php if ($audioGreetingButton && $audioGreetingFile): ?>
-    <div class="audio-greeting">
-        <audio id="audio-greeting-element">
-            <source src="<?php echo $audioGreetingFile; ?>">
-        </audio>
-        <div id="audio-greeting-button">
-        <img src="/files/theme_uploads/<?php echo $audioGreetingButton; ?>" alt="Play audio greeting" width="150px" height="150px">
-        </div>
-    </div>
-<?php endif; ?>
 <div class="hero-image <?php echo $className; ?>-image">
+  <?php if ($audioGreetingButton && $audioGreetingFile): ?>
+      <div class="audio-greeting">
+          <audio id="audio-greeting-element">
+              <source src="<?php echo $audioGreetingFile; ?>">
+          </audio>
+          <button id="audio-greeting-button">
+              <img src="/files/theme_uploads/<?php echo $audioGreetingButton; ?>" alt="Play audio greeting" width="150px" height="150px">
+          </button>
+      </div>
+  <?php endif; ?>
   <div class="hero-image-content">
     <h1 class="image-title"><?php echo $title; ?></h1>
     <?php if ($headerText): ?>
