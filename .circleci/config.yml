@@ -35,6 +35,11 @@ jobs:
           command: $(yarn global bin)/sass sass:css --style=compressed --no-source-map
           working_directory: ~/repo/htdocs/themes/berlin_mcjc
 
+      - run:
+          name: Purge SASS
+          command: yarn run purgecss -c purgecss.config.js
+          working_directory: ~/repo/
+
       - persist_to_workspace:
           root: ~/repo
           paths:
