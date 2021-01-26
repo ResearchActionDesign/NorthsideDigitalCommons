@@ -1,5 +1,9 @@
 .exhibits {
-  #content {
+  .breadcrumbs,
+  .exhibit-header-container,
+  #exhibit-blocks,
+  .exhibit-page-navigation,
+  .back-container {
     @include container;
   }
 

@@ -1,9 +1,6 @@
 .collections {
-  #content > div {
+  .breadcrumbs,
+  .primary {
     @include container;
   }
-}
-
-.header-description {
-  @include white-background-text;
 }

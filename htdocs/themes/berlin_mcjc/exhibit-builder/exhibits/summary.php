@@ -54,7 +54,7 @@ echo common('breadcrumbs', ['trail' => $breadcrumbs]);
     <?php endif; ?>
 </div>
 
-
+    <div class="background-container">
 <?php if ($pageList): ?>
 <div class="explore-grid grid-container exhibit-pages">
     <h2>In this Exhibit</h2>
@@ -68,5 +68,9 @@ echo common('breadcrumbs', ['trail' => $breadcrumbs]);
     </div>
 </div>
 <?php endif; ?>
+        <div class="back-container">
+            <a class="button back" href="/topics">Back to all Topics</a>
+        </div>
+    </div>
 
 <?php echo foot(); ?>
