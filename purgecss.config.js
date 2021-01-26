@@ -14,6 +14,8 @@ module.exports = {
       /lity/,
       /slick/,
       /admin-bar/,
+      /truncated/,
+      /search/,
     ],
   },
 };

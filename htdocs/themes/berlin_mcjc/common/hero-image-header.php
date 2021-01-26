@@ -1,4 +1,16 @@
 <?php
+if (!is_array($className)) {
+    $className = [$className];
+}
+
+$heroImageClasses = join(
+    " ",
+    array_map(function ($c) {
+        return $c . '-image';
+    }, $className)
+);
+$className = $className[0];
+
 $audioGreetingFile = false;
 $audioGreetingButton = get_theme_option(
     "audio_greeting_button_{$className}_page"
@@ -21,7 +33,7 @@ switch ($className) {
         break;
 }
 ?>
-<div class="hero-image <?php echo $className; ?>-image">
+<div class="hero-image <?php echo $heroImageClasses; ?>">
   <?php if ($audioGreetingButton && $audioGreetingFile): ?>
       <div class="audio-greeting">
           <audio id="audio-greeting-element">

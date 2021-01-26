@@ -1,14 +1,21 @@
 <?php
 $query = $_GET['query'] ?? '';
-$pageTitle = trim(__('%s results for "%s"', $total_results, $query));
+$pageTitle =
+    $query === ''
+        ? false
+        : trim(__('%s results for "%s"', $total_results, $query));
 echo head(['title' => $pageTitle, 'bodyclass' => 'search']);
+
 $searchRecordTypes = get_search_record_types();
 
 // Get tag results
-$searchTagResults = mcjc_get_matching_tags($query);
-usort($searchTagResults, function ($a, $b) {
-    return strnatcasecmp($a['name'], $b['name']);
-});
+$searchTagResults = [];
+if ($query !== '') {
+    $searchTagResults = mcjc_get_matching_tags($query);
+    usort($searchTagResults, function ($a, $b) {
+        return strnatcasecmp($a['name'], $b['name']);
+    });
+}
 ?>
 <?php echo common('breadcrumbs', [
     'trail' => ['Search'],
@@ -17,13 +24,13 @@ usort($searchTagResults, function ($a, $b) {
 <?php echo common('hero-image-header', [
     'title' => 'Search', // 'headerText' => get_theme_option('search_page_text'),
     'className' => 'search',
+    'headerText' => $pageTitle,
 ]); ?>
 
 <div id="search-results">
     <div class="search-results--header">
-        <h1 class="search-results--title"><?php echo $pageTitle; ?></h1>
         <div class="search-results--form">
-          <?php echo search_form(['expanded' => true]); ?>
+          <?php echo search_form(['expanded' => $query !== '']); ?>
         </div>
       <?php if (count($searchTagResults)): ?>
           <div class="search-results--tags">
@@ -162,7 +169,7 @@ usort($searchTagResults, function ($a, $b) {
               </div>
         <?php endforeach; ?>
         <?php echo pagination_links(); ?>
-      <?php else: ?>
+      <?php elseif ($query !== ''): ?>
           <p><?php echo get_theme_option('search_no_results_text') ??
               __(
                   'No results were found. Please check your spelling or try searching for a different term'

@@ -1,7 +1,7 @@
 <?php
 $title = metadata($item, ['Dublin Core', 'Title']);
 
-// Workaround to situationsw here interview title matches person name
+// Workaround to situations where interview title matches person name.
 if ($title === $person) {
     $title = oral_history_item_subtitle($item);
 }
@@ -19,8 +19,11 @@ if ($title === $person) {
       ); ?>
   <?php endif; ?>
 
-  <div class='item-description'>
-    <?php echo metadata($item, ['Dublin Core', 'Description']); ?>
+  <div class="item-description">
+    <div class="item-description--text" id="oral-history-item--<?php echo $item_index ??
+        0; ?>">
+        <?php echo metadata($item, ['Dublin Core', 'Description']); ?>
+    </div>
   </div>
 
   <?php if ($sohp_url = mcjc_get_linked_sohp_interview($item)): ?>

@@ -59,9 +59,13 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 
 <?php if (count($oral_history_items)): ?>
 <div class="oral-histories">
-  <?php foreach (loop('oral_history_items') as $oralHistoryItem): ?>
+  <?php foreach (
+      loop('oral_history_items')
+      as $itemIndex => $oralHistoryItem
+  ): ?>
     <?php echo common('person-page-oral-history-item', [
         'item' => $oralHistoryItem,
+        'item_index' => $itemIndex,
         'person' => $itemTitle,
     ]); ?>
   <?php endforeach; ?>

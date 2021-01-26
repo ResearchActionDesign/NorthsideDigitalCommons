@@ -1,14 +1,12 @@
 .hero-image {
   position: relative;
   width: 100%;
-  height: 425px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-top: 24px;
-  margin-bottom: 45px;
+  background-position: center;
 }
 
 .webp .hero-image.topics-image {
@@ -27,37 +25,52 @@
   background-image: url(../assets/images/peopleImage.jpg);
 }
 
-.webp .hero-image.search-image {
-  background-image: url(../assets/images/peopleImage.webp); // @todo add image for search page
+// Fallbacks
+@media (max-width: 688px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+  }
+  .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
+  }
 }
 
-.hero-image.search-image {
-  background-image: url(../assets/images/peopleImage.jpg); // @todo add image for search page
+@media (min-width: 689px) and (max-width: 992px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+  }
+  .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
+  }
 }
 
-.webp .hero-image.respond-image {
-  background-image: url(../assets/images/peopleImage.webp); // @todo add image for respond page
+@media (min-width: 993px) and (max-width: 1312px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+  }
+  .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
+  }
 }
 
-.hero-image.respond-image {
-  background-image: url(../assets/images/peopleImage.jpg); // @todo add image for respond page
-}
-
-.webp .hero-image.welcome-image {
-  background-image: url(../assets/images/peopleImage.webp); // @todo add image for welcome page
-}
-
-.hero-image.welcome-image {
-  background-image: url(../assets/images/peopleImage.jpg); // @todo add image for welcome page
+@media (min-width: 1312px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final.webp");
+  }
+  .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
+  }
 }
 
 .hero-image-content {
   @include container;
   @include headers-text;
+  margin: 96px auto;
   color: white;
 
   h1 {
     color: white;
+    margin: 0;
   }
 
   blockquote,

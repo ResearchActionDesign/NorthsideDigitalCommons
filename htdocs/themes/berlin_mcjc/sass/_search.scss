@@ -30,15 +30,26 @@
 
     form {
       display: flex;
+      flex-wrap: wrap;
+
       .search-options {
         margin-right: 2em;
+
         .field {
           margin-bottom: 0.75em;
         }
       }
 
+      input#query {
+        padding: 1em;
+        width: 40vw;
+        min-width: 300px;
+        margin: 0.5em 0;
+      }
+
       button#submit_search {
-        height: 2.5em;
+        height: 3em;
+        margin: 0.5em 1em;
       }
     }
   }

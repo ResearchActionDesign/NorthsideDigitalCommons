@@ -15,88 +15,65 @@ if (!FromTheRockWall) {
 
   //handle search bar open/close
   FromTheRockWall.searchToggle = function () {
-    var searchToggle = $("#search-toggle");
+    var searchToggle = $("header nav a[href='/search']");
     var searchFormContainer = $("#search-form-container");
     var navBar = $("header nav ul.navigation");
     searchToggle.attr("aria-expanded", false);
     searchToggle.attr("aria-controls", "search-form-container");
+    searchToggle.append('<i class="fa fa-search"></i>');
+    searchToggle.after("");
 
     searchToggle.click(function (e) {
       e.preventDefault();
-      $(this).hide();
       $(this).attr("aria-expanded", true);
-      navBar.hide();
-      searchFormContainer.show();
+      searchFormContainer.outerHeight(navBar.outerHeight());
+      navBar.hide(0.5);
+      searchFormContainer.show(0.5);
       $("#query").focus();
     });
 
     $("#search-close").click(function () {
-      searchFormContainer.hide();
-      searchToggle.show();
-      $(this).attr("aria-expanded", false);
-      navBar.show();
+      searchFormContainer.hide(0.5);
+      navBar.show(0.5);
     });
   };
 
-  $().ready(function () {
-    $(".download-file").attr("target", "_blank");
-  });
-
-  // Prefill search typed in search box in URL for advanced search link, so queries carry over into advanced search.
-  $().ready(function () {
-    $("#advanced-form a").mousedown(function (e) {
-      $(this).attr("href", "/items/search?query=" + $("#query").val());
-    });
-  });
-
-  //readmore/less related-items
-  $().ready(function () {
-    $(".person.show .oral-history .item-description").each(function (
-      i,
-      domItem
+  // Add ellipses and read-more on person page item descriptions
+  FromTheRockWall.readMore = function () {
+    $(".person.show .oral-histories .item-description--text").each(function (
+      index
     ) {
-      var textItem = $(domItem);
-      var textToHide = textItem.text().slice(280);
-      var ellipsis = "<span class='ellipsis'>...</span>";
-      var visibleText = textItem.text().slice(1, 280) + ellipsis;
-      var showReadMore = true;
+      var id = this.id;
+      $(this).addClass("truncated");
 
-      console.log("hello", textItem);
-
-      textItem
-        .html(
-          visibleText +
-            ("<span class='hidden'>" +
-              textToHide +
-              '<a class="read-less" title="Read Less" style="display: block; cursor: pointer;">Read Less&hellip;</a></span>')
-        )
-        .append(
-          '<a class="read-more" title="Read More" style="display: block; cursor: pointer;">Read More&hellip;</a>'
-        );
-
-      const readMore = $(".read-more");
-      const readLess = $(".read-less");
-      const ellipsisSpan = $(".ellipsis");
-      console.log(readMore);
-
-      textItem.click(function () {
-        if (showReadMore === true) {
-          $(this).find(".hidden").hide();
-          readMore.show();
-          readLess.hide();
-          ellipsisSpan.show();
-          showReadMore = false;
-        } else {
-          $(this).find(".hidden").show();
-          readLess.show();
-          readMore.hide();
-          ellipsisSpan.hide();
-          showReadMore = true;
-        }
-      });
-      $(".item-description .hidden").hide();
+      $(
+        "<button class='read-more-button' data-read-more='" +
+          id +
+          "' aria-controls='" +
+          id +
+          "' aria-expanded='false'>Show more</button>"
+      ).insertAfter($(this));
     });
-  });
+    $("button.read-more-button").click(function () {
+      var id = $(this).attr("data-read-more");
+      var itemDescription = $("#" + id);
+      if (itemDescription.hasClass("truncated")) {
+        itemDescription.removeClass("truncated");
+        $(this).html("Show less");
+        $(this).attr("aria-expanded", true);
+      } else {
+        itemDescription.addClass("truncated");
+        $(this).html("Show more");
+        $(this).attr("aria-expanded", false);
+      }
+    });
+  };
+
+  FromTheRockWall.downloads = function () {
+    $().ready(function () {
+      $(".download-file").attr("target", "_blank");
+    });
+  };
 
   // Filtering on topics & items page.
   FromTheRockWall.filters = function () {

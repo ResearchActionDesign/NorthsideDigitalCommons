@@ -35,9 +35,11 @@
     jQuery(document).ready(function(){
         FromTheRockWall.filters();
         FromTheRockWall.grids();
+        FromTheRockWall.downloads();
         FromTheRockWall.searchToggle();
         FromTheRockWall.didYouKnow();
         FromTheRockWall.audioGreeting();
+        FromTheRockWall.readMore();
     });
 </script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>

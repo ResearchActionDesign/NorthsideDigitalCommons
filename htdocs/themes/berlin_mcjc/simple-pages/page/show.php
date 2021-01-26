@@ -10,12 +10,12 @@ if ($simple_pages_page->getChildren()) {
 }
 $div_class = "page-about";
 $pageTitle = metadata('simple_pages_page', 'title');
-$pageClass = preg_replace('/\W+/', '-', strtolower(strip_tags($pageTitle)));
-
+$pageClass = metadata('simple_pages_page', 'slug');
+$ancestorPageClass = simple_pages_earliest_ancestor_page(null)->slug ?? '';
 echo head([
     'title' => $pageTitle,
     'bodyclass' => $bodyclass,
-    'bodyid' => metadata('simple_pages_page', 'slug'),
+    'bodyid' => $pageClass,
 ]);
 
 $text = metadata('simple_pages_page', 'text', [
@@ -27,7 +27,7 @@ $text = metadata('simple_pages_page', 'text', [
 <?php echo common('hero-image-header', [
     'title' => $pageTitle,
     // 'headerText' => get_theme_option('search_page_text'),
-    'className' => $pageClass,
+    'className' => [$pageClass, $ancestorPageClass],
 ]); ?>
 <div id="primary" class="<?php echo $div_class; ?>">
     <div class="about-content-wrapper">
