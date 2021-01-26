@@ -1,16 +1,12 @@
-.item + .pagination-nav ul,
-.collection + .pagination-nav ul,
-.exhibit + .pagination-nav ul {
-  @include leader();
-}
-
 .pagination-nav {
+  @include container;
+  border-radius: 16px;
   display: flex;
   background: $white;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0, 0, 0, 0;
-  padding: 15px;
+  padding: 15px 30px;
+  margin-top: 48px;
 
   ul.pagination {
     margin: 0;

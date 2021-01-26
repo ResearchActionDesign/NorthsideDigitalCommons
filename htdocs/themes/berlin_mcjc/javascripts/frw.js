@@ -15,26 +15,26 @@ if (!FromTheRockWall) {
 
   //handle search bar open/close
   FromTheRockWall.searchToggle = function () {
-    var searchToggle = $("#search-toggle");
+    var searchToggle = $("header nav a[href='/search']");
     var searchFormContainer = $("#search-form-container");
     var navBar = $("header nav ul.navigation");
     searchToggle.attr("aria-expanded", false);
     searchToggle.attr("aria-controls", "search-form-container");
+    searchToggle.append('<i class="fa fa-search"></i>');
+    searchToggle.after("");
 
     searchToggle.click(function (e) {
       e.preventDefault();
-      $(this).hide();
       $(this).attr("aria-expanded", true);
-      navBar.hide();
-      searchFormContainer.show();
+      searchFormContainer.outerHeight(navBar.outerHeight());
+      navBar.hide(0.5);
+      searchFormContainer.show(0.5);
       $("#query").focus();
     });
 
     $("#search-close").click(function () {
-      searchFormContainer.hide();
-      searchToggle.show();
-      $(this).attr("aria-expanded", false);
-      navBar.show();
+      searchFormContainer.hide(0.5);
+      navBar.show(0.5);
     });
   };
 
