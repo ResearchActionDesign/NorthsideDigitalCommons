@@ -2,7 +2,7 @@
 /* end content div from header.php */
 ?>
 </article>
-<footer role="contentinfo">
+<footer>
     <div id="footer-content" class="center-div">
         <div id="footer-nav">
             <nav><?php echo public_nav_main()->setMaxDepth(0); ?></nav>
@@ -13,7 +13,7 @@
         <div id="footer-text">
             <?php if ($footerText = get_theme_option('Footer Text')): ?>
                 <div id="custom-footer-text">
-                    <p><?php echo get_theme_option('Footer Text'); ?></p>
+                    <?php echo get_theme_option('Footer Text'); ?>
                 </div>
             <?php endif; ?>
             
@@ -24,6 +24,7 @@
                 <div id="footer-copyright"><?php echo $copyright; ?></div>
             <?php endif; ?>
         </div>
+    </div>
      <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
 </footer>
       <div id="footer-omeka"><?php echo __(
@@ -31,7 +32,7 @@
       ); ?></div>
         <!-- end footer-content -->
 
-<script type="text/javascript" defer>
+<script type="text/javascript">
     jQuery(document).ready(function(){
         FromTheRockWall.filters();
         FromTheRockWall.grids();

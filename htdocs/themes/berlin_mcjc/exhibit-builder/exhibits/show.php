@@ -38,6 +38,7 @@ $breadcrumbs[] = $exhibit_page->title;
   <?php exhibit_builder_render_exhibit_page(); ?>
 </div>
 
+<div class="background-container">
 <nav class="exhibit-page-navigation">
   <?php if (
       $prevLink = exhibit_builder_link_to_previous_page(null, [
@@ -57,4 +58,5 @@ $breadcrumbs[] = $exhibit_page->title;
     <a class="exhibit-nav-parent" href="<?php echo $backLinkUrl; ?>"><?php echo $backLinkText; ?></a>
     <?php endif; ?>
 </nav>
+</div>
 <?php echo foot(); ?>

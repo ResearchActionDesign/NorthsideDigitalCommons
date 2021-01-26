@@ -1,4 +1,4 @@
-  <header id="home_page_header_container" role="banner">
+  <header id="home_page_header_container">
     <?php fire_plugin_hook('public_header', ['view' => $this]); ?>
     <div class="header-content-wrapper">
       <?php if ($bodyid !== 'home'): ?>
