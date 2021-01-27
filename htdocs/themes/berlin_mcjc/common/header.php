@@ -21,7 +21,7 @@
     </noscript>
     <link rel="preload"
           as="style"
-          href="/themes/berlin_mcjc/css/style.css" />
+          href="/themes/berlin_mcjc/css/style.css?v=2.7.1" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <?php if ($description = option('description')): ?>
@@ -62,14 +62,17 @@
   <?php queue_css_file(['style', 'iconfonts']); ?>
     <?php echo head_css(); ?>
     <!-- JavaScripts -->
-<?php queue_js_file('masonry.min'); ?>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+            crossorigin="anonymous"></script>
+  <?php queue_js_file('masonry.min'); ?>
   <?php queue_js_file('frw'); ?>
   <?php
-  queue_js_file('lity.min', 'javascripts', ['defer' => true]);
   if (stripos($bodyclass, 'show') !== false) {
       queue_js_file('sharer.min', 'javascripts', ['defer' => true]);
   }
-  echo head_js();
+  echo head_js(false);
   ?>
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
