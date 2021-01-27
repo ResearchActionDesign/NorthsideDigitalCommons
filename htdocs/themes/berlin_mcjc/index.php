@@ -92,6 +92,14 @@
                 </div>
             <?php endforeach; ?>
           </div>
+          <ul class="slider-controls" id="have-you-heard__controls" aria-label="Carousel Navigation" tabindex="0">
+              <li class="prev" aria-controls="customize" tabindex="-1" data-controls="prev" aria-label="Previous slide">
+                  <i class="fa fa-arrow-circle-left"></i>
+              </li>
+              <li class="next" aria-controls="customize" tabindex="-1" data-controls="next" aria-label="Next slide">
+                  <i class="fa fa-arrow-circle-right"></i>
+              </li>
+          </ul>
       <?php endif; ?>
   </div>
 </div>
@@ -102,7 +110,12 @@
         container: '.have-you-heard__container',
         items: 1,
         gutter: 16,
-        edgePadding: 96,
+        controlsContainer: '#have-you-heard__controls',
+        responsive: {
+            "768": {
+                edgePadding: 140,
+            }
+        }
     });
 </script>
 <?php echo foot(['bodyid' => 'home']); ?>

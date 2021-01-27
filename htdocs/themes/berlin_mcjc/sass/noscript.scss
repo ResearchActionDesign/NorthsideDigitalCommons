@@ -46,6 +46,7 @@ within a <noscript> tag in header. It contains manual versions of the JPG overri
   }
 }
 
-#content div.have-you-heard__container {
+#content div.have-you-heard__container,
+.slider-controls {
   display: none;
 }

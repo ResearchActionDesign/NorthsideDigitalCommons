@@ -68,7 +68,7 @@
       background: $purple--dark;
       color: white;
       border-radius: 4px;
-      margin: 48px 0;
+      margin: 48px 0 12px 0;
       padding: 1em;
 
       p:first-child {
@@ -79,6 +79,26 @@
 
       a {
         @include button_link-secondary;
+      }
+    }
+  }
+
+  .slider-controls {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      cursor: pointer;
+      display: inline-block;
+      margin: 0 15vw;
+      color: $purple--dark;
+      i {
+        font-size: 32px;
+      }
+
+      &:hover {
+        color: $purple--light;
       }
     }
   }
