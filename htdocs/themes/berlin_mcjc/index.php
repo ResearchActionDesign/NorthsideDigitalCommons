@@ -111,6 +111,7 @@
         items: 1,
         gutter: 16,
         controlsContainer: '#have-you-heard__controls',
+        nav: false,
         responsive: {
             "768": {
                 edgePadding: 140,
