@@ -249,6 +249,10 @@ aside {
   @include container;
 }
 
+.error #primary {
+  margin-bottom: 96px;
+}
+
 article {
   > div + div {
     margin-top: 96px;
@@ -279,3 +283,19 @@ article {
   text-shadow: 0px 3px 6px $white;
 }
 /* @end */
+
+// Sticky footer
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-header-background-container,
+footer {
+  flex-shrink: 0;
+}
+
+article {
+  flex-grow: 1;
+}

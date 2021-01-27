@@ -28,7 +28,7 @@
           <?php echo common('picture-tag', [
               'base_filename' =>
                   "/themes/berlin_mcjc/assets/images/buttons/meet_our_neighbors.jpg",
-              'options' => ['alt' => ""],
+              'options' => ['alt' => "", 'width' => '250', 'height' => '250'],
           ]); ?>
         </div>
         <div class="homepage-menu-content">
@@ -48,7 +48,7 @@
             <?php echo common('picture-tag', [
                 'base_filename' =>
                     "/themes/berlin_mcjc/assets/images/buttons/explore_themes.jpg",
-                'options' => ['alt' => ""],
+                'options' => ['alt' => "", 'width' => '250', 'height' => '250'],
             ]); ?>
         </div>
         <div class="homepage-menu-content">
@@ -68,7 +68,7 @@
           <?php echo common('picture-tag', [
               'base_filename' =>
                   "/themes/berlin_mcjc/assets/images/buttons/add_your_story.jpg",
-              'options' => ['alt' => ""],
+              'options' => ['alt' => "", 'width' => '250', 'height' => '250'],
           ]); ?>
         </div>
         <div class="homepage-menu-content">

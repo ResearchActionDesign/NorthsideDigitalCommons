@@ -8,7 +8,17 @@
             <nav><?php echo public_nav_main()->setMaxDepth(0); ?></nav>
         </div>
         <div id="footer-logo">
-          <a href="https://jacksoncenter.info"><img src="/themes/berlin_mcjc/assets/images/icons/mcjc_logo.png" alt="Marian Cheek Jackson Center" loading="lazy"/></a>
+          <a href="https://jacksoncenter.info">
+            <?php echo common('picture-tag', [
+                'base_filename' =>
+                    "/themes/berlin_mcjc/assets/images/icons/mcjc_logo.png",
+                'options' => [
+                    'alt' => "Marian Cheek Jackson Center",
+                    'width' => '200',
+                    'height' => '109',
+                ],
+            ]); ?>
+          </a>
         </div>
         <div id="footer-text">
             <?php if ($footerText = get_theme_option('Footer Text')): ?>
@@ -26,11 +36,12 @@
         </div>
     </div>
      <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
+    <div id="footer-omeka"><?php echo __(
+        'Designed and built by <a href="https://rad.cat">Research Action Design</a>, proudly powered by <a href="https://omeka.org">Omeka</a>.'
+    ); ?></div>
+    <!-- end footer-content -->
 </footer>
-      <div id="footer-omeka"><?php echo __(
-          'Designed and built by <a href="https://rad.cat">Research Action Design</a>, proudly powered by <a href="https://omeka.org">Omeka</a>.'
-      ); ?></div>
-        <!-- end footer-content -->
+
 
 <script type="text/javascript">
     jQuery(document).ready(function(){

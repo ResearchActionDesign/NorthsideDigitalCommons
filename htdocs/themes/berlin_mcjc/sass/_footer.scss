@@ -77,6 +77,11 @@ footer {
   }
 }
 
+.page.simple-page footer,
+.error footer {
+  border-top: 2px solid $grey--medium;
+}
+
 @media only screen and (max-width: $tablet-width) {
   footer {
     text-align: center;
