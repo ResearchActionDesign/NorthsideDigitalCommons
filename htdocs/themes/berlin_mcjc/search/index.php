@@ -118,6 +118,11 @@ if ($query !== '') {
                 <?php endforeach; ?>
               </div>
           </div>
+      <?php elseif ($query !== ''): ?>
+          <p><?php echo get_theme_option('search_no_results_text') ??
+              __(
+                  'No results were found. Please check your spelling or try searching for a different term'
+              ); ?></p>
       <?php endif; ?>
     </div>
         <div class="background-container">
@@ -170,10 +175,6 @@ if ($query !== '') {
         <?php endforeach; ?>
         <?php echo pagination_links(); ?>
       <?php elseif ($query !== ''): ?>
-          <p><?php echo get_theme_option('search_no_results_text') ??
-              __(
-                  'No results were found. Please check your spelling or try searching for a different term'
-              ); ?></p>
           <a href="/people" class="button"><?php echo __(
               "Browse all people"
           ); ?></a>

@@ -26,11 +26,12 @@
         </div>
     </div>
      <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
+    <div id="footer-omeka"><?php echo __(
+        'Designed and built by <a href="https://rad.cat">Research Action Design</a>, proudly powered by <a href="https://omeka.org">Omeka</a>.'
+    ); ?></div>
+    <!-- end footer-content -->
 </footer>
-      <div id="footer-omeka"><?php echo __(
-          'Designed and built by <a href="https://rad.cat">Research Action Design</a>, proudly powered by <a href="https://omeka.org">Omeka</a>.'
-      ); ?></div>
-        <!-- end footer-content -->
+
 
 <script type="text/javascript">
     jQuery(document).ready(function(){

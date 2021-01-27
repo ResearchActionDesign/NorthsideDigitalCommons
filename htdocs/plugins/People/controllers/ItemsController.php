@@ -102,14 +102,17 @@ class People_ItemsController extends AbstractMCJCItemController
       )
     ), SORT_NUMERIC);
 
-    $collections = array_map(
+    $collections = array_filter(array_map(
       function ($collectionId) {
         $collection = $this->getCollectionById($collectionId);
+        if (!$collection->public) {
+          return false;
+        }
         $collection->inTheCommunity = 'Collection';
         return $collection;
       },
       $collectionIds
-    );
+    ));
 
     // TODO: pull exhibits.
     // TODO: pull topics.
