@@ -86,15 +86,23 @@
           <div class="have-you-heard__container">
             <?php foreach ($have_you_heard as $item): ?>
                 <div>
+                  <div class="have-you-heard__item">
                   <?php echo $item; ?>
+                  </div>
                 </div>
             <?php endforeach; ?>
           </div>
       <?php endif; ?>
   </div>
 </div>
-<script type="text/javascript">
-    window.$ = window.jQuery;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+<script type="module">
+    var slider = tns({
+        container: '.have-you-heard__container',
+        items: 1,
+        gutter: 16,
+        edgePadding: 96,
+    });
 </script>
-<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/slick.min.js" defer></script>
 <?php echo foot(['bodyid' => 'home']); ?>

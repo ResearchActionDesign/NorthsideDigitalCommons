@@ -42,7 +42,7 @@
     <?php
 /* Include modernizr script first so classes are applied before CSS loaded */
 ?>
-    <script src="/themes/berlin_mcjc/javascripts/modernizr-webp.js"></script>
+    <script src="/themes/berlin_mcjc/javascripts/modernizr-webp.js" async></script>
     <!-- Stylesheets -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-60x60.png">
@@ -59,21 +59,18 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/themes/berlin_mcjc/assets/images/icons/favicon-16x16.png">
 	<link rel="manifest" href="/themes/berlin_mcjc/assets/manifest.json">
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/assets/images/icons/ms-icon-144x144.png">
-  <?php queue_css_file(['style', 'iconfonts']); ?>
-    <?php echo head_css(); ?>
-    <!-- JavaScripts -->
-    <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-            crossorigin="anonymous"></script>
-  <?php queue_js_file('masonry.min'); ?>
-  <?php queue_js_file('frw'); ?>
-  <?php
-  if (stripos($bodyclass, 'show') !== false) {
-      queue_js_file('sharer.min', 'javascripts', ['defer' => true]);
+  <?php queue_css_file(['iconfonts', 'media-player']); ?>
+  <?php if ($bodyid !== 'home') {
+      queue_js_file('masonry.min');
   }
-  echo head_js(false);
-  ?>
+// JS and CSS actually rendered in footer for the most part.
+?>
+    <link rel="stylesheet"
+          href="/themes/berlin_mcjc/css/style.css" />
+    <noscript>
+        <link rel="stylesheet"
+              href="/themes/berlin_mcjc/css/noscript.css" />
+    </noscript>
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
 <div class="page-header-background-container">

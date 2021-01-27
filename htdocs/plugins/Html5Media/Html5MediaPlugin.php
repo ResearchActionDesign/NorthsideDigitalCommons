@@ -313,15 +313,12 @@ class Html5MediaPlugin extends Omeka_Plugin_AbstractPlugin
 
         return <<<HTML
 <div class="$class">
-<$type id="html5-media-$i" src="$filename"$mediaOptions>
+<$type id="html5-media-$i" class="mejs__player" data-mejsoptions='{"classPrefix": "mejs-"$customSettings}' src="$filename"$mediaOptions>
 $tracks
 </$type>
 $title
 $download
 </div>
-<script type="text/javascript">
-jQuery('#html5-media-$i').mediaelementplayer({classPrefix: 'mejs-'$customSettings});
-</script>
 HTML;
     }
 

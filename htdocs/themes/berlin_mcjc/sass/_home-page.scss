@@ -64,28 +64,21 @@
   }
 
   #content div.have-you-heard__container {
-    visibility: hidden;
-
-    &.slick-slider {
-      visibility: visible;
-      margin-top: 48px;
-      margin-bottom: 48px;
-
+    .have-you-heard__item {
       background: $purple--dark;
       color: white;
       border-radius: 4px;
-      padding: 1rem;
+      margin: 48px 0;
+      padding: 1em;
 
-      .slide {
-        p:first-child {
-          font-size: 2em;
-          font-style: italic;
-          margin-bottom: 0.33em;
-        }
+      p:first-child {
+        font-size: 2em;
+        font-style: italic;
+        margin-bottom: 0.33em;
+      }
 
-        a {
-          @include button_link-secondary;
-        }
+      a {
+        @include button_link-secondary;
       }
     }
   }
