@@ -1,10 +1,10 @@
 //* @group ----- Typography ----- */
 $base-font-size: 16px;
 $base-line-height: 22.4px;
-
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap");
 $body-font-family: "Lato", Verdana, Arial, sans-serif;
-$heading-font-family: "Montserrat", "Gill Sans MT", "Gill Sans", sans-serif;
+$heading-font-family: "Montserrat", "montserrat", "Source Sans",
+  "Helvetica Neue", Helvetica, "Arial Black", Arial, sans-serif;
 
 //* @group ----- Colors ----- */
 $purple--dark: #412560;

@@ -3,6 +3,25 @@
     'Style Sheet'
 ); ?>" lang="<?php echo get_html_lang(); ?>">
 <head>
+    <?php
+/** Load google fonts. @see https://csswizardry.com/2020/05/the-fastest-google-fonts/ */
+?>
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin />
+    <link rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap"
+          media="print" onload="this.media='all'" />
+    <noscript>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap" />
+    </noscript>
+    <link rel="preload"
+          as="style"
+          href="/themes/berlin_mcjc/css/style.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <?php if ($description = option('description')): ?>
@@ -25,7 +44,6 @@
 ?>
     <script src="/themes/berlin_mcjc/javascripts/modernizr-webp.js"></script>
     <!-- Stylesheets -->
-    <?php queue_css_file(['iconfonts', 'style']); ?>
 	<link rel="apple-touch-icon" sizes="57x57" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="/themes/berlin_mcjc/assets/images/icons/apple-icon-72x72.png">
@@ -41,9 +59,10 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/themes/berlin_mcjc/assets/images/icons/favicon-16x16.png">
 	<link rel="manifest" href="/themes/berlin_mcjc/assets/manifest.json">
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/assets/images/icons/ms-icon-144x144.png">
-  <?php echo head_css(); ?>
+  <?php queue_css_file(['style', 'iconfonts']); ?>
+    <?php echo head_css(); ?>
     <!-- JavaScripts -->
-    <?php queue_js_file('masonry.min'); ?>
+<?php queue_js_file('masonry.min'); ?>
   <?php queue_js_file('frw'); ?>
   <?php
   queue_js_file('lity.min', 'javascripts', ['defer' => true]);
