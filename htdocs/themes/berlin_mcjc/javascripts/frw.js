@@ -3,16 +3,6 @@ if (!FromTheRockWall) {
 }
 
 (function ($) {
-  FromTheRockWall.didYouKnow = function () {
-    let haveYouHeard = $("div.have-you-heard__container");
-    if (haveYouHeard && haveYouHeard.slick) {
-      haveYouHeard.slick({
-        centerMode: true,
-        slidesToShow: 1,
-      });
-    }
-  };
-
   //handle search bar open/close
   FromTheRockWall.searchToggle = function () {
     var searchToggle = $("header nav a[href='/search']");
@@ -101,7 +91,7 @@ if (!FromTheRockWall) {
 
     var $grid = $(".masonry-grid .grid-items");
 
-    if ($grid) {
+    if ($grid && $grid.masonry) {
       $grid.masonry({
         itemSelector: ".item",
         columnWidth: 300, // Coordinate this with $square-thumbnail-size in base.scss and with the Derivative images width setting.

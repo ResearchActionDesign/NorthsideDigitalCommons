@@ -1,6 +1,5 @@
 @import "lib/compass";
 @import "lib/lity";
-@import "lib/slick";
 @import "lib/font-awesome";
 
 @import "normalize";
@@ -8,9 +7,9 @@
 
 @import "screen";
 @import "typography";
+@import "components";
 
 // Custom styles.
-@import "components";
 @import "home-page";
 @import "header";
 @import "footer";

@@ -14,8 +14,9 @@
 @media (max-width: 688px) {
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+    background-position: 0 0;
   }
-  .page-header-background-container {
+  .no-webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
     background-position: 0 0;
   }
@@ -24,8 +25,9 @@
 @media (min-width: 689px) and (max-width: 992px) {
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+    background-position: 0 -80px;
   }
-  .page-header-background-container {
+  .no-webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
     background-position: 0 -80px;
   }
@@ -34,8 +36,9 @@
 @media (min-width: 993px) and (max-width: 1312px) {
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+    background-position: 0 -125px;
   }
-  .page-header-background-container {
+  .no-webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
     background-position: 0 -125px;
   }
@@ -45,7 +48,7 @@
   .webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final.webp");
   }
-  .page-header-background-container {
+  .no-webp .page-header-background-container {
     background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
   }
 }

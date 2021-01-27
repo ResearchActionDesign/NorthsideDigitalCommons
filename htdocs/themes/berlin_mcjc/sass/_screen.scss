@@ -9,52 +9,6 @@ body {
   background-color: $white;
 }
 
-.background-container {
-  margin-top: 0 !important;
-  padding-top: 36px;
-  background-size: 100%;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  padding-bottom: 48px;
-  background-position: bottom;
-}
-
-@media (max-width: 688px) {
-  .webp .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
-  }
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
-  }
-}
-
-@media (min-width: 689px) and (max-width: 992px) {
-  .webp .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
-  }
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
-  }
-}
-
-@media (min-width: 993px) and (max-width: 1312px) {
-  .webp .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
-  }
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
-  }
-}
-
-@media (min-width: 1312px) {
-  .webp .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final.webp");
-  }
-  .background-container {
-    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
-  }
-}
-
 form,
 fieldset {
   border: 0;

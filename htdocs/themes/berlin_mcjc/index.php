@@ -86,15 +86,36 @@
           <div class="have-you-heard__container">
             <?php foreach ($have_you_heard as $item): ?>
                 <div>
+                  <div class="have-you-heard__item">
                   <?php echo $item; ?>
+                  </div>
                 </div>
             <?php endforeach; ?>
           </div>
+          <ul class="slider-controls" id="have-you-heard__controls" aria-label="Carousel Navigation" tabindex="0">
+              <li class="prev" aria-controls="customize" tabindex="-1" data-controls="prev" aria-label="Previous slide">
+                  <i class="fa fa-arrow-circle-left"></i>
+              </li>
+              <li class="next" aria-controls="customize" tabindex="-1" data-controls="next" aria-label="Next slide">
+                  <i class="fa fa-arrow-circle-right"></i>
+              </li>
+          </ul>
       <?php endif; ?>
   </div>
 </div>
-<script type="text/javascript">
-    window.$ = window.jQuery;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+<script type="module">
+    var slider = tns({
+        container: '.have-you-heard__container',
+        items: 1,
+        gutter: 16,
+        controlsContainer: '#have-you-heard__controls',
+        responsive: {
+            "768": {
+                edgePadding: 140,
+            }
+        }
+    });
 </script>
-<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/slick.min.js" defer></script>
 <?php echo foot(['bodyid' => 'home']); ?>

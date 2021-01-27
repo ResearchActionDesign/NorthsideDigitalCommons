@@ -13,7 +13,7 @@
   background-image: url(../assets/images/topicImage.webp);
 }
 
-.hero-image.topics-image {
+.no-webp .hero-image.topics-image {
   background-image: url(../assets/images/topicImage.jpg);
 }
 
@@ -21,7 +21,7 @@
   background-image: url(../assets/images/peopleImage.webp);
 }
 
-.hero-image.people-image {
+.no-webp .hero-image.people-image {
   background-image: url(../assets/images/peopleImage.jpg);
 }
 
@@ -30,7 +30,7 @@
   .webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
   }
-  .hero-image {
+  .no-webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
   }
 }
@@ -39,7 +39,7 @@
   .webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
   }
-  .hero-image {
+  .no-webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
   }
 }
@@ -48,7 +48,7 @@
   .webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
   }
-  .hero-image {
+  .no-webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
   }
 }
@@ -57,7 +57,7 @@
   .webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final.webp");
   }
-  .hero-image {
+  .no-webp .hero-image {
     background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
   }
 }

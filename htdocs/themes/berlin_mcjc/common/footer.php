@@ -41,22 +41,26 @@
     ); ?></div>
     <!-- end footer-content -->
 </footer>
-
-
+<?php echo head_css(); ?>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+<?php echo head_js(false); ?>
+<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/lity.min.js" async defer></script>
+<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/sharer.min.js" async defer></script>
+<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/frw.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         FromTheRockWall.filters();
         FromTheRockWall.grids();
         FromTheRockWall.downloads();
         FromTheRockWall.searchToggle();
-        FromTheRockWall.didYouKnow();
         FromTheRockWall.audioGreeting();
         FromTheRockWall.readMore();
     });
 </script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript>
-
 </body>
-
 </html>
