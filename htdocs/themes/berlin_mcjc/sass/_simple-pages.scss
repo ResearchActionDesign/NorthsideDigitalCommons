@@ -11,7 +11,19 @@
       display: block;
 
       &.small {
-        width: 50%;
+        width: 40vw;
+      }
+
+      &.left {
+        float: left;
+        width: 40vw;
+        margin-right: 1em;
+      }
+
+      &.right {
+        float: right;
+        width: 40vw;
+        margin-left: 1em;
       }
 
       .inline {
@@ -74,8 +86,11 @@
     .simple-pages-text-wrapper {
       order: 2;
 
-      img.small {
+      img.small,
+      img.left,
+      img.right {
         width: auto;
+        margin: 1em auto;
       }
     }
     .simple-pages-submenu {
