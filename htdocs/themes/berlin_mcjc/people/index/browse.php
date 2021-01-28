@@ -6,6 +6,7 @@ $curLetter = $vars['cur_letter'];
 $validLetters = $vars['letters'];
 
 echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
+$missing_photo_text = strip_tags(get_theme_option('missing_photo_text'));
 ?>
 
 <?php echo common('breadcrumbs', [
@@ -50,6 +51,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
         <?php echo common('grid-item', [
             'item' => $item,
             'headingLevel' => 'h2',
+            'noImageText' => $missing_photo_text,
         ]); ?>
       <?php endforeach; ?>
     </div>

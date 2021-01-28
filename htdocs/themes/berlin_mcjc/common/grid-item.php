@@ -19,7 +19,7 @@ if (!isset($description)) {
     $description = metadata(
         $item,
         ['Dublin Core', 'Description'],
-        ['snippet' => 250]
+        ['snippet' => 400]
     );
 }
 if (!isset($image)) {
@@ -41,6 +41,11 @@ if (!isset($image)) {
         $image_attrs
     );
 }
+
+if (!$description && !$image && isset($noImageText)) {
+    $description = $noImageText;
+}
+
 if (
     !isset($headingLevel) ||
     array_search($headingLevel, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']) === false

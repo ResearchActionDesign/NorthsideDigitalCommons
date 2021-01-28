@@ -21,7 +21,7 @@
     </noscript>
     <link rel="preload"
           as="style"
-          href="/themes/berlin_mcjc/css/style.css?v=2.7.1" />
+          href="/themes/berlin_mcjc/css/style.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <?php if ($description = option('description')): ?>
