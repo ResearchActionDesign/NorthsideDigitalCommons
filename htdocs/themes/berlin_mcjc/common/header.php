@@ -71,6 +71,17 @@
         <link rel="stylesheet"
               href="/themes/berlin_mcjc/css/noscript.css" />
     </noscript>
+    <?php if ($google_id = get_theme_option('google_analytics_id')): ?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_id; ?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '<?php echo $google_id; ?>');
+    </script>
+    <?php endif; ?>
 </head>
 <?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
 <div class="page-header-background-container">
