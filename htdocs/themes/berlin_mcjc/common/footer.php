@@ -37,7 +37,7 @@
     </div>
      <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
     <div id="footer-omeka"><?php echo __(
-        'Designed and built by <a href="https://rad.cat">Research Action Design</a>, proudly powered by <a href="https://omeka.org">Omeka</a>.'
+        'Designed and built by <a href="https://rad.cat">Research Action Design</a>, powered by <a href="https://omeka.org">Omeka</a>.'
     ); ?></div>
     <!-- end footer-content -->
 </footer>

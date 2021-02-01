@@ -431,7 +431,13 @@ function _mcjc_oral_history_metadata_paragraph($item)
 function _mcjc_image_metadata_paragraph($item)
 {
     $metadata = [
-        'subject' => metadata($item, ['Dublin Core', 'Subject']),
+        'subject' => implode(
+            ' and ',
+            explode(
+                "\r\n",
+                strip_tags(metadata($item, ['Dublin Core', 'Subject']))
+            )
+        ),
         'creator' => metadata($item, ['Dublin Core', 'Creator']),
         'date' => metadata($item, ['Dublin Core', 'Date']),
         'publisher' => metadata($item, ['Dublin Core', 'Publisher']),

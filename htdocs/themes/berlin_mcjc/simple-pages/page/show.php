@@ -26,7 +26,8 @@ $text = metadata('simple_pages_page', 'text', [
 
 <?php echo common('hero-image-header', [
     'title' => $pageTitle,
-    // 'headerText' => get_theme_option('search_page_text'),
+    'headerText' =>
+        $pageTitle === 'Respond' ? get_theme_option('respond_page_text') : null,
     'className' => [$pageClass, $ancestorPageClass],
 ]); ?>
 <div id="primary" class="<?php echo $div_class; ?>">
