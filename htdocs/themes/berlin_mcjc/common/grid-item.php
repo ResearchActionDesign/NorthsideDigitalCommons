@@ -3,6 +3,7 @@ const ORAL_HISTORY_ITEM_TYPE = 4;
 const ORAL_HISTORY_CLIP_ITEM_TYPE = 18;
 const PROJECT_INTERVIEW_ITEM_TYPE = 19;
 const IMAGE_ITEM_TYPE = 6;
+const TOPIC_ITEM_TYPE = 20;
 
 set_current_record('item', $item);
 
@@ -19,7 +20,7 @@ if (!isset($description)) {
     $description = metadata(
         $item,
         ['Dublin Core', 'Description'],
-        ['snippet' => 400]
+        ['snippet' => 300]
     );
 }
 if (!isset($image)) {
@@ -63,6 +64,8 @@ switch ($item->item_type_id) {
     case IMAGE_ITEM_TYPE:
         $icon = '<i class="fa fa-camera" aria-label="Photograph"></i>';
         break;
+    case TOPIC_ITEM_TYPE:
+        $icon = '<i class="fa fa-star" aria-label="Topic"></i>';
     default:
         break;
 }
@@ -91,7 +94,11 @@ echo $class ?? false ? " {$class}" : "";
       </div>
     <div class="item-title" aria-hidden="true"><?php echo $title; ?></div>
 
-    <?php if (($item->topicType ?? 'Item') === 'Item' && !$isCollection): ?>
+    <?php if (
+        ($item->topicType ?? 'Item') === 'Item' &&
+        !$isCollection &&
+        !stristr($class, 'collection')
+    ): ?>
     <?php fire_plugin_hook('public_items_browse_each', [
         'view' => $this,
         'item' => $item,

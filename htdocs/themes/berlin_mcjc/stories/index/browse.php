@@ -1,10 +1,10 @@
 <?php
-$pageTitle = __('Stories');
+$pageTitle = __('Oral Histories');
 
 echo head(['title' => $pageTitle, 'bodyclass' => 'stories browse']);
 ?>
 <?php echo common('breadcrumbs', [
-    'trail' => ['Stories'],
+    'trail' => ['Oral Histories'],
 ]); ?>
 
 <h1><?php echo $pageTitle; ?></h1>

@@ -1,10 +1,21 @@
 .page.simple-page {
-  h1 {
-    margin-bottom: 0;
-    padding: 0 1rem;
-  }
-
   .simple-pages-text-wrapper {
+    @include white-background-text;
+
+    h2,
+    h3,
+    h4 {
+      margin-top: 2.8em;
+    }
+
+    > h2,
+    > h3,
+    > h4 {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
     img {
       max-width: 100%;
       margin: 0 auto;
@@ -63,14 +74,6 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-
-  h1 {
-    margin-top: 0;
-  }
-
-  .simple-pages-text-wrapper {
-    @include white-background-text;
-  }
 }
 
 @media only screen and (max-width: $tablet-width) {

@@ -17,10 +17,11 @@
 </div>
 <div class="background-container">
 <div id="primary">
+    <?php if ($epigraph = get_theme_option('homepage_text')): ?>
     <div class="homepage-epigraph">
-    <blockquote>Without the past, you have no future.</blockquote>
-    <cite>Mrs. Marian Cheek Jackson</cite>
+    <?php echo $epigraph; ?>
     </div>
+    <?php endif; ?>
 
     <ul id="homepage-menu">
       <li class="homepage-menu__item">
@@ -87,7 +88,19 @@
             <?php foreach ($have_you_heard as $item): ?>
                 <div>
                   <div class="have-you-heard__item">
+                    <?php echo common('picture-tag', [
+                        'base_filename' =>
+                            "/themes/berlin_mcjc/assets/images/question-mark.png",
+                        'options' => [
+                            'alt' => "",
+                            'width' => '176',
+                            'height' => '176',
+                            'class' => 'question-mark',
+                        ],
+                    ]); ?>
+                    <div class="have-you-heard__item__body">
                   <?php echo $item; ?>
+                    </div>
                   </div>
                 </div>
             <?php endforeach; ?>
