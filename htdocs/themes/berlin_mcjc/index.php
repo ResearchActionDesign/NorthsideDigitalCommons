@@ -17,10 +17,11 @@
 </div>
 <div class="background-container">
 <div id="primary">
+    <?php if ($epigraph = get_theme_option('homepage_text')): ?>
     <div class="homepage-epigraph">
-    <blockquote>Without the past, you have no future.</blockquote>
-    <cite>Mrs. Marian Cheek Jackson</cite>
+    <?php echo $epigraph; ?>
     </div>
+    <?php endif; ?>
 
     <ul id="homepage-menu">
       <li class="homepage-menu__item">

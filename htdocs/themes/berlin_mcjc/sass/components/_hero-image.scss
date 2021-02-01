@@ -6,23 +6,49 @@
   justify-content: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
+  min-height: 325px;
 }
 
+/** Note: When changing these also create fallbacks in noscript.scss */
 .webp .hero-image.topics-image {
-  background-image: url(../assets/images/topicImage.webp);
+  background-image: url(../assets/images/banners/topics.webp);
 }
 
 .no-webp .hero-image.topics-image {
-  background-image: url(../assets/images/topicImage.jpg);
+  background-image: url(../assets/images/banners/topics.jpg);
 }
 
 .webp .hero-image.people-image {
-  background-image: url(../assets/images/peopleImage.webp);
+  background-image: url(../assets/images/banners/people.webp);
 }
 
 .no-webp .hero-image.people-image {
-  background-image: url(../assets/images/peopleImage.jpg);
+  background-image: url(../assets/images/banners/people.jpg);
+}
+
+.webp .hero-image.respond-image {
+  background-image: url(../assets/images/banners/respond.webp);
+}
+
+.no-webp .hero-image.respond-image {
+  background-image: url(../assets/images/banners/respond.jpg);
+}
+
+.webp .hero-image.welcome-image {
+  background-image: url(../assets/images/banners/welcome_alt.webp);
+}
+
+.no-webp .hero-image.welcome-image {
+  background-image: url(../assets/images/banners/welcome_alt.jpg);
+}
+
+.webp .hero-image.about-image {
+  background-image: url(../assets/images/banners/about.webp);
+}
+
+.no-webp .hero-image.about-image {
+  background-image: url(../assets/images/banners/about.jpg);
 }
 
 // Fallbacks
@@ -121,9 +147,6 @@ div.audio-greeting {
 }
 
 @media only screen and (max-width: $tablet-width) {
-  .hero-image {
-    height: 400px;
-  }
   .hero-image-content {
     width: 100%;
     padding: 30px;

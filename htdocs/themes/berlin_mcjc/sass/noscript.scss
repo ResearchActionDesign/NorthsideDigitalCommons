@@ -7,11 +7,23 @@ within a <noscript> tag in header. It contains manual versions of the JPG overri
  */
 //
 .hero-image.people-image {
-  background-image: url(../assets/images/peopleImage.jpg);
+  background-image: url(../assets/images/banners/people.jpg);
 }
 
 .hero-image.topics-image {
-  background-image: url(../assets/images/topicImage.jpg);
+  background-image: url(../assets/images/banners/topics.jpg);
+}
+
+.hero-image.about-image {
+  background-image: url(../assets/images/banners/about.jpg);
+}
+
+.hero-image.welcome-image {
+  background-image: url(../assets/images/banners/welcome.jpg);
+}
+
+.hero-image.respond-image {
+  background-image: url(../assets/images/banners/respond.jpg);
 }
 
 @media (max-width: 688px) {
