@@ -14,6 +14,9 @@ module.exports = {
       /admin-bar/,
       /truncated/,
       /search/,
+      /simple-pages-text-wrapper/,
+      /blockquote/,
+      /cite/,
     ],
   },
 };
