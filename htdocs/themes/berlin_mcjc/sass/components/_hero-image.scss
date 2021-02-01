@@ -6,49 +6,68 @@
   justify-content: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: top;
-  min-height: 325px;
+  background-position: center;
 }
 
 /** Note: When changing these also create fallbacks in noscript.scss */
 .webp .hero-image.topics-image {
   background-image: url(../assets/images/banners/topics.webp);
+  min-height: 325px;
+  background-position: top;
 }
 
 .no-webp .hero-image.topics-image {
   background-image: url(../assets/images/banners/topics.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .webp .hero-image.people-image {
   background-image: url(../assets/images/banners/people.webp);
+  min-height: 325px;
+  background-position: top;
 }
 
 .no-webp .hero-image.people-image {
   background-image: url(../assets/images/banners/people.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .webp .hero-image.respond-image {
   background-image: url(../assets/images/banners/respond.webp);
+  min-height: 325px;
+  background-position: top;
 }
 
 .no-webp .hero-image.respond-image {
   background-image: url(../assets/images/banners/respond.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .webp .hero-image.welcome-image {
-  background-image: url(../assets/images/banners/welcome_alt.webp);
+  background-image: url(../assets/images/banners/welcome.webp);
+  min-height: 325px;
+  background-position: top;
 }
 
 .no-webp .hero-image.welcome-image {
-  background-image: url(../assets/images/banners/welcome_alt.jpg);
+  background-image: url(../assets/images/banners/welcome.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .webp .hero-image.about-image {
   background-image: url(../assets/images/banners/about.webp);
+  min-height: 325px;
+  background-position: top;
 }
 
 .no-webp .hero-image.about-image {
   background-image: url(../assets/images/banners/about.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 // Fallbacks

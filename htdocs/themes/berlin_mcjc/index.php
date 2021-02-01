@@ -88,7 +88,19 @@
             <?php foreach ($have_you_heard as $item): ?>
                 <div>
                   <div class="have-you-heard__item">
+                    <?php echo common('picture-tag', [
+                        'base_filename' =>
+                            "/themes/berlin_mcjc/assets/images/question-mark.png",
+                        'options' => [
+                            'alt' => "",
+                            'width' => '176',
+                            'height' => '176',
+                            'class' => 'question-mark',
+                        ],
+                    ]); ?>
+                    <div class="have-you-heard__item__body">
                   <?php echo $item; ?>
+                    </div>
                   </div>
                 </div>
             <?php endforeach; ?>

@@ -16,7 +16,7 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
 
 <div class="primary">
     <div class="item-content">
-    <span class="item-type">Album</span>
+    <span class="item-type">Collection</span>
     <h1><?php echo $collectionTitle; ?></h1>
   <p class="description">
     <?php echo metadata('collection', ['Dublin Core', 'Description']); ?>

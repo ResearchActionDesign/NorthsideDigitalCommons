@@ -13,16 +13,7 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 ]); ?>
 
 <div class="topics-content">
-  <?php
-  $sortLinks[__('Title')] = 'Dublin Core,Title';
-  $sortLinks[__('Date Added')] = 'added';
-  ?>
     <div class="filter_container">
-        <div id="sort-links">
-      <span class="sort-label"><?php echo __(
-          'Sort by: '
-      ); ?></span><?php echo browse_sort_links($sortLinks); ?>
-        </div>
     </div>
 
     <div class="background-container">

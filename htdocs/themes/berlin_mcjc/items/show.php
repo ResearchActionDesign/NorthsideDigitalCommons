@@ -6,7 +6,6 @@ $itemTitle = metadata('item', 'display_title');
 $itemTypeRaw = metadata('item', ['Dublin Core', 'Type']) ?? 'Document';
 $itemTypeDict = [
     'Still Image' => 'Image',
-    'Oral History' => 'Story',
 ];
 
 $itemType = array_key_exists($itemTypeRaw, $itemTypeDict)
@@ -15,7 +14,7 @@ $itemType = array_key_exists($itemTypeRaw, $itemTypeDict)
 
 $itemTypeParentDict = [
     'Image' => ['Images' => '/images'],
-    'Story' => ['Stories' => '/stories'],
+    'Oral History' => ['Oral Histories' => '/oral-histories'],
     'Document' => ['Documents' => '/documents'],
 ];
 $itemTypePlural =

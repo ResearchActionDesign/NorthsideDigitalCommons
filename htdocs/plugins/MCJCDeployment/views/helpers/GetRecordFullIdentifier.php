@@ -49,7 +49,7 @@ class McjcDeployment_View_Helper_GetRecordFullIdentifier extends Zend_View_Helpe
           return 'images';
         case 'Oral History':
         case 'Oral History Clip':
-          return 'stories';
+          return 'oral-histories';
         case 'Person':
           return 'people';
         case 'Theme':

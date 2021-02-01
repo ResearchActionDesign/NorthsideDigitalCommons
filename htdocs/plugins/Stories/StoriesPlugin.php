@@ -19,7 +19,7 @@ class StoriesPlugin extends Omeka_Plugin_AbstractPlugin
     $router = $args['router'];
 
     $router->addRoute('storiesBrowse',
-      new Zend_Controller_Router_Route('stories',
+      new Zend_Controller_Router_Route('oral-histories',
         array(
           'module'     => 'stories',
           'controller' => 'index',
@@ -29,7 +29,7 @@ class StoriesPlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     $router->addRoute('storiesShow',
-      new Zend_Controller_Router_Route('stories/:permalink',
+      new Zend_Controller_Router_Route('oral-histories/:permalink',
         array(
           'module'     => 'stories',
           'controller' => 'items',

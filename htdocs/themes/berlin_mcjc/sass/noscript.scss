@@ -8,22 +8,32 @@ within a <noscript> tag in header. It contains manual versions of the JPG overri
 //
 .hero-image.people-image {
   background-image: url(../assets/images/banners/people.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .hero-image.topics-image {
   background-image: url(../assets/images/banners/topics.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .hero-image.about-image {
   background-image: url(../assets/images/banners/about.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .hero-image.welcome-image {
   background-image: url(../assets/images/banners/welcome.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 .hero-image.respond-image {
   background-image: url(../assets/images/banners/respond.jpg);
+  min-height: 325px;
+  background-position: top;
 }
 
 @media (max-width: 688px) {

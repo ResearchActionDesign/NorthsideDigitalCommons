@@ -71,6 +71,10 @@
       margin: 48px 0 12px 0;
       padding: 1em;
       min-height: 13rem;
+      display: flex;
+
+      img.question-mark {
+      }
 
       p:first-child {
         font-size: 2em;
@@ -95,7 +99,7 @@
       margin: 0 15vw;
       color: $purple--dark;
       i {
-        font-size: 32px;
+        font-size: 48px;
       }
 
       &:hover {
