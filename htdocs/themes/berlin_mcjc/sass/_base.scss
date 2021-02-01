@@ -48,7 +48,7 @@ $square-thumbnail-size: 300px;
 @mixin headers-text {
   text-shadow: 0px 3px 6px #000;
 
-  p {
+  p:not(.citation) {
     font-weight: bold;
     font-size: 1.25em;
   }
