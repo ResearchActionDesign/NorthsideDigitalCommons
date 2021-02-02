@@ -26,18 +26,18 @@
       display: block;
 
       &.small {
-        width: 40vw;
+        max-width: 40vw;
       }
 
       &.left {
         float: left;
-        width: 40vw;
+        max-width: 40vw;
         margin-right: 1em;
       }
 
       &.right {
         float: right;
-        width: 40vw;
+        max-width: 40vw;
         margin-left: 1em;
       }
 
