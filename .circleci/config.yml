@@ -73,7 +73,7 @@ jobs:
       - run:
           name: Add cache-busting
           command: |
-            sed -n 's/COMMIT_HASH/$CIRCLE_SHA1/' commit-hash.base.php > commit-hash.php
+            sed s/COMMIT_HASH/$CIRCLE_SHA1/ commit-hash.base.php > commit-hash.php
             scp -C commit-hash.php fromther@fromtherockwall.org:~/www/themes/berlin_mcjc/common
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/common
 
