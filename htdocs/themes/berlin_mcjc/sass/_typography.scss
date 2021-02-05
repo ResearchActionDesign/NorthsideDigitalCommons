@@ -133,11 +133,10 @@ blockquote {
 blockquote + cite,
 p.citation {
   display: block;
-  margin-top: 1em;
+  margin: 1em auto;
   padding-left: 40%;
   font-style: italic;
   font-weight: normal;
-  margin-bottom: 2em;
   &::before {
     content: "\2014 ";
   }

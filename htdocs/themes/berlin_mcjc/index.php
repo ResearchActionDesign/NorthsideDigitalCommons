@@ -7,11 +7,18 @@
 <div class="video-container">
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
-        <video width="100%" preload="auto" autoplay loop poster="/themes/berlin_mcjc/assets/images/homepage_video.jpg" muted playsinline>
+        <video id="homepage-video-element" autoplay width="100%" preload="auto" loop poster="/themes/berlin_mcjc/assets/images/homepage_video.jpg" muted playsinline>
             <source src="/themes/berlin_mcjc/assets/video/MCJCOrig--vp9.webm" type="video/webm;codecs=vp9, vorbis">
             <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.webm" type="video/webm;codecs=vp8, vorbis">
             <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.mp4" type="video/mp4">
         </video>
+        <audio id="homepage-background-audio">
+            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.mp3" type="audio/mpeg"/>
+        </audio>
+        <div id="homepage-video-controls">
+            <button class="button" id="unmute-button"><i class="fa fa-volume-off"></i><span class="button-text">Listen</span></button>
+            <button class="button" id="play-pause-button"><i class="fa fa-pause"></i><span class="button-text">Pause</span></button>
+        </div>
     </div>
     <?php endif; ?>
 </div>

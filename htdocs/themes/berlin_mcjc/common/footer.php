@@ -52,10 +52,11 @@
 <script type="text/javascript" src="/themes/berlin_mcjc/javascripts/frw.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        FromTheRockWall.filters();
-        FromTheRockWall.grids();
-        FromTheRockWall.downloads();
         FromTheRockWall.searchToggle();
+        FromTheRockWall.homepageAudio();
+        FromTheRockWall.grids();
+        FromTheRockWall.filters();
+        FromTheRockWall.downloads();
         FromTheRockWall.audioGreeting();
         FromTheRockWall.readMore();
     });
