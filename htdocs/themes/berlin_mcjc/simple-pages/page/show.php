@@ -35,6 +35,11 @@ $text = metadata('simple_pages_page', 'text', [
         <?php if ($text): ?>
         <div class="simple-pages-text-wrapper">
             <?php echo $this->shortcodes($text); ?>
+            <?php echo $pageTitle === 'Respond'
+                ? common('share_icons', [
+                    'url' => 'https://fromtherockwall.org/respond',
+                ])
+                : ''; ?>
         </div>
         <?php endif; ?>
         <?php if ($submenu): ?>

@@ -114,10 +114,35 @@
     margin: 48px auto;
   }
 
-  #homepage-video video {
+  #homepage-video {
     max-width: $base-width;
     margin: 0 auto;
     display: block;
+    position: relative;
+  }
+
+  #homepage-video-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s linear;
+
+    button {
+      i {
+        display: block;
+      }
+    }
+  }
+
+  #homepage-video:hover #homepage-video-controls,
+  #homepage-video-element:focus ~ #homepage-video-controls {
+    display: flex;
   }
 
   .homepage-title,
@@ -142,11 +167,11 @@
   }
 
   .homepage-epigraph {
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin: 24px auto 48px auto;
     text-shadow: 0px 3px 6px #fff;
     font-size: 1.25em;
     line-height: 1.5;
+    max-width: $tablet-width;
   }
 }
 

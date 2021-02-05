@@ -113,14 +113,14 @@ if (!FromTheRockWall) {
   };
 
   FromTheRockWall.audioGreeting = function () {
-    let audioGreetingElement = document.getElementById(
+    var audioGreetingElement = document.getElementById(
       "audio-greeting-element"
     );
-    let audioGreetingButton = document.getElementById("audio-greeting-button");
+    var audioGreetingButton = document.getElementById("audio-greeting-button");
     if (audioGreetingElement && audioGreetingButton) {
-      async function playAudio() {
+      function playAudio() {
         try {
-          await audioGreetingElement.play();
+          audioGreetingElement.play();
           audioGreetingButton.classList.add("playing");
         } catch (e) {
           audioGreetingButton.classList.remove("playing");
@@ -132,6 +132,55 @@ if (!FromTheRockWall) {
         } else {
           audioGreetingElement.pause();
           audioGreetingButton.classList.remove("playing");
+        }
+      });
+    }
+  };
+
+  FromTheRockWall.homepageAudio = function () {
+    var $muteButton = $("#unmute-button");
+    var $pauseButton = $("#play-pause-button");
+    var myvideo = document.getElementById("homepage-video-element");
+    var myaudio = document.getElementById("homepage-background-audio");
+    if ($muteButton) {
+      $muteButton.on("click", function () {
+        if ($(this).attr("data-toggled") === "true") {
+          myaudio.pause();
+          $(this).attr("data-toggled", false);
+          $(this)
+            .children("i")
+            .removeClass("fa-volume-up")
+            .addClass("fa-volume-off");
+          $(this).children(".button-text").html("Listen");
+        } else {
+          myaudio.play();
+          $(this).attr("data-toggled", true);
+          $(this)
+            .children("i")
+            .removeClass("fa-volume-off")
+            .addClass("fa-volume-up");
+          $(this).children(".button-text").html("Mute");
+        }
+      });
+    }
+    if ($pauseButton) {
+      $pauseButton.on("click", function () {
+        if ($(this).attr("data-toggled") === "true") {
+          if ($muteButton && $muteButton.attr("data-toggled") === "true") {
+            myaudio.play();
+          }
+          myvideo.play();
+          $(this).attr("data-toggled", false);
+          $(this).children("i").removeClass("fa-play").addClass("fa-pause");
+          $(this).children(".button-text").html("Pause");
+        } else {
+          if ($muteButton && $muteButton.attr("data-toggled") === "true") {
+            myaudio.pause();
+          }
+          myvideo.pause();
+          $(this).attr("data-toggled", true);
+          $(this).children("i").removeClass("fa-pause").addClass("fa-play");
+          $(this).children(".button-text").html("Play");
         }
       });
     }
