@@ -16,6 +16,7 @@ $audioGreetingFile = file_exists(
 )
     ? "/themes/berlin_mcjc/assets/audio/greetings/{$className}.m4a"
     : false;
+$audioGreetingFileOgg = "/themes/berlin_mcjc/assets/audio/greetings/{$className}.ogg";
 $audioGreetingImage = file_exists(
     getcwd() .
         "/themes/berlin_mcjc/assets/images/audio-greeting-buttons/{$className}.png"
@@ -27,7 +28,8 @@ $audioGreetingImage = file_exists(
   <?php if ($audioGreetingFile && $audioGreetingImage): ?>
       <div class="audio-greeting">
           <audio id="audio-greeting-element">
-              <source src="<?php echo $audioGreetingFile; ?>" type="audio/mp4">
+              <source src="<?php echo $audioGreetingFileOgg; ?>" type="audio/ogg"/>
+              <source src="<?php echo $audioGreetingFile; ?>" type="audio/mp4"/>
               <p>Your browser does not support this audio. <a href="<?php echo $audioGreetingFile; ?>">Click here to access the file directly</a>.</p>
           </audio>
           <button id="audio-greeting-button">

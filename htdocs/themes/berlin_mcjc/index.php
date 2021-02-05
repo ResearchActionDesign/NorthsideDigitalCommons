@@ -13,7 +13,8 @@
             <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.mp4" type="video/mp4">
         </video>
         <audio id="homepage-background-audio">
-            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.mp3" type="audio/mpeg"/>
+            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.ogg" type="audio/ogg"/>
+            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.m4a" type="audio/mpeg"/>
         </audio>
         <div id="homepage-video-controls-prompt">
             <em>Hover or tap to turn on audio</em>
