@@ -3,7 +3,27 @@
  * Note -- This file renders oral history & image items. "Person" items are rendered by people/items/show.php.
  */
 $itemTitle = metadata('item', 'display_title');
-$itemTypeRaw = metadata('item', ['Dublin Core', 'Type']) ?? 'Document';
+$item_type = get_view()->getRecordTypeIdentifier($item);
+switch ($item_type) {
+    case 'Still Image':
+        $itemTypeRaw = 'Image';
+        break;
+    case 'Project Interviews':
+    case 'Oral History':
+    case 'Oral History Clip':
+        $itemTypeRaw = 'Oral History';
+        break;
+    case 'Person':
+        $itemTypeRaw = 'Person';
+        break;
+    case 'Theme':
+        $itemTypeRaw = 'Topic';
+        break;
+    default:
+        $itemTypeRaw = 'Document';
+        break;
+}
+
 $itemTypeDict = [
     'Still Image' => 'Image',
 ];
@@ -30,7 +50,7 @@ $breadcrumbTrail = array_merge(
 );
 
 // If this is an oral history about a single person, show it as a subpage of their person page instead.
-if ($itemType === 'Story' && count($depicted_items) === 1) {
+if ($itemType === 'Oral History' && count($depicted_items) === 1) {
     $depictedPerson = $depicted_items[0];
     $personName = metadata($depictedPerson, 'display_title');
     $personUrl = record_url($depictedPerson);
@@ -67,7 +87,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         <div class="item-content">
             <span class="item-type"><?php echo $itemType; ?></span>
             <h1><?php echo $itemTitle; ?></h1>
-            <?php if ($itemType === 'Story'): ?>
+            <?php if ($itemType === 'Oral History'): ?>
             <span class="subtitle">
             <?php echo oral_history_item_subtitle(); ?>
             </span>

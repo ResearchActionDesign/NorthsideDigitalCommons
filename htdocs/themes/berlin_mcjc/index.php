@@ -107,7 +107,7 @@
           ]); ?>
         </div>
         <div class="homepage-menu-content">
-          <h2><?php echo __("Join the conversation"); ?></h2>
+          <h2><?php echo __("Say your piece"); ?></h2>
           <?php if ($link_text = get_theme_option('homepage_respond_text')): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>

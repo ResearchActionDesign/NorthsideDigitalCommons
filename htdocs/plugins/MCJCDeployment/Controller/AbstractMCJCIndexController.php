@@ -7,6 +7,8 @@ abstract class AbstractMCJCIndexController extends Omeka_Controller_AbstractActi
 {
   abstract protected function getItemTypeId();
 
+  protected $defaultSort = 'Dublin Core,Title';
+
   public function getAllParams()
   {
     $params = parent::getAllParams();
@@ -28,7 +30,7 @@ abstract class AbstractMCJCIndexController extends Omeka_Controller_AbstractActi
     $this->setParam('type', $this->getItemTypeId());
 
     if (!$this->getParam('sort_field')) {
-      $this->setParam('sort_field', 'Dublin Core,Subject');
+      $this->setParam('sort_field', $this->defaultSort);
     }
 
     // Must be logged in to view items specific to certain users. (Boilerplate from other ItemController classes).

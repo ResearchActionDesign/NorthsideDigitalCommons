@@ -47,6 +47,7 @@ class McjcDeployment_View_Helper_GetRecordFullIdentifier extends Zend_View_Helpe
       switch ($item_type) {
         case 'Still Image':
           return 'images';
+        case 'Project Interviews':
         case 'Oral History':
         case 'Oral History Clip':
           return 'oral-histories';
