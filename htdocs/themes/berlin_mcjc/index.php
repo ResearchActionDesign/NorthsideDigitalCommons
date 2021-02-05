@@ -34,6 +34,30 @@
     <?php endif; ?>
 
     <ul id="homepage-menu">
+        <li class="homepage-menu__item">
+            <div class='homepage-menu-image'>
+              <?php echo common('picture-tag', [
+                  'base_filename' =>
+                      "/themes/berlin_mcjc/assets/images/home-page-buttons/welcome.jpg",
+                  'options' => [
+                      'alt' => "",
+                      'width' => '250',
+                      'height' => '250',
+                  ],
+              ]); ?>
+            </div>
+            <div class="homepage-menu-content">
+                <h2><?php echo __('Welcome'); ?></h2>
+              <?php if (
+                  $link_text = get_theme_option('homepage_welcome_text')
+              ): ?>
+                  <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
+              <?php endif; ?>
+                <a href="/people" class="homepage-menu__item__button button"><?php echo get_theme_option(
+                    'homepage_welcome_link_text'
+                ) ?? "Click here to get started"; ?></a>
+            </div>
+        </li>
       <li class="homepage-menu__item">
         <div class='homepage-menu-image'>
           <?php echo common('picture-tag', [

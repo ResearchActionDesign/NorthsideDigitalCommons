@@ -13,8 +13,11 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
 ]); ?>
 
 <div class="topics-content">
+    <?php if ($filterBarText = get_theme_option('topics_filter_bar_text')): ?>
     <div class="filter_container">
+        <?php echo $filterBarText; ?>
     </div>
+    <?php endif; ?>
 
     <div class="background-container">
   <?php if ($topics): ?>
