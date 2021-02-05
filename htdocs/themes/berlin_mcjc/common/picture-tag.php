@@ -9,6 +9,6 @@ foreach ($options as $key => $value) {
 ?>
 
 <picture>
-  <source srcset="<?php echo $webp_filename; ?>">
+  <source srcset="<?php echo $webp_filename; ?>" type="image/webp">
   <img src="<?php echo $base_filename; ?>" <?php echo $options_string; ?>>
 </picture>
