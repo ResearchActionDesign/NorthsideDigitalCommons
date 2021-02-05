@@ -86,24 +86,13 @@
         @include button_link-secondary;
       }
     }
-  }
 
-  .slider-controls {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    li {
-      list-style: none;
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 15vw;
-      color: $purple--dark;
+    .slider-controls {
+      li {
+        margin: 0 15vw;
+      }
       i {
         font-size: 48px;
-      }
-
-      &:hover {
-        color: $purple--light;
       }
     }
   }

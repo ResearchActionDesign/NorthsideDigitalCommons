@@ -81,6 +81,8 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     'Person' => 12,
     'Still Image' => 6,
     'Photograph' => 6,
+    'Moving Image' => 3,
+    'Document' => 1,
   );
 
   /**

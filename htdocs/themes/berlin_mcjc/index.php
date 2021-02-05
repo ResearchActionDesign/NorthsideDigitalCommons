@@ -13,7 +13,8 @@
             <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.mp4" type="video/mp4">
         </video>
         <audio id="homepage-background-audio">
-            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.mp3" type="audio/mpeg"/>
+            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.ogg" type="audio/ogg"/>
+            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.m4a" type="audio/mpeg"/>
         </audio>
         <div id="homepage-video-controls-prompt">
             <em>Hover or tap to turn on audio</em>
@@ -53,7 +54,7 @@
               ): ?>
                   <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
               <?php endif; ?>
-                <a href="/people" class="homepage-menu__item__button button"><?php echo get_theme_option(
+                <a href="/welcome" class="homepage-menu__item__button button"><?php echo get_theme_option(
                     'homepage_welcome_link_text'
                 ) ?? "Click here to get started"; ?></a>
             </div>
@@ -107,7 +108,7 @@
           ]); ?>
         </div>
         <div class="homepage-menu-content">
-          <h2><?php echo __("Join the conversation"); ?></h2>
+          <h2><?php echo __("Say your piece"); ?></h2>
           <?php if ($link_text = get_theme_option('homepage_respond_text')): ?>
             <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
           <?php endif; ?>
@@ -139,31 +140,10 @@
                 </div>
             <?php endforeach; ?>
           </div>
-          <ul class="slider-controls" id="have-you-heard__controls" aria-label="Carousel Navigation" tabindex="0">
-              <li class="prev" aria-controls="customize" tabindex="-1" data-controls="prev" aria-label="Previous slide">
-                  <i class="fa fa-arrow-circle-left"></i>
-              </li>
-              <li class="next" aria-controls="customize" tabindex="-1" data-controls="next" aria-label="Next slide">
-                  <i class="fa fa-arrow-circle-right"></i>
-              </li>
-          </ul>
+        <?php echo common('slider-markup', [
+            'class' => 'have-you-heard__container',
+        ]); ?>
       <?php endif; ?>
   </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-<script type="module">
-    var slider = tns({
-        container: '.have-you-heard__container',
-        items: 1,
-        gutter: 16,
-        controlsContainer: '#have-you-heard__controls',
-        nav: false,
-        responsive: {
-            "768": {
-                edgePadding: 140,
-            }
-        }
-    });
-</script>
 <?php echo foot(['bodyid' => 'home']); ?>

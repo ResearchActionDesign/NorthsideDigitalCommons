@@ -17,6 +17,7 @@ module.exports = {
       /simple-pages-text-wrapper/,
       /blockquote/,
       /cite/,
+      /tns-nav/,
     ],
   },
 };

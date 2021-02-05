@@ -4,7 +4,7 @@ $pageTitle = __('Documents');
 echo head(['title' => $pageTitle, 'bodyclass' => 'documents browse']);
 ?>
 <?php echo common('breadcrumbs', [
-    'trail' => ['Images'],
+    'trail' => ['Documents'],
 ]); ?>
 <h1><?php echo $pageTitle; ?></h1>
 <div class="background-container">

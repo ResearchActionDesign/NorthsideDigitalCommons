@@ -203,10 +203,13 @@ function mcjc_file_markup(
         $item
     );
 
-    // Create file output.
+    // Create file output for non-image, non-audio files.
     foreach (
         array_filter($files, function ($file) {
-            return substr($file->mime_type, 0, 5) !== 'audio';
+            return !in_array(substr($file->mime_type, 0, 5), [
+                'audio',
+                'image',
+            ]);
         })
         as $key => $file
     ) {
@@ -225,6 +228,26 @@ function mcjc_file_markup(
             $wrapperAttributes
         );
     }
+
+    // Add all images as carousel.
+    $images = array_filter($files, function ($file) {
+        return substr($file->mime_type, 0, 5) === 'image';
+    });
+    if (count($images) > 1) {
+        $output .= "<div class='item-images-slider'>";
+    }
+    foreach ($images as $image) {
+        $output .= get_view()->mcjcFileMarkup(
+            $image,
+            $props,
+            $wrapperAttributes
+        );
+    }
+    if (count($images) > 1) {
+        $output .= "</div>";
+        $output .= common('slider-markup', ['class' => 'item-images-slider']);
+    }
+
     return $output;
 }
 

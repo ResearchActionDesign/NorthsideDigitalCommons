@@ -3,7 +3,7 @@
  * @package People
  */
 
-const ORAL_HISTORY_ITEM_TYPE = 4;
+const ORAL_HISTORY_ITEM_TYPES = [4, 18, 19];
 const IMAGE_ITEM_TYPE = 6;
 const PERSON_ITEM_TYPE = 12;
 
@@ -11,7 +11,7 @@ class People_ItemsController extends AbstractMCJCItemController
 {
   protected function getItemTypeId()
   {
-    return 12;
+    return PERSON_ITEM_TYPE;
   }
 
   /**
@@ -32,7 +32,7 @@ class People_ItemsController extends AbstractMCJCItemController
       function($relation) { return $relation['item']; },
       array_filter(
         $this->_objectRelations,
-        function($relation) { return $relation['relation_text'] === 'depicts' && array_key_exists('item', $relation) && $relation['item']['item_type_id'] === ORAL_HISTORY_ITEM_TYPE; }
+        function($relation) { return $relation['relation_text'] === 'depicts' && array_key_exists('item', $relation) && in_array($relation['item']['item_type_id'], ORAL_HISTORY_ITEM_TYPES); }
         )
     ));
 
@@ -52,7 +52,7 @@ class People_ItemsController extends AbstractMCJCItemController
     return array_filter(
       parent::_getRelatedItems(),
       function($item) {
-        return $item->item_type_id !== ORAL_HISTORY_ITEM_TYPE
+        return !in_array($item->item_type_id, ORAL_HISTORY_ITEM_TYPES)
           && $item->item_type_id !== PERSON_ITEM_TYPE;
       }
     );
