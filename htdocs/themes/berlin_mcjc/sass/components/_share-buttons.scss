@@ -2,13 +2,15 @@
   text-align: center;
 }
 .share-button {
-  i.fa {
-    color: $green;
-    font-size: 1.5rem;
+  color: $green;
+  padding: 0;
+  &:hover,
+  &:focus {
+    color: $purple--light;
+  }
 
-    &:hover,
-    &:focus {
-      color: $purple--light;
-    }
+  i.fa {
+    font-size: 1.5rem;
+    margin-left: 0.25rem;
   }
 }
