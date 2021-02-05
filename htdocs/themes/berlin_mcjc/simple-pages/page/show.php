@@ -21,13 +21,26 @@ echo head([
 $text = metadata('simple_pages_page', 'text', [
     'no_escape' => true,
 ]);
+$headerText = null;
+switch ($pageTitle) {
+    case 'Respond':
+        $headerText = get_theme_option('respond_page_text');
+        break;
+    case 'About':
+        $headerText = get_theme_option('about_page_text');
+        break;
+    case 'Welcome':
+        $headerText = get_theme_option('welcome_page_text');
+        break;
+    default:
+        break;
+}
 ?>
 <p id="simple-pages-breadcrumbs" class="breadcrumbs"><?php echo simple_pages_display_breadcrumbs(); ?></p>
 
 <?php echo common('hero-image-header', [
     'title' => $pageTitle,
-    'headerText' =>
-        $pageTitle === 'Respond' ? get_theme_option('respond_page_text') : null,
+    'headerText' => $headerText,
     'className' => [$pageClass, $ancestorPageClass],
 ]); ?>
 <div id="primary" class="<?php echo $div_class; ?>">
@@ -35,11 +48,10 @@ $text = metadata('simple_pages_page', 'text', [
         <?php if ($text): ?>
         <div class="simple-pages-text-wrapper">
             <?php echo $this->shortcodes($text); ?>
-            <?php echo $pageTitle === 'Respond'
-                ? common('share_icons', [
-                    'url' => 'https://fromtherockwall.org/respond',
-                ])
-                : ''; ?>
+            <?php echo common('share_icons', [
+                'url' => absolute_url(current_url()),
+                'title' => $pageTitle,
+            ]); ?>
         </div>
         <?php endif; ?>
         <?php if ($submenu): ?>

@@ -121,16 +121,27 @@
     position: relative;
   }
 
+  #homepage-video-controls-prompt {
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
+    z-index: 10;
+    text-align: center;
+    color: $white;
+    opacity: 80%;
+    transition: all 0.25s linear;
+  }
+
   #homepage-video-controls {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 95%;
     z-index: 10;
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     transition: all 0.25s linear;
 
     button {
@@ -143,6 +154,11 @@
   #homepage-video:hover #homepage-video-controls,
   #homepage-video-element:focus ~ #homepage-video-controls {
     display: flex;
+  }
+
+  #homepage-video:hover #homepage-video-controls-prompt,
+  #homepage-video-element:focus ~ #homepage-video-controls-prompt {
+    display: none;
   }
 
   .homepage-title,

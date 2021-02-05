@@ -16,10 +16,15 @@ $audioGreetingFile = file_exists(
 )
     ? "/themes/berlin_mcjc/assets/audio/greetings/{$className}.m4a"
     : false;
-$audioGreetingOption = get_theme_option("audio_greeting_{$className}_page");
+$audioGreetingImage = file_exists(
+    getcwd() .
+        "/themes/berlin_mcjc/assets/images/audio-greeting-buttons/{$className}.png"
+)
+    ? "/themes/berlin_mcjc/assets/images/audio-greeting-buttons/{$className}.png"
+    : false;
 ?>
 <div class="hero-image <?php echo $heroImageClasses; ?>">
-  <?php if ($audioGreetingFile): ?>
+  <?php if ($audioGreetingFile && $audioGreetingImage): ?>
       <div class="audio-greeting">
           <audio id="audio-greeting-element">
               <source src="<?php echo $audioGreetingFile; ?>" type="audio/mp4">
@@ -27,10 +32,7 @@ $audioGreetingOption = get_theme_option("audio_greeting_{$className}_page");
           </audio>
           <button id="audio-greeting-button">
               <?php echo common('picture-tag', [
-                  'base_filename' =>
-                      "/themes/berlin_mcjc/assets/images/audio-greeting-buttons/" .
-                      $className .
-                      ".png",
+                  'base_filename' => $audioGreetingImage,
                   'options' => [
                       'alt' => 'Play audio greeting',
                       'width' => 150,
