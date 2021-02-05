@@ -1,9 +1,14 @@
 <?php
-$pageTitle = __('Our Community. Our Stories.');
+$pageTitle =
+    ($type ?? '') === 'theme'
+        ? __('Themes')
+        : __('Our Community. Our Stories.');
 echo head(['title' => $pageTitle, 'bodyclass' => 'topics browse']);
+$trail =
+    ($type ?? '') === 'theme' ? ['Topics' => '/topics', 'Themes'] : ['Topics'];
 ?>
 <?php echo common('breadcrumbs', [
-    'trail' => ['Topics'],
+    'trail' => $trail,
 ]); ?>
 
 <?php echo common('hero-image-header', [

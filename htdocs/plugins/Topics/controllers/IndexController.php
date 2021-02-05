@@ -50,27 +50,15 @@ class Topics_IndexController extends AbstractMCJCIndexController
     $recordsPerPage = 24;
     $currentPage = $this->getParam('page', 1);
 
-    // Get collections.
-    $this->_helper->db->setDefaultModelName('Collection');
-    $this->applySort();
-    $collectionRecords = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);
-    if ($collectionRecords) {
-      array_walk($collectionRecords, function(&$item) { $item->topicType = 'Collection'; });
-    } else {
-      $collectionRecords = [];
+    $topicType = null;
+    if (isset($params['type'])) {
+      $topicType = $params['type'];
     }
-    $totalRecords = $this->_helper->db->count($params);
 
-    // Get exhibits.
-    $this->_helper->db->setDefaultModelName('Exhibit');
-    $this->applySort();
-    $exhibitRecords = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);
-    if ($exhibitRecords) {
-      array_walk($exhibitRecords, function(&$item) { $item->topicType = 'Exhibit'; });
-    } else {
-      $exhibitRecords = [];
-    }
-    $totalRecords += $this->_helper->db->count($params);
+    $collectionRecords = [];
+    $exhibitRecords = [];
+    $themeRecords = [];
+    $totalRecords = 0;
 
     $this->_helper->db->setDefaultModelName('Item');
     $this->applySort();
@@ -82,6 +70,34 @@ class Topics_IndexController extends AbstractMCJCIndexController
       $themeRecords = [];
     }
     $totalRecords += $this->_helper->db->count($params);
+
+    if ($topicType !== 'theme') {
+      // Get collections.
+      $this->_helper->db->setDefaultModelName('Collection');
+      $this->applySort();
+      $collectionRecords = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);
+      if ($collectionRecords) {
+        array_walk($collectionRecords, function (&$item) {
+          $item->topicType = 'Collection';
+        });
+      } else {
+        $collectionRecords = [];
+      }
+      $totalRecords += $this->_helper->db->count($params);
+
+      // Get exhibits.
+      $this->_helper->db->setDefaultModelName('Exhibit');
+      $this->applySort();
+      $exhibitRecords = $this->_helper->db->findBy($params, $recordsPerPage, $currentPage);
+      if ($exhibitRecords) {
+        array_walk($exhibitRecords, function (&$item) {
+          $item->topicType = 'Exhibit';
+        });
+      } else {
+        $exhibitRecords = [];
+      }
+      $totalRecords += $this->_helper->db->count($params);
+    }
 
 
     $topicsRecords = array_merge($collectionRecords, $exhibitRecords, $themeRecords);
@@ -117,16 +133,19 @@ class Topics_IndexController extends AbstractMCJCIndexController
 
     // Add pagination data to the registry. Used by pagination_links().
     if ($recordsPerPage) {
-      Zend_Registry::set('pagination', array(
+      Zend_Registry::set('pagination', [
         'page' => $currentPage,
         'per_page' => $recordsPerPage,
         'total_results' => $totalRecords,
-      ));
+      ]);
     }
 
-    $this->view->assign(array(
+    $this->view->assign([
       'topics' => $topicsRecords,
-      'total_results' => $totalRecords));
+      'total_results' => $totalRecords,
+    'type' => $topicType,
+  ]
+    );
   }
 
   public function showAction()
