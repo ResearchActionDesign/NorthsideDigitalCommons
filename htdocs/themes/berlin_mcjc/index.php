@@ -53,7 +53,7 @@
               ): ?>
                   <p class="homepage-menu__item__text"><?php echo $link_text; ?></p>
               <?php endif; ?>
-                <a href="/people" class="homepage-menu__item__button button"><?php echo get_theme_option(
+                <a href="/welcome" class="homepage-menu__item__button button"><?php echo get_theme_option(
                     'homepage_welcome_link_text'
                 ) ?? "Click here to get started"; ?></a>
             </div>
