@@ -15,6 +15,9 @@
         <audio id="homepage-background-audio">
             <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.mp3" type="audio/mpeg"/>
         </audio>
+        <div id="homepage-video-controls-prompt">
+            <em>Hover or tap to turn on audio</em>
+        </div>
         <div id="homepage-video-controls">
             <button class="button" id="unmute-button"><i class="fa fa-volume-off"></i><span class="button-text">Listen</span></button>
             <button class="button" id="play-pause-button"><i class="fa fa-pause"></i><span class="button-text">Pause</span></button>

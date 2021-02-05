@@ -47,9 +47,13 @@
         integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
         crossorigin="anonymous"></script>
 <?php echo head_js(false); ?>
+<?php
+$commit_hash = "1";
+@include 'commit-hash.php';
+?>
 <script type="text/javascript" src="/themes/berlin_mcjc/javascripts/lity.min.js" async defer></script>
 <script type="text/javascript" src="/themes/berlin_mcjc/javascripts/sharer.min.js" async defer></script>
-<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/frw.js"></script>
+<script type="text/javascript" src="/themes/berlin_mcjc/javascripts/frw.js?v=<?php echo $commit_hash; ?>"></script>
 <script type="text/javascript">
     jQuery(document).ready(function(){
         FromTheRockWall.searchToggle();

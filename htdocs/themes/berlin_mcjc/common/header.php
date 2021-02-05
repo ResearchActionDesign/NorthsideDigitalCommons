@@ -3,7 +3,7 @@
     'Style Sheet'
 ); ?>" lang="<?php echo get_html_lang(); ?>">
 <?php
-$commit_hash = "";
+$commit_hash = "1";
 @include 'commit-hash.php';
 ?>
 <head>
