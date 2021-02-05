@@ -50,8 +50,8 @@ $breadcrumbTrail = array_merge(
 );
 
 // If this is an oral history about a single person, show it as a subpage of their person page instead.
-if ($itemType === 'Oral History' && count($depicted_items) === 1) {
-    $depictedPerson = $depicted_items[0];
+if ($itemType === 'Oral History' && count($depicted_items ?? []) === 1) {
+    $depictedPerson = reset($depicted_items);
     $personName = metadata($depictedPerson, 'display_title');
     $personUrl = record_url($depictedPerson);
     $backButtonText = __('Back to ') . $personName;
