@@ -11,36 +11,32 @@ $heroImageClasses = join(
 );
 $className = $className[0];
 
-$audioGreetingFile = false;
-$audioGreetingButton = get_theme_option(
-    "audio_greeting_button_{$className}_page"
-);
-
-switch ($className) {
-    case 'topics':
-        $audioGreetingFile =
-            "/themes/berlin_mcjc/assets/audio/greetings/topics.mp3";
-        break;
-    case 'people':
-        $audioGreetingFile =
-            "/themes/berlin_mcjc/assets/audio/greetings/people.mp3";
-        break;
-    case 'respond':
-        $audioGreetingFile =
-            "/themes/berlin_mcjc/assets/audio/greetings/respond.mp3";
-        break;
-    default:
-        break;
-}
+$audioGreetingFile = file_exists(
+    getcwd() . "/themes/berlin_mcjc/assets/audio/greetings/{$className}.m4a"
+)
+    ? "/themes/berlin_mcjc/assets/audio/greetings/{$className}.m4a"
+    : false;
+$audioGreetingOption = get_theme_option("audio_greeting_{$className}_page");
 ?>
 <div class="hero-image <?php echo $heroImageClasses; ?>">
-  <?php if ($audioGreetingButton && $audioGreetingFile): ?>
+  <?php if ($audioGreetingFile): ?>
       <div class="audio-greeting">
           <audio id="audio-greeting-element">
-              <source src="<?php echo $audioGreetingFile; ?>">
+              <source src="<?php echo $audioGreetingFile; ?>" type="audio/mp4">
+              <p>Your browser does not support this audio. <a href="<?php echo $audioGreetingFile; ?>">Click here to access the file directly</a>.</p>
           </audio>
           <button id="audio-greeting-button">
-              <img src="/files/theme_uploads/<?php echo $audioGreetingButton; ?>" alt="Play audio greeting" width="150px" height="150px">
+              <?php echo common('picture-tag', [
+                  'base_filename' =>
+                      "/themes/berlin_mcjc/assets/images/audio-greeting-buttons/" .
+                      $className .
+                      ".png",
+                  'options' => [
+                      'alt' => 'Play audio greeting',
+                      'width' => 150,
+                      'height' => 150,
+                  ],
+              ]); ?>
           </button>
       </div>
   <?php endif; ?>
