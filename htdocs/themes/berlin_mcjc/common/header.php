@@ -2,6 +2,10 @@
 <html class="<?php echo get_theme_option(
     'Style Sheet'
 ); ?>" lang="<?php echo get_html_lang(); ?>">
+<?php
+$commit_hash = "";
+@include 'commit-hash.php';
+?>
 <head>
     <?php
 /** Load google fonts. @see https://csswizardry.com/2020/05/the-fastest-google-fonts/ */
@@ -14,7 +18,7 @@
           href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap" />
     <link rel="preload"
           as="style"
-          href="/themes/berlin_mcjc/css/style.css" />
+          href="/themes/berlin_mcjc/css/style.css?v=<?php echo $commit_hash; ?>" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <?php if ($description = option('description')): ?>
@@ -61,10 +65,10 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,600,700&display=swap" />
     <link rel="stylesheet"
-          href="/themes/berlin_mcjc/css/style.css" />
+          href="/themes/berlin_mcjc/css/style.css?v=<?php echo $commit_hash; ?>" />
     <noscript>
         <link rel="stylesheet"
-              href="/themes/berlin_mcjc/css/noscript.css" />
+              href="/themes/berlin_mcjc/css/noscript.css?v=<?php echo $commit_hash; ?>" />
     </noscript>
     <?php if ($google_id = get_theme_option('google_analytics_id')): ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
