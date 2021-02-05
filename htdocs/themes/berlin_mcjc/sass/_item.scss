@@ -43,6 +43,8 @@
       .item-images {
         img {
           width: 100%;
+        }
+        .item-file:not(.tns-item) img {
           padding: 20px;
         }
       }
@@ -75,6 +77,10 @@
 
       .item-sidebar {
         order: 0;
+
+        .slider-controls {
+          margin-bottom: 24px;
+        }
       }
 
       .item-content {
