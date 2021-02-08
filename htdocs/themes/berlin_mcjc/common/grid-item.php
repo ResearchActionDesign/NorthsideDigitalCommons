@@ -64,8 +64,6 @@ switch ($item->item_type_id) {
     case IMAGE_ITEM_TYPE:
         $icon = '<i class="fa fa-camera" aria-label="Photograph"></i>';
         break;
-    case TOPIC_ITEM_TYPE:
-        $icon = '<i class="fa fa-star" aria-label="Topic"></i>';
     default:
         break;
 }

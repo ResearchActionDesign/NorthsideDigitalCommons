@@ -44,10 +44,6 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
       <div class="item-images"><?php echo $picture; ?>
       </div>
     </div>
-  <?php elseif (
-      $missing_photo_text = get_theme_option('missing_photo_text')
-  ): ?>
-      <div class="item--missing-picture"><?php echo $missing_photo_text; ?></div>
   <?php endif; ?>
   </div>
 </div> <!-- End of Primary. -->
