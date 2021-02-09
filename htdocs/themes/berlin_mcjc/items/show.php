@@ -13,12 +13,6 @@ switch ($item_type) {
     case 'Oral History Clip':
         $itemTypeRaw = 'Oral History';
         break;
-    case 'Person':
-        $itemTypeRaw = 'Person';
-        break;
-    case 'Theme':
-        $itemTypeRaw = 'Topic';
-        break;
     default:
         $itemTypeRaw = 'Document';
         break;
@@ -42,6 +36,7 @@ $itemTypePlural =
 
 $itemTypeClass = str_replace(' ', '-', strtolower($itemType));
 $backButtonText = __('Back to all ') . strtolower($itemTypePlural);
+
 $backLink =
     array_values($itemTypeParentDict[$itemType] ?? [])[0] ?? "/documents";
 $breadcrumbTrail = array_merge(
@@ -49,8 +44,10 @@ $breadcrumbTrail = array_merge(
     [$itemTitle]
 );
 
+$sohpUrl = false;
 // If this is an oral history about a single person, show it as a subpage of their person page instead.
 if ($itemType === 'Oral History' && count($depicted_items ?? []) === 1) {
+    $sohpUrl = mcjc_get_linked_sohp_interview();
     $depictedPerson = reset($depicted_items);
     $personName = metadata($depictedPerson, 'display_title');
     $personUrl = record_url($depictedPerson);
@@ -97,7 +94,9 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
                 <?php echo $description; ?>
               </p>
             <?php elseif (
-                $missing_caption = get_theme_option('missing_caption_text')
+                $missing_caption =
+                    get_theme_option('missing_caption_text') &&
+                    $itemTypeRaw !== 'Oral History'
             ): ?>
             <p class="description">
                 <?php echo $missing_caption; ?>
@@ -114,23 +113,24 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
             <div class="item-images"><?php echo $picture; ?></div>
         </div>
         <?php endif; ?>
-  <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
-      <div class="item-metadata sohp element">
-          <a target="_blank" href="<?php echo html_escape(
-              $sohp_url
-          ); ?>">View Details at Southern Oral History Program
-              website</a>
-      </div>
-  <?php elseif (metadata('item', 'has files')): ?>
+  <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-        <div class="item-images"><?php echo mcjc_files_for_item('item', [
-            'imageSize' => 'fullsize',
-            'linkAttributes' => ['data-lity' => ''],
-            'show' => true,
-        ]); ?>
+        <div class="item-images">
+          <?php echo mcjc_files_for_item('item', [
+              'imageSize' => 'fullsize',
+              'linkAttributes' => ['data-lity' => ''],
+              'show' => true,
+          ]); ?>
         </div>
     </div>
-<?php endif; ?>
+  <?php elseif ($sohpUrl): ?>
+    <div class="item-metadata sohp element">
+        <a href="<?php echo html_escape(
+            $sohpUrl
+        ); ?>">View More Details at Southern Oral History Program
+            website</a>
+    </div>
+    <?php endif; ?>
 </div>
 </div>
 
@@ -166,6 +166,10 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
               'Rights: '
           ); ?></span><span class="element-text"><?php echo $rights; ?></span></strong></p>
       <?php endif; ?>
+      <?php if ($sohpUrl): ?>
+        <p class="element"><a href="<?php echo $sohpUrl; ?>"><i class="fa fa-external-link"></i>View this interview on the Southern Oral History Program
+                website</a></p>
+        <?php endif; ?>
     </div>
   </div>
 <div class="background-container">

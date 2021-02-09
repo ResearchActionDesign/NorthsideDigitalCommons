@@ -5,7 +5,7 @@ $itemTitle = metadata('item', 'display_title');
 $itemType = 'Theme';
 
 $itemTypeClass = 'theme';
-$backButtonText = __('Back to topics');
+$backButtonText = __('Back to the topics page');
 $backLink = '/topics';
 $breadcrumbTrail = [
     'Topics' => '/topics',

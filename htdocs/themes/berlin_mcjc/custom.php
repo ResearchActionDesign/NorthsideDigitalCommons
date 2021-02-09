@@ -140,9 +140,12 @@ function mcjc_item_image(
         $item = get_current_record('item');
     }
     $imageFile = $item->getFile($index);
+    if (substr($imageFile->mime_type, 0, 5) !== 'image') {
+        return false;
+    }
     $fileMarkup = new Omeka_View_Helper_FileMarkup();
     $imageTag = $fileMarkup->image_tag($imageFile, $props, $imageType);
-    $originalHref = $imageFile->getWebPath('original');
+    $originalHref = $imageFile->getWebPath('fullsize');
     return '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
 }
 /**

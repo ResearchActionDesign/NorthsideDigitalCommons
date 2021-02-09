@@ -30,7 +30,7 @@ $trail =
     <div class="grid-items">
     <?php foreach (loop('topics') as $topic): ?>
     <?php
-    $topicClass = strtolower($topic->topicType); //    $title = "{$topic->topicType}: " . html_escape($topic->title);
+    $topicClass = strtolower($topic->topicType);
     $title = $topic->title;
     if ($topicClass == 'exhibit') {
         $description = metadata($topic, 'description', ['no_escape' => true]);
