@@ -39,9 +39,10 @@ if ($query !== '') {
           </div>
       <?php endif; ?>
       <?php if ($total_results): ?>
-        <?php // TODO: Some of this code can be removed if we no longer use filters on search page.
+        <?php
           // TODO: Some of this code can be removed if we no longer use filters on search page.
           ?>
+        <?php
         $filter = new Zend_Filter_Word_CamelCaseToDash();
         array_walk($search_texts, function (&$searchText) use ($query) {
             $record = get_record_by_id(
