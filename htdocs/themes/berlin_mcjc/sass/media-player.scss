@@ -188,12 +188,12 @@
 }
 
 // Fix for cutoff of audio player on oral history page.
-.oral-history .item-images .audio-mpeg {
+.oral-history .item-images .player-element .item-file {
   margin-top: 64px;
 }
 
 @media screen and (max-width: $tablet-width) {
-  .person .oral-history .audio-mpeg {
+  .person .oral-history .player-element .item-file {
     margin-top: 72px;
   }
 }
