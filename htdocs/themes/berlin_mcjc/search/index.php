@@ -39,7 +39,9 @@ if ($query !== '') {
           </div>
       <?php endif; ?>
       <?php if ($total_results): ?>
-        <?php
+        <?php // TODO: Some of this code can be removed if we no longer use filters on search page.
+          // TODO: Some of this code can be removed if we no longer use filters on search page.
+          ?>
         $filter = new Zend_Filter_Word_CamelCaseToDash();
         array_walk($search_texts, function (&$searchText) use ($query) {
             $record = get_record_by_id(
@@ -104,20 +106,6 @@ if ($query !== '') {
             'exhibit' => 'Exhibits',
         ];
         ?>
-          <div class="filter_container">
-              <div class="filter" id="grid__filter">
-                  <span class="grid__filter__title">I want to see:</span>
-                <?php foreach ($validFilterTypes as $filterType): ?>
-                    <span class="grid__filter__option"><label
-                                class="filter-titles">
-                    <input class="checkbox" type="checkbox" data-filter="<?php echo $filterType; ?>"
-                           id="grid-filter-<?php echo $filterType; ?>">
-                  <?php echo $filterTypesDisplay[$filterType] ?? $filterType; ?>
-                    </input>
-                </label></span>
-                <?php endforeach; ?>
-              </div>
-          </div>
       <?php elseif ($query !== ''): ?>
           <p><?php echo get_theme_option('search_no_results_text') ??
               __(
