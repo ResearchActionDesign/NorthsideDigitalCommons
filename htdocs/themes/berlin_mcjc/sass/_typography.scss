@@ -124,14 +124,6 @@ blockquote {
   margin: 0 10%;
   font: 1.5em $body-font-family;
   font-style: italic;
-
-  &::before {
-    content: "\201C";
-  }
-
-  &::after {
-    content: "\201D";
-  }
 }
 
 blockquote + cite,
