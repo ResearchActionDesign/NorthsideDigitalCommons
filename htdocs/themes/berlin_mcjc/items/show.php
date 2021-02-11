@@ -184,8 +184,8 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php if (!empty($depicted_items)): ?>
 <div class="explore-grid grid-container depicted">
   <h2><?php echo __('In this ') . $itemType; ?></h2>
-  <div class="grid-items <?php echo $depicted_items < 3
-      ? 'grid-count-' . $depicted_items
+  <div class="grid-items <?php echo count($depicted_items) < 3
+      ? 'grid-count-' . count($depicted_items)
       : ''; ?>">
     <?php foreach (loop('depicted_items') as $relatedItem): ?>
     <?php echo common('grid-item', [
