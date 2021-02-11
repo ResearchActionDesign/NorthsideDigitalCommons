@@ -2,22 +2,36 @@
 
 namespace Rollbar\Truncation;
 
-class StringsStrategyTest extends \PHPUnit_Framework_TestCase
+use Rollbar\Payload\EncodedPayload;
+use \Rollbar\Config;
+use \Rollbar\BaseRollbarTest;
+
+class StringsStrategyTest extends BaseRollbarTest
 {
-    /**
-     * @dataProvider executeProvider
-     */
-    public function testExecute($data, $expected)
+    
+    protected function execute($data)
     {
-        $truncation = new Truncation();
+        $config = new Config(array('access_token' => $this->getTestAccessToken()));
+        $truncation = new Truncation($config);
 
         $strategy = new StringsStrategy($truncation);
-        $result = $strategy->execute($data);
         
+        $data = new EncodedPayload($data);
+        $data->encode();
+        
+        return $strategy->execute($data)->data();
+    }
+    
+    /**
+     * @dataProvider executeTruncateNothingProvider
+     */
+    public function testExecuteTruncateNothing($data, $expected)
+    {
+        $result = $this->execute($data);
         $this->assertEquals($expected, $result);
     }
     
-    public function executeProvider()
+    public function executeTruncateNothingProvider()
     {
         $data = array();
         
@@ -25,6 +39,31 @@ class StringsStrategyTest extends \PHPUnit_Framework_TestCase
             $this->payloadStructureProvider(str_repeat("A", 10)),
             $this->payloadStructureProvider(str_repeat("A", 10))
         );
+        
+        return $data;
+    }
+    
+    /**
+     * @dataProvider executeArrayProvider
+     */
+    public function testExecuteArray($data, $expectedThreshold)
+    {
+        $result = $this->execute($data);
+        
+        $resultAnalysis = array();
+        
+        foreach ($result['data']['body']['message']['body']['value'] as $key => $toTrim) {
+            $this->assertTrue(
+                strlen($toTrim) <= $expectedThreshold,
+                "The string '$toTrim' was expected to be trimmed to " . $expectedThreshold . " characters. " .
+                "Actual length: " . strlen($toTrim)
+            );
+        }
+    }
+    
+    public function executeArrayProvider()
+    {
+        $data = array();
         
         $thresholds = StringsStrategy::getThresholds();
         foreach ($thresholds as $threshold) {
@@ -34,25 +73,24 @@ class StringsStrategyTest extends \PHPUnit_Framework_TestCase
         return $data;
     }
     
-    protected function thresholdTestProvider($threshold)
+    public function thresholdTestProvider($threshold)
     {
-        $stringLengthToTrim = $threshold+1;
+        $stringLengthToTrim = $threshold*2;
         
         $payload = $this->payloadStructureProvider(array());
-        $expected = $this->payloadStructureProvider(array());
+        $payload['data']['body']['message']['body']['value2'] = array();
         
-        while (strlen(json_encode($payload)) < Truncation::MAX_PAYLOAD_SIZE) {
+        while (strlen(json_encode($payload)) <= Truncation::MAX_PAYLOAD_SIZE) {
             $payload['data']['body']['message']['body']['value'] []=
                 str_repeat('A', $stringLengthToTrim);
-                
-            $expected['data']['body']['message']['body']['value'] []=
-                str_repeat('A', $threshold);
+            $payload['data']['body']['message']['body']['value2'] []=
+                str_repeat('A', $stringLengthToTrim);
         }
         
-        return array($payload,$expected);
+        return array($payload, $threshold);
     }
     
-    protected function payloadStructureProvider($message)
+    public function payloadStructureProvider($message)
     {
         return array(
             "data" => array(

@@ -4,6 +4,9 @@ use Psr\Log\AbstractLogger;
 use Rollbar\Payload\Payload;
 use Rollbar\Payload\Level;
 use Rollbar\Truncation\Truncation;
+use Monolog\Logger as MonologLogger;
+use Monolog\Handler\StreamHandler;
+use Rollbar\Payload\EncodedPayload;
 
 class RollbarLogger extends AbstractLogger
 {
@@ -11,13 +14,34 @@ class RollbarLogger extends AbstractLogger
     private $levelFactory;
     private $truncation;
     private $queue;
+    private $reportCount = 0;
 
     public function __construct(array $config)
     {
         $this->config = new Config($config);
         $this->levelFactory = new LevelFactory();
-        $this->truncation = new Truncation();
+        $this->truncation = new Truncation($this->config);
         $this->queue = array();
+    }
+    
+    public function enable()
+    {
+        return $this->config->enable();
+    }
+    
+    public function disable()
+    {
+        return $this->config->disable();
+    }
+    
+    public function enabled()
+    {
+        return $this->config->enabled();
+    }
+    
+    public function disabled()
+    {
+        return $this->config->disabled();
     }
 
     public function configure(array $config)
@@ -52,24 +76,58 @@ class RollbarLogger extends AbstractLogger
 
     public function log($level, $toLog, array $context = array(), $isUncaught = false)
     {
-        if (!$this->levelFactory->isValidLevel($level)) {
-            throw new \Psr\Log\InvalidArgumentException("Invalid log level '$level'.");
+        if ($this->disabled()) {
+            $this->verboseLogger()->notice('Rollbar is disabled');
+            return new Response(0, "Disabled");
         }
+        
+        if (!$this->levelFactory->isValidLevel($level)) {
+            $exception = new \Psr\Log\InvalidArgumentException("Invalid log level '$level'.");
+            $this->verboseLogger()->error($exception->getMessage());
+            throw $exception;
+        }
+
+        $this->verboseLogger()->info("Attempting to log: [$level] " . $toLog);
+
         if ($this->config->internalCheckIgnored($level, $toLog)) {
+            $this->verboseLogger()->info('Occurrence ignored');
             return new Response(0, "Ignored");
         }
+
         $accessToken = $this->getAccessToken();
         $payload = $this->getPayload($accessToken, $level, $toLog, $context);
         
         if ($this->config->checkIgnored($payload, $accessToken, $toLog, $isUncaught)) {
+            $this->verboseLogger()->info('Occurrence ignored');
             $response = new Response(0, "Ignored");
         } else {
-            $toSend = $this->scrub($payload);
-            $toSend = $this->truncate($toSend);
-            $response = $this->send($toSend, $accessToken);
+            $serialized = $payload->serialize($this->config->getMaxNestingDepth());
+
+            $scrubbed = $this->scrub($serialized);
+
+            $encoded = $this->encode($scrubbed);
+
+            $truncated = $this->truncate($encoded);
+            
+            $response = $this->send($truncated, $accessToken);
         }
         
         $this->handleResponse($payload, $response);
+
+        if ($response->getStatus() === 0) {
+            $this->verboseLogger()->error('Occurrence rejected by the SDK: ' . $response);
+        } elseif ($response->getStatus() >= 400) {
+            $info = $response->getInfo();
+            $this->verboseLogger()->error('Occurrence rejected by the API: ' . (isset($info['message']) ?
+                    $info['message'] : 'mesage not set'));
+        } else {
+            $this->verboseLogger()->info('Occurrence successfully logged');
+        }
+        
+        if ((is_a($toLog, 'Throwable') || is_a($toLog, 'Exception')) && $this->config->getRaiseOnError()) {
+            throw $toLog;
+        }
+        
         return $response;
     }
 
@@ -80,6 +138,7 @@ class RollbarLogger extends AbstractLogger
             $this->queue = array();
             return $this->config->sendBatch($batch, $this->getAccessToken());
         }
+        $this->verboseLogger()->debug('Queue flushed');
         return new Response(0, "Queue empty");
     }
 
@@ -99,17 +158,32 @@ class RollbarLogger extends AbstractLogger
         return count($this->queue);
     }
 
-    protected function send($toSend, $accessToken)
+    protected function send(\Rollbar\Payload\EncodedPayload $payload, $accessToken)
     {
+        if ($this->reportCount >= $this->config->getMaxItems()) {
+            $response = new Response(
+                0,
+                "Maximum number of items per request has been reached. If you " .
+                "want to report more items, please use `max_items` " .
+                "configuration option."
+            );
+            $this->verboseLogger()->warning($response->getInfo());
+            return $response;
+        } else {
+            $this->reportCount++;
+        }
+
         if ($this->config->getBatched()) {
             $response = new Response(0, "Pending");
             if ($this->getQueueSize() >= $this->config->getBatchSize()) {
                 $response = $this->flush();
             }
-            $this->queue[] = $toSend;
+            $this->queue[] = $payload;
+            $this->verboseLogger()->debug("Added payload to the queue (running in `batched` mode).");
             return $response;
         }
-        return $this->config->send($toSend, $accessToken);
+        
+        return $this->config->send($payload, $accessToken);
     }
 
     protected function getPayload($accessToken, $level, $toLog, $context)
@@ -129,28 +203,48 @@ class RollbarLogger extends AbstractLogger
         return $this->config->getDataBuilder();
     }
 
+    public function outputLogger()
+    {
+        return $this->config->outputLogger();
+    }
+
+    public function verboseLogger()
+    {
+        return $this->config->verboseLogger();
+    }
+
     protected function handleResponse($payload, $response)
     {
         $this->config->handleResponse($payload, $response);
     }
     
     /**
-     * @param Payload $payload
+     * @param array $serializedPayload
      * @return array
      */
-    protected function scrub(Payload $payload)
+    protected function scrub(array &$serializedPayload)
     {
-        $serialized = $payload->jsonSerialize();
-        $serialized['data'] = $this->config->getScrubber()->scrub($serialized['data']);
-        return $serialized;
+        $serializedPayload['data'] = $this->config->getScrubber()->scrub($serializedPayload['data']);
+        return $serializedPayload;
     }
     
     /**
-     * @param array $payload
-     * @return array
+     * @param \Rollbar\Payload\EncodedPayload $payload
+     * @return \Rollbar\Payload\EncodedPayload
      */
-    protected function truncate(array $payload)
+    protected function truncate(\Rollbar\Payload\EncodedPayload &$payload)
     {
         return $this->truncation->truncate($payload);
+    }
+    
+    /**
+     * @param array &$payload
+     * @return \Rollbar\Payload\EncodedPayload
+     */
+    protected function encode(array &$payload)
+    {
+        $encoded = new EncodedPayload($payload);
+        $encoded->encode();
+        return $encoded;
     }
 }

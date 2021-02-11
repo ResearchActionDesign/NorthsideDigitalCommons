@@ -8,7 +8,7 @@ use Rollbar\Payload\Level;
 use Rollbar\Payload\Message;
 use Rollbar\Payload\Payload;
 use Rollbar\RollbarLogger;
-
+use Rollbar\Defaults;
 
 use Rollbar\TestHelpers\Exceptions\SilentExceptionSampleRate;
 use Rollbar\TestHelpers\Exceptions\FiftyFiftyExceptionSampleRate;
@@ -20,7 +20,7 @@ class ConfigTest extends BaseRollbarTest
 {
     private $error;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->error = new ErrorWrapper(
             E_ERROR,
@@ -30,10 +30,12 @@ class ConfigTest extends BaseRollbarTest
             null,
             new Utilities
         );
+        parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
+        parent::tearDown();
         m::close();
     }
     
@@ -46,6 +48,172 @@ class ConfigTest extends BaseRollbarTest
             'environment' => $this->env
         ));
         $this->assertEquals($this->getTestAccessToken(), $config->getAccessToken());
+    }
+
+    public function testEnabled()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
+        ));
+        $this->assertTrue($config->enabled());
+        
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'enabled' => false
+        ));
+        $this->assertFalse($config->enabled());
+    }
+
+    public function testTransmit()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
+        ));
+        $this->assertTrue($config->transmitting());
+        
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'transmit' => false
+        ));
+        $this->assertFalse($config->transmitting());
+    }
+
+    public function testLogPayload()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
+        ));
+        $this->assertFalse($config->loggingPayload());
+        
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'log_payload' => true
+        ));
+        $this->assertTrue($config->loggingPayload());
+    }
+
+    public function testLoggingPayload()
+    {
+        $logPayloadLoggerMock = $this->getMockBuilder('\Psr\Log\LoggerInterface')->getMock();
+        $logPayloadLoggerMock->expects($this->once())
+                        ->method('debug')
+                        ->with(
+                            $this->matchesRegularExpression(
+                                '/Sending payload with .*:\n\{"data":/'
+                            )
+                        );
+        $senderMock = $this->getMockBuilder('\Rollbar\Senders\SenderInterface')
+                        ->getMock();
+        $senderMock->method('send')->willReturn(true);
+
+        $payload = new \Rollbar\Payload\EncodedPayload(array('data'=>array()));
+        $payload->encode();
+
+        $config = new Config(array(
+            "access_token" => $this->getTestAccessToken(),
+            "environment" => "testing-php",
+            "log_payload" => true,
+            "log_payload_logger" => $logPayloadLoggerMock,
+            "sender" => $senderMock
+        ));
+        $config->send($payload, $this->getTestAccessToken());
+    }
+
+    public function testConfigureLogPayloadLogger()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
+        ));
+        $this->assertInstanceOf('\Monolog\Logger', $config->logPayloadLogger());
+        $handlers = $config->logPayloadLogger()->getHandlers();
+        $handler = $handlers[0];
+        $this->assertInstanceOf('\Monolog\Handler\ErrorLogHandler', $handler);
+        $this->assertEquals(\Monolog\Logger::DEBUG, $handler->getLevel());
+
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'log_payload_logger' => new \Psr\Log\NullLogger()
+        ));
+        $this->assertInstanceOf('\Psr\Log\NullLogger', $config->logPayloadLogger());
+    }
+
+    public function testVerbose()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
+        ));
+        // assert the appropriate default logger
+        $this->assertEquals(Config::VERBOSE_NONE, $config->verbose());
+        $this->assertInstanceOf('\Monolog\Logger', $config->verboseLogger());
+        // assert the appropriate default handler
+        $handlers = $config->verboseLogger()->getHandlers();
+        $handler = $handlers[0];
+        $this->assertInstanceOf('\Monolog\Handler\ErrorLogHandler', $handler);
+        // assert the appropriate default handler level
+        $this->assertEquals($config->verboseInteger(), $handler->getLevel());
+        
+        // assert the verbosity level in the handler matches the level in the config
+        $config->configure(array('verbose' => \Psr\Log\LogLevel::DEBUG));
+        $handlers = $config->verboseLogger()->getHandlers();
+        $handler = $handlers[0];
+        $this->assertEquals($config->verboseInteger(), $handler->getLevel());
+    }
+
+    public function testVerboseInfo()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'verbose' => \Psr\Log\LogLevel::INFO
+        ));
+
+        $handlerMock = $this->getMockBuilder('\Monolog\Handler\ErrorLogHandler')
+            ->setMethods(array('handle'))
+            ->getMock();
+
+        $handlerMock->expects($this->once())->method('handle');
+
+        $config->verboseLogger()->setHandlers(array($handlerMock));
+
+        $config->verboseLogger()->info('Test trace');
+    }
+
+    public function testVerboseInteger()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'verbose' => Config::VERBOSE_NONE
+        ));
+        $this->assertEquals(1000, $config->verboseInteger());
+
+        $config->configure(array('verbose' => \Psr\Log\LogLevel::DEBUG));
+        $this->assertEquals(100, $config->verboseInteger());
+    }
+
+    public function testConfigureVerboseLogger()
+    {
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
+        ));
+        $this->assertInstanceOf('\Monolog\Logger', $config->verboseLogger());
+        
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'verbose_logger' => new \Psr\Log\NullLogger()
+        ));
+        $this->assertInstanceOf('\Psr\Log\NullLogger', $config->verboseLogger());
     }
 
     public function testAccessTokenFromEnvironment()
@@ -135,43 +303,45 @@ class ConfigTest extends BaseRollbarTest
 
     public function testMinimumLevel()
     {
-        $c = new Config(array(
-            "access_token" => $this->getTestAccessToken(),
-            "environment" => $this->env,
-            "minimumLevel" => "warning"
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env
         ));
-        $this->runConfigTest($c);
-
-        $c->configure(array("minimumLevel" => Level::WARNING));
-        $this->runConfigTest($c);
         
-        $c->configure(array("minimumLevel" => Level::WARNING()->toInt()));
-        $this->runConfigTest($c);
+        $this->assertPayloadNotIgnored($config, $this->prepareMockPayload(Level::DEBUG()));
+        
+        $config->configure(array('minimum_level' => Level::WARNING()));
+        
+        $this->assertPayloadIgnored($config, $this->prepareMockPayload(Level::DEBUG()));
+        $this->assertPayloadNotIgnored($config, $this->prepareMockPayload(Level::WARNING()));
+        
+        $config = new Config(array(
+            'access_token' => $this->getTestAccessToken(),
+            'environment' => $this->env,
+            'minimumLevel' => Level::ERROR()
+        ));
+        
+        $this->assertPayloadIgnored($config, $this->prepareMockPayload(Level::WARNING()));
+        $this->assertPayloadNotIgnored($config, $this->prepareMockPayload(Level::ERROR()));
     }
-
-    private function runConfigTest($config)
+    
+    public function assertPayloadIgnored($config, $payload)
     {
-        $accessToken = $config->getAccessToken();
-        $debugData = m::mock("Rollbar\Payload\Data")
+        $this->assertTrue($config->checkIgnored($payload, null, $this->error, false));
+    }
+    
+    public function assertPayloadNotIgnored($config, $payload)
+    {
+        $this->assertFalse($config->checkIgnored($payload, null, $this->error, false));
+    }
+    
+    private function prepareMockPayload($level)
+    {
+        $data = m::mock("Rollbar\Payload\Data")
             ->shouldReceive('getLevel')
-            ->andReturn(Level::DEBUG())
+            ->andReturn($level)
             ->mock();
-        $debug = new Payload($debugData, $accessToken);
-        $this->assertTrue($config->checkIgnored($debug, null, $this->error, false));
-
-        $criticalData = m::mock("Rollbar\Payload\Data")
-            ->shouldReceive('getLevel')
-            ->andReturn(Level::CRITICAL())
-            ->mock();
-        $critical = new Payload($criticalData, $accessToken);
-        $this->assertFalse($config->checkIgnored($critical, null, $this->error, false));
-
-        $warningData = m::mock("Rollbar\Payload\Data")
-            ->shouldReceive('getLevel')
-            ->andReturn(Level::warning())
-            ->mock();
-        $warning = new Payload($warningData, $accessToken);
-        $this->assertFalse($config->checkIgnored($warning, null, $this->error, false));
+        return new Payload($data, $this->getTestAccessToken());
     }
 
     public function testReportSuppressed()
@@ -205,7 +375,7 @@ class ConfigTest extends BaseRollbarTest
 
     public function testSender()
     {
-        $p = m::mock("Rollbar\Payload\Payload");
+        $p = m::mock("Rollbar\Payload\EncodedPayload");
         $sender = m::mock("Rollbar\Senders\SenderInterface")
             ->shouldReceive("send")
             ->with($p, $this->getTestAccessToken())
@@ -257,6 +427,48 @@ class ConfigTest extends BaseRollbarTest
         $this->assertEquals("bar", $custom["foo"]);
         $this->assertEquals("buzz", $custom["fuzz"]);
     }
+    
+    public function testMaxItems()
+    {
+        $config = new Config(array(
+            "access_token" => $this->getTestAccessToken()
+        ));
+        
+        $this->assertEquals(Defaults::get()->maxItems(), $config->getMaxItems());
+        
+        $config = new Config(array(
+            "access_token" => $this->getTestAccessToken(),
+            "max_items" => Defaults::get()->maxItems()+1
+        ));
+        
+        $this->assertEquals(Defaults::get()->maxItems()+1, $config->getMaxItems());
+    }
+    
+    public function testCustomDataMethod()
+    {
+        $logger = new RollbarLogger(array(
+            "access_token" => $this->getTestAccessToken(),
+            "environment" => $this->env,
+            "custom_data_method" => function ($toLog, $customDataMethodContext) {
+                
+                return array(
+                    'data_from_my_custom_method' => $customDataMethodContext['foo']
+                );
+            }
+        ));
+        
+        $dataBuilder = $logger->getDataBuilder();
+        
+        $result = $dataBuilder->makeData(
+            Level::ERROR,
+            new \Exception(),
+            array(
+                'custom_data_method_context' => array('foo' => 'bar')
+            )
+        )->getCustom();
+        
+        $this->assertEquals('bar', $result['data_from_my_custom_method']);
+    }
 
     public function testEndpointDefault()
     {
@@ -297,6 +509,17 @@ class ConfigTest extends BaseRollbarTest
             $config->getSender()->getEndpoint()
         );
     }
+    
+    public function testRaiseOnError()
+    {
+        $config = new Config(array(
+            "access_token" => $this->getTestAccessToken(),
+            "environment" => $this->env,
+            "raise_on_error" => true
+        ));
+        
+        $this->assertTrue($config->getRaiseOnError());
+    }
 
     public function testSendMessageTrace()
     {
@@ -322,7 +545,7 @@ class ConfigTest extends BaseRollbarTest
         $config = new Config(array(
             "access_token" => $this->getTestAccessToken(),
             "environment" => $this->env,
-            "checkIgnore" => function () use (&$called) {
+            "check_ignore" => function () use (&$called) {
                 $called = true;
             }
         ));
@@ -353,7 +576,7 @@ class ConfigTest extends BaseRollbarTest
         $config = new Config(array(
             "access_token" => $this->getTestAccessToken(),
             "environment" => $this->env,
-            "checkIgnore" => function (
+            "check_ignore" => function (
                 $isUncaught,
                 $exc
             ) use (
@@ -416,7 +639,7 @@ class ConfigTest extends BaseRollbarTest
         $config = new Config(array(
             "access_token" => $this->getTestAccessToken(),
             "environment" => $this->env,
-            "checkIgnore" => function () use (&$called) {
+            "check_ignore" => function () use (&$called) {
                 $called = true;
             },
             "use_error_reporting" => $use_error_reporting

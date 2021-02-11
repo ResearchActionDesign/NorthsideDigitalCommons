@@ -15,6 +15,10 @@ class ComposerStaticInit4d1aac20cabf60959fc9162f214fc69b
         array (
             'Psr\\Log\\' => 8,
         ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -26,6 +30,14 @@ class ComposerStaticInit4d1aac20cabf60959fc9162f214fc69b
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+    );
+
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -33,6 +45,7 @@ class ComposerStaticInit4d1aac20cabf60959fc9162f214fc69b
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit4d1aac20cabf60959fc9162f214fc69b::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4d1aac20cabf60959fc9162f214fc69b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit4d1aac20cabf60959fc9162f214fc69b::$classMap;
 
         }, null, ClassLoader::class);
     }
