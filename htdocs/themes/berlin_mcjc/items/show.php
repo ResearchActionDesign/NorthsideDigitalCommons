@@ -63,9 +63,18 @@ if ($itemType === 'Oral History' && count($depicted_items ?? []) === 1) {
 $itemClasses = '';
 $description = false;
 $picture = false;
+$isPdf = '';
 if (metadata('item', 'has files')) {
     $itemClasses = ' has-picture';
     $picture = mcjc_item_image('fullsize', ['alt' => $itemTitle]);
+
+    if (!$picture && $itemTypeRaw === 'Document') {
+        // Check if this is a pdf document and set classes accordingly.
+        $imageFile = $item->getFile(0);
+        if ($imageFile->mime_type === 'application/pdf') {
+            $isPdf = 'is-pdf';
+        }
+    }
 }
 if (metadata('item', ['Dublin Core', 'Description'])) {
     $itemClasses .= ' has-description';
@@ -80,7 +89,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php echo common('breadcrumbs', [
     'trail' => $breadcrumbTrail,
 ]); ?>
-<div class="primary <?php echo "{$itemTypeClass} {$itemClasses}"; ?>">
+<div class="primary <?php echo "{$itemTypeClass} {$itemClasses} {$isPdf}"; ?>">
         <div class="item-content">
             <span class="item-type"><?php echo $itemType; ?></span>
             <h1><?php echo $itemTitle; ?></h1>
@@ -107,7 +116,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
               'title' => $itemTitle,
           ]); ?>
         </div>
-        <div class="item-sidebar">
+        <div class="item-sidebar<?php echo $isPdf ? ' is-pdf' : ''; ?>">
         <?php if ($picture): ?>
         <div id="picture" class="element">
             <div class="item-images"><?php echo $picture; ?></div>
@@ -162,9 +171,9 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
       </p>
         <?php endif; ?>
       <?php if ($rights): ?>
-          <p id="item-rights" class="element"><strong><span class="element-title"><?php echo __(
+          <p id="item-rights" class="element"><span class="element-title"><?php echo __(
               'Rights: '
-          ); ?></span><span class="element-text"><?php echo $rights; ?></span></strong></p>
+          ); ?></span><span class="element-text"><?php echo $rights; ?></span></p>
       <?php endif; ?>
       <?php if ($sohpUrl): ?>
         <p class="element"><a href="<?php echo $sohpUrl; ?>"><i class="fa fa-external-link"></i>View this interview on the Southern Oral History Program

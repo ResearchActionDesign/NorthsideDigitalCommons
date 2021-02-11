@@ -72,6 +72,36 @@
   }
 }
 
+#itemfiles div + div {
+  margin-top: 0.5em;
+}
+
+#itemfiles {
+  .item-images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 344px; // Align with audio player width.
+    justify-content: space-between;
+  }
+}
+
+.items.show {
+  .primary.is-pdf {
+    display: flex;
+    flex-direction: column;
+
+    .item-sidebar {
+      margin-top: 24px;
+
+      #itemfiles {
+        .item-images {
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: $tablet-width) {
   .items.show,
   .person.show,

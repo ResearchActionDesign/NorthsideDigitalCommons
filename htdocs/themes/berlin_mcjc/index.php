@@ -17,7 +17,7 @@
             <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.m4a" type="audio/mpeg"/>
         </audio>
         <div id="homepage-video-controls-prompt">
-            <em>Hover or tap to turn on audio</em>
+            <em>hover or tap for audio controls</em>
         </div>
         <div id="homepage-video-controls">
             <button class="button" id="unmute-button"><i class="fa fa-volume-off"></i><span class="button-text">Listen</span></button>
