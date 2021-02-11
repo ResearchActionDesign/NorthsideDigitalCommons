@@ -26,6 +26,9 @@
 
     .item-content {
       grid-area: content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
       .description {
         margin-top: 12px;
@@ -54,6 +57,8 @@
   .tags-container {
     @include container;
     margin-top: 48px !important;
+    border-top: 2px solid $green;
+    padding-top: 24px;
   }
 }
 
@@ -85,6 +90,10 @@
 
       .item-content {
         order: 1;
+      }
+
+      .item-sidebar {
+        margin-bottom: 1em;
       }
     }
   }

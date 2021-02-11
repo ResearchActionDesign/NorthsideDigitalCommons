@@ -20,12 +20,16 @@ if (!empty($_GET['advanced'])) {
 }
 ?>
 <?php if ($options['expanded'] ?? false): ?>
-  <?php $item_type_options = ['All', 'Person', 'Image', 'Story', 'Topic']; ?>
 <div class="search-options">
-<div class="field">
-    <label for="query"><?php echo __('Search Term'); ?></label>
+    <label for="query"><?php echo __('Your search term:'); ?></label>
+    <div class="field">
   <?php echo $this->formText('query', $filters['query'], [
       'title' => __('Search'),
+  ]); ?>
+  <?php echo $this->formButton('submit_search', $options['submit_value'], [
+      'type' => 'submit',
+      'content' => 'Search Again',
+      'class' => 'button',
   ]); ?>
 </div>
 </div>
@@ -34,10 +38,10 @@ if (!empty($_GET['advanced'])) {
     'title' => __('Search'),
     'placeholder' => 'Enter a search term',
 ]); ?>
+  <?php echo $this->formButton('submit_search', $options['submit_value'], [
+      'type' => 'submit',
+      'content' => $options['expanded'] ?? 'Search',
+      'class' => 'button',
+  ]); ?>
 <?php endif; ?>
-<?php echo $this->formButton('submit_search', $options['submit_value'], [
-    'type' => 'submit',
-    'content' => $options['expanded'] ?? false ? 'Search Again' : 'Search',
-    'class' => 'button',
-]); ?>
 </form>

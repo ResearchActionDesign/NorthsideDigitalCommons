@@ -63,7 +63,7 @@
     margin-top: 0;
   }
 
-  #content div.have-you-heard__container {
+  div.have-you-heard__container {
     .have-you-heard__item {
       background: $purple--dark;
       color: white;
@@ -72,9 +72,6 @@
       padding: 1em;
       min-height: 13rem;
       display: flex;
-
-      img.question-mark {
-      }
 
       p:first-child {
         font-size: 2em;
@@ -203,8 +200,14 @@
       }
     }
 
-    div.have-you-heard__container .have-you-heard {
-      padding: 1.35em;
+    div.have-you-heard__container {
+      .have-you-heard__item {
+        display: block;
+
+        img.question-mark {
+          float: left;
+        }
+      }
     }
   }
 }

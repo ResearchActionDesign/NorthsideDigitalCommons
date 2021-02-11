@@ -138,6 +138,14 @@ div.grid-container {
     grid-template-columns: repeat(auto-fill, $square-thumbnail-size);
     justify-content: center;
 
+    &.grid-count-1 {
+      grid-template-columns: repeat(1, $square-thumbnail-size);
+    }
+
+    &.grid-count-2 {
+      grid-template-columns: repeat(2, $square-thumbnail-size);
+    }
+
     .item {
       height: $square-thumbnail-size;
 

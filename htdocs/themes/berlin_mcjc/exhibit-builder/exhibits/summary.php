@@ -58,7 +58,9 @@ echo common('breadcrumbs', ['trail' => $breadcrumbs]);
 <?php if ($pageList): ?>
 <div class="explore-grid grid-container exhibit-pages">
     <h2>In this Exhibit</h2>
-    <div class="grid-items">
+    <div class="grid-items <?php echo count($pageList) < 3
+        ? 'grid-count-' . count($pageList)
+        : ''; ?>">
         <?php foreach ($pageList as $page): ?>
           <?php echo common('exhibit-grid-item', [
               'item' => $page,

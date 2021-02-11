@@ -18,35 +18,6 @@ h2 {
 
 /* @end */
 
-/* @group ----- Home Page ----- */
-
-.featured,
-.featured-wrapper,
-#featured-exhibit {
-  .image {
-    float: none;
-    text-align: center;
-
-    img {
-      float: none;
-    }
-  }
-}
-.featured-wrapper--collection {
-  border-bottom: 1px solid $grey--medium;
-  margin-bottom: 1.5em;
-}
-
-.featured-wrapper {
-  border-top: 1px solid $grey--medium;
-}
-
-.featured-item__background-image {
-  height: 200px;
-}
-
-/* @end */
-
 /* @group ----- Items ----- */
 
 #item-images {

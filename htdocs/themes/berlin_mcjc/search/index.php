@@ -34,7 +34,7 @@ if ($query !== '') {
         </div>
       <?php if (count($searchTagResults)): ?>
           <div class="search-results--tags">
-              <p>Your search matched the following tags:</p>
+              <p>In addition to the search results, you might try checking out the following topics:</p>
             <?php echo mcjc_tags_list($searchTagResults); ?>
           </div>
       <?php endif; ?>
@@ -107,6 +107,11 @@ if ($query !== '') {
             'exhibit' => 'Exhibits',
         ];
         ?>
+      <?php if (
+          $searchResultsText = get_theme_option('search_results_text')
+      ): ?>
+          <p><?php echo $searchResultsText; ?></p>
+      <?php endif; ?>
       <?php elseif ($query !== ''): ?>
           <p><?php echo get_theme_option('search_no_results_text') ??
               __(
@@ -165,10 +170,10 @@ if ($query !== '') {
         <?php echo pagination_links(); ?>
       <?php elseif ($query !== ''): ?>
           <a href="/people" class="button"><?php echo __(
-              "Browse all people"
+              "Browse people"
           ); ?></a>
           <a href="/topics" class="button"><?php echo __(
-              "Browse all topics"
+              "Browse topics"
           ); ?></a>
       <?php endif; ?>
     </div>

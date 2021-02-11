@@ -181,9 +181,7 @@ div.audio-greeting {
       font-size: 20px;
     }
   }
-}
 
-@media only screen and (max-width: $tablet-width) {
   .hero-image-content {
     blockquote,
     p {
@@ -193,5 +191,12 @@ div.audio-greeting {
     .image-text {
       width: 100%;
     }
+  }
+}
+
+@media only screen and (max-width: $narrow-screen) {
+  #audio-greeting-button {
+    right: 1em;
+    top: -2em;
   }
 }

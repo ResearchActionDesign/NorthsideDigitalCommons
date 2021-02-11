@@ -18,6 +18,8 @@ module.exports = {
       /blockquote/,
       /cite/,
       /tns-nav/,
+      /exhibit/,
+      /grid-count/,
     ],
   },
 };

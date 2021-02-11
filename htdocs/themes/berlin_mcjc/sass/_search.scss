@@ -1,4 +1,16 @@
 .search {
+  .hero-image-content {
+    color: $black;
+    text-shadow: 0px 3px 6px white;
+
+    h1 {
+      color: $black;
+    }
+
+    .image-text {
+      font-size: 1.5em;
+    }
+  }
   .search-results--header,
   .search-results--body {
     @include container;
@@ -26,7 +38,7 @@
 
   // Search form on search page
   .search-results--form {
-    margin-bottom: 48px;
+    margin-bottom: 24px;
 
     form {
       display: flex;
@@ -45,12 +57,25 @@
         width: 40vw;
         min-width: 300px;
         margin: 0.5em 0;
+        margin-right: 1em;
       }
 
       button#submit_search {
-        height: 3em;
-        margin: 0.5em 1em;
+        height: 2.5em;
+        margin: 0.5em 0;
       }
+    }
+  }
+
+  .search-results--tags {
+    p {
+      margin-bottom: 6px;
+    }
+
+    margin-bottom: 24px;
+
+    .tags__tag {
+      font-weight: bold;
     }
   }
 
@@ -72,6 +97,10 @@
     .item-title {
       margin-top: 0;
       font-weight: bold;
+    }
+
+    .item-description {
+      text-shadow: 0px 0px 3px white;
     }
 
     .item-img {
