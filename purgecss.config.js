@@ -23,6 +23,8 @@ module.exports = {
       /exhibit/,
       /grid-count/,
       /item-file/,
+      /typeform/,
+      /embed/,
     ],
   },
 };
