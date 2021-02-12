@@ -12,7 +12,7 @@ if (isset($description)) {
 }
 
 if (!isset($description) || empty($description)) {
-    $desription = option('description');
+    $description = option('description');
 }
 
 if (isset($title)) {
@@ -48,7 +48,7 @@ $title = implode(' | ', $titleParts);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
     <meta name="title" content="<?php echo $title; ?>" />
-    <?php if ($description): ?>
+    <?php if (!empty($description)): ?>
     <meta name="description" content="<?php echo $description; ?>" />
     <meta property="twitter:description" content="<?php echo $description; ?>">
     <meta property="og:description" content="<?php echo $description; ?>">
