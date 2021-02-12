@@ -129,7 +129,9 @@ function mcjc_item_image_url($item = null)
     }
     if ($item) {
         $imageFile = $item->getFile($index);
-        return $imageFile->getWebPath('fullsize');
+        if ($imageFile) {
+            return $imageFile->getWebPath('fullsize');
+        }
     }
     return false;
 }
