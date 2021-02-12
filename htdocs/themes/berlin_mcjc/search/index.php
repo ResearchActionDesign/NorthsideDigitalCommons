@@ -83,6 +83,8 @@ if ($query !== '') {
                     );
                     break;
                 case 'ExhibitPage':
+                    $searchText['display_type'] = 'Exhibit Page';
+                    break;
                 case 'Exhibit':
                     $searchText['display_type'] = 'Exhibit';
                     break;

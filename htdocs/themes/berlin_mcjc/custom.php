@@ -461,9 +461,6 @@ function _mcjc_oral_history_metadata_paragraph($item)
         $metadata['processor']
             ? "Processed by {$metadata['processor']}."
             : false,
-        $metadata['publisher']
-            ? "Published by {$metadata['publisher']}."
-            : false,
     ];
 
     return implode(" ", array_filter($sentences));
@@ -505,9 +502,6 @@ function _mcjc_image_metadata_paragraph($item)
     $sentences = [
         count($first_sentence_chunks)
             ? implode(" ", array_filter($first_sentence_chunks)) . '.'
-            : false,
-        $metadata['publisher']
-            ? "Published by {$metadata['publisher']}."
             : false,
     ];
 
