@@ -75,7 +75,6 @@ class MCJCDeployment_View_Helper_McjcImageTag extends Omeka_View_Helper_FileMark
     }
     $attrs['alt'] = $alt;
 
-    $title = '';
     if (isset($attrs['title'])) {
       $title = $attrs['title'];
     } else {

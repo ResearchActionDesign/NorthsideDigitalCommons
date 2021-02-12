@@ -44,7 +44,6 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
   public function derivativeImage($file, array $options=array())
   {
     $html = '';
-    $imgHtml = '';
 
     // Should we ever include more image sizes by default, this will be
     // easier to modify.
@@ -95,6 +94,9 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     // item.
     if ($displayAsLink) {
       if ($options['show'] === TRUE || !$options['item']) {
+        if (substr($file->mime_type, 0, 5) === 'image') {
+          $options['linkToFile'] = 'fullsize';
+        }
         $html = $this->_linkToFile($file, $options, $html);
       } else {
         $html = link_to_item($html, $options['item'], array('class' => $imgClasses[$imageSize]), 'show');
