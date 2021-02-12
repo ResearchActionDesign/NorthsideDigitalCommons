@@ -8,7 +8,7 @@ $commit_hash = "1";
 
 // Generate social media metadata
 if (isset($description)) {
-    $description = strip_formatting($description);
+    $description = htmlentities(strip_formatting($description));
 }
 
 if (!isset($description) || empty($description)) {
@@ -16,7 +16,7 @@ if (!isset($description) || empty($description)) {
 }
 
 if (isset($title)) {
-    $titleParts[] = trim(strip_formatting($title));
+    $titleParts[] = htmlentities(trim(strip_formatting($title)));
 }
 $titleParts[] = option('site_title');
 $title = implode(' | ', $titleParts);

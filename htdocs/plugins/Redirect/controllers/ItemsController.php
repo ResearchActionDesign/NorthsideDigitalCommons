@@ -30,10 +30,9 @@ class Redirect_ItemsController extends Omeka_Controller_AbstractActionController
   }
 
   public function showAction() {
-    $singularName = $this->view->singularize($this->_helper->db->getDefaultModelName());
     $record = $this->_helper->db->findById();
     $record_url = $this->view->getRecordFullIdentifier($record);
-    if (stripos($record_url, 'items' !== 0)) {
+    if (stripos($record_url, 'items') !== 0) {
       $redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('Redirector');
       return $redirector->gotoUrlAndExit($record_url);
     }
