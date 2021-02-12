@@ -1,10 +1,11 @@
 <?php
 
-$pageTitle = __('Browse Items');
-echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
-?>
+echo head(['title' => $tag_name, 'bodyclass' => 'items browse']); ?>
 <?php echo common('breadcrumbs', [
-    'trail' => ['Tags'],
+    'trail' => [
+        'Tags' => '/tags',
+        $tag_name,
+    ],
 ]); ?>
 
 <h1><?php echo $tag_name; ?></h1>

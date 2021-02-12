@@ -1,4 +1,15 @@
 .tags {
+  .hero-image-content {
+    color: $black;
+    text-shadow: 0px 3px 6px white;
+
+    h1 {
+      color: $black;
+    }
+  }
+}
+
+:not(body).tags {
   @include container;
 
   .tags-title {

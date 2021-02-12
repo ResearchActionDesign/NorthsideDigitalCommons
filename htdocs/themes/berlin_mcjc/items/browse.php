@@ -4,22 +4,22 @@ $pageTitle = __('Browse Items');
 echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
 ?>
 
+
+<?php echo common('breadcrumbs', [
+    'trail' => ['Items'],
+]); ?>
+
 <h1><?php echo $pageTitle; ?> <?php echo __(
      '(%s total)',
      $total_results
  ); ?></h1>
-<div class="background-container">
-
-<nav class="items-nav navigation secondary-nav">
-  <?php echo public_nav_items(); ?>
-</nav>
-
+  <div class="filter_container">
 <?php echo item_search_filters(); ?>
 
 <?php if ($total_results > 0):
 
     $sortLinks[__('Title')] = 'Dublin Core,Title';
-    $sortLinks[__('Creator')] = 'Dublin Core,Creator';
+    $sortLinks[__('Subject')] = 'Dublin Core,Subject';
     $sortLinks[__('Date Added')] = 'added';
     ?>
 <div id="sort-links">
@@ -27,9 +27,11 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
       'Sort by: '
   ); ?></span><?php echo browse_sort_links($sortLinks); ?>
 </div>
+  </div>
 
 <?php
 endif; ?>
+<div class="background-container">
 
 <div class="grid-container">
     <div class="grid-items">

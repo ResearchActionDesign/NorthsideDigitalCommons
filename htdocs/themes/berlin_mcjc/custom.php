@@ -588,3 +588,47 @@ function mcjc_get_have_you_heard()
 
     return $haveYouHeard;
 }
+
+/**
+ * Custom version -- return a tag string given an Item, Exhibit, or a set of tags.
+ */
+function mcjc_tag_string(
+    $recordOrTags = null,
+    $link = 'items/browse',
+    $delimiter = null
+) {
+    // Set the tag_delimiter option if no delimiter was passed.
+    if (is_null($delimiter)) {
+        $delimiter = get_option('tag_delimiter') . ' ';
+    }
+
+    if (!$recordOrTags) {
+        $tags = [];
+    } elseif (is_string($recordOrTags)) {
+        $tags = get_current_record($recordOrTags)->Tags;
+    } elseif ($recordOrTags instanceof Omeka_Record_AbstractRecord) {
+        $tags = $recordOrTags->Tags;
+    } else {
+        $tags = $recordOrTags;
+    }
+
+    if (empty($tags)) {
+        return '';
+    }
+
+    $tagStrings = [];
+    foreach ($tags as $tag) {
+        $name = $tag['name'];
+        if (!$link) {
+            $tagStrings[] = html_escape($name);
+        } else {
+            $tagStrings[] =
+                '<a href="/tags/' .
+                html_escape($name) .
+                '" rel="tag">' .
+                html_escape($name) .
+                '</a>';
+        }
+    }
+    return join(html_escape($delimiter), $tagStrings);
+}

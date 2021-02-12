@@ -227,7 +227,8 @@ article {
   margin-top: 48px;
 }
 
-.breadcrumbs {
+.breadcrumbs,
+.container {
   @include container;
 }
 

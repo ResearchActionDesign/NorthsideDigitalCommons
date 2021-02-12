@@ -46,7 +46,7 @@ echo common('breadcrumbs', ['trail' => $breadcrumbs]);
 </div>
 <?php endif; ?>
 </div>
-<?php if ($exhibitTags = tag_string('exhibit')): ?>
+<?php if ($exhibitTags = mcjc_tag_string('exhibit')): ?>
     <div id="item-tags" class="element">
         <span class="element-title"><?php echo __('Tags: '); ?></span>
         <span class="element-text"><?php echo $exhibitTags; ?></span>

@@ -63,7 +63,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 </div>
 
 <?php
-$tags = tag_string('item');
+$tags = mcjc_tag_string('item');
 $metadata_paragraph = mcjc_element_metadata_paragraph($item);
 $citation = metadata('item', 'citation', [
     'no_escape' => true,

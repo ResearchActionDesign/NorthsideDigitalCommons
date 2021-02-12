@@ -11,22 +11,22 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'tags list']);
 echo flash();
 ?>
 
+
+<?php echo common('breadcrumbs', [
+    'trail' => ['Tags'],
+]); ?>
+<?php echo common('hero-image-header', [
+    'title' => $pageTitle,
+    'className' => 'tags',
+    'headerText' => $pageDescription,
+]); ?>
+
 <?php if (count($tags)): ?>
-<div class="tags-title">
-  <h1><?php echo $pageTitle; ?></h1>
-  <p><?php echo $pageDescription; ?></p>
-</div>
 <?php
 usort($tags, 'strnatcasecmp');
 $tagsByLetter = mcjc_sort_tags_by_first_letter($tags);
 $validLetters = array_keys($tagsByLetter);
 ?>
-<div class="background-container">
-
-
-<?php
-    /* This chunk of code similar to people/index/browse.php, potentially abstract into a function */
-    ?>
 <div class="filter-by-letter">
   <span><?php echo __('SCROLL TO LETTER'); ?></span>
   <ul>
@@ -47,7 +47,7 @@ $validLetters = array_keys($tagsByLetter);
     <?php endforeach; ?>
   </ul>
 </div>
-
+<div class="container">
 <?php foreach ($validLetters as $letter): ?>
 <div class="tags-content">
   <div class=" tags__letter" id="<?php echo $letter; ?>">
