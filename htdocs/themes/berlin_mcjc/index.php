@@ -8,13 +8,14 @@
 <?php if (get_theme_option('homepage_video')): ?>
     <div id="homepage-video">
         <video id="homepage-video-element" autoplay width="100%" preload="auto" loop poster="/themes/berlin_mcjc/assets/images/homepage_video.jpg" muted playsinline>
-            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig--vp9.webm" type="video/webm;codecs=vp9, vorbis">
-            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.webm" type="video/webm;codecs=vp8, vorbis">
+            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig--vp9.webm" type="video/webm;codecs=vp9,vorbis">
+            <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.webm" type="video/webm;codecs=vp8,vorbis">
             <source src="/themes/berlin_mcjc/assets/video/MCJCOrig.mp4" type="video/mp4">
         </video>
-        <audio id="homepage-background-audio">
-            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.ogg" type="audio/ogg"/>
-            <source src="/themes/berlin_mcjc/assets/audio/Theres-a-Struggle-Going-On.m4a" type="audio/mpeg"/>
+        <audio id="homepage-background-audio" preload="metadata">
+            <source src="/themes/berlin_mcjc/assets/audio/homepage.ogg" type="audio/ogg"/>
+            <source src="/themes/berlin_mcjc/assets/audio/homepage.m4a" type="audio/mp4"/>
+            <p>Your browser does not support audio, <a href="/themes/berlin_mcjc/assets/audio/homepage.m4a">click here to access the file directly</a></p>
         </audio>
         <div id="homepage-video-controls-prompt">
             <em>hover or tap for audio controls</em>
