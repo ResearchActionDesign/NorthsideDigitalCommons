@@ -170,7 +170,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
         <span class="element-text"><?php echo $citation; ?></span>
       </p>
         <?php endif; ?>
-      <?php if ($rights): ?>
+      <?php if ($rights && $rights !== 'Open for research.'): ?>
           <p id="item-rights" class="element"><span class="element-title"><?php echo __(
               'Rights: '
           ); ?></span><span class="element-text"><?php echo $rights; ?></span></p>
