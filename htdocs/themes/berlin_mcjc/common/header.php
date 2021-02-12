@@ -16,6 +16,9 @@ if (isset($title)) {
 }
 $titleParts[] = option('site_title');
 $title = implode(' | ', $titleParts);
+if (isset($description)) {
+    $description = strip_formatting($description);
+}
 ?>
 <head>
     <?php
@@ -46,7 +49,7 @@ $title = implode(' | ', $titleParts);
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="<?php echo $title; ?>">
 
-    <?php if (false): ?>
+    <?php if ($image = mcjc_item_image_url()): ?>
     <meta property="twitter:image" content="<?php echo $image; ?>">
     <meta property="og:image" content="<?php echo $image; ?>">
     <?php endif; ?>

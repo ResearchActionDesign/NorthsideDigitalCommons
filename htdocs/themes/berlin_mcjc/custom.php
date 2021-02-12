@@ -125,10 +125,13 @@ function mcjc_files_for_item(
 function mcjc_item_image_url($item = null)
 {
     if (!$item) {
-        $item = get_current_record('item');
+        $item = get_current_record('item', false);
     }
-    $imageFile = $item->getFile($index);
-    return $imageFile->getWebPath('fullsize');
+    if ($item) {
+        $imageFile = $item->getFile($index);
+        return $imageFile->getWebPath('fullsize');
+    }
+    return false;
 }
 
 /**
