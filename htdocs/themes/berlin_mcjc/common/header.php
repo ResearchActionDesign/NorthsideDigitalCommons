@@ -46,7 +46,7 @@ $title = implode(' | ', $titleParts);
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="<?php echo $title; ?>">
 
-    <?php if ($image = mcjc_item_image_url()): ?>
+    <?php if (false): ?>
     <meta property="twitter:image" content="<?php echo $image; ?>">
     <meta property="og:image" content="<?php echo $image; ?>">
     <?php endif; ?>
