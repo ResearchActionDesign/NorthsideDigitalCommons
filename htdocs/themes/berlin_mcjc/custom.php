@@ -120,6 +120,18 @@ function mcjc_files_for_item(
 }
 
 /**
+ * Get URL to the image, for use in social metadata.
+ */
+function mcjc_item_image_url($item = null)
+{
+    if (!$item) {
+        $item = get_current_record('item');
+    }
+    $imageFile = $item->getFile($index);
+    return $imageFile->getWebPath('fullsize');
+}
+
+/**
  * Get a customized item image tag, using Lity to display image.
  *
  * @package Omeka\Function\View\Item

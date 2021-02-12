@@ -1,8 +1,4 @@
 <?php $itemTitle = metadata('item', 'display_title'); ?>
-<?php echo head([
-    'title' => $itemTitle,
-    'bodyclass' => 'people show person',
-]); ?>
 <?php
 $backButtonText = __('Back to all people');
 $itemClasses = "";
@@ -17,6 +13,12 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     $bio = metadata('item', ['Dublin Core', 'Description']);
 }
 ?>
+
+<?php echo head([
+    'title' => $itemTitle,
+    'bodyclass' => 'people show person',
+    'description' => $bio,
+]); ?>
 <?php echo common('breadcrumbs', [
     'trail' => ['People' => '/people', $itemTitle => false],
 ]); ?>

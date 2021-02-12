@@ -5,6 +5,17 @@
 <?php
 $commit_hash = "1";
 @include 'commit-hash.php';
+
+// Generate social media metadata
+if (!isset($description) || empty($description)) {
+    $desription = option('description');
+}
+
+if (isset($title)) {
+    $titleParts[] = trim(strip_formatting($title));
+}
+$titleParts[] = option('site_title');
+$title = implode(' | ', $titleParts);
 ?>
 <head>
     <?php
@@ -21,17 +32,26 @@ $commit_hash = "1";
           href="/themes/berlin_mcjc/css/style.css?v=<?php echo $commit_hash; ?>" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <?php if ($description = option('description')): ?>
+
+    <meta name="title" content="<?php echo $title; ?>" />
+    <?php if ($description): ?>
     <meta name="description" content="<?php echo $description; ?>" />
+    <meta property="twitter:description" content="<?php echo $description; ?>">
+    <meta property="og:description" content="<?php echo $description; ?>">
     <?php endif; ?>
 
-    <?php
-    if (isset($title)) {
-        $titleParts[] = strip_formatting($title);
-    }
-    $titleParts[] = option('site_title');
-    ?>
-    <title><?php echo implode(' &middot; ', $titleParts); ?></title>
+    <meta property="og:url" content="<?php echo absolute_url(); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?php echo $title; ?>">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="<?php echo $title; ?>">
+
+    <?php if ($image = mcjc_item_image_url()): ?>
+    <meta property="twitter:image" content="<?php echo $image; ?>">
+    <meta property="og:image" content="<?php echo $image; ?>">
+    <?php endif; ?>
+
+    <title><?php echo $title; ?></title>
 
     <?php echo auto_discovery_link_tags(); ?>
 

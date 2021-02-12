@@ -84,6 +84,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
 <?php echo head([
     'title' => $itemTitle,
     'bodyclass' => "items show {$itemTypeClass}",
+    'description' => $description,
 ]); ?>
 
 <?php echo common('breadcrumbs', [
