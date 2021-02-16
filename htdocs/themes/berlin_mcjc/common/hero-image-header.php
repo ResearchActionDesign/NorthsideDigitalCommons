@@ -12,9 +12,9 @@ $heroImageClasses = join(
 $className = $className[0];
 
 $audioGreetingFile = file_exists(
-    getcwd() . "/themes/berlin_mcjc/assets/audio/greetings/{$className}.m4a"
+    getcwd() . "/themes/berlin_mcjc/assets/audio/greetings/{$className}.mp3"
 )
-    ? "/themes/berlin_mcjc/assets/audio/greetings/{$className}.m4a"
+    ? "/themes/berlin_mcjc/assets/audio/greetings/{$className}.mp3"
     : false;
 $audioGreetingFileOgg = "/themes/berlin_mcjc/assets/audio/greetings/{$className}.ogg";
 $audioGreetingImage = file_exists(
@@ -29,7 +29,7 @@ $audioGreetingImage = file_exists(
       <div class="audio-greeting">
           <audio id="audio-greeting-element">
               <source src="<?php echo $audioGreetingFileOgg; ?>" type="audio/ogg"/>
-              <source src="<?php echo $audioGreetingFile; ?>" type="audio/mp4"/>
+              <source src="<?php echo $audioGreetingFile; ?>" type="audio/mp3"/>
               <p>Your browser does not support this audio. <a href="<?php echo $audioGreetingFile; ?>">Click here to access the file directly</a>.</p>
           </audio>
           <button id="audio-greeting-button">

@@ -14,7 +14,7 @@
         </video>
         <audio id="homepage-background-audio" preload="metadata">
             <source src="/themes/berlin_mcjc/assets/audio/homepage.ogg" type="audio/ogg"/>
-            <source src="/themes/berlin_mcjc/assets/audio/homepage.m4a" type="audio/mp4"/>
+            <source src="/themes/berlin_mcjc/assets/audio/homepage.mp3" type="audio/mp3"/>
             <p>Your browser does not support audio, <a href="/themes/berlin_mcjc/assets/audio/homepage.m4a">click here to access the file directly</a></p>
         </audio>
         <div id="homepage-video-controls-prompt">
