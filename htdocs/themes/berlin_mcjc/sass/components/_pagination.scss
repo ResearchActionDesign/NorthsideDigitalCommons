@@ -24,7 +24,10 @@
     }
   }
 
-  .pagination .page-inputactive {
-    font-weight: 700;
+  .pagination .page-input.active {
+    font-weight: bold;
+    a {
+      color: $purple--light;
+    }
   }
 }

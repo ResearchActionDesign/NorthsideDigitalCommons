@@ -19,7 +19,7 @@ if ($this->pageCount > 1):
           as $pageNumber
       ): ?>
             <li class="page-input<?php echo $current === $pageNumber
-                ? 'active'
+                ? ' active'
                 : ''; ?>">
         <?php if (
             $first < $firstPageInRange &&
