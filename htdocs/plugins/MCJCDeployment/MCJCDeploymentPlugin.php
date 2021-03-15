@@ -576,6 +576,11 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
     if ((double)$params['old_version'] < 2.20) {
       $this->fillEmptyPermalinks();
     }
+
+    if ((double)$params['old_version'] < 2.21) {
+      require('util/TagUpdates.php');
+      $this->updateTags($MAR_2021_TAG_UPDATES);
+    }
   }
 
   protected function updateTags($tag_updates_array) {
