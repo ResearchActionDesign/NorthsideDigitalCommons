@@ -121,5 +121,11 @@ custom template located in `items/show.php` (relative to the theme).
 
 ## Deployment
 
-The `.circleci/config.yml` file currently auto-deploys develop branch to [staging](https://archives-new.jacksoncenter.info)
-and production to [archives.jacksoncenter.info](https://archives.jacksoncenter.info).
+The `.circleci/config.yml` file currently auto-deploys develop branch to [staging](https://staging.fromtherockwall.org)
+and production to [fromtherockwall.org](https://fromtherockwall.org).
+
+## Modified omeka core code.
+
+After updating Omeka, check that the following modifications are still present:
+
+- [Add pagination data to collections->showAction](https://github.com/omeka/Omeka/pull/939)
