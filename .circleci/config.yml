@@ -63,18 +63,18 @@ jobs:
             echo "$FROMTHEROCKWALL_IP_ADDRESS ecdsa-sha2-nistp256 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/www && git pull origin develop'
+          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/staging.fromtherockwall.org && git pull origin develop'
 
       - run:
           name: Copy over compiled css files to dev server
-          command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/www/themes/berlin_mcjc/css
+          command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/staging.fromtherockwall.org/htdocs/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
 
       - run:
           name: Add cache-busting
           command: |
             sed s/COMMIT_HASH/$CIRCLE_SHA1/ commit-hash.base.php > commit-hash.php
-            scp -C commit-hash.php $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/www/themes/berlin_mcjc/common
+            scp -C commit-hash.php $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/staging.fromtherockwall.org/htdocs/themes/berlin_mcjc/common
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/common
 
   deploy_prod:
@@ -95,12 +95,19 @@ jobs:
             echo "$FROMTHEROCKWALL_IP_ADDRESS ecdsa-sha2-nistp256 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/www && git pull origin develop'
+          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/fromtherockwall.org && git pull origin master'
 
       - run:
           name: Copy over compiled css files to dev server
-          command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/www/themes/berlin_mcjc/css
+          command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/fromtherockwall.org/htdocs/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
+
+      - run:
+          name: Add cache-busting
+          command: |
+            sed s/COMMIT_HASH/$CIRCLE_SHA1/ commit-hash.base.php > commit-hash.php
+            scp -C commit-hash.php $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/fromtherockwall.org/htdocs/themes/berlin_mcjc/common
+          working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/common
 
 # TODO: Add test steps
 
@@ -115,16 +122,9 @@ workflows:
           filters:
             branches:
               only: develop
-      - hold: # Hold deployment to prod for manual review.
-          type: approval
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
       - deploy_prod:
           requires:
-            - hold
+            - build
           filters:
             branches:
               only: master
