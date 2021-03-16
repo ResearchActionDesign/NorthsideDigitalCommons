@@ -1,0 +1,40 @@
+From 225c819c0b031400d784443d26f7f43450dfd7cd Mon Sep 17 00:00:00 2001
+From: Tim Stallmann <tim@rad.cat>
+Date: Wed, 4 Nov 2020 10:47:56 -0500
+Subject: [PATCH] Update filename size limits in Archive Repertory and make
+ indexing more safe
+
+---
+ htdocs/application/models/Job/SearchTextIndex.php          | 2 +-
+ htdocs/plugins/ArchiveRepertory/ArchiveRepertoryPlugin.php | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/htdocs/application/models/Job/SearchTextIndex.php b/htdocs/application/models/Job/SearchTextIndex.php
+index 10f9a076..fdfa9c6f 100644
+--- a/htdocs/application/models/Job/SearchTextIndex.php
++++ b/htdocs/application/models/Job/SearchTextIndex.php
+@@ -46,7 +46,7 @@ class Job_SearchTextIndex extends Omeka_Job_AbstractJob
+                     // Save the record object, which indexes its search text.
+                     try {
+                         $recordObject->save();
+-                    } catch (Omeka_Validate_Exception $e) {
++                    } catch (Exception $e) {
+                         _log($e, Zend_Log::ERR);
+                         _log(sprintf('Failed to index %s #%s',
+                                 get_class($recordObject), $recordObject->id),
+diff --git a/htdocs/plugins/ArchiveRepertory/ArchiveRepertoryPlugin.php b/htdocs/plugins/ArchiveRepertory/ArchiveRepertoryPlugin.php
+index 5bcf465c..f746c804 100644
+--- a/htdocs/plugins/ArchiveRepertory/ArchiveRepertoryPlugin.php
++++ b/htdocs/plugins/ArchiveRepertory/ArchiveRepertoryPlugin.php
+@@ -353,7 +353,7 @@ class ArchiveRepertoryPlugin extends Omeka_Plugin_AbstractPlugin
+         // May be needed in some installations.
+         $storageName = ltrim($storageName, './');
+ 
+-        if (strlen($storageName) > 190) {
++        if (strlen($storageName) > 4096) {
+             $msg = __(
+                 'Cannot move file "%s" inside archive directory: filename too long.',
+                 pathinfo($file->original_filename, PATHINFO_BASENAME)
+-- 
+2.28.0
+

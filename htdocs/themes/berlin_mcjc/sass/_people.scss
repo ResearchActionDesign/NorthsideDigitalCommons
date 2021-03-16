@@ -1,0 +1,98 @@
+.people {
+  .primary,
+  .oral-histories,
+  .related-items {
+    @include container;
+  }
+
+  .related-items {
+    margin-top: 96px;
+  }
+
+  .community-content {
+    margin-top: 48px;
+  }
+
+  .people-page-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .item-description {
+    text-align: left;
+  }
+
+  @media (max-width: $base-width) {
+    .people {
+      .top-header {
+        h1 {
+          text-align: center;
+        }
+
+        p {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .top-header {
+        text-align: center;
+      }
+
+      .search-by-lastname ul {
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-width) {
+  .people {
+    .top-header {
+      h1 {
+        text-align: center;
+      }
+      p {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  .people {
+    .search-by-lastname ul {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media only screen and (max-width: $mobile-landscape-width) {
+  .top-header {
+    h1 {
+      text-align: center;
+    }
+    p {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .people {
+    .search-by-lastname {
+      width: 275px;
+
+      ul {
+        flex-wrap: wrap;
+        letter-spacing: 15px;
+        padding: 0px 5px 0px 15px;
+      }
+
+      span {
+        font-size: 13px;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+  }
+}

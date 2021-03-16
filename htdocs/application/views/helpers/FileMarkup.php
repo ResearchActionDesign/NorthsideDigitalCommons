@@ -310,7 +310,7 @@ class Omeka_View_Helper_FileMarkup extends Zend_View_Helper_Abstract
 
         $linkAttributes = isset($options['linkAttributes'])
                         ? $options['linkAttributes']
-                        : array();
+                        : ['data-lity' => ''];
 
         if ($options['linkToMetadata']) {
             $html = link_to_file_show($linkAttributes, $html, $file);

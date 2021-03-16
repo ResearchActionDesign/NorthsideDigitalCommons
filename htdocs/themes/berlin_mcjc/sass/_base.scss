@@ -1,6 +1,110 @@
 //* @group ----- Typography ----- */
+$base-font-size: 16px;
+$base-line-height: 22.4px;
+$body-font-family: "Lato", Verdana, Arial, sans-serif;
+$heading-font-family: "Montserrat", "montserrat", "Source Sans",
+  "Helvetica Neue", Helvetica, "Arial Black", Arial, sans-serif;
 
-$base-font-size: 12px;
-$base-line-height: 18px;
+//* @group ----- Colors ----- */
+$purple--dark: #412560;
+$purple--light: #806998;
+$teal: #00739b;
+$burgundy: #7a3e48;
+$black: #0b2243;
+$grey--dark: #414042;
+$grey--medium: #dedae2;
+$grey--light: #f4f3f5;
+$white: #f9f9f9;
+$accent-color: #7b5c7e;
+$green: #316034;
+$button-dark: $green;
+$letter-blue: #0b2243;
+$gold: #ffa95d;
+//* @end */
+
+//* @group ----- Images ----- */
+// When changing square thumbnail size also change the masonry column width in berlin.js and the base
+// size properties in Derivative Images plugin setting and in common/grid-item.php.
+$square-thumbnail-size: 300px;
+//* @group ----- Mixins ----- */
+
+@mixin outline-button() {
+  background-color: $button-dark;
+  border: solid 1px;
+  color: $white;
+  display: inline-block;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  transition: all 0.1s linear;
+
+  &:hover,
+  &:focus {
+    background-color: $purple--light;
+    border-color: $purple--light;
+    color: $white;
+  }
+}
+
+@mixin headers-text {
+  text-shadow: 0px 3px 6px #000;
+
+  p:not(.citation) {
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+}
+
+@mixin white-background-text {
+  border-radius: 4px;
+  padding: 1em;
+  background-color: $white;
+}
 
 //* @end */
+
+$large-screen: 1250px;
+$base-width: 1076px;
+$narrow-screen: 920px;
+$tablet-width: 768px;
+$mobile-landscape-width: 420px;
+$mobile-portrait-width: 300px;
+
+$num-columns: 16;
+$margin: 10px;
+
+@mixin container {
+  position: relative;
+  margin: 1.5em auto;
+  width: $base-width;
+  border-radius: 4px;
+
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  @media only screen and (max-width: $tablet-width) {
+    border-radius: 0;
+    width: 100%;
+    padding: 16px;
+  }
+
+  @media only screen and (min-width: $tablet-width + 1) and (max-width: $narrow-screen) {
+    width: $tablet-width - 32px;
+  }
+
+  @media only screen and (min-width: $narrow-screen + 1) and (max-width: $base-width) {
+    width: $narrow-screen - 32px;
+  }
+
+  @media only screen and (min-width: $base-width + 1) and (max-width: $large-screen) {
+    width: $base-width - 32px;
+  }
+
+  @media only screen and (min-width: $large-screen + 1) {
+    width: $large-screen - 32px;
+  }
+}

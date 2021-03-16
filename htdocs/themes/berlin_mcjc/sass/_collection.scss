@@ -1,0 +1,6 @@
+.collections {
+  .breadcrumbs,
+  .primary {
+    @include container;
+  }
+}

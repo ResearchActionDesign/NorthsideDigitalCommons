@@ -10,8 +10,10 @@
 /htdocs/application/tests/config.ini
 /htdocs/php.ini
 /htdocs/.user.ini
+.ssh/
 
 # Log files
+/htdocs/application/logs/
 /htdocs/application/logs/errors.log
 /htdocs/application/logs/processes.log
 /htdocs/application/tests/log.xml
@@ -21,14 +23,21 @@
 
 # Files
 /htdocs/files/
+files.zip
 
 # DB dumps
 *.sql
-/db/
+*.zip
+*.gz
+db/
 
 # For macs
 .DS_Store
+._DS_Store
+._.DS_Store
 .idea/
+.docker-sync/
+
 
 # For VIM
 .*.sw*
@@ -40,3 +49,10 @@
 
 # Compiled SASS
 htdocs/themes/berlin_mcjc/css/*.css
+*.css.map
+
+# Node_modules
+node_modules/
+
+# Since we're using Yarn, this way no package-lock accidentally gets committed.
+package-lock.json

@@ -1,9 +1,11 @@
-version: '2'
+version: "2"
 services:
   web:
-    build: .docker/
+    image: timstallmann/apache-omeka:latest
+    # Uncomment the next line if you need to build the docker image locally.
+    # build: .docker/
     volumes:
-      - ./htdocs:/var/www/html:cached
+      - mcjc-htdocs-sync:/var/www/html:nocopy
       - ./.docker:/etc/apache2/sites-available:cached
     domainname: mcjc-omeka.l
     hostname: mcjc-omeka.l
@@ -16,25 +18,23 @@ services:
       - db
 
   db:
-      image: mysql:5.7.26
-      volumes:
-        - ./db:/docker-entrypoint-initdb.d:cached
-      environment:
-        MYSQL_DATABASE: 'omeka'
-        MYSQL_ROOT_PASSWORD: 'root'
-      ports:
-        - '33308:3306'
-
-  compass:
-    image: stevevega/compass
-    command: watch
+    image: mysql:5.7
     volumes:
-      - ./htdocs/themes/berlin_mcjc/sass:/input
-      - ./htdocs/themes/berlin_mcjc/css:/output
-      - ./htdocs/themes/berlin_mcjc/images:/images
+      - ./db:/docker-entrypoint-initdb.d:cached
+      - mcjc_omeka_mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "omeka"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "33308:3306"
+
+  sass:
+    image: timstallmann/dart-sass-omeka
+    volumes:
+      - mcjc-htdocs-sync:/usr/src/app:nocopy
 
 volumes:
-  mysql-data:
+  mcjc-htdocs-sync:
+    external: true
+  mcjc_omeka_mysql-data:
     driver: local
-#  omeka-htdocs-sync:
-#    external: true

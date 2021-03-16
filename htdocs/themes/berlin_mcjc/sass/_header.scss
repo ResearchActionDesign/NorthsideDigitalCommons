@@ -1,0 +1,198 @@
+@use "sass:color";
+
+.page-header-background-container {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0 -800px;
+}
+
+.page-header-container {
+  padding: 1.5em 0;
+  background-color: color.change($white, $alpha: 0.5);
+}
+
+@media (max-width: 688px) {
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+    background-position: 0 0;
+  }
+  .no-webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
+    background-position: 0 0;
+  }
+}
+
+@media (min-width: 689px) and (max-width: 992px) {
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+    background-position: 0 -80px;
+  }
+  .no-webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
+    background-position: 0 -80px;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1312px) {
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+    background-position: 0 -125px;
+  }
+  .no-webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
+    background-position: 0 -125px;
+  }
+}
+
+@media (min-width: 1312px) {
+  .webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final.webp");
+  }
+  .no-webp .page-header-background-container {
+    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
+  }
+}
+
+header {
+  text-shadow: 0 0 12px #fff;
+  @include container;
+  margin: 0 auto;
+  position: relative;
+
+  .top-header {
+    background-color: $white;
+    padding: 1.25em;
+  }
+
+  #site-title {
+    color: $purple--dark;
+    font-family: $heading-font-family;
+    font-size: 1.5em;
+    line-height: 1.4em;
+    font-weight: bold;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+
+    a,
+    a:hover,
+    a:visited,
+    a:active,
+    a:focus {
+      color: $purple--dark;
+    }
+
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    ul.navigation {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+
+      li {
+        margin: 0.5em 1em;
+        &.active a {
+          color: $purple--dark;
+        }
+      }
+    }
+
+    ul.navigation li a {
+      font-weight: bold;
+      text-decoration: none;
+
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+        color: $purple--dark;
+      }
+      i {
+        margin-left: 0.5rem;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      color: $green;
+      margin: 0;
+      padding: 0;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: $purple--dark;
+      }
+    }
+
+    #search-form-container {
+      flex-basis: 75%;
+      position: relative;
+      display: none;
+
+      #search-close {
+        position: absolute;
+        right: -1.5rem;
+        top: 0;
+        color: $black;
+      }
+
+      form {
+        position: relative;
+
+        input[type="text"] {
+          border: 1px solid $grey--medium;
+          background: $white;
+          @include appearance(none);
+          border-radius: 0;
+          height: 30px;
+          padding: 3px;
+          width: 100%;
+          @include box-sizing(border-box);
+        }
+
+        button {
+          position: absolute;
+          border: 0;
+          right: 3px;
+          top: 3px;
+          width: 24px;
+          padding: 0;
+          margin: 0;
+          text-indent: -9999px;
+          background-color: transparent;
+
+          &:after {
+            color: $green;
+            font-size: 24px;
+            font-family: "FontAwesome";
+            text-indent: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+          }
+
+          &:hover:after {
+            color: $purple--dark;
+          }
+        }
+      }
+
+      button#submit_search:after {
+        content: "\f002"; // fa-search
+      }
+    }
+  }
+}

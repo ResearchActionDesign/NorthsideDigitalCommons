@@ -1,11 +1,32 @@
+@import "lib/compass";
+@import "lib/lity";
+@import "lib/font-awesome";
+
 @import "normalize";
+@import "base";
+
 @import "screen";
+@import "typography";
+@import "components";
 
 // Custom styles.
-@import "screen-custom";
+@import "home-page";
+@import "header";
+@import "footer";
+@import "search";
+@import "people";
+@import "simple-pages";
+
+@import "item";
+@import "person";
+@import "oral-history";
+@import "topic";
+@import "tags";
+@import "collection";
+@import "exhibits";
 
 // Small screen styles.
-@media screen and (max-width:768px) {
-    @import "768max";
-    @import "768max-custom";
+@media screen and (max-width: 768px) {
+  @import "768max";
+  @import "768max-custom";
 }

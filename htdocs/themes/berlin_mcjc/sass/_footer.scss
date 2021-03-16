@@ -1,0 +1,85 @@
+/*footer*/
+footer {
+  background: $white;
+}
+
+#footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 0.5em;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#footer-text {
+  display: block;
+  flex: 1;
+  margin: 20px;
+  min-width: 250px;
+  max-width: 700px;
+}
+
+#footer-nav {
+  display: block;
+  margin: 20px;
+
+  .navigation {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      margin: 0.5em 0;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+#footer-logo {
+  display: block;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+#footer-omeka {
+  background-color: $black;
+  min-height: 2.5rem;
+  line-height: 1rem;
+  padding: 0.5rem;
+  color: white;
+  font-size: 0.75em;
+  text-align: center;
+  margin-top: 0;
+
+  a,
+  a:visited {
+    color: $white;
+  }
+
+  a:hover,
+  a:focus {
+    color: $purple--light;
+  }
+}
+
+.page.simple-page footer,
+.error footer,
+body.tags.list footer {
+  border-top: 2px solid $grey--medium;
+}
+
+@media only screen and (max-width: $tablet-width) {
+  footer {
+    text-align: center;
+  }
+}

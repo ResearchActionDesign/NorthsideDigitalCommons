@@ -1,70 +1,51 @@
 <?php
-// Display separate theming if this is specifically a browse people page.
-$filters = item_search_filters();
-if (strpos($filters, 'Item Type: Person') !== FALSE) {
-    $browseByPerson = TRUE;
-    $pageTitle = __('People');
-}
-else {
-    $browseByPerson = FALSE;
-    $pageTitle = __('Browse Items');
-}
-echo head(array('title'=>$pageTitle,'bodyclass' => 'items browse'));
+
+$pageTitle = __('Browse Items');
+echo head(['title' => $pageTitle, 'bodyclass' => 'items browse']);
 ?>
 
-<h1><?php echo $pageTitle;?> <?php echo __('(%s total)', $total_results); ?></h1>
 
-<?php if (!$browseByPerson): ?>
-<nav class="items-nav navigation secondary-nav">
-    <?php echo public_nav_items(); ?>
-</nav>
+<?php echo common('breadcrumbs', [
+    'trail' => ['Items'],
+]); ?>
+
+<h1><?php echo $pageTitle; ?> <?php echo __(
+     '(%s total)',
+     $total_results
+ ); ?></h1>
+  <div class="filter_container">
+<?php echo item_search_filters(); ?>
+
+<?php if ($total_results > 0):
+
+    $sortLinks[__('Title')] = 'Dublin Core,Title';
+    $sortLinks[__('Subject')] = 'Dublin Core,Subject';
+    $sortLinks[__('Date Added')] = 'added';
+    ?>
+<div id="sort-links">
+  <span class="sort-label"><?php echo __(
+      'Sort by: '
+  ); ?></span><?php echo browse_sort_links($sortLinks); ?>
+</div>
+  </div>
 
 <?php
-endif;
-echo $browseByPerson ? '' : item_search_filters();
+endif; ?>
+<div class="background-container">
 
-if (($total_results > 0) && (!$browseByPerson)):
-$sortLinks[__('Title')] = 'Dublin Core,Title';
-$sortLinks[__('Creator')] = 'Dublin Core,Creator';
-$sortLinks[__('Date Added')] = 'added';
-?>
-<div id="sort-links">
-    <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
+<div class="grid-container">
+    <div class="grid-items">
+      <?php foreach (loop('items') as $item): ?>
+        <?php echo common('grid-item', ['item' => $item]); ?>
+      <?php endforeach; ?>
+    </div>
 </div>
 
-<?php endif; ?>
 <?php echo pagination_links(); ?>
 
-<?php foreach (loop('items') as $item): ?>
-<div class="item record">
-    <h2><?php echo link_to_item(metadata('item', array('Dublin Core', 'Title')), array('class'=>'permalink')); ?></h2>
-    <div class="item-meta">
-    <?php if (metadata('item', 'has files')): ?>
-    <div class="item-img">
-        <div class="item-images"><?php echo mcjc_files_for_item(); ?></div>
-    </div>
-    <?php endif; ?>
-
-    <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
-    <div class="item-description">
-        <?php echo $description; ?>
-    </div>
-    <?php endif; ?>
-
-    <?php if (metadata('item', 'has tags')): ?>
-    <div class="tags"><p><strong><?php echo __('Tags'); ?>:</strong>
-        <?php echo tag_string('items'); ?></p>
-    </div>
-    <?php endif; ?>
-
-    <?php fire_plugin_hook('public_items_browse_each', array('view' => $this, 'item' =>$item)); ?>
-
-    </div><!-- end class="item-meta" -->
-</div><!-- end class="item entry" -->
-<?php endforeach; ?>
-
-<?php echo pagination_links(); ?>
-
-<?php fire_plugin_hook('public_items_browse', array('items'=>$items, 'view' => $this)); ?>
-
+<?php fire_plugin_hook('public_items_browse', [
+    'items' => $items,
+    'view' => $this,
+]); ?>
+</div>
 <?php echo foot(); ?>

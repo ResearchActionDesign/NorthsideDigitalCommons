@@ -1,75 +1,240 @@
-<?php queue_css_file('lity', 'all', false, 'lity'); ?>
-<?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
-<?php $isPerson = (metadata('item', array('Dublin Core', 'Type')) === 'Person'); ?>
-<div id="primary">
-    <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
-  <?php
-  if (metadata('item', array('Dublin Core', 'Type')) == 'Oral History'):?>
-    <div id="item-__oral-history-subtitle">
-      <?php echo oral_history_item_subtitle(); ?>
-    </div>
-  <?php endif; ?>
+<?php
+/**
+ * Note -- This file renders oral history & image items. "Person" items are rendered by people/items/show.php.
+ */
+$itemTitle = metadata('item', 'display_title');
+$item_type = get_view()->getRecordTypeIdentifier($item);
+switch ($item_type) {
+    case 'Still Image':
+        $itemTypeRaw = 'Image';
+        break;
+    case 'Project Interviews':
+    case 'Oral History':
+    case 'Oral History Clip':
+        $itemTypeRaw = 'Oral History';
+        break;
+    default:
+        $itemTypeRaw = 'Document';
+        break;
+}
 
-  <!-- Item files -->
+$itemTypeDict = [
+    'Still Image' => 'Image',
+];
+
+$itemType = array_key_exists($itemTypeRaw, $itemTypeDict)
+    ? $itemTypeDict[$itemTypeRaw]
+    : $itemTypeRaw;
+
+$itemTypeParentDict = [
+    'Image' => ['Images' => '/images'],
+    'Oral History' => ['Oral Histories' => '/oral-histories'],
+    'Document' => ['Documents' => '/documents'],
+];
+$itemTypePlural =
+    array_key_first($itemTypeParentDict[$itemType] ?? []) ?? 'Documents';
+
+$itemTypeClass = str_replace(' ', '-', strtolower($itemType));
+$backButtonText = __('Back to all ') . strtolower($itemTypePlural);
+
+$backLink =
+    array_values($itemTypeParentDict[$itemType] ?? [])[0] ?? "/documents";
+$breadcrumbTrail = array_merge(
+    $itemTypeParentDict[$itemType] ?? ['Documents' => '/documents'],
+    [$itemTitle]
+);
+
+$sohpUrl = false;
+// If this is an oral history about a single person, show it as a subpage of their person page instead.
+if ($itemType === 'Oral History' && count($depicted_items ?? []) === 1) {
+    $sohpUrl = mcjc_get_linked_sohp_interview();
+    $depictedPerson = reset($depicted_items);
+    $personName = metadata($depictedPerson, 'display_title');
+    $personUrl = record_url($depictedPerson);
+    $backButtonText = __('Back to ') . $personName;
+    $backLink = $personUrl;
+    $breadcrumbTrail = [
+        'People' => '/people',
+        $personName => $personUrl,
+        $itemTitle,
+    ];
+}
+
+$itemClasses = '';
+$description = false;
+$picture = false;
+$isPdf = '';
+if (metadata('item', 'has files')) {
+    $itemClasses = ' has-picture';
+    $picture = mcjc_item_image('fullsize', ['alt' => $itemTitle]);
+
+    if (!$picture && $itemTypeRaw === 'Document') {
+        // Check if this is a pdf document and set classes accordingly.
+        $imageFile = $item->getFile(0);
+        if ($imageFile->mime_type === 'application/pdf') {
+            $isPdf = 'is-pdf';
+        }
+    }
+}
+if (metadata('item', ['Dublin Core', 'Description'])) {
+    $itemClasses .= ' has-description';
+    $description = metadata('item', ['Dublin Core', 'Description']);
+}
+?>
+<?php echo head([
+    'title' => $itemTitle,
+    'bodyclass' => "items show {$itemTypeClass}",
+    'description' => $description,
+]); ?>
+
+<?php echo common('breadcrumbs', [
+    'trail' => $breadcrumbTrail,
+]); ?>
+<div class="primary <?php echo "{$itemTypeClass} {$itemClasses} {$isPdf}"; ?>">
+        <div class="item-content">
+            <span class="item-type"><?php echo $itemType; ?></span>
+            <h1><?php echo $itemTitle; ?></h1>
+            <?php if ($itemType === 'Oral History'): ?>
+            <span class="subtitle">
+            <?php echo oral_history_item_subtitle(); ?>
+            </span>
+            <?php endif; ?>
+            <?php if ($description): ?>
+              <p class="description">
+                <?php echo $description; ?>
+              </p>
+            <?php elseif (
+                ($missing_caption = get_theme_option('missing_caption_text')) &&
+                $itemTypeRaw !== 'Oral History'
+            ): ?>
+            <p class="description">
+                <?php echo $missing_caption; ?>
+            </p>
+          <?php endif; ?>
+          <?php echo common('share_icons', [
+              'url' => absolute_url(current_url()),
+              'title' => $itemTitle,
+          ]); ?>
+        </div>
+        <div class="item-sidebar<?php echo $isPdf ? ' is-pdf' : ''; ?>">
+        <?php if ($picture): ?>
+        <div id="picture" class="element">
+            <div class="item-images"><?php echo $picture; ?></div>
+        </div>
+        <?php endif; ?>
   <?php if (metadata('item', 'has files')): ?>
     <div id="itemfiles" class="element">
-      <div class="item-images"><?php echo mcjc_files_for_item('item', array('imageSize' => 'fullsize', 'linkAttributes' => array('data-lity' => ""), 'show' => TRUE)); ?>
-      </div>
+        <div class="item-images">
+          <?php echo mcjc_files_for_item('item', [
+              'imageSize' => 'fullsize',
+              'linkAttributes' => ['data-lity' => ''],
+              'show' => true,
+          ]); ?>
+        </div>
     </div>
-  <?php endif; ?>
-
-  <div id="item-description">
-    <?php echo metadata('item', array('Dublin Core','Description')); ?>
-  </div>
-
-  <?php if ($sohp_url = mcjc_get_linked_sohp_interview()): ?>
-  <div class="item-metadata sohp">
-    <a target="_blank" href="<?php echo html_escape($sohp_url) ?>">View Details at Southern Oral History Program website</a>
-  </div>
-    <?php else: ?>
-
-    <!-- Only display "View Details" for non-person records -->
-    <?php if (!$isPerson): ?>
-          <!-- Other metadata -->
-    <details id="item-metadata">
-        <summary><h2><?php echo __('View Details') ?></h2></summary>
-    <!-- Items metadata -->
-    <div id="item-metadata">
-        <?php echo all_element_texts('item'); ?>
+  <?php elseif ($sohpUrl): ?>
+    <div class="item-metadata sohp element">
+        <a href="<?php echo html_escape(
+            $sohpUrl
+        ); ?>">View More Details at Southern Oral History Program
+            website</a>
     </div>
-
-    <?php if(metadata('item','Collection Name')): ?>
-      <div id="collection" class="element">
-        <h3><?php echo __('Collection'); ?></h3>
-        <div class="element-text"><?php echo link_to_collection_for_item(); ?></div>
-      </div>
-   <?php endif; ?>
-
-     <!-- The following prints a list of all tags associated with the item -->
-    <?php if (metadata('item','has tags')): ?>
-    <div id="item-tags" class="element">
-        <h3><?php echo __('Tags'); ?></h3>
-        <div class="element-text"><?php echo tag_string('item'); ?></div>
-    </div>
-    <?php endif;?>
-
-    <!-- The following prints a citation for this item. -->
-    <div id="item-citation" class="element">
-        <h3><?php echo __('Citation'); ?></h3>
-        <div class="element-text"><?php echo metadata('item','citation',array('no_escape'=>true)); ?></div>
-    </div>
-    </details>
     <?php endif; ?>
-  <?php endif; ?>
-       <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
+</div>
+</div>
 
+  <?php
+  $tags = mcjc_tag_string('item');
+  $metadata_paragraph = mcjc_element_metadata_paragraph($item);
+  $rights = metadata($item, ['Dublin Core', 'Rights']);
+  $citation = metadata('item', 'citation', [
+      'no_escape' => true,
+  ]);
+  ?>
+  <div class="tags-container">
+      <?php if ($tags): ?>
+    <p id="item-tags" class="element">
+      <span class="element-title"><?php echo __('Tags: '); ?></span>
+      <span class="element-text"><?php echo $tags; ?></span>
+    </p>
+      <?php endif; ?>
+    <div class="details">
+        <?php if ($metadata_paragraph): ?>
+      <p id="item-detail" class="element">
+        <span class="element-text"><?php echo $metadata_paragraph; ?></span>
+      </p>
+        <?php endif; ?>
+        <?php if ($citation): ?>
+      <p id="item-citation" class="element">
+        <span class="element-title"><?php echo __('Citation: '); ?></span>
+        <span class="element-text"><?php echo $citation; ?></span>
+      </p>
+        <?php endif; ?>
+      <?php if ($rights && $rights !== 'Open for research.'): ?>
+          <p id="item-rights" class="element"><span class="element-title"><?php echo __(
+              'Rights: '
+          ); ?></span><span class="element-text"><?php echo $rights; ?></span></p>
+      <?php endif; ?>
+      <?php if ($sohpUrl): ?>
+        <p class="element"><a href="<?php echo $sohpUrl; ?>"><i class="fa fa-external-link"></i>View this interview on the Southern Oral History Program
+                website</a></p>
+        <?php endif; ?>
+    </div>
+  </div>
+<div class="background-container">
 
-    <ul class="item-pagination navigation">
-        <li id="previous-item" class="previous"><?php echo link_to_previous_item_show(); ?></li>
-        <li id="next-item" class="next"><?php echo link_to_next_item_show(); ?></li>
-    </ul>
+<?php fire_plugin_hook('public_items_show', [
+    'view' => $this,
+    'item' => $item,
+]); ?>
 
-</div> <!-- End of Primary. -->
+<?php echo common('respond-bar'); ?>
 
-<?php echo js_tag('lity', 'lity'); ?>
- <?php echo foot(); ?>
+<?php if (!empty($depicted_items)): ?>
+<div class="explore-grid grid-container depicted">
+  <h2><?php echo __('In this ') . $itemType; ?></h2>
+  <div class="grid-items <?php echo count($depicted_items) < 3
+      ? 'grid-count-' . count($depicted_items)
+      : ''; ?>">
+    <?php foreach (loop('depicted_items') as $relatedItem): ?>
+    <?php echo common('grid-item', [
+        'item' => $relatedItem,
+        'class' => 'depicted',
+    ]); ?>
+    <?php endforeach; ?>
+  </div>
+</div>
+
+<?php endif; ?>
+<?php if (!empty($related_items) || !empty($collection)): ?>
+<div class="explore-grid masonry-grid grid-container related-items ">
+  <h2><?php echo __('More to explore'); ?></h2>
+  <div class="grid-items">
+    <?php if (!empty($collection)): ?>
+    <?php
+    $collectionTitle =
+        __('Collection') . ': ' . metadata($collection, 'display_title');
+    echo common('grid-item', [
+        'item' => $collection,
+        'class' => 'related-item',
+        'title' => $collectionTitle,
+        'isCollection' => true,
+    ]);
+    ?>
+    <?php endif; ?>
+    <?php foreach (loop('related_items') as $relatedItem): ?>
+    <?php echo common('grid-item', [
+        'item' => $relatedItem,
+        'class' => 'related-item',
+        'masonry' => true,
+    ]); ?>
+    <?php endforeach; ?>
+  </div>
+</div>
+<?php endif; ?>
+<div class="back-container">
+  <a class="button back" href="<?php echo $backLink; ?>"><?php echo $backButtonText; ?></a>
+</div>
+</div>
+
+<?php echo foot(); ?>

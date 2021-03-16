@@ -1,0 +1,145 @@
+html {
+  color: $black;
+  font: 1em $body-font-family;
+  line-height: 1.4em;
+}
+
+p,
+label {
+  margin: 0;
+  margin-bottom: 0.75em;
+  font-size: 1.125em;
+  line-height: 1.4em;
+}
+
+p:empty {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $letter-blue;
+  font-family: $heading-font-family;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+h1,
+.h1 {
+  font-size: 3em;
+  line-height: 1.4em;
+  margin-bottom: 48px;
+}
+
+h2,
+.h2 {
+  font-size: 2em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
+}
+
+h3,
+.h3 {
+  font-size: 1.5em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
+}
+
+h4,
+.h4 {
+  font-size: 1.333em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
+}
+
+h5,
+.h5 {
+  font-size: 1.211em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
+}
+
+h6,
+.h6 {
+  font-size: 1.125em;
+  line-height: 1.4em;
+  margin-bottom: 0.7em;
+}
+
+h1 a,
+h2 a,
+h3 a {
+  text-decoration: none;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+a,
+a:link,
+a:visited,
+summary {
+  color: $green;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: $purple--light;
+  }
+
+  i {
+    padding: 0 0.25rem;
+  }
+}
+
+a.button {
+  grid-area: button;
+  @include button_link;
+  display: inline-block;
+  margin: 0 0.5em 0.5em 0;
+  text-align: center;
+}
+
+blockquote {
+  margin: 0 10%;
+  font: 1.5em $body-font-family;
+  font-style: italic;
+}
+
+blockquote + cite,
+p.citation {
+  display: block;
+  margin: 1em auto;
+  padding-left: 40%;
+  font-style: italic;
+  font-weight: normal;
+  &::before {
+    content: "\2014 ";
+  }
+}
+
+@media only screen and (max-width: $tablet-width) {
+  p.citation {
+    padding-left: 20%;
+  }
+}

@@ -1,0 +1,33 @@
+.pagination-nav {
+  @include container;
+  border-radius: 16px;
+  display: flex;
+  background: $white;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 30px;
+  margin-top: 48px;
+
+  ul.pagination {
+    margin: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    ul {
+      margin-left: 0;
+    }
+
+    li {
+      list-style-type: none;
+    }
+  }
+
+  .pagination .page-input.active {
+    font-weight: bold;
+    a {
+      color: $purple--light;
+    }
+  }
+}

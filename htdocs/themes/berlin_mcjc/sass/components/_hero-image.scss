@@ -1,0 +1,202 @@
+.hero-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  + div {
+    margin-top: 32px;
+  }
+}
+
+/** Note: When changing these also create fallbacks in noscript.scss */
+.webp .hero-image.topics-image {
+  background-image: url(../assets/images/banners/topics.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.topics-image {
+  background-image: url(../assets/images/banners/topics.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+.webp .hero-image.people-image {
+  background-image: url(../assets/images/banners/people.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.people-image {
+  background-image: url(../assets/images/banners/people.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+.webp .hero-image.respond-image {
+  background-image: url(../assets/images/banners/respond.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.respond-image {
+  background-image: url(../assets/images/banners/respond.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+.webp .hero-image.welcome-image {
+  background-image: url(../assets/images/banners/welcome.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.welcome-image {
+  background-image: url(../assets/images/banners/welcome.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+.webp .hero-image.about-image {
+  background-image: url(../assets/images/banners/about.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.about-image {
+  background-image: url(../assets/images/banners/about.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+// Fallbacks
+@media (max-width: 688px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.webp");
+  }
+  .no-webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-tiny-screens.jpg");
+  }
+}
+
+@media (min-width: 689px) and (max-width: 992px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.webp");
+  }
+  .no-webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-small-screens.jpg");
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1312px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.webp");
+  }
+  .no-webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final-medium-screens.jpg");
+  }
+}
+
+@media (min-width: 1312px) {
+  .webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final.webp");
+  }
+  .no-webp .hero-image {
+    background-image: url("../assets/images/backgrounds/frw_background-final.jpg");
+  }
+}
+
+.hero-image-content {
+  @include container;
+  @include headers-text;
+  margin: 96px auto;
+  color: white;
+
+  h1 {
+    color: white;
+    margin: 0;
+  }
+
+  blockquote,
+  p {
+    margin: 0 96px;
+    margin-top: inherit;
+    margin-bottom: inherit;
+  }
+}
+
+div.audio-greeting {
+  margin-top: 0 !important;
+}
+
+#audio-greeting-button {
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  position: absolute;
+  right: 4em;
+  top: -4em;
+  z-index: 2;
+  border-radius: 100%;
+
+  &.playing {
+    box-shadow: 0px 0px 20px $white;
+    -webkit-animation: pulsate 2s ease-out;
+    -webkit-animation-iteration-count: infinite;
+  }
+
+  @-webkit-keyframes pulsate {
+    0% {
+      box-shadow: 0px 0px 20px $white;
+    }
+    50% {
+      box-shadow: none;
+    }
+    100% {
+      box-shadow: 0px 0px 20px $white;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 10px $white;
+  }
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .hero-image-content {
+    width: 100%;
+    padding: 30px;
+    margin-left: 0;
+    .image-title {
+      font-size: 32px;
+    }
+    .image-text {
+      font-size: 20px;
+    }
+  }
+
+  .hero-image-content {
+    blockquote,
+    p {
+      margin: 0 10%;
+    }
+
+    .image-text {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: $narrow-screen) {
+  #audio-greeting-button {
+    right: 1em;
+    top: -2em;
+  }
+}

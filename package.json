@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.14.0",
+    "husky": "^4.2.3",
+    "prettier": "^2.0.4",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "scripts": {
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
+    "prettier:check-ci": "prettier --check . --ignore-path=.prettierignore-circleci"
+  },
+  "dependencies": {
+    "purgecss": "^4.0.0"
+  }
+}

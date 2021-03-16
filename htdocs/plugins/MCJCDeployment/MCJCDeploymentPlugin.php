@@ -8,20 +8,347 @@
 
 require_once('vendor/autoload.php');
 
+// TODO: Make this less hacky and use an actual namespace. Doesn't seem to currently work with the way Omeka + Zend are
+// set up, though.
+include 'Controller/AbstractMCJCItemController.php';
+include 'Controller/AbstractMCJCIndexController.php';
+
 use \Rollbar\Rollbar;
 
 class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
 {
 
   protected $_hooks = array(
-    'install',
-    'upgrade',
+    'before_save_element_text',
+    'after_save_item',
+    'admin_head',
     'initialize',
+    'install',
+    'public_head',
+    'search_sql',
+    'upgrade'
   );
 
-  protected $_filters = array(
-    'items_browse_per_page',
+  // Relationship types which should count as "family" in the "In the community" section.
+  public static $familyRelations = array(
+    array(
+      'local_part' => 'parentOf',
+      'label' => 'parent of',
+      'description' => 'Someone who is a direct parent of someone else. Includes step-parents.'
+    ),
+    array(
+      'local_part' => 'grandparentOf',
+      'label' => 'grandparent of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'childOf',
+      'label' => 'child of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'grandchildOf',
+      'label' => 'grandchild of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'partnerOf',
+      'label' => 'partner of',
+      'description' => 'Partner (depending on how people want to be referred to, consider using husbandOf/wifeOf)'
+    ),
+    array(
+      'local_part' => 'husbandOf',
+      'label' => 'husband of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'wifeOf',
+      'label' => 'wife of',
+      'description' => ''
+    ),
+    array(
+      'local_part' => 'siblingOf',
+      'label' => 'sibling of',
+      'description' => 'Sibling or half-sibling'
+    ),
+    array(
+      'local_part' => 'kinOf',
+      'label' => 'kin to',
+      'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
+    ));
+  public static $elementTypes = array(
+    'Oral History' => 4,
+    'Person' => 12,
+    'Still Image' => 6,
+    'Photograph' => 6,
+    'Moving Image' => 3,
+    'Document' => 1,
   );
+
+  /**
+   * Return lowercase version of item title, with all special characters (except whitespace) removed, and all whitespace
+   * replaced with dashes.
+   *
+   * @param $item
+   * @return string
+   */
+  public static function getPermalinkFromItem($item) {
+    $title = metadata($item, array('Dublin Core', 'Title'));
+    if (!$title) {
+      return false;
+    }
+    $title = trim($title);
+    $permalink = mb_strtolower(preg_replace("/[^A-Za-z0-9\- ]/", '', $title));
+    $permalink = preg_replace("/ +/", '-', $permalink);
+    $permalink = preg_replace("/\-+/", '-', $permalink);
+
+    if (mb_strlen($permalink) > 100) {
+      $parts = explode('-', $permalink);
+      $permalink = '';
+      $i = 0;
+
+      // Shorten long permalinks.
+      while (mb_strlen($permalink) <= 100 && $i < count($parts)) {
+        if ($permalink !== '') {
+          $permalink .= '-';
+        }
+        $permalink .= $parts[$i];
+        $i++;
+      }
+    }
+    return $permalink;
+  }
+
+  public function getPermalinkElementId() {
+    static $permalinkElementId = false;
+    if (!$permalinkElementId) {
+      $sql = $this->_db->getTable('Element')->getSelectForFindBy(array(
+        'name' => 'Permalink'
+      ));
+      $results = $this->_db->query($sql)->fetchAll();
+      $permalinkElementId = $results[0]['id'];
+    }
+    return $permalinkElementId;
+  }
+
+  protected function checkPermalinkValidForItem($permalink, $itemId) {
+    $elementTextTable = $this->_db->getTable('ElementText');
+    $sql = $elementTextTable->getSelectForFindBy(array(
+      'element_id' => $this->getPermalinkElementId(),
+      'text' => $permalink,
+    ));
+    $results = $elementTextTable->fetchObjects($sql);
+    if (!$results || count($results) === 0) {
+      return TRUE;
+    }
+    return !count(array_filter($results, function($elementText) use ($itemId) {
+      return $elementText->record_id !== $itemId;
+    }));
+  }
+
+  // Check permalink for uniqueness each time an item is saved.
+  public function hookBeforeSaveElementText($args) {
+    $elementTextItem = &$args['record'];
+    if ($elementTextItem->element_id !== $this->getPermalinkElementId()) {
+      return;
+    }
+
+    $permalinkBase = $elementTextItem->text;
+    $permalink = $permalinkBase;
+
+    // Check for duplicates.
+    $index = 2;
+    while (!$this->checkPermalinkValidForItem($permalink, $elementTextItem->record_id)) {
+      // If this is an existing permalink, check if it already ends in a number before changing.
+      if (ctype_digit($permalinkBase[mb_strlen($permalinkBase) - 1])) {
+        $index = $permalinkBase[mb_strlen($permalinkBase) - 1];
+        $permalinkBase = mb_substr($permalinkBase, 0, -2);
+      }
+      $permalink = "{$permalinkBase}-{$index}";
+      $index++;
+    }
+    $elementTextItem->text = $permalink;
+  }
+
+  /**
+   * Step through database and add permalink for any items which
+   * are missing one.
+   */
+  protected function fillEmptyPermalinks() {
+    // Populate permalink field for all elements where it doesn't exist.
+    $existingPermalinks = [];
+    $permalinkElementId = $this->getPermalinkElementId();
+
+    // First pull person items. This ensures that if oral histories share the name of the person
+    // the person item gets permalink with person name.
+    $personSelect = $this->_db->getTable('Item')->getSelect()
+      ->where('item_type_id = 12')
+      ->joinLeft(['element_texts' => $this->_db->ElementText], "element_texts.record_id = items.id and element_texts.element_id = $permalinkElementId", [])
+      ->where('element_texts.text is null')
+      ->assemble();
+    $items = $this->_db->query($personSelect)->fetchAll();
+
+    // Then pull remainder.
+    $remainderSelect = $this->_db->getTable('Item')->getSelect()
+      ->where('item_type_id <> 12')
+      ->joinLeft(['element_texts' => $this->_db->ElementText], "element_texts.record_id = items.id and element_texts.element_id = $permalinkElementId", [])
+      ->where('element_texts.text is null')
+      ->assemble();
+    $items = array_merge($items, $this->_db->query($remainderSelect)->fetchAll());
+
+    foreach ($items as $item) {
+      $item = get_record_by_id('Item', $item['id']);
+      if (empty(metadata($item, array('Dublin Core', 'Permalink')))) {
+        $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
+        $permalink = $permalinkBase;
+        $index = 2;
+        while (array_search($permalink, $existingPermalinks)) {
+          $permalink = "{$permalinkBase}-{$index}";
+          $index++;
+        }
+        $existingPermalinks[] = $permalink;
+        $elementText = new ElementText();
+        $elementText->record_id = $item['id'];
+        $elementText->element_id = $permalinkElementId;
+        $elementText->setText($permalink);
+        $elementText->record_type = 'Item';
+        $elementText->save();
+      }
+    }
+  }
+
+  public function hookSearchSql($args) {
+    // TODO: Make this user-editable.
+    $search_replacements_base = [
+      'St. Paul' => [
+        'St. Paul',
+        'St. Pauls',
+        'St. Paul\'s',
+        'Saint Paul',
+        'Saint Pauls',
+        'Saint Paul\'s',
+        'St Paul',
+        'St Pauls',
+        'St Paul\'s',
+      ],
+        'St. Joseph' => [
+          'St. Joseph',
+          'St. Josephs',
+          'St. Joseph\'s',
+          'Saint Joseph',
+          'Saint Josephs',
+          'Saint Joseph\'s',
+          'St Joseph',
+          'St Josephs',
+          'St Joseph\'s',
+        ],
+      ];
+
+      $search_replacements = [];
+
+      // Map base dict (more user-friendly format) to machine-usable format.
+      foreach ($search_replacements_base as $canonical_phrase => $phrases) {
+        array_map(
+        function($phrase) use ($canonical_phrase, &$search_replacements) { $search_replacements[mb_strtolower($phrase)] = $canonical_phrase; },
+        $phrases
+      );
+      }
+
+      $querystr = mb_strtolower($args['params']['query'] ?? false);
+      if ($querystr && array_key_exists($querystr, $search_replacements)) {
+        $querystr = $search_replacements[$querystr];
+        $args['params']['query'] = $querystr;
+        $args['select']->reset(Zend_Db_Select::WHERE);
+        $args['select']->distinct();
+
+        // Substitute in new querystring in full-text search.
+        $args['select']->where('MATCH (`search_texts`.`text`) AGAINST (?)', $querystr);
+
+        // Also specify that the exact phrase must appear in search (otherwise MATCH __ LIKE will
+        // ignore shorter phrases like St.
+        $args['select']->where('`search_texts`.`text` LIKE ?', '%' . $querystr . '%');
+      }
+  }
+
+  // Populate permalink for new items, and set Item Type.
+  public function hookAfterSaveItem($args)
+  {
+    $item = &$args['record'];
+
+    // Check item type.
+    if (!$item->item_type_id) {
+      $dublinCoreType = metadata($item, array('Dublin Core', 'Type'));
+      if (!empty(MCJCDeploymentPlugin::$elementTypes[$dublinCoreType])) {
+        $item->item_type_id = MCJCDeploymentPlugin::$elementTypes[$dublinCoreType];
+      }
+    }
+
+    // Set permalink.
+    if (!empty($item->Elements[$this->getPermalinkElementId()]) && !empty($item->Elements[$this->getPermalinkElementId()][0]['text'])) {
+      return;
+    }
+
+    $permalinkBase = MCJCDeploymentPlugin::getPermalinkFromItem($item);
+    $permalink = $permalinkBase;
+    $index = 2;
+
+    // Don't try to set a permalink if this element doesn't yet have text associated to it.
+    if (!$permalink) {
+      return;
+    }
+
+    while (!$this->checkPermalinkValidForItem($permalink, $item->id)) {
+      $permalink = "{$permalinkBase}-{$index}";
+      $index++;
+    }
+
+    $elementText = new ElementText();
+    $elementText->record_id = $item->id;
+    $elementText->element_id = $this->getPermalinkElementId();
+    $elementText->setText($permalink);
+    $elementText->record_type = 'Item';
+    $elementText->save();
+  }
+
+    /**
+   * Add rollbar error handling on every request.
+   */
+  public function hookInitialize()
+  {
+    try {
+      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
+
+      if ($rollbar_token) {
+        Rollbar::init([
+          'access_token' => $rollbar_token,
+          'environment' => APPLICATION_ENV,
+          'root' => BASE_DIR,
+        ]);
+      }
+    } catch (Exception $e) {
+    }
+    add_shortcode('typeform', [$this, 'typeform']);
+    add_shortcode('respond', [$this, 'respond']);
+  }
+
+  /** Load additional JS in header. */
+  private function _head()
+  {
+    queue_js_file('speed.min', 'mediaelement-plugins/speed', array());
+    queue_css_file('speed.min', 'all', false, 'mediaelement-plugins/speed');
+    queue_js_file('skip-back.min', 'mediaelement-plugins/skip-back', array());
+    queue_css_file('skip-back.min', 'all', false, 'mediaelement-plugins/skip-back');
+    queue_js_file('jump-forward.min', 'mediaelement-plugins/jump-forward', array());
+    queue_css_file('jump-forward.min', 'all', false, 'mediaelement-plugins/jump-forward');
+  }
+
+  public function hookAdminHead() {
+    $this->_head();
+  }
+
+  public function hookPublicHead() {
+    $this->_head();
+  }
 
   /**
    * Install the plugin.
@@ -148,57 +475,12 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
 
       $vocabularyId = $vocabulary->id;
       // Add our own terms to module.
-      $relationProperties = array(
-        array(
-          'local_part' => 'parentOf',
-          'label' => 'parent of',
-          'description' => 'Someone who is a direct parent of someone else. Includes step-parents.'
-        ),
-        array(
-          'local_part' => 'grandparentOf',
-          'label' => 'grandparent of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'childOf',
-          'label' => 'child of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'grandchildOf',
-          'label' => 'grandchild of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'partnerOf',
-          'label' => 'partner of',
-          'description' => 'Partner (depending on how people want to be referred to, consider using husbandOf/wifeOf)'
-        ),
-        array(
-          'local_part' => 'husbandOf',
-          'label' => 'husband of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'wifeOf',
-          'label' => 'wife of',
-          'description' => ''
-        ),
-        array(
-          'local_part' => 'siblingOf',
-          'label' => 'sibling of',
-          'description' => 'Sibling or half-sibling'
-        ),
-        array(
-          'local_part' => 'kinOf',
-          'label' => 'kin to',
-          'description' => 'Any other family relationship *other than* parent/child, grandparent/grandchild, partner/spouse or sibling.'
-        ),
-        array(
-          'local_part' => 'friendOf',
-          'label' => 'friend of',
-          'description' => ''
-        ),
+      $relationProperties = array_merge(MCJCDeploymentPlugin::$familyRelations, array(
+          array(
+            'local_part' => 'friendOf',
+            'label' => 'friend of',
+            'description' => ''
+          ))
       );
 
       foreach ($relationProperties as $formalProperty) {
@@ -247,34 +529,116 @@ class MCJCDeploymentPlugin extends Omeka_Plugin_AbstractPlugin
         $property->save();
       }
     }
+
+    // Add new permalink element to all items.
+    if ((double)$params['old_version'] < 2.17) {
+      $sql = $this->_db->getTable('Element')->getSelectForFindBy(array(
+        'name' => 'Permalink'
+      ));
+      $results = $this->_db->query($sql)->fetchAll();
+
+      // Create permalink element if it doesn't exist, add to Dublin core.
+      $permalinkElementId = FALSE;
+      if (!$results || count($results) === 0) {
+        $permalink = new Element();
+        $permalink->element_set_id = 1; // Dublin core.
+        $permalink->name = 'Permalink';
+        $permalink->description = 'URL for permalink to this item. Under normal circumstances, don\'t edit this field.';
+        $permalink->order = 16;
+        $permalink->save();
+        $permalinkElementId = $permalink->id;
+      } else {
+        $permalinkElementId = $results[0]['id'];
+      }
+
+      if ($permalinkElementId) {
+        $this->fillEmptyPermalinks();
+      }
+    }
+
+    // Upgrade tags!
+    if ((double)$params['old_version'] < 2.18) {
+      require('util/TagUpdates.php');
+      $this->updateTags($AUG_2020_TAG_UPDATES);
+    }
+
+    // Create item type for 'themes'
+    if ((double)$params['old_version'] < 2.19) {
+      if (!$this->_db->getTable('ItemType')->findByName('Theme')) {
+        $theme = new ItemType();
+        $theme->name = 'Theme';
+        $theme->description = 'Themes are entry points into different topics in the site. For a theme to work properly, the item description should
+        be an HTML write-up of the theme, like a finding guide / intro. The tags for the theme define which content items will be displayed on the theme page.';
+        $theme->save();
+      }
+    }
+
+    if ((double)$params['old_version'] < 2.20) {
+      $this->fillEmptyPermalinks();
+    }
+
+    if ((double)$params['old_version'] < 2.21) {
+      require('util/TagUpdates.php');
+      $this->updateTags($MAR_2021_TAG_UPDATES);
+    }
+  }
+
+  protected function updateTags($tag_updates_array) {
+    $logger = Zend_Registry::get('bootstrap')->getResource('Logger');
+    foreach ($tag_updates_array as $item) {
+      $tagQuery = $this->_db->getTable('Tag')->getSelect()->where('tags.name = ?', [$item['oldTag'],])->assemble();
+      $tag = $this->_db->getTable('Tag')->fetchObject($tagQuery);
+
+      if (!$tag) {
+        if ($logger) {
+          $logger->log('Tag not found: ' . $item['oldTag'],Zend_Log::WARN);
+        }
+        continue;
+      }
+
+      switch($item['action']) {
+        case 'REMOVE':
+          $tag->delete();
+          break;
+        case 'REPLACE':
+          $tag->rename([$item['newTag'],]);
+          break;
+        case 'ADD':
+          $tag->rename([$item['oldTag'], $item['newTag']]);
+          break;
+      }
+    }
   }
 
   /**
-   * Add rollbar error handling on every request.
+   * Render a typeform div.
+   *
+   * @param $args
+   * @param $view
+   * @return string
    */
-  function hookInitialize()
+  public function typeform($args, $view)
   {
-    try {
-      $rollbar_token = Zend_Registry::get('bootstrap')->config->log->rollbar_access_token;
-
-      if ($rollbar_token) {
-        Rollbar::init([
-          'access_token' => $rollbar_token,
-          'environment' => APPLICATION_ENV,
-          'root' => BASE_DIR,
-        ]);
-      }
-    } catch (Exception $e) {
+    $url = $args['url'];
+    $height = $args['height'] ?? 500;
+    if (!$url) {
+      return '';
     }
+    return <<<EOL
+        <div class="typeform-widget" data-url="{$url}" style="width: 100%; height: {$height}px; clear: both;"></div>
+        <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+  EOL;
   }
 
-  public function filterItemsBrowsePerPage($number_items, $controller)
+  /**
+   * Render a typeform div.
+   *
+   * @param $args
+   * @param $view
+   * @return string
+   */
+  public function respond($args, $view)
   {
-    // If this query is specifically the browse-by-person view, show all people.
-    if ($_SERVER['REQUEST_URI'] == '/items/browse?search=&advanced[0][element_id]=&advanced[0][type]=&advanced[0][terms]=&range=&collection=&type=12&tags=&featured=&exhibit=&submit_search=Search') {
-      return 0;
-    } else {
-      return max($number_items, 20);
-    }
+    return common('respond-bar');
   }
 }

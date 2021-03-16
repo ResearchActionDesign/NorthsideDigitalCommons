@@ -1,0 +1,33 @@
+.filter-by-letter {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  padding-top: 0.5em;
+  margin: 24px 0 0 0 !important;
+  overflow-x: auto;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+    margin-bottom: 0.75em;
+    li {
+      padding: 10px;
+
+      &.active {
+        font-weight: bold;
+        a {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  span {
+    margin-left: 37px;
+    margin-bottom: -20px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+}

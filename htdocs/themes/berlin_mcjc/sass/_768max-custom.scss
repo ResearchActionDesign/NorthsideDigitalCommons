@@ -18,60 +18,13 @@ h2 {
 
 /* @end */
 
-/* @group ----- Home Page ----- */
-
-#home #content {
-  padding: 0;
-}
-
-.featured,
-.featured-wrapper,
-#featured-exhibit {
-  .image {
-    float: none;
-    text-align: center;
-
-    img {
-      float: none;
-    }
-  }
-}
-.featured-wrapper--collection {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 1.5em;
-}
-
-.featured-wrapper {
-  border-top: 1px solid #ccc;
-}
-
-.featured-item__background-image {
-  height: 200px;
-}
-
-/* @end */
-
-/* @group ----- Footer ----- */
-
-footer {
-  nav {
-    overflow: auto;
-  }
-
-  nav + p {
-    text-align: left;
-  }
-}
-
-/* @end */
-
 /* @group ----- Items ----- */
 
 #item-images {
   float: none;
   margin-right: 0;
 
-  > div {
+  div {
     margin-bottom: 0;
     margin-top: 2em;
   }
@@ -85,7 +38,6 @@ footer {
 .item .tags {
   clear: left;
 }
-
 
 .hTagcloud ul li a {
   line-height: normal;
@@ -122,14 +74,6 @@ footer {
 
 .browse .item h2 {
   width: 100%;
-}
-
-.items.browse .item-file.application-pdf {
-  margin: 0 .5em .5em 0;
-
-  a {
-    padding: .25em .5em;
-  }
 }
 
 /* @end */
@@ -187,11 +131,11 @@ footer {
 
   .item {
     h3 {
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
     }
 
     img {
-      margin: 0 auto .75em;
+      margin: 0 auto 0.75em;
     }
   }
 }
@@ -216,7 +160,7 @@ footer {
       width: 100%;
 
       .download-file {
-        margin-bottom: .5em;
+        margin-bottom: 0.5em;
       }
     }
   }
@@ -230,7 +174,7 @@ footer {
 .exhibits.browse {
   .exhibit {
     h2 {
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
     }
 
     img {
@@ -241,14 +185,12 @@ footer {
 
 /* @end */
 
-
-
 /* @group ----- Expander ----- */
 
 details#item-metadata {
   > * {
-    margin-left: .5 * $base-font-size;
-    margin-right: .5 * $base-font-size;
+    margin-left: 0.5 * $base-font-size;
+    margin-right: 0.5 * $base-font-size;
   }
 }
 

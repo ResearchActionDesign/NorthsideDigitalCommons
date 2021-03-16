@@ -11,6 +11,9 @@
  * should be in the core of Omeka, define a method in this class and then make
  * sure that it responds to all the correct MIME types by modifying other
  * properties in this class.
+ *
+ * @package Omeka\Plugins\McjcDeployment\views\helpers
+ *
  */
 class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMarkup
 {
@@ -41,7 +44,6 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
   public function derivativeImage($file, array $options=array())
   {
     $html = '';
-    $imgHtml = '';
 
     // Should we ever include more image sizes by default, this will be
     // easier to modify.
@@ -70,9 +72,9 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     } elseif (strpos($file->mime_type, 'pdf') !== FALSE) {
       // If this is a PDF, add link text instead of an image.
       if (stripos(html_escape($file->original_filename), 'tape') !== FALSE) {
-        $html .= 'View Tape Log';
+        $html .= 'View Summary';
       } elseif (stripos(html_escape($file->original_filename), 'transcript') !== FALSE) {
-        $html .= 'View Transcript';
+        $html .= 'View Text';
       } elseif (stripos(html_escape($file->original_filename), 'abstract') !== FALSE) {
         $html .= 'View Abstract';
       } elseif (stripos(html_escape($file->original_filename), 'fieldnotes') !== FALSE) {
@@ -91,16 +93,27 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     // If this is the item's show page, link to the file. Otherwise, link to the
     // item.
     if ($displayAsLink) {
-      if ($options['show'] === TRUE) {
+      if ($options['show'] === TRUE || !$options['item']) {
+        if (substr($file->mime_type, 0, 5) === 'image') {
+          $options['linkToFile'] = 'fullsize';
+        }
         $html = $this->_linkToFile($file, $options, $html);
       } else {
-        $html = link_to_item($html, array('class' => $imgClasses[$imageSize]), 'show', $options['item']);
+        $html = link_to_item($html, $options['item'], array('class' => $imgClasses[$imageSize]), 'show');
       }
     }
 
     return $html;
   }
 
+  /**
+   * Needed to ensure that this view helper is called instead of parent fileMarkup() method.
+   *
+   * @param $file
+   * @param array $props
+   * @param array $wrapperAttributes
+   * @return string
+   */
   public function mcjcFileMarkup($file, array $props=array(), $wrapperAttributes = array()) {
     return $this->fileMarkup($file, $props, $wrapperAttributes);
   }

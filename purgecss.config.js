@@ -1,0 +1,31 @@
+module.exports = {
+  content: [
+    "htdocs/themes/berlin_mcjc/**/*.php",
+    "htdocs/themes/berlin_mcjc/**/*.js",
+    "htdocs/plugins/ExhibitBuilder/views/public/**/*.php",
+    "htdocs/plugins/ExhibitBuilder/views/shared/**/*.php",
+  ],
+  css: ["htdocs/themes/berlin_mcjc/css/style.css"],
+  output: "htdocs/themes/berlin_mcjc/css/style.css",
+  safelist: {
+    greedy: [
+      /fa-download/,
+      /admin-bar/,
+      /blockquote/,
+      /cite/,
+      /embed/,
+      /exhibit/,
+      /grid-count/,
+      /hero-image/,
+      /item-file/,
+      /lity/,
+      /playing/,
+      /search/,
+      /simple-pages-text-wrapper/,
+      /tns-nav/,
+      /truncated/,
+      /typeform/,
+      /webp/,
+    ],
+  },
+};

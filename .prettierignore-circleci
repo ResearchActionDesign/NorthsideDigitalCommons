@@ -1,0 +1,19 @@
+node_modules/
+htdocs/bootstrap.php
+htdocs/index.php
+htdocs/README.md
+htdocs/admin/
+htdocs/application/
+htdocs/install/
+htdocs/plugins/
+htdocs/files/
+*.min.js
+modernizr-webp.js
+!htdocs/plugins/MCJC*
+!htdocs/plugins/People
+!htdocs/plugins/Images
+!htdocs/plugins/Stories
+!htdocs/plugins/Topics
+
+# Additions just for circleCI
+*.php

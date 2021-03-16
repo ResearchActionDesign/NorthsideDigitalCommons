@@ -2,31 +2,43 @@ version: 2.1
 jobs:
   build: # Build CSS files only
     docker:
-      - image: circleci/ruby:latest
+      - image: circleci/node
     working_directory: ~/repo
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
 
+      # Install yarn and run prettier
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "~/repo/htdocs/themes/berlin_mcjc/Gemfile.lock" }}
-            - rails-demo-bundle-v2-
+            - ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
+            - ndc-yarn-
 
-      - run: # Install Ruby dependencies
-          name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
-          working_directory: ~/repo/htdocs/themes/berlin_mcjc
+      - run: # Install yarn dependencies
+          name: Yarn install
+          command: yarn install --production=false
 
-      # Store bundle cache for Ruby dependencies
+      - run: # Install sass
+          name: Sass Install
+          command: yarn global add sass
+
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "~/repo/htdocs/themes/berlin_mcjc/Gemfile.lock" }}
+          key: ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
           paths:
-            - ~/repo/htdocs/themes/berlin_mcjc/vendor/bundle
+            - ~/repo/node_modules
+
+      - run:
+          name: Prettier
+          command: yarn run prettier:check-ci
 
       - run:
           name: Compile SASS
-          command: bundle exec compass compile
+          command: $(yarn global bin)/sass sass:css --style=compressed --no-source-map
           working_directory: ~/repo/htdocs/themes/berlin_mcjc
+
+      - run:
+          name: Purge SASS
+          command: yarn run purgecss -c purgecss.config.js
+          working_directory: ~/repo/
 
       - persist_to_workspace:
           root: ~/repo
@@ -37,7 +49,7 @@ jobs:
     environment:
       - LC_ALL: C
     docker:
-      - image: circleci/ruby:latest
+      - image: cimg/base:2020.01
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -48,21 +60,28 @@ jobs:
           name: Enable SSH authentication for remote server
           command: |
             mkdir -p ~/.ssh
-            echo "archives.jacksoncenter.info ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+            echo "$FROMTHEROCKWALL_IP_ADDRESS ecdsa-sha2-nistp256 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A jacksor6@archives.jacksoncenter.info 'cd ~/www/archives-new && git pull origin develop'
+          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/staging.fromtherockwall.org && git pull origin develop'
 
       - run:
           name: Copy over compiled css files to dev server
-          command: scp -rC *.css jacksor6@archives.jacksoncenter.info:~/www/archives-new/htdocs/themes/berlin_mcjc/css
+          command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/staging.fromtherockwall.org/htdocs/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
+
+      - run:
+          name: Add cache-busting
+          command: |
+            sed s/COMMIT_HASH/$CIRCLE_SHA1/ commit-hash.base.php > commit-hash.php
+            scp -C commit-hash.php $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/staging.fromtherockwall.org/htdocs/themes/berlin_mcjc/common
+          working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/common
 
   deploy_prod:
     environment:
       - LC_ALL: C
     docker:
-      - image: circleci/ruby:latest
+      - image: cimg/base:2020.01
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -73,15 +92,22 @@ jobs:
           name: Enable SSH authentication for remote server
           command: |
             mkdir -p ~/.ssh
-            echo "archives.jacksoncenter.info ecdsa-sha2-nistp256 $ARCHIVES_JACKSONCENTER_INFO_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+            echo "$FROMTHEROCKWALL_IP_ADDRESS ecdsa-sha2-nistp256 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A jacksor6@archives.jacksoncenter.info 'cd ~/www/archives.jacksoncenter.info && git pull origin master'
+          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/fromtherockwall.org && git pull origin master'
 
       - run:
           name: Copy over compiled css files to dev server
-          command: scp -rC *.css jacksor6@archives.jacksoncenter.info:~/www/archives.jacksoncenter.info/htdocs/themes/berlin_mcjc/css
+          command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/fromtherockwall.org/htdocs/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
+
+      - run:
+          name: Add cache-busting
+          command: |
+            sed s/COMMIT_HASH/$CIRCLE_SHA1/ commit-hash.base.php > commit-hash.php
+            scp -C commit-hash.php $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/fromtherockwall.org/htdocs/themes/berlin_mcjc/common
+          working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/common
 
 # TODO: Add test steps
 
@@ -95,20 +121,10 @@ workflows:
             - build
           filters:
             branches:
-              only:
-                develop
-      - hold: # Hold deployment to prod for manual review.
-          type: approval
+              only: develop
+      - deploy_prod:
           requires:
             - build
           filters:
             branches:
-              only:
-                master
-      - deploy_prod:
-          requires:
-            - hold
-          filters:
-            branches:
-              only:
-                master
+              only: master
