@@ -603,7 +603,7 @@ $MAR_2021_TAG_UPDATES = [
   ["oldTag"=>"Ms. Hargraves","newTag"=>"Frances Hargraves","action"=>"REPLACE"],
   ["oldTag"=>"Ms. Suzie Weaver","newTag"=>"Suzie Weaver","action"=>"REPLACE"],
   ["oldTag"=>"Northside School","newTag"=>"Northside Elementary School","action"=>"REPLACE"],
-  ["oldTag"=>"Reverend Manley","newTag"=>"J.R. Manly","action"=>"REPLACE"],
+  ["oldTag"=>"Reverend Manley","newTag"=>"J.R. Manley","action"=>"REPLACE"],
   ["oldTag"=>"Ross Norwood's service station","newTag"=>"Norwood's service station","action"=>"REPLACE"],
   ["oldTag"=>"University of North Carolina","newTag"=>"UNC","action"=>"REPLACE"],
   ["oldTag"=>"University of North Carolina at Chapel Hill","newTag"=>"UNC","action"=>"REPLACE"],
