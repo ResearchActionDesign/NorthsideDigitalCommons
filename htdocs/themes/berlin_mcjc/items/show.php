@@ -103,11 +103,12 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
               <p class="description">
                 <?php echo $description; ?>
               </p>
-            <?php elseif (
+          <?php endif; ?>
+            <?php if (
                 ($missing_caption = get_theme_option('missing_caption_text')) &&
                 $itemTypeRaw !== 'Oral History'
             ): ?>
-            <p class="description">
+                <p class="description">
                 <?php echo $missing_caption; ?>
             </p>
           <?php endif; ?>
