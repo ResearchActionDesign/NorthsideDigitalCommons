@@ -129,3 +129,4 @@ and production to [fromtherockwall.org](https://fromtherockwall.org).
 After updating Omeka, check that the following modifications are still present:
 
 - [Add pagination data to collections->showAction](https://github.com/omeka/Omeka/pull/939)
+- Custom MCJC theme located in admin/themes folder. All this does is implement the contents of [this PR](https://github.com/omeka/Omeka/pull/940), so once that is merged the custom theme can be removed.
