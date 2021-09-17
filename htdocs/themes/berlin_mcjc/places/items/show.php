@@ -15,6 +15,8 @@ $breadcrumbTrail = [
 $itemClasses = '';
 $description = false;
 $picture = false;
+$showMap = false;
+
 if (metadata('item', 'has files')) {
     $itemClasses = ' has-picture';
     $picture = mcjc_item_image('fullsize', ['alt' => $itemTitle]);
@@ -22,6 +24,14 @@ if (metadata('item', 'has files')) {
 if (metadata('item', ['Dublin Core', 'Description'])) {
     $itemClasses .= ' has-description';
     $description = metadata('item', ['Dublin Core', 'Description']);
+}
+
+$latitude = (float) metadata('item', ['Item Type Metadata', 'Latitude']);
+$longitude = (float) metadata('item', ['Item Type Metadata', 'Longitude']);
+
+if ($latitude != 0 && $longitude != 0) {
+    $showMap = true;
+    $itemClasses .= ' has-map';
 }
 ?>
 <?php echo head([
@@ -61,6 +71,29 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
     <?php endif; ?>
   </div>
 </div>
+<?php if ($showMap): ?>
+    <section class="leaflet map">
+        <link rel="stylesheet" href="/themes/berlin_mcjc/css/lib/leaflet.css" />
+        <script type="text/javascript" src="/themes/berlin_mcjc/javascripts/leaflet.js"></script>
+        <div id="leaflet-map" style="height: 200px;">
+        </div>
+        <script type="text/javascript">
+            var mymap = L.map('leaflet-map',{
+                zoomControl: false,
+                dragging: false,
+                scrollWheelZoom: false,
+                touchZoom: false,
+                doubleClickZoom: false,
+            }).setView([<?php echo $latitude; ?>, <?php echo $longitude; ?>], 16);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+            }).addTo(mymap);
+            var marker = L.marker([<?php echo $latitude; ?>, <?php echo $longitude; ?>]).addTo(mymap);
+        </script>
+    </section>
+<?php endif; ?>
 
 <?php
 $tags = mcjc_tag_string('item');
