@@ -24,7 +24,7 @@ class McjcDeployment_View_Helper_GetItemPermalink extends Zend_View_Helper_Abstr
 
         // Prepare the record if passed as an array.
         if (is_array($record)) {
-            if (empty($record['type']) || empty($record['id'])) {
+            if (empty($record['type']) || empty($record['id'])) {
                 throw new Omeka_View_Exception(__('Invalid record passed as array while getting record URL.'));
             }
             $recordType = $record['type'];

@@ -78,6 +78,10 @@ class McjcDeployment_View_Helper_GetRecordTypeIdentifier extends Zend_View_Helpe
           return 'Project Interviews';
         case 20:
           return 'Theme';
+        case 21:
+          return 'Newsletter';
+        case 22:
+          return 'Place';
       }
 
       // Otherwise, pull from DB

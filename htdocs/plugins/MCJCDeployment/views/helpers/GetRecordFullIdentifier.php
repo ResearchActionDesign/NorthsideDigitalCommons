@@ -55,6 +55,8 @@ class McjcDeployment_View_Helper_GetRecordFullIdentifier extends Zend_View_Helpe
           return 'people';
         case 'Theme':
           return 'topics';
+        case 'Place':
+          return 'places';
         default:
           return 'documents';
       }
