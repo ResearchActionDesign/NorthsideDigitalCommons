@@ -38,10 +38,8 @@ if (!empty($_GET['advanced'])) {
     'title' => __('Search'),
     'placeholder' => 'Enter a search term',
 ]); ?>
-  <?php echo $this->formButton('submit_search', $options['submit_value'], [
-      'type' => 'submit',
-      'content' => $options['expanded'] ?? 'Search',
-      'class' => 'button',
-  ]); ?>
+<button id="submit_search" class="button" name="submit_search" type="submit" value="Search">
+    <span class="sr-only">Search</span><i class="fa fa-search"></i></button>
+</button>
 <?php endif; ?>
 </form>
