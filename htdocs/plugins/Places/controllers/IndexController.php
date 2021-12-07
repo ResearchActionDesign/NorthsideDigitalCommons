@@ -25,7 +25,7 @@ class Places_IndexController extends Omeka_Controller_AbstractActionController
     $this->setParam('type', 22);
 
     if (!$this->getParam('sort_field')) {
-      $this->setParam('sort_field', 'Dublin Core,Subject');
+      $this->setParam('sort_field', 'Dublin Core,Title');
     }
 
     // Filter by first letter of last name
