@@ -88,6 +88,7 @@
       li {
         margin: 0 15vw;
       }
+      svg,
       i {
         font-size: 48px;
       }
@@ -131,8 +132,9 @@
     transition: all 0.25s linear;
 
     button {
+      svg,
       i {
-        display: block;
+        margin-right: 0.25em;
       }
     }
   }

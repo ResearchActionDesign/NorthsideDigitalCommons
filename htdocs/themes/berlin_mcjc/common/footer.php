@@ -65,6 +65,7 @@ $commit_hash = "1";
         FromTheRockWall.readMore();
     });
 </script>
+<script src="https://kit.fontawesome.com/acb9787b6d.js" data-search-pseudo-elements defer crossorigin="anonymous"></script>
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""/></noscript>
 </body>
