@@ -18,4 +18,5 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'error']);
     <p>Please contact us at <a href="mailto:rockwall@jacksoncenter.info">rockwall@jacksoncenter.info</a> if you need more help!</p>
 
 </div>
-<?php echo foot(); ?>
+<?php echo foot();
+?>

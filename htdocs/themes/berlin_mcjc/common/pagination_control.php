@@ -55,4 +55,5 @@ if ($this->pageCount > 1):
   </nav>
 
 <?php
-endif; ?>
+endif;
+?>

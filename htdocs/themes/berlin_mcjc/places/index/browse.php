@@ -65,4 +65,5 @@ $missing_photo_text = strip_tags(get_theme_option('missing_photo_text'));
      ]
  ); ?>
 </div>
-<?php echo foot(); ?>
+<?php echo foot();
+?>

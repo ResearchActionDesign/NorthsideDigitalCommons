@@ -62,4 +62,5 @@ $collectionTitle = metadata('collection', 'display_title'); ?>
 </div>
 </div>
 
-<?php echo foot(); ?>
+<?php echo foot();
+?>

@@ -48,4 +48,5 @@ endif; ?>
     'view' => $this,
 ]); ?>
 </div>
-<?php echo foot(); ?>
+<?php echo foot();
+?>
