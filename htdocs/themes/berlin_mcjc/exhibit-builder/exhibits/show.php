@@ -59,4 +59,5 @@ $breadcrumbs[] = $exhibit_page->title;
     <?php endif; ?>
 </nav>
 </div>
-<?php echo foot(); ?>
+<?php echo foot();
+?>

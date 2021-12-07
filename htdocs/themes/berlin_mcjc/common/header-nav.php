@@ -15,4 +15,5 @@
     </div>
   </header>
 
-<?php echo theme_header_image(); ?>
+<?php echo theme_header_image();
+?>

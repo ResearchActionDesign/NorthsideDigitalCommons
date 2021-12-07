@@ -302,8 +302,11 @@ $transitionable-prefixed-values: transform, transform-origin !default;
     $webkit-value: append(
       $webkit-value,
       compact(
-        (prefixed-for-transition(-webkit, $property) $duration $timing-function)
-          ...
+        (
+            prefixed-for-transition(-webkit, $property)
+              $duration
+              $timing-function
+          )...
       )
     );
     $moz-value: append(
@@ -314,8 +317,7 @@ $transitionable-prefixed-values: transform, transform-origin !default;
               $duration
               $timing-function
               $delay
-          )
-          ...
+          )...
       )
     );
     $o-value: append(
@@ -326,8 +328,7 @@ $transitionable-prefixed-values: transform, transform-origin !default;
               $duration
               $timing-function
               $delay
-          )
-          ...
+          )...
       )
     );
   }

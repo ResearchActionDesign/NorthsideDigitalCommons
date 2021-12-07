@@ -1,37 +1,37 @@
 <?php
 
-$browseByPerson = true;
-$pageTitle = __('Meet our Neighbors');
+$browseByTopic = true;
+$pageTitle = __('Explore Our Neighborhoods');
 $curLetter = $vars['cur_letter'];
 $validLetters = $vars['letters'];
 
-echo head(['title' => $pageTitle, 'bodyclass' => 'people browse']);
+echo head(['title' => $pageTitle, 'bodyclass' => 'places browse']);
 $missing_photo_text = strip_tags(get_theme_option('missing_photo_text'));
 ?>
 
 <?php echo common('breadcrumbs', [
-    'trail' => ['People'],
+    'trail' => ['Places'],
 ]); ?>
 
 <?php echo common('hero-image-header', [
     'title' => $pageTitle,
-    'headerText' => get_theme_option('people_page_text'),
-    'className' => 'people',
+    'headerText' => get_theme_option('places_page_text'),
+    'className' => 'places',
 ]); ?>
 
 <div class="filter-by-letter">
-  <span><?php echo __('SEARCH BY LAST NAME'); ?></span>
+  <span><?php echo __('SEARCH BY NAME'); ?></span>
   <ul>
     <li<?php echo !$curLetter
         ? ' class="active"'
         : ''; ?>><a href="<?php echo $this->url(
     [],
-    'peopleDefault'
+    'placesDefault'
 ); ?>" class="search-by-lastname__all">All</a></li>
       <?php foreach (range('A', 'Z') as $letter): ?>
       <?php if (in_array($letter, $validLetters)): ?>
       <li<?php echo $curLetter == $letter ? ' class="active"' : ''; ?>>
-        <a href="<?php echo $this->url([], 'peopleDefault', [
+        <a href="<?php echo $this->url([], 'placesDefault', [
             'firstLetter' => $letter,
         ]); ?>"><?php echo $letter; ?></a>
         </li>

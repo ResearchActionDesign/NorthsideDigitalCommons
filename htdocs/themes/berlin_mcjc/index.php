@@ -147,4 +147,5 @@
       <?php endif; ?>
   </div>
 </div>
-<?php echo foot(['bodyid' => 'home']); ?>
+<?php echo foot(['bodyid' => 'home']);
+?>
