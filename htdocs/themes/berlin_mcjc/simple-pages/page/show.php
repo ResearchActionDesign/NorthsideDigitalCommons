@@ -60,4 +60,5 @@ switch ($pageTitle) {
     </div>
 </div>
 
-<?php echo foot(); ?>
+<?php echo foot();
+?>

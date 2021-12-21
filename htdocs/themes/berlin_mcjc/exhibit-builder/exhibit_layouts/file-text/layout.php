@@ -16,4 +16,5 @@ $captionPosition = isset($options['captions-position'])
         ]); ?>
     <?php endforeach; ?>
 </div>
-<?php echo $text; ?>
+<?php echo $text;
+?>

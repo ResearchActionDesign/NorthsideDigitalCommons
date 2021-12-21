@@ -3,5 +3,5 @@
     <?php echo $expertiseText; ?>
     <a class="button" href="/respond">Respond</a>
   </div>
-<?php endif; ?>
-
+<?php endif;
+?>

@@ -9,4 +9,5 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'error']);
     html_escape($this->method)
 ); ?></p>
 </div>
-<?php echo foot(); ?>
+<?php echo foot();
+?>

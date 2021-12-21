@@ -75,4 +75,5 @@ echo common('breadcrumbs', ['trail' => $breadcrumbs]);
         </div>
     </div>
 
-<?php echo foot(); ?>
+<?php echo foot();
+?>

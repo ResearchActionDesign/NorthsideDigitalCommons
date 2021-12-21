@@ -10,7 +10,7 @@ if (!FromTheRockWall) {
     var navBar = $("header nav ul.navigation");
     searchToggle.attr("aria-expanded", false);
     searchToggle.attr("aria-controls", "search-form-container");
-    searchToggle.append('<i class="fa fa-search"></i>');
+    searchToggle.append('<i class="fa fa-search fa-lg"></i>');
     searchToggle.after("");
 
     searchToggle.click(function (e) {

@@ -32,6 +32,36 @@
   background-position: top;
 }
 
+.webp .hero-image.topics-image {
+  background-image: url(../assets/images/banners/topics.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.topics-image {
+  background-image: url(../assets/images/banners/topics.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+.webp .hero-image.places-image {
+  background-image: url(../assets/images/banners/places.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
+.no-webp .hero-image.places-image {
+  background-image: url(../assets/images/banners/places.jpg);
+  min-height: 325px;
+  background-position: top;
+}
+
+.webp .hero-image.people-image {
+  background-image: url(../assets/images/banners/people.webp);
+  min-height: 325px;
+  background-position: top;
+}
+
 .no-webp .hero-image.people-image {
   background-image: url(../assets/images/banners/people.jpg);
   min-height: 325px;

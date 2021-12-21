@@ -15,4 +15,5 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'error']);
   <a href="/search" class="button"><?php echo __("Search for an item"); ?></a>
   <p>Please contact us at <a href="mailto:rockwall@jacksoncenter.info">rockwall@jacksoncenter.info</a> if you need more help!</p>
 </div>
-<?php echo foot(); ?>
+<?php echo foot();
+?>
