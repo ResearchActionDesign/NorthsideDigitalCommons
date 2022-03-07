@@ -160,10 +160,24 @@ function mcjc_item_image(
     if (substr($imageFile->mime_type, 0, 5) !== 'image') {
         return false;
     }
+
+    $source = metadata($imageFile, ['Dublin Core', 'Source']);
+    $description = metadata($imageFile, ['Dublin Core', 'Description']);
+
     $fileMarkup = new Omeka_View_Helper_FileMarkup();
     $imageTag = $fileMarkup->image_tag($imageFile, $props, $imageType);
     $originalHref = $imageFile->getWebPath('fullsize');
-    return '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
+    $returnHtml =
+        '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
+    if ($description) {
+        $returnHtml .= '<p class="image--description">' . $description . '</p>';
+    }
+
+    if ($source) {
+        $returnHtml .= '<p class="image--source">' . $source . '</p>';
+    }
+
+    return $returnHtml;
 }
 /**
  * Get all files for this Collection.
