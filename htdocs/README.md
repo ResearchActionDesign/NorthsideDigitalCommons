@@ -1,9 +1,9 @@
 # Welcome to Omeka
 
-© 2008-2018 [Roy Rosenzweig Center for History and New Media](http://chnm.gmu.edu/)
+© 2008-2016 [Roy Rosenzweig Center for History and New Media](http://chnm.gmu.edu/), 2016-present [Corporation for Digital Scholarship](http://digitalscholar.org/)
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
+This program is free software: you can redistribute it and/or modify it under 
+the terms of the GNU General Public License as published by the Free Software 
 Foundation, either version 3 of the License, or (at your option) any later
 version.
 
@@ -16,14 +16,14 @@ this program. If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/lice
 
 Omeka includes:
 
-- [Zend Framework](http://framework.zend.com)
-- [getID3](http://getid3.sourceforge.net)
-- [jQuery](http://jquery.com)
-- [jQuery UI](http://jqueryui.com)
-- [TinyMCE](http://tinymce.moxiecode.com)
-- [Silk Icons](http://www.famfamfam.com/lab/icons/silk/)
+* [Zend Framework](http://framework.zend.com)
+* [getID3](http://getid3.sourceforge.net)
+* [jQuery](http://jquery.com)
+* [jQuery UI](http://jqueryui.com)
+* [TinyMCE](http://tinymce.moxiecode.com)
+* [Silk Icons](http://www.famfamfam.com/lab/icons/silk/)
 
-Use and modifications of these libraries must comply with their respective
+Use and modifications of these libraries must comply with their respective 
 licenses.
 
 Release notes for Omeka are available at
