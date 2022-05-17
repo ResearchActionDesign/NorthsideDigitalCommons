@@ -572,7 +572,7 @@ function mcjc_element_metadata_paragraph($item)
         return _mcjc_image_metadata_paragraph($item);
     }
 
-    return _mcjc_generic_metadata_paragraph($item);
+    return false;
 }
 
 /**
@@ -680,4 +680,28 @@ function mcjc_tag_string(
         }
     }
     return join(html_escape($delimiter), $tagStrings);
+}
+
+function mcjc_get_place_badges($record)
+{
+    $tags = mcjc_tag_string($record);
+
+    $badges = [
+        'Contested spaces' => 'contested',
+        'Black-owned businesses' => 'black-owned',
+        'Open for business' => 'open-for-business',
+    ];
+
+    $return = [];
+
+    foreach ($badges as $tag => $badge) {
+        if (strpos($tags, $tag) !== false) {
+            $return[] = [
+                'image_path' => "/themes/berlin_mcjc/assets/images/place-badges/{$badge}.png",
+                'tag_name' => $tag,
+            ];
+        }
+    }
+
+    return $return;
 }

@@ -40,9 +40,26 @@ if ($latitude != 0 && $longitude != 0) {
     'description' => $description,
 ]); ?>
 
+
 <?php echo common('breadcrumbs', [
     'trail' => $breadcrumbTrail,
 ]); ?>
+
+<div class="place-badges">
+<?php foreach (mcjc_get_place_badges('item') as $placeBadge): ?>
+<a href="/tags/<?php echo $placeBadge['tag_name']; ?>">
+  <?php echo common('picture-tag', [
+      'base_filename' => $placeBadge['image_path'],
+      'options' => [
+          'alt' => $placeBadge['tag_name'],
+          'width' => 150,
+          'height' => 150,
+      ],
+  ]); ?>
+</a>
+<?php endforeach; ?>
+</div>
+
 <div class="primary <?php echo "{$itemTypeClass} {$itemClasses}"; ?>">
   <div class="item-content">
     <span class="item-type"><?php echo $itemType; ?></span>
@@ -71,6 +88,41 @@ if ($latitude != 0 && $longitude != 0) {
     <?php endif; ?>
   </div>
 </div>
+<?php
+$tags = mcjc_tag_string('item');
+$metadata_paragraph = mcjc_element_metadata_paragraph($item);
+$rights = metadata($item, ['Dublin Core', 'Rights']);
+$citation = metadata('item', 'citation', [
+    'no_escape' => true,
+]);
+?>
+<div class="tags-container">
+  <?php if ($tags): ?>
+      <p id="item-tags" class="element">
+          <span class="element-title"><?php echo __('Tags: '); ?></span>
+          <span class="element-text"><?php echo $tags; ?></span>
+      </p>
+  <?php endif; ?>
+    <div class="details">
+      <?php if ($metadata_paragraph): ?>
+          <p id="item-detail" class="element">
+              <span class="element-text"><?php echo $metadata_paragraph; ?></span>
+          </p>
+      <?php endif; ?>
+      <?php if ($citation): ?>
+          <p id="item-citation" class="element">
+              <span class="element-title"><?php echo __('Citation: '); ?></span>
+              <span class="element-text"><?php echo $citation; ?></span>
+          </p>
+      <?php endif; ?>
+      <?php if ($rights && $rights !== 'Open for research.'): ?>
+          <p id="item-rights" class="element"><span class="element-title"><?php echo __(
+              'Rights: '
+          ); ?></span><span class="element-text"><?php echo $rights; ?></span></p>
+      <?php endif; ?>
+    </div>
+</div>
+
 <?php if ($showMap): ?>
     <section class="leaflet map">
         <link rel="stylesheet" href="/themes/berlin_mcjc/css/lib/leaflet.css" />
@@ -97,14 +149,6 @@ if ($latitude != 0 && $longitude != 0) {
         </script>
     </section>
 <?php endif; ?>
-
-<?php
-$tags = mcjc_tag_string('item');
-$metadata_paragraph = mcjc_element_metadata_paragraph($item);
-$citation = metadata('item', 'citation', [
-    'no_escape' => true,
-]);
-?>
 
 <?php fire_plugin_hook('public_items_show', [
     'view' => $this,
