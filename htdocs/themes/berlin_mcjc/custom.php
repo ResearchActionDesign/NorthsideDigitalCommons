@@ -495,6 +495,7 @@ function _mcjc_image_metadata_paragraph($item)
         'creator' => metadata($item, ['Dublin Core', 'Creator']),
         'date' => metadata($item, ['Dublin Core', 'Date']),
         'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        'source' => metadata($item, ['Dublin Core', 'Source']),
     ];
 
     if ($metadata['date']) {
@@ -519,6 +520,41 @@ function _mcjc_image_metadata_paragraph($item)
         count($first_sentence_chunks)
             ? implode(" ", array_filter($first_sentence_chunks)) . '.'
             : false,
+        $metadata['source'] ? "Source: {$metadata['source']}" : false,
+    ];
+
+    return implode(" ", array_filter($sentences));
+}
+
+function _mcjc_generic_metadata_paragraph($item)
+{
+    $metadata = [
+        'subject' => implode(
+            ' and ',
+            explode(
+                "\r\n",
+                strip_tags(metadata($item, ['Dublin Core', 'Subject']))
+            )
+        ),
+        'creator' => metadata($item, ['Dublin Core', 'Creator']),
+        'date' => metadata($item, ['Dublin Core', 'Date']),
+        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        'source' => metadata($item, ['Dublin Core', 'Source']),
+    ];
+
+    if ($metadata['date']) {
+        $metadata['date'] = date_format(
+            date_create($metadata['date']),
+            'F j, Y'
+        );
+    }
+
+    $sentences = [
+        $metadata['subject'] ? "Subject: {$metadata['subject']}" : false,
+        $metadata['creator'] ? "Creator: {$metadata['creator']}" : false,
+        $metadata['publisher'] ? "Publisher: {$metadata['publisher']}" : false,
+        $metadata['source'] ? "Source: {$metadata['source']}" : false,
+        $metadata['date'] ? "Date: {$metadata['date']}" : false,
     ];
 
     return implode(" ", array_filter($sentences));
@@ -536,8 +572,7 @@ function mcjc_element_metadata_paragraph($item)
         return _mcjc_image_metadata_paragraph($item);
     }
 
-    // TODO for other item types if needed.
-    return '';
+    return _mcjc_generic_metadata_paragraph($item);
 }
 
 /**
