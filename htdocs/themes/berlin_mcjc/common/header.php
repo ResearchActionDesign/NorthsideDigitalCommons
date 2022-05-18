@@ -8,15 +8,21 @@ $commit_hash = "1";
 
 // Generate social media metadata
 if (isset($description)) {
-    $description = htmlentities(strip_formatting($description));
+    $description = htmlentities(
+        strip_formatting(html_entity_decode($description))
+    );
 }
 
 if (!isset($description) || empty($description)) {
-    $description = option('description');
+    $description = htmlentities(option('description'));
 }
 
 if (isset($title)) {
-    $titleParts[] = htmlentities(trim(strip_formatting($title)));
+    $title = htmlentities(
+        html_entity_decode(trim(strip_formatting($title))),
+        ENT_NOQUOTES
+    );
+    $titleParts[] = $title;
 }
 $titleParts[] = option('site_title');
 $title = implode(' | ', $titleParts);
@@ -50,7 +56,9 @@ $title = implode(' | ', $titleParts);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
-    <meta name="title" content="<?php echo $title; ?>" />
+    <meta name="title" content="<?php echo htmlentities(
+        html_entity_decode($title)
+    ); ?>" />
     <?php if (!empty($description)): ?>
     <meta name="description" content="<?php echo $description; ?>" />
     <meta property="twitter:description" content="<?php echo $description; ?>">

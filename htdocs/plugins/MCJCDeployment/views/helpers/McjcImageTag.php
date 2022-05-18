@@ -87,6 +87,7 @@ class MCJCDeployment_View_Helper_McjcImageTag extends Omeka_View_Helper_FileMark
       'file' => $file,
       'format' => $format,
     ));
+
     // Build the img tag
     return '<img ' . tag_attributes($attrs) . '>';
   }
