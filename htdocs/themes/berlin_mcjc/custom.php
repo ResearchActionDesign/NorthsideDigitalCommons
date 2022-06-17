@@ -271,11 +271,24 @@ function mcjc_file_markup(
         $output .= "<div class='item-images-slider'>";
     }
     foreach ($images as $image) {
-        $output .= get_view()->mcjcFileMarkup(
-            $image,
-            $props,
-            $wrapperAttributes
-        );
+        $source = metadata($image, ['Dublin Core', 'Source']);
+        $description = metadata($image, ['Dublin Core', 'Description']);
+        $caption = '';
+
+        if ($description) {
+            $caption .=
+                '<p class="image--description">' . $description . '</p>';
+        }
+
+        if ($source) {
+            $caption .= '<p class="image--source">' . $source . '</p>';
+        }
+
+        $output .=
+            "<div>" .
+            get_view()->mcjcFileMarkup($image, $props, $wrapperAttributes) .
+            $caption .
+            "</div>";
     }
     if (count($images) > 1) {
         $output .= "</div>";
