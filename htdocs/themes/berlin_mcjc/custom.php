@@ -284,11 +284,13 @@ function mcjc_file_markup(
             $caption .= '<p class="image--source">' . $source . '</p>';
         }
 
-        $output .=
-            "<div>" .
-            get_view()->mcjcFileMarkup($image, $props, $wrapperAttributes) .
-            $caption .
-            "</div>";
+        $innerHTML = preg_replace(
+            '/<\/div>$/',
+            '',
+            get_view()->mcjcFileMarkup($image, $props, $wrapperAttributes)
+        );
+
+        $output .= $innerHTML . $caption . "</div>";
     }
     if (count($images) > 1) {
         $output .= "</div>";
