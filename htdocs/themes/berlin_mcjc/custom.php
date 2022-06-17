@@ -160,10 +160,24 @@ function mcjc_item_image(
     if (substr($imageFile->mime_type, 0, 5) !== 'image') {
         return false;
     }
+
+    $source = metadata($imageFile, ['Dublin Core', 'Source']);
+    $description = metadata($imageFile, ['Dublin Core', 'Description']);
+
     $fileMarkup = new Omeka_View_Helper_FileMarkup();
     $imageTag = $fileMarkup->image_tag($imageFile, $props, $imageType);
     $originalHref = $imageFile->getWebPath('fullsize');
-    return '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
+    $returnHtml =
+        '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
+    if ($description) {
+        $returnHtml .= '<p class="image--description">' . $description . '</p>';
+    }
+
+    if ($source) {
+        $returnHtml .= '<p class="image--source">' . $source . '</p>';
+    }
+
+    return $returnHtml;
 }
 /**
  * Get all files for this Collection.
@@ -257,11 +271,26 @@ function mcjc_file_markup(
         $output .= "<div class='item-images-slider'>";
     }
     foreach ($images as $image) {
-        $output .= get_view()->mcjcFileMarkup(
-            $image,
-            $props,
-            $wrapperAttributes
+        $source = metadata($image, ['Dublin Core', 'Source']);
+        $description = metadata($image, ['Dublin Core', 'Description']);
+        $caption = '';
+
+        if ($description) {
+            $caption .=
+                '<p class="image--description">' . $description . '</p>';
+        }
+
+        if ($source) {
+            $caption .= '<p class="image--source">' . $source . '</p>';
+        }
+
+        $innerHTML = preg_replace(
+            '/<\/div>$/',
+            '',
+            get_view()->mcjcFileMarkup($image, $props, $wrapperAttributes)
         );
+
+        $output .= $innerHTML . $caption . "</div>";
     }
     if (count($images) > 1) {
         $output .= "</div>";
@@ -481,6 +510,7 @@ function _mcjc_image_metadata_paragraph($item)
         'creator' => metadata($item, ['Dublin Core', 'Creator']),
         'date' => metadata($item, ['Dublin Core', 'Date']),
         'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        'source' => metadata($item, ['Dublin Core', 'Source']),
     ];
 
     if ($metadata['date']) {
@@ -505,6 +535,41 @@ function _mcjc_image_metadata_paragraph($item)
         count($first_sentence_chunks)
             ? implode(" ", array_filter($first_sentence_chunks)) . '.'
             : false,
+        $metadata['source'] ? "Source: {$metadata['source']}" : false,
+    ];
+
+    return implode(" ", array_filter($sentences));
+}
+
+function _mcjc_generic_metadata_paragraph($item)
+{
+    $metadata = [
+        'subject' => implode(
+            ' and ',
+            explode(
+                "\r\n",
+                strip_tags(metadata($item, ['Dublin Core', 'Subject']))
+            )
+        ),
+        'creator' => metadata($item, ['Dublin Core', 'Creator']),
+        'date' => metadata($item, ['Dublin Core', 'Date']),
+        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        'source' => metadata($item, ['Dublin Core', 'Source']),
+    ];
+
+    if ($metadata['date']) {
+        $metadata['date'] = date_format(
+            date_create($metadata['date']),
+            'F j, Y'
+        );
+    }
+
+    $sentences = [
+        $metadata['subject'] ? "Subject: {$metadata['subject']}" : false,
+        $metadata['creator'] ? "Creator: {$metadata['creator']}" : false,
+        $metadata['publisher'] ? "Publisher: {$metadata['publisher']}" : false,
+        $metadata['source'] ? "Source: {$metadata['source']}" : false,
+        $metadata['date'] ? "Date: {$metadata['date']}" : false,
     ];
 
     return implode(" ", array_filter($sentences));
@@ -522,8 +587,7 @@ function mcjc_element_metadata_paragraph($item)
         return _mcjc_image_metadata_paragraph($item);
     }
 
-    // TODO for other item types if needed.
-    return '';
+    return false;
 }
 
 /**
@@ -631,4 +695,28 @@ function mcjc_tag_string(
         }
     }
     return join(html_escape($delimiter), $tagStrings);
+}
+
+function mcjc_get_place_badges($record)
+{
+    $tags = mcjc_tag_string($record);
+
+    $badges = [
+        'Contested space' => 'contested',
+        'Black business' => 'black-owned',
+        'Still here' => 'still-here',
+    ];
+
+    $return = [];
+
+    foreach ($badges as $tag => $badge) {
+        if (strpos($tags, $tag) !== false) {
+            $return[] = [
+                'image_path' => "/themes/berlin_mcjc/assets/images/place-badges/{$badge}.png",
+                'tag_name' => $tag,
+            ];
+        }
+    }
+
+    return $return;
 }

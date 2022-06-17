@@ -1,6 +1,6 @@
-# MCJC Oral History Trust Website
+# MCJC Oral History Trust Website (From the Rock Wall)
 
-based on Omeka version 2.5.1
+based on Omeka version 3.x
 
 ## Local set-up
 

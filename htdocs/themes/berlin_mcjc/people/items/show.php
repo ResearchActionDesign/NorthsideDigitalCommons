@@ -42,7 +42,7 @@ if (metadata('item', ['Dublin Core', 'Description'])) {
   <!-- Item files -->
   <div class="item-sidebar">
   <?php if ($picture): ?>
-    <div id="picture" class="element">
+      <div id="picture" class="element">
       <div class="item-images"><?php echo $picture; ?>
       </div>
     </div>
