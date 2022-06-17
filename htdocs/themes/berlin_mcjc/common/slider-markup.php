@@ -22,7 +22,7 @@
             }
         }
         <?php elseif ($class === 'item-images-slider'): ?>
-        autoHeight: true,
+        autoHeight: false,
         navPosition: 'bottom',
         lazyLoad: true,
         <?php endif; ?>
