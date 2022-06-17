@@ -687,9 +687,9 @@ function mcjc_get_place_badges($record)
     $tags = mcjc_tag_string($record);
 
     $badges = [
-        'Contested spaces' => 'contested',
-        'Black-owned businesses' => 'black-owned',
-        'Open for business' => 'open-for-business',
+        'Contested space' => 'contested',
+        'Black business' => 'black-owned',
+        'Still here' => 'still-here',
     ];
 
     $return = [];
