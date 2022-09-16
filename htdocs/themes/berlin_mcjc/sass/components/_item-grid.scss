@@ -132,7 +132,6 @@ div.grid-container {
   }
 
   &:not(.masonry-grid) .grid-items {
-    margin: 0 -20px;
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, $square-thumbnail-size);
@@ -197,5 +196,9 @@ div.grid-container {
     .item {
       width: 100%;
     }
+  }
+
+  .grid-count-2 {
+    grid-template-columns: repeat(1, $square-thumbnail-size);
   }
 }

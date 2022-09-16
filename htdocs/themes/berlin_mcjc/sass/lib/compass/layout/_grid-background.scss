@@ -127,9 +127,9 @@ $grid-background-force-fluid: false !default;
   $gutter-color: $grid-background-gutter-color
 ) {
   $context: ($column * $total) + ($gutter * ($total - 1) + ($offset * 2));
-  $offset: $offset / $context * 100%;
-  $column: $column / $context * 100%;
-  $gutter: $gutter / $context * 100%;
+  $offset: calc($offset / $context * 100%);
+  $column: calc($column / $context * 100%);
+  $gutter: calc($gutter / $context * 100%);
 
   // return the horizontal grid as a set of color-stops
   $grid: build-grid-background(
