@@ -33,6 +33,10 @@ if (!FromTheRockWall) {
     $(".person.show .oral-histories .item-description--text").each(function (
       index
     ) {
+      if (this.childElementCount === 0 && (!this.innerText || this.innerText.trim() === '')) {
+        return;
+      }
+
       var id = this.id;
       $(this).addClass("truncated");
 

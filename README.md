@@ -5,38 +5,21 @@ based on Omeka version 3.x
 ## Local set-up
 
 - Run `yarn install` to install prettier locally (needed only for code formatting; if you have a global install of prettier you can use that instead).
-- Install docker-sync by running `gem install docker-sync`.
+- Install ddev.
 - Run `make prepare-site`. This will copy each of the the example config files into a new file without the `.example` extension.
-- Put a most recent DB dump SQL file in the `db` directory -- database container will automatically load whatever `.sql` file is in this directory
+- Put a most recent DB dump SQL file in the `db` directory
   - Command to dump database is: `mysqldump <DB_NAME> --user <DB_USER> --password > ~/db-dump-<DATE>.sql --no-tablespaces`
+  - Import database by running `ddev import-db --src=<db-dump>`
   - Be sure to check `db.ini` that database prefix matches what it was on server where you exported DB dump!
 - Optional: Put a version of the files directory in `htdocs/files`
-- Run `make up`
-- To persist DB, run `make export-db` (this will create a new `db-dump.sql` based on the current state of the database)
-- Visit http://0.0.0.0 in your browser to view the site. You can also add a hosts file config mapping a different URL
-  to this IP address, for example: `0.0.0.0 mcjc-omeka.l`.
-- You may need to reset the admin password, which can be done by running `docker-compose exec db sh -c 'exec mysql -uroot -proot omeka -e "UPDATE omeka_users SET password=sha1(concat(salt, \'password\')) WHERE username=\'adminmcjc\';"'` from the command line.
+- Run `ddev start`
+- Visit https://from-the-rock-wall.ddev.site in your browser to view the site.
+- You may need to reset the admin password, which can be done by running `UPDATE omeka_users SET password=sha1(concat(salt, \'password\')) WHERE username=\'adminmcjc\';` within a SQL console.
 - After running that command, the admin user will be `adminmcjc` with password `password`.
 
-### Refreshing local database
+## Building sass
 
-From time-to-time, you may need to refresh the local database. To do this, first run `make down` to stop
-and remove the docker DB containers. Then run `docker volume rm mcjc_omeka_mysql-data` to remove the persistent
-DB data store. When you next run `make up` the site should re-load whatever database dump is in the `db` directory.
-
-### Rebuilding or modifying docker image
-
-The current docker-compose file pulls two pre-built images from Docker hub, which are built
-from Docker files in the .docker directory (one for the Compass container, one for Apache container).
-
-To rebuild the apache image and push a new one to the repository, run `docker build . -t timstallmann/apache-omeka:latest`
-and then `docker push timstallmann/apache-omeka:latest`.
-
-To use a locally built customized apache image, comment out the `image` line under the `web` service in `docker-compose.yml` and
-uncomment the `build` line.
-
-To rebuild the Sass image, run `docker build ./htdocs -f .docker/DartSass.Dockerfile -t timstallmann/dart-sass-omeka:latest` and
-then `docker push timstallmann/dart-sass-omeka:latest`.
+Run `yarn run watch` to watch sass build locally.
 
 ## Required plug-ins
 
