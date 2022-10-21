@@ -44,7 +44,7 @@ jobs:
     environment:
       - LC_ALL: C
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:current
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -76,7 +76,7 @@ jobs:
     environment:
       - LC_ALL: C
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:current
     steps:
       - add_ssh_keys:
           fingerprints:
