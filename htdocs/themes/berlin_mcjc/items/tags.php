@@ -1,40 +1,40 @@
 <?php
-$pageTitle = __('All Tags');
-$pageDescription = get_theme_option('tags_page_text');
+$pageTitle = __("All Tags");
+$pageDescription = get_theme_option("tags_page_text");
 
 // TODO: Is this the right way to set theme defaults?
 if (!$pageDescription) {
     $pageDescription =
         "View our full list of tags here. You may prefer to <a href='/people'>browse all people</a>, <a href='/topics'>explore all topics</a>, or <a href='/search'>search for content</a>.";
 }
-echo head(['title' => $pageTitle, 'bodyclass' => 'tags list']);
+echo head(["title" => $pageTitle, "bodyclass" => "tags list"]);
 echo flash();
 ?>
 
 
-<?php echo common('breadcrumbs', [
-    'trail' => ['Tags'],
+<?php echo common("breadcrumbs", [
+    "trail" => ["Tags"],
 ]); ?>
-<?php echo common('hero-image-header', [
-    'title' => $pageTitle,
-    'className' => 'tags',
-    'headerText' => $pageDescription,
+<?php echo common("hero-image-header", [
+    "title" => $pageTitle,
+    "className" => "tags",
+    "headerText" => $pageDescription,
 ]); ?>
 
 <?php if (count($tags)): ?>
 <?php
-usort($tags, 'strnatcasecmp');
+usort($tags, "strnatcasecmp");
 $tagsByLetter = mcjc_sort_tags_by_first_letter($tags);
 $validLetters = array_keys($tagsByLetter);
 ?>
 <div class="filter-by-letter">
-  <span><?php echo __('SCROLL TO LETTER'); ?></span>
+  <span><?php echo __("SCROLL TO LETTER"); ?></span>
   <ul>
     <li class="active"><a href="<?php echo $this->url(
         [],
-        'peopleDefault'
+        "peopleDefault"
     ); ?>">All</a></li>
-    <?php foreach (array_merge(['Digits'], range('A', 'Z')) as $letter): ?>
+    <?php foreach (array_merge(["Digits"], range("A", "Z")) as $letter): ?>
     <?php if (in_array($letter, $validLetters)): ?>
     <li>
       <a href="#<?php echo $letter; ?>"><?php echo $letter; ?></a>
@@ -59,7 +59,7 @@ $validLetters = array_keys($tagsByLetter);
 
 <?php else: ?>
 <p><?php echo __(
-    'There are no tags to display. You must first tag some items.'
+    "There are no tags to display. You must first tag some items."
 ); ?></p>
 
 <?php endif; ?>

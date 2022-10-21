@@ -1,7 +1,7 @@
   <header id="home_page_header_container">
-    <?php fire_plugin_hook('public_header', ['view' => $this]); ?>
+    <?php fire_plugin_hook("public_header", ["view" => $this]); ?>
     <div class="header-content-wrapper">
-      <?php if ($bodyid !== 'home'): ?>
+      <?php if ($bodyid !== "home"): ?>
       <div id="site-title"><?php echo link_to_home_page(theme_logo()); ?></div>
       <?php endif; ?>
 

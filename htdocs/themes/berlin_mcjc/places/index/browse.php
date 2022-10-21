@@ -1,38 +1,38 @@
 <?php
 
 $browseByTopic = true;
-$pageTitle = __('Explore Our Neighborhoods');
-$curLetter = $vars['cur_letter'];
-$validLetters = $vars['letters'];
+$pageTitle = __("Explore Our Neighborhoods");
+$curLetter = $vars["cur_letter"];
+$validLetters = $vars["letters"];
 
-echo head(['title' => $pageTitle, 'bodyclass' => 'places browse']);
-$missing_photo_text = strip_tags(get_theme_option('missing_photo_text'));
+echo head(["title" => $pageTitle, "bodyclass" => "places browse"]);
+$missing_photo_text = strip_tags(get_theme_option("missing_photo_text"));
 ?>
 
-<?php echo common('breadcrumbs', [
-    'trail' => ['Places'],
+<?php echo common("breadcrumbs", [
+    "trail" => ["Places"],
 ]); ?>
 
-<?php echo common('hero-image-header', [
-    'title' => $pageTitle,
-    'headerText' => get_theme_option('places_page_text'),
-    'className' => 'places',
+<?php echo common("hero-image-header", [
+    "title" => $pageTitle,
+    "headerText" => get_theme_option("places_page_text"),
+    "className" => "places",
 ]); ?>
 
 <div class="filter-by-letter">
-  <span><?php echo __('SEARCH BY NAME'); ?></span>
+  <span><?php echo __("SEARCH BY NAME"); ?></span>
   <ul>
     <li<?php echo !$curLetter
         ? ' class="active"'
-        : ''; ?>><a href="<?php echo $this->url(
+        : ""; ?>><a href="<?php echo $this->url(
     [],
-    'placesDefault'
+    "placesDefault"
 ); ?>" class="search-by-lastname__all">All</a></li>
-      <?php foreach (range('A', 'Z') as $letter): ?>
+      <?php foreach (range("A", "Z") as $letter): ?>
       <?php if (in_array($letter, $validLetters)): ?>
-      <li<?php echo $curLetter == $letter ? ' class="active"' : ''; ?>>
-        <a href="<?php echo $this->url([], 'placesDefault', [
-            'firstLetter' => $letter,
+      <li<?php echo $curLetter == $letter ? ' class="active"' : ""; ?>>
+        <a href="<?php echo $this->url([], "placesDefault", [
+            "firstLetter" => $letter,
         ]); ?>"><?php echo $letter; ?></a>
         </li>
         <?php else: ?>
@@ -47,21 +47,21 @@ $missing_photo_text = strip_tags(get_theme_option('missing_photo_text'));
 
 <div class="grid-container">
     <div class="grid-items">
-      <?php foreach (loop('items') as $item): ?>
-        <?php echo common('grid-item', [
-            'item' => $item,
-            'headingLevel' => 'h2',
-            'noImageText' => $missing_photo_text,
+      <?php foreach (loop("items") as $item): ?>
+        <?php echo common("grid-item", [
+            "item" => $item,
+            "headingLevel" => "h2",
+            "noImageText" => $missing_photo_text,
         ]); ?>
       <?php endforeach; ?>
     </div>
 </div>
 
 <?php echo pagination_links(); ?> <?php fire_plugin_hook(
-     'public_items_browse',
+     "public_items_browse",
      [
-         'items' => $items,
-         'view' => $this,
+         "items" => $items,
+         "view" => $this,
      ]
  ); ?>
 </div>

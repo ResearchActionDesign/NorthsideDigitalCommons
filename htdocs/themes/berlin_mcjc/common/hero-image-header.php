@@ -6,7 +6,7 @@ if (!is_array($className)) {
 $heroImageClasses = join(
     " ",
     array_map(function ($c) {
-        return $c . '-image';
+        return $c . "-image";
     }, $className)
 );
 $className = $className[0];
@@ -33,12 +33,12 @@ $audioGreetingImage = file_exists(
               <p>Your browser does not support this audio. <a href="<?php echo $audioGreetingFile; ?>">Click here to access the file directly</a>.</p>
           </audio>
           <button id="audio-greeting-button">
-              <?php echo common('picture-tag', [
-                  'base_filename' => $audioGreetingImage,
-                  'options' => [
-                      'alt' => 'Play audio greeting',
-                      'width' => 150,
-                      'height' => 150,
+              <?php echo common("picture-tag", [
+                  "base_filename" => $audioGreetingImage,
+                  "options" => [
+                      "alt" => "Play audio greeting",
+                      "width" => 150,
+                      "height" => 150,
                   ],
               ]); ?>
           </button>

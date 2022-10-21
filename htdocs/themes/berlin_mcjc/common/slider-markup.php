@@ -13,7 +13,7 @@
         container: '.<?php echo $class; ?>',
         items: 1,
         controlsContainer: '#slider-controls',
-    <?php if ($class === 'have-you-heard__container'): ?>
+    <?php if ($class === "have-you-heard__container"): ?>
         nav: false,
         gutter: 16,
         responsive: {
@@ -21,7 +21,7 @@
     edgePadding: 140,
             }
         }
-        <?php elseif ($class === 'item-images-slider'): ?>
+        <?php elseif ($class === "item-images-slider"): ?>
         autoHeight: false,
         navPosition: 'bottom',
         lazyLoad: true,

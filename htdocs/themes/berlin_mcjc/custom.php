@@ -9,39 +9,39 @@
 function oral_history_item_subtitle($item = false)
 {
     if (!$item) {
-        $item = get_current_record('item');
+        $item = get_current_record("item");
     }
 
     $convertNameFormat = function ($s) {
-        if (strpos($s, ',') !== false) {
-            return trim(substr(strstr($s, ','), 1)) .
-                ' ' .
-                trim(strstr($s, ',', true));
+        if (strpos($s, ",") !== false) {
+            return trim(substr(strstr($s, ","), 1)) .
+                " " .
+                trim(strstr($s, ",", true));
         } else {
             return $s;
         }
     };
     $interviewers = array_map(function ($a) use ($convertNameFormat) {
         return $convertNameFormat($a->text);
-    }, $item->getElementTexts('Item Type Metadata', 'Interviewer'));
-    $date = $item->getElementTexts('Item Type Metadata', 'Interview Date');
-    $text = '';
+    }, $item->getElementTexts("Item Type Metadata", "Interviewer"));
+    $date = $item->getElementTexts("Item Type Metadata", "Interview Date");
+    $text = "";
     if (empty($interviewers)) {
         if (empty($date)) {
             return "";
         } else {
             return sprintf(
-                'Interviewed on %s',
-                date_format(date_create($date[0]->text), 'F j, Y')
+                "Interviewed on %s",
+                date_format(date_create($date[0]->text), "F j, Y")
             );
         }
     } elseif (empty($date)) {
-        return sprintf('Interviewed by %s', implode(' and ', $interviewers));
+        return sprintf("Interviewed by %s", implode(" and ", $interviewers));
     } else {
         return sprintf(
-            'Interviewed by %s on %s',
-            implode(' and ', $interviewers),
-            date_format(date_create($date[0]->text), 'F j, Y')
+            "Interviewed by %s on %s",
+            implode(" and ", $interviewers),
+            date_format(date_create($date[0]->text), "F j, Y")
         );
     }
 }
@@ -52,19 +52,19 @@ function oral_history_item_subtitle($item = false)
 function mcjc_render_oral_history_players(
     $files = null,
     $item = null,
-    $wrapperAttributes = ['class' => 'item-file'],
+    $wrapperAttributes = ["class" => "item-file"],
     $options = []
 ) {
     if (!$files) {
         $files = $item->Files;
     }
-    if (!isset($options['title']) && $item) {
-        $options['title'] = metadata($item, ['Dublin Core', 'Title']);
+    if (!isset($options["title"]) && $item) {
+        $options["title"] = metadata($item, ["Dublin Core", "Title"]);
     }
-    $limit = $options['limit'] ?? false;
+    $limit = $options["limit"] ?? false;
     $output = "";
     $audioFiles = array_filter($files, function ($file) {
-        return substr($file->mime_type, 0, 5) === 'audio';
+        return substr($file->mime_type, 0, 5) === "audio";
     });
     $count = 1;
     foreach ($audioFiles as $audiofile) {
@@ -75,7 +75,7 @@ function mcjc_render_oral_history_players(
                 $options,
                 $wrapperAttributes
             ) .
-            '</div>';
+            "</div>";
         $count++;
         if ($limit && $count > $limit) {
             break;
@@ -95,24 +95,24 @@ function mcjc_render_oral_history_players(
  * @return string HTML
  */
 function mcjc_files_for_item(
-    $type = 'item',
+    $type = "item",
     $options = [],
-    $wrapperAttributes = ['class' => 'item-file'],
+    $wrapperAttributes = ["class" => "item-file"],
     $item = null
 ) {
     if (!$item) {
         $item = get_current_record($type);
     }
-    $options['item'] = $item;
+    $options["item"] = $item;
 
-    if ($type == 'collection') {
+    if ($type == "collection") {
         $files = mcjc_get_collection_files($item);
     } else {
         $files = $item->Files;
     }
 
     // If first file is an image, skip it since it will already have been displayed by item_image.
-    if (count($files) && substr($files[0]->mime_type, 0, 5) === 'image') {
+    if (count($files) && substr($files[0]->mime_type, 0, 5) === "image") {
         array_shift($files);
     }
 
@@ -125,12 +125,12 @@ function mcjc_files_for_item(
 function mcjc_item_image_url($item = null)
 {
     if (!$item) {
-        $item = get_current_record('item', false);
+        $item = get_current_record("item", false);
     }
     if ($item) {
         $imageFile = $item->getFile($index);
         if ($imageFile) {
-            return $imageFile->getWebPath('fullsize');
+            return $imageFile->getWebPath("fullsize");
         }
     }
     return false;
@@ -154,27 +154,27 @@ function mcjc_item_image(
     $item = null
 ) {
     if (!$item) {
-        $item = get_current_record('item');
+        $item = get_current_record("item");
     }
     $imageFile = $item->getFile($index);
-    if (substr($imageFile->mime_type, 0, 5) !== 'image') {
+    if (substr($imageFile->mime_type, 0, 5) !== "image") {
         return false;
     }
 
-    $source = metadata($imageFile, ['Dublin Core', 'Source']);
-    $description = metadata($imageFile, ['Dublin Core', 'Description']);
+    $source = metadata($imageFile, ["Dublin Core", "Source"]);
+    $description = metadata($imageFile, ["Dublin Core", "Description"]);
 
     $fileMarkup = new Omeka_View_Helper_FileMarkup();
     $imageTag = $fileMarkup->image_tag($imageFile, $props, $imageType);
-    $originalHref = $imageFile->getWebPath('fullsize');
+    $originalHref = $imageFile->getWebPath("fullsize");
     $returnHtml =
-        '<a href="' . $originalHref . '" data-lity>' . $imageTag . '</a>';
+        '<a href="' . $originalHref . '" data-lity>' . $imageTag . "</a>";
     if ($description) {
-        $returnHtml .= '<p class="image--description">' . $description . '</p>';
+        $returnHtml .= '<p class="image--description">' . $description . "</p>";
     }
 
     if ($source) {
-        $returnHtml .= '<p class="image--source">' . $source . '</p>';
+        $returnHtml .= '<p class="image--source">' . $source . "</p>";
     }
 
     return $returnHtml;
@@ -187,12 +187,12 @@ function mcjc_item_image(
  */
 function mcjc_get_collection_files($collection)
 {
-    $itemTable = $collection->getDb()->getTable('Item');
+    $itemTable = $collection->getDb()->getTable("Item");
     $itemArray = $itemTable->findBy([
-        'collection' => $collection->id,
-        'hasImage' => true,
-        'sort_field' => 'featured',
-        'sort_dir' => 'd',
+        "collection" => $collection->id,
+        "hasImage" => true,
+        "sort_field" => "featured",
+        "sort_dir" => "d",
     ]);
     if ($itemArray) {
         $files = [];
@@ -220,19 +220,19 @@ function mcjc_file_markup(
     $files,
     $item = null,
     array $props = [],
-    $wrapperAttributes = ['class' => 'item-file']
+    $wrapperAttributes = ["class" => "item-file"]
 ) {
     if (!is_array($files)) {
         $files = [$files];
     }
-    $output = '';
+    $output = "";
 
     $files = mcjc_sort_files($files);
 
     // If this is a standard item, start with rendering the oral history player.
     $output .= mcjc_render_oral_history_players(
         array_filter($files, function ($file) {
-            return substr($file->mime_type, 0, 5) === 'audio';
+            return substr($file->mime_type, 0, 5) === "audio";
         }),
         $item
     );
@@ -241,8 +241,8 @@ function mcjc_file_markup(
     foreach (
         array_filter($files, function ($file) {
             return !in_array(substr($file->mime_type, 0, 5), [
-                'audio',
-                'image',
+                "audio",
+                "image",
             ]);
         })
         as $key => $file
@@ -250,9 +250,9 @@ function mcjc_file_markup(
         // Don't create markup for PDFs unless this is an item show page, and
         // only create markup for the first file if this is Browse Collections.
         if (
-            (!isset($props['show']) &&
-                strpos($file->mime_type, 'pdf') !== false) ||
-            (isset($props['browse_collections']) && $key != 0)
+            (!isset($props["show"]) &&
+                strpos($file->mime_type, "pdf") !== false) ||
+            (isset($props["browse_collections"]) && $key != 0)
         ) {
             continue;
         }
@@ -265,28 +265,28 @@ function mcjc_file_markup(
 
     // Add all images as carousel.
     $images = array_filter($files, function ($file) {
-        return substr($file->mime_type, 0, 5) === 'image';
+        return substr($file->mime_type, 0, 5) === "image";
     });
     if (count($images) > 1) {
         $output .= "<div class='item-images-slider'>";
     }
     foreach ($images as $image) {
-        $source = metadata($image, ['Dublin Core', 'Source']);
-        $description = metadata($image, ['Dublin Core', 'Description']);
-        $caption = '';
+        $source = metadata($image, ["Dublin Core", "Source"]);
+        $description = metadata($image, ["Dublin Core", "Description"]);
+        $caption = "";
 
         if ($description) {
             $caption .=
-                '<p class="image--description">' . $description . '</p>';
+                '<p class="image--description">' . $description . "</p>";
         }
 
         if ($source) {
-            $caption .= '<p class="image--source">' . $source . '</p>';
+            $caption .= '<p class="image--source">' . $source . "</p>";
         }
 
         $innerHTML = preg_replace(
             '/<\/div>$/',
-            '',
+            "",
             get_view()->mcjcFileMarkup($image, $props, $wrapperAttributes)
         );
 
@@ -294,7 +294,7 @@ function mcjc_file_markup(
     }
     if (count($images) > 1) {
         $output .= "</div>";
-        $output .= common('slider-markup', ['class' => 'item-images-slider']);
+        $output .= common("slider-markup", ["class" => "item-images-slider"]);
     }
 
     return $output;
@@ -311,7 +311,7 @@ function mcjc_sort_files($files)
     // Remove PDF files so we can append them to the end of the file list.
     $pdfs = [];
     foreach ($files as $key => $file) {
-        if ($file->mime_type == 'application/pdf') {
+        if ($file->mime_type == "application/pdf") {
             $pdfs[] = $file;
             unset($files[$key]);
         }
@@ -329,15 +329,15 @@ function mcjc_sort_files($files)
 function mcjc_get_linked_sohp_interview($item = false)
 {
     if (!$item) {
-        $item = get_current_record('item');
+        $item = get_current_record("item");
     }
 
     if (
-        metadata($item, ['Dublin Core', 'Creator']) ===
+        metadata($item, ["Dublin Core", "Creator"]) ===
         "Southern Oral History Program"
     ) {
         // TODO: Check if source is a valid link.
-        $source = metadata('item', ['Dublin Core', 'Source']);
+        $source = metadata("item", ["Dublin Core", "Source"]);
         if (substr($source, 0, 4) === "http") {
             return $source;
         }
@@ -381,7 +381,7 @@ function mcjc_sort_tags_by_first_letter($tags = null)
     foreach ($tags as $tag) {
         $firstLetter = ucfirst($tag->name)[0];
         if (!ctype_alpha($firstLetter)) {
-            $firstLetter = 'Digits';
+            $firstLetter = "Digits";
         }
         if (!isset($output[$firstLetter])) {
             $output[$firstLetter] = [];
@@ -422,36 +422,36 @@ function mcjc_tags_list(
     }
 
     if (empty($tags)) {
-        return '<p>' . __('No tags are available.') . '</p>';
+        return "<p>" . __("No tags are available.") . "</p>";
     }
     $html = '<div class="tags__list">';
     $tagCount = count($tags);
     foreach ($tags as $index => $tag) {
         $html .= '<span class="tags__tag">';
         // TODO -- should be url(array('tag' => $tag['name']), 'tagShow') once that controller has been created.
-        $html .= '<a href="/tags/' . rawurlencode($tag['name']) . '">';
+        $html .= '<a href="/tags/' . rawurlencode($tag["name"]) . '">';
         if (
             $tagNumber &&
-            $tagNumberOrder == 'before' &&
-            isset($tag['tagCount'])
+            $tagNumberOrder == "before" &&
+            isset($tag["tagCount"])
         ) {
-            $html .= ' <span class="count">' . $tag['tagCount'] . '</span> ';
+            $html .= ' <span class="count">' . $tag["tagCount"] . "</span> ";
         }
-        $html .= html_escape($tag['name']);
+        $html .= html_escape($tag["name"]);
         if (
             $tagNumber &&
-            $tagNumberOrder == 'after' &&
-            isset($tag['tagCount'])
+            $tagNumberOrder == "after" &&
+            isset($tag["tagCount"])
         ) {
-            $html .= ' <span class="count">' . $tag['tagCount'] . '</span> ';
+            $html .= ' <span class="count">' . $tag["tagCount"] . "</span> ";
         }
-        $html .= '</a>';
-        $html .= '</span>';
+        $html .= "</a>";
+        $html .= "</span>";
         if ($index !== $tagCount - 1) {
-            $html .= ', ';
+            $html .= ", ";
         }
     }
-    $html .= '</div>';
+    $html .= "</div>";
 
     return $html;
 }
@@ -459,38 +459,38 @@ function mcjc_tags_list(
 function _mcjc_oral_history_metadata_paragraph($item)
 {
     $metadata = [
-        'interviewer' => metadata($item, ['Item Type Metadata', 'Interviewer']),
-        'interviewee' => metadata($item, ['Item Type Metadata', 'Interviewee']),
-        'location' => metadata($item, ['Item Type Metadata', 'Location']),
-        'processor' => metadata($item, [
-            'Item Type Metadata',
-            'Interview Processor',
+        "interviewer" => metadata($item, ["Item Type Metadata", "Interviewer"]),
+        "interviewee" => metadata($item, ["Item Type Metadata", "Interviewee"]),
+        "location" => metadata($item, ["Item Type Metadata", "Location"]),
+        "processor" => metadata($item, [
+            "Item Type Metadata",
+            "Interview Processor",
         ]),
-        'date' => metadata($item, ['Item Type Metadata', 'Interview Date']),
-        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
+        "date" => metadata($item, ["Item Type Metadata", "Interview Date"]),
+        "publisher" => metadata($item, ["Dublin Core", "Publisher"]),
     ];
 
-    if ($metadata['date']) {
-        $metadata['date'] = date_format(
-            date_create($metadata['date']),
-            'F j, Y'
+    if ($metadata["date"]) {
+        $metadata["date"] = date_format(
+            date_create($metadata["date"]),
+            "F j, Y"
         );
     }
 
     $first_sentence_chunks = [
-        'Oral history interview',
-        $metadata['interviewee'] ? "of {$metadata['interviewee']}" : false,
-        $metadata['interviewer']
-            ? "conducted by {$metadata['interviewer']}"
+        "Oral history interview",
+        $metadata["interviewee"] ? "of {$metadata["interviewee"]}" : false,
+        $metadata["interviewer"]
+            ? "conducted by {$metadata["interviewer"]}"
             : false,
-        $metadata['date'] ? "on {$metadata['date']}" : false,
-        $metadata['location'] ? "at {$metadata['location']}" : false,
+        $metadata["date"] ? "on {$metadata["date"]}" : false,
+        $metadata["location"] ? "at {$metadata["location"]}" : false,
     ];
 
     $sentences = [
-        implode(" ", array_filter($first_sentence_chunks)) . '.',
-        $metadata['processor']
-            ? "Processed by {$metadata['processor']}."
+        implode(" ", array_filter($first_sentence_chunks)) . ".",
+        $metadata["processor"]
+            ? "Processed by {$metadata["processor"]}."
             : false,
     ];
 
@@ -500,42 +500,42 @@ function _mcjc_oral_history_metadata_paragraph($item)
 function _mcjc_image_metadata_paragraph($item)
 {
     $metadata = [
-        'subject' => implode(
-            ' and ',
+        "subject" => implode(
+            " and ",
             explode(
                 "\r\n",
-                strip_tags(metadata($item, ['Dublin Core', 'Subject']))
+                strip_tags(metadata($item, ["Dublin Core", "Subject"]))
             )
         ),
-        'creator' => metadata($item, ['Dublin Core', 'Creator']),
-        'date' => metadata($item, ['Dublin Core', 'Date']),
-        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
-        'source' => metadata($item, ['Dublin Core', 'Source']),
+        "creator" => metadata($item, ["Dublin Core", "Creator"]),
+        "date" => metadata($item, ["Dublin Core", "Date"]),
+        "publisher" => metadata($item, ["Dublin Core", "Publisher"]),
+        "source" => metadata($item, ["Dublin Core", "Source"]),
     ];
 
-    if ($metadata['date']) {
-        $metadata['date'] = date_format(
-            date_create($metadata['date']),
-            'F j, Y'
+    if ($metadata["date"]) {
+        $metadata["date"] = date_format(
+            date_create($metadata["date"]),
+            "F j, Y"
         );
     }
 
     $first_sentence_chunks = [];
-    if ($metadata['creator'] || $metadata['subject'] || $metadata['date']) {
+    if ($metadata["creator"] || $metadata["subject"] || $metadata["date"]) {
         $first_sentence_chunks = [
-            $metadata['creator'] === 'Jim Wallace'
-                ? 'Photograph by Jim Wallace'
-                : 'Image',
-            $metadata['subject'] ? "of {$metadata['subject']}" : false,
-            $metadata['date'] ? "made on {$metadata['date']}" : false,
+            $metadata["creator"] === "Jim Wallace"
+                ? "Photograph by Jim Wallace"
+                : "Image",
+            $metadata["subject"] ? "of {$metadata["subject"]}" : false,
+            $metadata["date"] ? "made on {$metadata["date"]}" : false,
         ];
     }
 
     $sentences = [
         count($first_sentence_chunks)
-            ? implode(" ", array_filter($first_sentence_chunks)) . '.'
+            ? implode(" ", array_filter($first_sentence_chunks)) . "."
             : false,
-        $metadata['source'] ? "Source: {$metadata['source']}" : false,
+        $metadata["source"] ? "Source: {$metadata["source"]}" : false,
     ];
 
     return implode(" ", array_filter($sentences));
@@ -544,32 +544,32 @@ function _mcjc_image_metadata_paragraph($item)
 function _mcjc_generic_metadata_paragraph($item)
 {
     $metadata = [
-        'subject' => implode(
-            ' and ',
+        "subject" => implode(
+            " and ",
             explode(
                 "\r\n",
-                strip_tags(metadata($item, ['Dublin Core', 'Subject']))
+                strip_tags(metadata($item, ["Dublin Core", "Subject"]))
             )
         ),
-        'creator' => metadata($item, ['Dublin Core', 'Creator']),
-        'date' => metadata($item, ['Dublin Core', 'Date']),
-        'publisher' => metadata($item, ['Dublin Core', 'Publisher']),
-        'source' => metadata($item, ['Dublin Core', 'Source']),
+        "creator" => metadata($item, ["Dublin Core", "Creator"]),
+        "date" => metadata($item, ["Dublin Core", "Date"]),
+        "publisher" => metadata($item, ["Dublin Core", "Publisher"]),
+        "source" => metadata($item, ["Dublin Core", "Source"]),
     ];
 
-    if ($metadata['date']) {
-        $metadata['date'] = date_format(
-            date_create($metadata['date']),
-            'F j, Y'
+    if ($metadata["date"]) {
+        $metadata["date"] = date_format(
+            date_create($metadata["date"]),
+            "F j, Y"
         );
     }
 
     $sentences = [
-        $metadata['subject'] ? "Subject: {$metadata['subject']}" : false,
-        $metadata['creator'] ? "Creator: {$metadata['creator']}" : false,
-        $metadata['publisher'] ? "Publisher: {$metadata['publisher']}" : false,
-        $metadata['source'] ? "Source: {$metadata['source']}" : false,
-        $metadata['date'] ? "Date: {$metadata['date']}" : false,
+        $metadata["subject"] ? "Subject: {$metadata["subject"]}" : false,
+        $metadata["creator"] ? "Creator: {$metadata["creator"]}" : false,
+        $metadata["publisher"] ? "Publisher: {$metadata["publisher"]}" : false,
+        $metadata["source"] ? "Source: {$metadata["source"]}" : false,
+        $metadata["date"] ? "Date: {$metadata["date"]}" : false,
     ];
 
     return implode(" ", array_filter($sentences));
@@ -580,10 +580,10 @@ function _mcjc_generic_metadata_paragraph($item)
  */
 function mcjc_element_metadata_paragraph($item)
 {
-    $item_type = metadata($item, ['Dublin Core', 'Type']);
-    if ($item_type === 'Oral History') {
+    $item_type = metadata($item, ["Dublin Core", "Type"]);
+    if ($item_type === "Oral History") {
         return _mcjc_oral_history_metadata_paragraph($item);
-    } elseif ($item_type === 'Still Image') {
+    } elseif ($item_type === "Still Image") {
         return _mcjc_image_metadata_paragraph($item);
     }
 
@@ -608,7 +608,7 @@ function mcjc_record_image($record, $imageType = null, $props = [])
 
     if (!($record instanceof Omeka_Record_AbstractRecord)) {
         throw new InvalidArgumentException(
-            'An Omeka record must be passed to record_image.'
+            "An Omeka record must be passed to record_image."
         );
     }
     return get_view()->mcjcImageTag($record, $props, $imageType);
@@ -623,7 +623,7 @@ function mcjc_record_image($record, $imageType = null, $props = [])
 function mcjc_get_matching_tags($query)
 {
     $db = get_db();
-    $bind = ['%' . $query . '%'];
+    $bind = ["%" . $query . "%"];
 
     $sql = "
             SELECT tags.name
@@ -658,12 +658,12 @@ function mcjc_get_have_you_heard()
  */
 function mcjc_tag_string(
     $recordOrTags = null,
-    $link = 'items/browse',
+    $link = "items/browse",
     $delimiter = null
 ) {
     // Set the tag_delimiter option if no delimiter was passed.
     if (is_null($delimiter)) {
-        $delimiter = get_option('tag_delimiter') . ' ';
+        $delimiter = get_option("tag_delimiter") . " ";
     }
 
     if (!$recordOrTags) {
@@ -677,12 +677,12 @@ function mcjc_tag_string(
     }
 
     if (empty($tags)) {
-        return '';
+        return "";
     }
 
     $tagStrings = [];
     foreach ($tags as $tag) {
-        $name = $tag['name'];
+        $name = $tag["name"];
         if (!$link) {
             $tagStrings[] = html_escape($name);
         } else {
@@ -691,7 +691,7 @@ function mcjc_tag_string(
                 html_escape($name) .
                 '" rel="tag">' .
                 html_escape($name) .
-                '</a>';
+                "</a>";
         }
     }
     return join(html_escape($delimiter), $tagStrings);
@@ -702,9 +702,9 @@ function mcjc_get_place_badges($record)
     $tags = mcjc_tag_string($record);
 
     $badges = [
-        'Contested space' => 'contested',
-        'Black business' => 'black-owned',
-        'Still here' => 'still-here',
+        "Contested space" => "contested",
+        "Black business" => "black-owned",
+        "Still here" => "still-here",
     ];
 
     $return = [];
@@ -712,8 +712,8 @@ function mcjc_get_place_badges($record)
     foreach ($badges as $tag => $badge) {
         if (strpos($tags, $tag) !== false) {
             $return[] = [
-                'image_path' => "/themes/berlin_mcjc/assets/images/place-badges/{$badge}.png",
-                'tag_name' => $tag,
+                "image_path" => "/themes/berlin_mcjc/assets/images/place-badges/{$badge}.png",
+                "tag_name" => $tag,
             ];
         }
     }

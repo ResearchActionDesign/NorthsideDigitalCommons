@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="<?php echo get_theme_option(
-    'Style Sheet'
+    "Style Sheet"
 ); ?>" lang="<?php echo get_html_lang(); ?>">
 <?php
 $commit_hash = "1";
-@include 'commit-hash.php';
+@include "commit-hash.php";
 
 // Generate social media metadata
 if (isset($description)) {
@@ -14,7 +14,7 @@ if (isset($description)) {
 }
 
 if (!isset($description) || empty($description)) {
-    $description = htmlentities(option('description'));
+    $description = htmlentities(option("description"));
 }
 
 if (isset($title)) {
@@ -24,11 +24,11 @@ if (isset($title)) {
     );
     $titleParts[] = $title;
 }
-$titleParts[] = option('site_title');
-$title = implode(' | ', $titleParts);
+$titleParts[] = option("site_title");
+$title = implode(" | ", $titleParts);
 ?>
 <head>
-  <?php if ($google_id = get_theme_option('google_analytics_id')): ?>
+  <?php if ($google_id = get_theme_option("google_analytics_id")): ?>
       <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_id; ?>"></script>
 <script>
@@ -80,7 +80,7 @@ $title = implode(' | ', $titleParts);
 
     <?php echo auto_discovery_link_tags(); ?>
 
-    <?php fire_plugin_hook('public_head', ['view' => $this]); ?>
+    <?php fire_plugin_hook("public_head", ["view" => $this]); ?>
     <?php
 /* Include modernizr script first so classes are applied before CSS loaded */
 ?>
@@ -101,9 +101,9 @@ $title = implode(' | ', $titleParts);
 	<link rel="icon" type="image/png" sizes="16x16" href="/themes/berlin_mcjc/assets/images/icons/favicon-16x16.png">
 	<link rel="manifest" href="/themes/berlin_mcjc/assets/manifest.json">
 	<meta name="msapplication-TileImage" content="/themes/berlin_mcjc/assets/images/icons/ms-icon-144x144.png">
-  <?php queue_css_file(['iconfonts', 'media-player']); ?>
-  <?php if ($bodyid !== 'home') {
-      queue_js_file('masonry.min');
+  <?php queue_css_file(["iconfonts", "media-player"]); ?>
+  <?php if ($bodyid !== "home") {
+      queue_js_file("masonry.min");
   }
 // JS and CSS actually rendered in footer for the most part.
 ?>
@@ -116,7 +116,7 @@ $title = implode(' | ', $titleParts);
               href="/themes/berlin_mcjc/css/noscript.css?v=<?php echo $commit_hash; ?>" />
     </noscript>
 </head>
-<?php echo body_tag(['id' => $bodyid ?? '', 'class' => $bodyclass ?? '']); ?>
+<?php echo body_tag(["id" => $bodyid ?? "", "class" => $bodyclass ?? ""]); ?>
 <?php if ($google_id): ?>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo $google_id; ?>"
@@ -125,11 +125,11 @@ $title = implode(' | ', $titleParts);
 <?php endif; ?>
 <div class="page-header-background-container">
     <div class="page-header-container">
-<a href="#content" id="skipnav"><?php echo __('Skip to main content'); ?></a>
-<?php fire_plugin_hook('public_body', ['view' => $this]); ?>
+<a href="#content" id="skipnav"><?php echo __("Skip to main content"); ?></a>
+<?php fire_plugin_hook("public_body", ["view" => $this]); ?>
 
- <?php echo common('header-nav', ['bodyid' => $bodyid ?? '']); ?>
+ <?php echo common("header-nav", ["bodyid" => $bodyid ?? ""]); ?>
     </div>
 </div>
 <article id="content" role="main">
-<?php fire_plugin_hook('public_content_top', ['view' => $this]); ?>
+<?php fire_plugin_hook("public_content_top", ["view" => $this]); ?>

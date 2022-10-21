@@ -1,5 +1,5 @@
 <?php
-$title = metadata($item, ['Dublin Core', 'Title']);
+$title = metadata($item, ["Dublin Core", "Title"]);
 
 // Workaround to situations where interview title matches person name.
 if ($title === $person) {
@@ -10,19 +10,19 @@ if ($title === $person) {
   <h2><?php echo $title; ?></h2>
 
   <!-- Item files -->
-  <?php if (metadata($item, 'has files')): ?>
+  <?php if (metadata($item, "has files")): ?>
       <?php echo mcjc_render_oral_history_players(
           null,
           $item,
-          ['class' => 'item-file'],
-          ['title' => $title, 'limit' => 1]
+          ["class" => "item-file"],
+          ["title" => $title, "limit" => 1]
       ); ?>
   <?php endif; ?>
 
   <div class="item-description">
     <div class="item-description--text" id="oral-history-item--<?php echo $item_index ??
         0; ?>">
-        <?php echo metadata($item, ['Dublin Core', 'Description']); ?>
+        <?php echo metadata($item, ["Dublin Core", "Description"]); ?>
     </div>
   </div>
 
@@ -31,17 +31,17 @@ if ($title === $person) {
       <a target="_blank" href="<?php echo html_escape(
           $sohp_url
       ); ?>"><?php echo __(
-    'View Details at Southern Oral History Program website'
+    "View Details at Southern Oral History Program website"
 ); ?></a>
     </div>
   <?php endif; ?>
 
   <?php echo link_to_item(
-      __('Find out more'),
+      __("Find out more"),
       [
-          'class' => 'button item-link',
+          "class" => "button item-link",
       ],
-      'show',
+      "show",
       $item
   ); ?>
 </div>

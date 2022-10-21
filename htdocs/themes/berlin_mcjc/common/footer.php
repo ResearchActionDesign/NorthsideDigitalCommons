@@ -9,33 +9,33 @@
         </div>
         <div id="footer-logo">
           <a href="https://jacksoncenter.info">
-            <?php echo common('picture-tag', [
-                'base_filename' =>
+            <?php echo common("picture-tag", [
+                "base_filename" =>
                     "/themes/berlin_mcjc/assets/images/icons/mcjc_logo.png",
-                'options' => [
-                    'alt' => "Marian Cheek Jackson Center",
-                    'width' => '200',
-                    'height' => '109',
+                "options" => [
+                    "alt" => "Marian Cheek Jackson Center",
+                    "width" => "200",
+                    "height" => "109",
                 ],
             ]); ?>
           </a>
         </div>
         <div id="footer-text">
-            <?php if ($footerText = get_theme_option('Footer Text')): ?>
+            <?php if ($footerText = get_theme_option("Footer Text")): ?>
                 <div id="custom-footer-text">
-                    <?php echo get_theme_option('Footer Text'); ?>
+                    <?php echo get_theme_option("Footer Text"); ?>
                 </div>
             <?php endif; ?>
             
             <?php if (
-                get_theme_option('Display Footer Copyright') == 1 &&
-                ($copyright = option('copyright'))
+                get_theme_option("Display Footer Copyright") == 1 &&
+                ($copyright = option("copyright"))
             ): ?>
                 <div id="footer-copyright"><?php echo $copyright; ?></div>
             <?php endif; ?>
         </div>
     </div>
-     <?php fire_plugin_hook('public_footer', ['view' => $this]); ?>
+     <?php fire_plugin_hook("public_footer", ["view" => $this]); ?>
     <div id="footer-omeka"><?php echo __(
         'Designed and built by <a href="https://rad.cat">Research Action Design</a>, powered by <a href="https://omeka.org">Omeka</a>.'
     ); ?></div>
@@ -49,7 +49,7 @@
 <?php echo head_js(false); ?>
 <?php
 $commit_hash = "1";
-@include 'commit-hash.php';
+@include "commit-hash.php";
 ?>
 <script type="text/javascript" src="/themes/berlin_mcjc/javascripts/lity.min.js" async defer></script>
 <script type="text/javascript" src="/themes/berlin_mcjc/javascripts/sharer.min.js" async defer></script>

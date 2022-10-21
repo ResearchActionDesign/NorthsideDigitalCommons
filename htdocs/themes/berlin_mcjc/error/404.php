@@ -1,11 +1,11 @@
 <?php
-$pageTitle = __('Page Not Found');
-echo head(['title' => $pageTitle, 'bodyclass' => 'error']);
+$pageTitle = __("Page Not Found");
+echo head(["title" => $pageTitle, "bodyclass" => "error"]);
 ?>
 <h1><?php echo $pageTitle; ?></h1>
 <div id="primary">
 <p><?php echo __(
-    'Sorry, that page was not found. Here are some other things you can try:'
+    "Sorry, that page was not found. Here are some other things you can try:"
 ); ?></p>
 <a href="/how-to-use" class="button"><?php echo __(
     "Read about how to use the site"
