@@ -1,11 +1,11 @@
 <?php
 
 $commit_hash = "1";
-@include 'commit-hash.php';
+@include "commit-hash.php";
 
 $path_parts = pathinfo($base_filename);
 $webp_filename =
-    $path_parts['dirname'] . '/' . $path_parts['filename'] . '.webp';
+    $path_parts["dirname"] . "/" . $path_parts["filename"] . ".webp";
 $options_string = "";
 foreach ($options as $key => $value) {
     $options_string .= "{$key}='{$value}'";

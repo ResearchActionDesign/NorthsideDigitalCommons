@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build: # Build CSS files only
     docker:
-      - image: circleci/node
+      - image: cimg/node:lts
     working_directory: ~/repo
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
@@ -17,10 +17,6 @@ jobs:
           name: Yarn install
           command: yarn install --production=false
 
-      - run: # Install sass
-          name: Sass Install
-          command: yarn global add sass
-
       - save_cache:
           key: ndc-yarn-{{ checksum "~/repo/yarn.lock" }}
           paths:
@@ -32,8 +28,7 @@ jobs:
 
       - run:
           name: Compile SASS
-          command: $(yarn global bin)/sass sass:css --style=compressed --no-source-map
-          working_directory: ~/repo/htdocs/themes/berlin_mcjc
+          command: yarn run build
 
       - run:
           name: Purge SASS
@@ -49,7 +44,7 @@ jobs:
     environment:
       - LC_ALL: C
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:current
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -81,7 +76,7 @@ jobs:
     environment:
       - LC_ALL: C
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:current
     steps:
       - add_ssh_keys:
           fingerprints:

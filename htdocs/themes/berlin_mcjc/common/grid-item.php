@@ -5,13 +5,13 @@ const PROJECT_INTERVIEW_ITEM_TYPE = 19;
 const IMAGE_ITEM_TYPE = 6;
 const TOPIC_ITEM_TYPE = 20;
 
-set_current_record('item', $item);
+set_current_record("item", $item);
 
 if (!isset($masonry)) {
     $masonry = false;
 }
 if (!isset($title)) {
-    $title = metadata($item, 'display_title');
+    $title = metadata($item, "display_title");
 }
 if (!isset($url)) {
     $url = record_url($item);
@@ -19,26 +19,26 @@ if (!isset($url)) {
 if (!isset($description)) {
     $description = metadata(
         $item,
-        ['Dublin Core', 'Description'],
-        ['snippet' => 300]
+        ["Dublin Core", "Description"],
+        ["snippet" => 300]
     );
 }
 if (!isset($image)) {
-    $baseImageWidth = '300px'; // Set to Derivative Images width.
+    $baseImageWidth = "300px"; // Set to Derivative Images width.
 
     $image_attrs = [
-        'width' => $baseImageWidth,
-        'alt' => '',
-        'loading' => 'lazy',
-        'height' => $baseImageWidth,
+        "width" => $baseImageWidth,
+        "alt" => "",
+        "loading" => "lazy",
+        "height" => $baseImageWidth,
     ];
     if (!$masonry) {
-        $image_attrs['height'] = $baseImageWidth;
-        $image_attrs['loading'] = 'lazy';
+        $image_attrs["height"] = $baseImageWidth;
+        $image_attrs["loading"] = "lazy";
     }
     $image = mcjc_record_image(
         $item,
-        $masonry ? 'thumbnail' : 'square_thumbnail',
+        $masonry ? "thumbnail" : "square_thumbnail",
         $image_attrs
     );
 }
@@ -49,12 +49,12 @@ if (!$description && !$image && isset($noImageText)) {
 
 if (
     !isset($headingLevel) ||
-    array_search($headingLevel, ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']) === false
+    array_search($headingLevel, ["h1", "h2", "h3", "h4", "h5", "h6"]) === false
 ) {
-    $headingLevel = 'h3';
+    $headingLevel = "h3";
 }
 
-$icon = '';
+$icon = "";
 switch ($item->item_type_id) {
     case ORAL_HISTORY_ITEM_TYPE:
     case ORAL_HISTORY_CLIP_ITEM_TYPE:
@@ -69,7 +69,7 @@ switch ($item->item_type_id) {
 }
 
 if ($icon) {
-    $title = $icon . '&nbsp;' . $title;
+    $title = $icon . "&nbsp;" . $title;
 }
 ?>
 <a href="<?php echo $url; ?>" class="item record related-item tile<?php
@@ -93,13 +93,13 @@ echo $class ?? false ? " {$class}" : "";
     <div class="item-title" aria-hidden="true"><?php echo $title; ?></div>
 
     <?php if (
-        ($item->topicType ?? 'Item') === 'Item' &&
+        ($item->topicType ?? "Item") === "Item" &&
         !$isCollection &&
-        !stristr($class, 'collection')
+        !stristr($class, "collection")
     ): ?>
-    <?php fire_plugin_hook('public_items_browse_each', [
-        'view' => $this,
-        'item' => $item,
+    <?php fire_plugin_hook("public_items_browse_each", [
+        "view" => $this,
+        "item" => $item,
     ]); ?>
     <?php endif; ?>
 </a>

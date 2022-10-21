@@ -1,9 +1,9 @@
 {
   "devDependencies": {
-    "@prettier/plugin-php": "^0.14.0",
-    "husky": "^4.2.3",
+    "@prettier/plugin-php": "^0.19.0",
+    "husky": "^8.0",
     "prettier": "^2.0.4",
-    "pretty-quick": "^2.0.1"
+    "pretty-quick": "^3.0"
   },
   "husky": {
     "hooks": {
@@ -13,9 +13,12 @@
   "scripts": {
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "prettier:check-ci": "prettier --check . --ignore-path=.prettierignore-circleci"
+    "prettier:check-ci": "prettier --check . --ignore-path=.prettierignore-circleci",
+    "build": "sass htdocs/themes/berlin_mcjc/sass:htdocs/themes/berlin_mcjc/css",
+    "watch": "sass htdocs/themes/berlin_mcjc/sass:htdocs/themes/berlin_mcjc/css -w"
   },
   "dependencies": {
-    "purgecss": "^4.0.0"
+    "purgecss": "^5.0",
+    "sass": "^1.55.0"
   }
 }

@@ -1,11 +1,11 @@
 <?php
 if ($this->pageCount > 1):
     $getParams = $_GET; ?>
-  <nav class="pagination-nav" aria-label="<?php echo __('Pagination'); ?>">
+  <nav class="pagination-nav" aria-label="<?php echo __("Pagination"); ?>">
       <?php if (isset($this->previous)): ?>
         <!-- Previous page link -->
         <div class="pagination_previous">
-          <?php $getParams['page'] = $previous; ?>
+          <?php $getParams["page"] = $previous; ?>
           <a rel="prev"
              href="<?php echo html_escape(
                  $this->url([], null, $getParams)
@@ -19,15 +19,15 @@ if ($this->pageCount > 1):
           as $pageNumber
       ): ?>
             <li class="page-input<?php echo $current === $pageNumber
-                ? ' active'
-                : ''; ?>">
+                ? " active"
+                : ""; ?>">
         <?php if (
             $first < $firstPageInRange &&
             $pageNumber === $firstPageInRange
         ): ?>
               ...
         <?php endif; ?>
-              <?php $getParams['page'] = $pageNumber; ?>
+              <?php $getParams["page"] = $pageNumber; ?>
                 <a
                    href="<?php echo html_escape(
                        $this->url([], null, $getParams)
@@ -44,7 +44,7 @@ if ($this->pageCount > 1):
       <?php if (isset($this->next)): ?>
         <!-- Next page link -->
         <div class="pagination_next">
-          <?php $getParams['page'] = $next; ?>
+          <?php $getParams["page"] = $next; ?>
           <a rel="next"
              href="<?php echo html_escape(
                  $this->url([], null, $getParams)

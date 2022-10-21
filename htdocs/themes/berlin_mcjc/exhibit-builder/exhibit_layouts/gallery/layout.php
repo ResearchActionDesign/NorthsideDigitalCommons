@@ -1,14 +1,14 @@
 <?php
-$showcasePosition = isset($options['showcase-position'])
-    ? html_escape($options['showcase-position'])
-    : 'none';
-$showcaseFile = $showcasePosition !== 'none' && !empty($attachments);
+$showcasePosition = isset($options["showcase-position"])
+    ? html_escape($options["showcase-position"])
+    : "none";
+$showcaseFile = $showcasePosition !== "none" && !empty($attachments);
 ?>
 <?php if ($showcaseFile): ?>
 <div class="gallery-showcase">
     <?php
     $attachment = array_shift($attachments);
-    echo $this->exhibitAttachment($attachment, ['imageSize' => 'fullsize']);
+    echo $this->exhibitAttachment($attachment, ["imageSize" => "fullsize"]);
     ?>
 </div>
 <?php else: ?>
@@ -21,7 +21,7 @@ $showcaseFile = $showcasePosition !== 'none' && !empty($attachments);
     $item = $attachment->getItem();
     $file = $attachment->getFile();
     ?>
-      <?php if ($item['public']): ?>
+      <?php if ($item["public"]): ?>
       <div class="exhibit-gallery-item">
         <?php
         if ($file) {

@@ -1,13 +1,13 @@
 <?php
-$pageTitle = __('403 Page Forbidden');
-echo head(['title' => $pageTitle, 'bodyclass' => 'error']);
+$pageTitle = __("403 Page Forbidden");
+echo head(["title" => $pageTitle, "bodyclass" => "error"]);
 ?>
 
 <h1><?php echo $pageTitle; ?></h1>
 <div id="#primary">
   <?php echo flash(); ?>
     <p><?php echo __(
-        'Hmmm. It seems that you do not have permission to access this page. Here are some other things you can try:'
+        "Hmmm. It seems that you do not have permission to access this page. Here are some other things you can try:"
     ); ?></p>
 <a href="/how-to-use" class="button"><?php echo __(
     "Read about how to use the site"

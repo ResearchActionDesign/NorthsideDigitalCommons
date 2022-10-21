@@ -1,9 +1,9 @@
 <?php
-$pageTitle = __('Collections');
-echo head(['title' => $pageTitle, 'bodyclass' => 'collections browse']);
+$pageTitle = __("Collections");
+echo head(["title" => $pageTitle, "bodyclass" => "collections browse"]);
 ?>
-<?php echo common('breadcrumbs', [
-    'trail' => ['Topics' => '/topics', 'Collections'],
+<?php echo common("breadcrumbs", [
+    "trail" => ["Topics" => "/topics", "Collections"],
 ]); ?>
 <h1><?php echo $pageTitle; ?></h1>
 
@@ -11,20 +11,20 @@ echo head(['title' => $pageTitle, 'bodyclass' => 'collections browse']);
     <div class="background-container">
           <div class="grid-container topics-grid masonry-grid">
               <div class="grid-items">
-                <?php foreach (loop('collections') as $collection): ?>
+                <?php foreach (loop("collections") as $collection): ?>
                   <?php
                   $title = $collection->title;
                   $description = metadata(
                       $collection,
-                      ['Dublin Core', 'Description'],
-                      ['snippet' => 250]
+                      ["Dublin Core", "Description"],
+                      ["snippet" => 250]
                   );
-                  echo common('grid-item', [
-                      'item' => $collection,
-                      'title' => $title,
-                      'description' => $description,
-                      'class' => "topic collection",
-                      'masonry' => true,
+                  echo common("grid-item", [
+                      "item" => $collection,
+                      "title" => $title,
+                      "description" => $description,
+                      "class" => "topic collection",
+                      "masonry" => true,
                   ]);
                   ?>
                 <?php endforeach; ?>
