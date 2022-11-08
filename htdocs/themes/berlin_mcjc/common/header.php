@@ -26,6 +26,10 @@ if (isset($title)) {
 }
 $titleParts[] = option("site_title");
 $title = implode(" | ", $titleParts);
+
+if (!isset($bodyid)) {
+    $bodyid = '';
+}
 ?>
 <head>
   <?php if ($google_id = get_theme_option("google_analytics_id")): ?>
