@@ -1,19 +1,19 @@
 <?php
 
-if (!defined('ORAL_HISTORY_ITEM_TYPE')) {
-    define('ORAL_HISTORY_ITEM_TYPE', 4);
+if (!defined("ORAL_HISTORY_ITEM_TYPE")) {
+    define("ORAL_HISTORY_ITEM_TYPE", 4);
 }
-if (!defined('ORAL_HISTORY_CLIP_ITEM_TYPE')) {
-  define('ORAL_HISTORY_CLIP_ITEM_TYPE', 18);
+if (!defined("ORAL_HISTORY_CLIP_ITEM_TYPE")) {
+    define("ORAL_HISTORY_CLIP_ITEM_TYPE", 18);
 }
-if (!defined('PROJECT_INTERVIEW_ITEM_TYPE')) {
-  define('PROJECT_INTERVIEW_ITEM_TYPE', 19);
+if (!defined("PROJECT_INTERVIEW_ITEM_TYPE")) {
+    define("PROJECT_INTERVIEW_ITEM_TYPE", 19);
 }
-if (!defined('IMAGE_ITEM_TYPE')) {
-  define('IMAGE_ITEM_TYPE', 6);
+if (!defined("IMAGE_ITEM_TYPE")) {
+    define("IMAGE_ITEM_TYPE", 6);
 }
-if (!defined('TOPIC_ITEM_TYPE')) {
-  define('TOPIC_ITEM_TYPE', 20);
+if (!defined("TOPIC_ITEM_TYPE")) {
+    define("TOPIC_ITEM_TYPE", 20);
 }
 
 set_current_record("item", $item);
@@ -106,7 +106,7 @@ echo $class ?? false ? " {$class}" : "";
     <?php if (
         ($item->topicType ?? "Item") === "Item" &&
         !($isCollection ?? false) &&
-        !stristr($class ?? '', "collection")
+        !stristr($class ?? "", "collection")
     ): ?>
     <?php fire_plugin_hook("public_items_browse_each", [
         "view" => $this,
