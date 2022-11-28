@@ -28,7 +28,7 @@ $titleParts[] = option("site_title");
 $title = implode(" | ", $titleParts);
 
 if (!isset($bodyid)) {
-    $bodyid = '';
+    $bodyid = "";
 }
 ?>
 <head>
