@@ -51,8 +51,9 @@ class Job_SearchTextIndex extends Omeka_Job_AbstractJob
                         _log(sprintf('Failed to index %s #%s',
                                 get_class($recordObject), $recordObject->id),
                             Zend_Log::ERR);
+                    } finally {
+                      release_object($recordObject);
                     }
-                    release_object($recordObject);
                 }
                 $pageNumber++;
             }
