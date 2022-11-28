@@ -3,7 +3,7 @@
     "description": "Plugin to handle customization for MCJC Omeka Oral History Trust website",
     "type": "plugin",
     "require": {
-        "rollbar/rollbar": "2.x"
+        "rollbar/rollbar": "3.x"
     },
     "authors": [
         {
