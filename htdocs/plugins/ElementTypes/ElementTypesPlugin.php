@@ -253,8 +253,7 @@ class ElementTypesPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function dateFilterSave($text, $args)
     {
-        $format = $args['element_type_options']['format'];
-        $format = $format ? $format : 'Y-m-d';
+        $format = $args['element_type_options']['format'] ?? 'Y-m-d';
 
         $dt = DateTime::createFromFormat($format, $text);
         if ($dt) {
@@ -273,8 +272,7 @@ class ElementTypesPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function dateFilterDisplay($text, $args)
     {
-        $format = $args['element_type_options']['format'];
-        $format = $format ? $format : 'Y-m-d';
+        $format = $args['element_type_options']['format'] ?? 'Y-m-d';
 
         $dt = DateTime::createFromFormat('Y-m-d', $text);
         if ($dt) {
@@ -286,8 +284,7 @@ class ElementTypesPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function dateFilterFormat($value, $args)
     {
-        $format = $args['element_type_options']['format'];
-        $format = $format ? $format : 'Y-m-d';
+        $format = $args['element_type_options']['format'] ?? 'Y-m-d';
 
         $dt = DateTime::createFromFormat($format, $value);
         if ($dt) {
