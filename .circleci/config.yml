@@ -55,7 +55,7 @@ jobs:
           name: Enable SSH authentication for remote server
           command: |
             mkdir -p ~/.ssh
-            echo "$FROMTHEROCKWALL_IP_ADDRESS ecdsa-sha2-nistp256 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+            echo "$FROMTHEROCKWALL_IP_ADDRESS ssh-ed25519 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
           command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/staging.fromtherockwall.org && git pull origin develop'
@@ -87,7 +87,7 @@ jobs:
           name: Enable SSH authentication for remote server
           command: |
             mkdir -p ~/.ssh
-            echo "$FROMTHEROCKWALL_IP_ADDRESS ecdsa-sha2-nistp256 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
+            echo "$FROMTHEROCKWALL_IP_ADDRESS ssh-ed25519 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
           command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/fromtherockwall.org && git pull origin master'
