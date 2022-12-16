@@ -105,7 +105,7 @@ class People_ItemsController extends AbstractMCJCItemController
     $collections = array_filter(array_map(
       function ($collectionId) {
         $collection = $this->getCollectionById($collectionId);
-        if (!$collection->public) {
+        if (!$collection || !$collection->public) {
           return false;
         }
         $collection->inTheCommunity = 'Collection';

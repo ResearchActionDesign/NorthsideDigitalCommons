@@ -21,7 +21,7 @@ $showcaseFile = $showcasePosition !== "none" && !empty($attachments);
     $item = $attachment->getItem();
     $file = $attachment->getFile();
     ?>
-      <?php if ($item["public"]): ?>
+      <?php if ($item["public"] ?? false): ?>
       <div class="exhibit-gallery-item">
         <?php
         if ($file) {

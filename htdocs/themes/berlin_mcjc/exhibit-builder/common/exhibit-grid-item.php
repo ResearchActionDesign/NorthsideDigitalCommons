@@ -55,18 +55,18 @@ if (
 }
 ?>
 <a href="<?php echo $url; ?>" class="item record related-item tile<?php
-echo $image ? " has-picture" : "";
-echo $description ? " has-description" : "";
+echo isset($image) ? " has-picture" : "";
+echo isset($description) ? " has-description" : "";
 echo $class ?? false ? " {$class}" : "";
 ?>">
-    <?php if ($image): ?>
+    <?php if (isset($image)): ?>
       <div class="item-img">
         <?php echo $image; ?>
       </div>
     <?php endif; ?>
       <div class="item-meta">
           <<?php echo $headingLevel; ?>><?php echo $title; ?></<?php echo $headingLevel; ?>>
-          <?php if ($description): ?>
+          <?php if (isset($description)): ?>
             <div class="item-description">
               <?php echo $description; ?>
             </div>
