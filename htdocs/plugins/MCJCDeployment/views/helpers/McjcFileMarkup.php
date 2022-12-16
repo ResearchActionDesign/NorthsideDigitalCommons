@@ -69,7 +69,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
         (array)$options['imgAttributes']);
       $imgHtml = $this->image_tag($file, $imgAttributes, $imageSize);
       $html .= !empty($imgHtml) ? $imgHtml : html_escape($file->original_filename);
-    } elseif (strpos($file->mime_type, 'pdf') !== FALSE) {
+    } elseif (str_contains($file->mime_type, 'pdf')) {
       // If this is a PDF, add link text instead of an image.
       if (stripos(html_escape($file->original_filename), 'tape') !== FALSE) {
         $html .= 'View Summary';
@@ -93,8 +93,8 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     // If this is the item's show page, link to the file. Otherwise, link to the
     // item.
     if ($displayAsLink) {
-      if ($options['show'] === TRUE || !$options['item']) {
-        if (substr($file->mime_type, 0, 5) === 'image') {
+      if ($options['show'] === TRUE || !($options['item'] ?? false)) {
+        if (str_starts_with($file->mime_type, 'image')) {
           $options['linkToFile'] = 'fullsize';
         }
         $html = $this->_linkToFile($file, $options, $html);
