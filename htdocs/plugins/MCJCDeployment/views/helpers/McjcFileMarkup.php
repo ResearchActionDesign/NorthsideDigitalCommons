@@ -93,7 +93,7 @@ class MCJCDeployment_View_Helper_McjcFileMarkup extends Omeka_View_Helper_FileMa
     // If this is the item's show page, link to the file. Otherwise, link to the
     // item.
     if ($displayAsLink) {
-      if ($options['show'] === TRUE || !($options['item'] ?? false)) {
+      if (($options['show'] ?? false) || !($options['item'] ?? false)) {
         if (str_starts_with($file->mime_type, 'image')) {
           $options['linkToFile'] = 'fullsize';
         }
