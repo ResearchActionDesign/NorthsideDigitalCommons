@@ -46,9 +46,7 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "82:83:1b:d5:19:00:e3:7c:58:c6:6f:0c:31:86:e4:4f"
+      - add_ssh_keys
       - attach_workspace:
           at: /tmp/workspace
       - run:
@@ -78,9 +76,7 @@ jobs:
     docker:
       - image: cimg/base:current
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "82:83:1b:d5:19:00:e3:7c:58:c6:6f:0c:31:86:e4:4f"
+      - add_ssh_keys
       - attach_workspace:
           at: /tmp/workspace
       - run:
