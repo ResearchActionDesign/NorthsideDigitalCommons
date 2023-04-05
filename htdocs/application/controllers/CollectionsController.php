@@ -21,7 +21,7 @@ class CollectionsController extends Omeka_Controller_AbstractActionController
     {
         $this->_helper->db->setDefaultModelName('Collection');
     }
-    
+
     /**
      * The show collection action.
      *
