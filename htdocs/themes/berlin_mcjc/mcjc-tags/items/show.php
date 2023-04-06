@@ -2,10 +2,7 @@
 
 echo head(["title" => $tag_name, "bodyclass" => "items browse"]); ?>
 <?php echo common("breadcrumbs", [
-    "trail" => [
-        "Tags" => "/tags",
-        $tag_name,
-    ],
+    "trail" => ["Tags" => "/tags", $tag_name],
 ]); ?>
 
 <h1><?php echo $tag_name; ?></h1>
