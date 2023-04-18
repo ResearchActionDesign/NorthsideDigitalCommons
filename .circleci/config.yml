@@ -86,7 +86,7 @@ jobs:
             echo "$FROMTHEROCKWALL_IP_ADDRESS ssh-ed25519 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
           name: Checkout code on dev server
-          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/fromtherockwall.org && git pull origin master'
+          command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/fromtherockwall.org && git pull origin main'
 
       - run:
           name: Copy over compiled css files to dev server
@@ -118,4 +118,4 @@ workflows:
             - build
           filters:
             branches:
-              only: master
+              only: main
