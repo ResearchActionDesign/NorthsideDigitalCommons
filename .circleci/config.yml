@@ -85,11 +85,11 @@ jobs:
             mkdir -p ~/.ssh
             echo "$FROMTHEROCKWALL_IP_ADDRESS ssh-ed25519 $FROMTHEROCKWALL_SSH_RSA_KEY" \>> ~/.ssh/known_hosts
       - run:
-          name: Checkout code on dev server
+          name: Checkout code on prod server
           command: ssh -A $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS 'cd ~/fromtherockwall.org && git pull origin main'
 
       - run:
-          name: Copy over compiled css files to dev server
+          name: Copy over compiled css files to prod server
           command: scp -rC *.css $FROMTHEROCKWALL_USER@$FROMTHEROCKWALL_IP_ADDRESS:~/fromtherockwall.org/htdocs/themes/berlin_mcjc/css
           working_directory: /tmp/workspace/htdocs/themes/berlin_mcjc/css
 
