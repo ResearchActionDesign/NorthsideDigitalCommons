@@ -113,3 +113,8 @@ After updating Omeka, check that the following modifications are still present:
 
 - [Add pagination data to collections->showAction](https://github.com/omeka/Omeka/pull/939)
 - Custom MCJC theme located in admin/themes folder. All this does is implement the contents of [this PR](https://github.com/omeka/Omeka/pull/940), so once that is merged the custom theme can be removed.
+
+## Modified plugins
+
+- Use [AWS support branch of this fork of Archive Repertory](https://github.com/timstallmann/Omeka-plugin-ArchiveRepertory/tree/aws-support) until [this PR](https://github.com/Daniel-KM/Omeka-plugin-ArchiveRepertory/pull/12) is merged.
+- Use [This fork for custom AWS S3 adapter](https://github.com/timstallmann/omeka-amazon-s3-storage-adapter) until [this PR](https://github.com/EHRI/omeka-amazon-s3-storage-adapter/pull/12) is merged

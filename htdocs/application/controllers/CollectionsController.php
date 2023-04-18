@@ -30,24 +30,24 @@ class CollectionsController extends Omeka_Controller_AbstractActionController
      */
     public function showAction()
     {
-      parent::showAction();
-      $recordsPerPage = $this->_getBrowseRecordsPerPage();
-      $currentPage = $this->getParam('page', 1);
-      $params = array('collection' => $this->view->collection->id);
-      $records = $this->_helper->db->getTable('Item')->findBy(
-        $params, $recordsPerPage, $currentPage);
-      $totalRecords = $this->_helper->db->getTable('Item')->count($params);
+        parent::showAction();
+        $recordsPerPage = $this->_getBrowseRecordsPerPage();
+        $currentPage = $this->getParam('page', 1);
+        $params = array('collection' => $this->view->collection->id);
+        $records = $this->_helper->db->getTable('Item')->findBy(
+            $params, $recordsPerPage, $currentPage);
+        $totalRecords = $this->_helper->db->getTable('Item')->count($params);
 
-      // Add pagination data to the registry. Used by pagination_links().
-      if ($recordsPerPage) {
-        Zend_Registry::set('pagination', array(
-          'page' => $currentPage,
-          'per_page' => $recordsPerPage,
-          'total_results' => $totalRecords,
-        ));
+        // Add pagination data to the registry. Used by pagination_links().
+        if ($recordsPerPage) {
+            Zend_Registry::set('pagination', array(
+                'page' => $currentPage,
+                'per_page' => $recordsPerPage,
+                'total_results' => $totalRecords,
+            ));
 
-        $this->view->assign(array('items' => $records, 'total_results' => $totalRecords));
-      }
+            $this->view->assign(array('items' => $records, 'total_results' => $totalRecords));
+        }
     }
 
     /**
