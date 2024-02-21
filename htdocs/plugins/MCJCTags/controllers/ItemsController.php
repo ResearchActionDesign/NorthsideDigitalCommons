@@ -10,8 +10,21 @@ class MCJCTags_ItemsController extends Omeka_Controller_AbstractActionController
     $this->_helper->db->setDefaultModelName('Item');
   }
 
+  protected function verifyTagExists($tagName) {
+    $select = new Omeka_Db_Select;
+    $select->from(array('tags' => get_db()->Tag))->where('tags.name = ?', $tagName);
+    $tagItemCount = $this->_helper->db->fetchObjects($select);
+    if (count($tagItemCount) === 1) {
+      return true;
+    }
+    return false;
+  }
+
   public function showAction() {
     $tagName = $this->getParam('tagName');
+    if (!$this->verifyTagExists($tagName)) {
+      throw new Omeka_Controller_Exception_404;
+    }
 
     $pluralName = $this->view->pluralize($this->_helper->db->getDefaultModelName());
     $recordsPerPage = parent::_getBrowseRecordsPerPage($pluralName);
